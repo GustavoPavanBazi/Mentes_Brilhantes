@@ -48,8 +48,13 @@ public class SplashActivity extends AppCompatActivity {
 
             // Configurar listener para quando o vídeo estiver preparado
             videoView.setOnPreparedListener(mediaPlayer -> {
-                // Remover controles do vídeo
+                // Configurar para ocupar tela cheia
                 mediaPlayer.setVideoScalingMode(android.media.MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
+
+                // Obter dimensões da tela e do vídeo
+                adjustVideoSize(mediaPlayer);
+
+                // Iniciar o vídeo
                 videoView.start();
             });
 
@@ -71,6 +76,45 @@ public class SplashActivity extends AppCompatActivity {
             e.printStackTrace();
             // Em caso de erro, ir direto para MainActivity
             goToMainActivity();
+        }
+    }
+
+    private void adjustVideoSize(android.media.MediaPlayer mediaPlayer) {
+        try {
+            // Obter dimensões da tela
+            android.util.DisplayMetrics displayMetrics = new android.util.DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int screenWidth = displayMetrics.widthPixels;
+            int screenHeight = displayMetrics.heightPixels;
+
+            // Obter dimensões do vídeo
+            int videoWidth = mediaPlayer.getVideoWidth();
+            int videoHeight = mediaPlayer.getVideoHeight();
+
+            // Calcular proporção
+            float screenRatio = (float) screenWidth / screenHeight;
+            float videoRatio = (float) videoWidth / videoHeight;
+
+            // Ajustar VideoView para ocupar tela cheia
+            android.widget.FrameLayout.LayoutParams layoutParams =
+                    (android.widget.FrameLayout.LayoutParams) videoView.getLayoutParams();
+
+            if (screenRatio > videoRatio) {
+                // Tela mais larga que o vídeo - ajustar pela largura
+                layoutParams.width = screenWidth;
+                layoutParams.height = (int) (screenWidth / videoRatio);
+            } else {
+                // Tela mais alta que o vídeo - ajustar pela altura
+                layoutParams.width = (int) (screenHeight * videoRatio);
+                layoutParams.height = screenHeight;
+            }
+
+            layoutParams.gravity = android.view.Gravity.CENTER;
+            videoView.setLayoutParams(layoutParams);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Se falhar, usar configuração padrão
         }
     }
 

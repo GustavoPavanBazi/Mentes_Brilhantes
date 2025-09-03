@@ -15,7 +15,7 @@
         <!-- SplashActivity agora é o LAUNCHER (primeira tela) -->
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashTheme"
+            android:theme="@style/MentesBrilhantesSplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
