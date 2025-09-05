@@ -11,15 +11,4 @@
         android:layout_height="match_parent"
         android:layout_gravity="center" />
 
-    <!-- Opcional: Adicionar um overlay ou logo adicional -->
-    <!--
-    <ImageView
-        android:id="@+id/overlay_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/your_logo"
-        android:visibility="gone" />
-    -->
-
 </FrameLayout>
