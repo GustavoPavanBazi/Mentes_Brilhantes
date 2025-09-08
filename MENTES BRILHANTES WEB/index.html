@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentes Brilhantes</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="icon" type="image/x-icon" href="img/LogoMB.png">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <div class="logo-section">
+            <div class="logo">
+        <img src="img/LogoMB.png" alt="Logo" />
+            </div>
+                <div class="logo-text">
+                    <div class="logo-title">Mentes Brilhantes</div>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="#inicio">Início</a>
+                <a href="#apoio">Apoio</a>
+                <a href="#luna">Luna</a>
+                <a href="#app">Aplicativo</a>
+                <a href="#contato">Contato</a>
+                <a href="#">Parceiros</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="html/login.html" class="btn-header btn-login" onclick="showLogin()">Entrar</a>
+                <div class="register-dropdown">
+                    <a href="#" class="btn-header btn-register">Cadastrar</a>
+                    <div class="dropdown-content">
+                        <a href="html/cadastro.html">Responsável</a>
+                        <a href="html/cadastroneuro.html">Neurodivergente</a>
+                        <a href="html/cadastroespecialista.html">Especialista</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Celebrando a <span class="highlight">Diversidade</span> e <span class="highlight">Potencial</span> de Cada Mente</h1>
+                <p class="hero-description">
+                    O Mentes Brilhantes é uma campanha dedicada à conscientização e valorização de pessoas autistas. 
+                    Nosso objetivo é promover inclusão, combater preconceitos e destacar as habilidades únicas 
+                    e talentos extraordinários das pessoas dentro do espectro autista.
+                </p>
+                <a href="html/saibamais.html" class="btn-primary">
+                    <span>Saiba Mais</span>
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="hero-visual">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                       <img src="img/img1.jpg" alt="Logo" class="slide-image">
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-content slide2">
+                            <img src="img/img2.jpg" alt="Logo" class="slide-image">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-content slide3">
+                            <img src="img/img3.png" alt="Logo" class="slide-image">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-content slide4">
+                            <div>
+                                <img src="img/img4.png" alt="Logo" class="slide-image">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="carousel-arrows carousel-prev" onclick="prevSlide()">‹</button>
+                    <button class="carousel-arrows carousel-next" onclick="nextSlide()">›</button>
+                    
+                    <div class="carousel-dots">
+                        <span class="carousel-dot active" onclick="currentSlide(1)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(2)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(3)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(4)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support" id="apoio">
+        <div class="support-container">
+            <h2 class="section-title">Precisa de Ajuda ou Apoio?</h2>
+            <p class="section-subtitle">
+                Estamos aqui para oferecer suporte completo às famílias, educadores e pessoas autistas. 
+                Conte conosco em sua jornada.
+            </p>
+            
+            <div class="support-grid">
+                <!-- Card: Fale com um Especialista -->
+                <a href="html/especialista.html" class="support-card" style="text-decoration: none; color: inherit;">
+                    <div class="support-icon">
+                        <img src="img/iconespecialista.png" alt="Ícone de Especialista" class="icon-img">
+                    </div>
+                    <h3>Fale com um Especialista</h3>
+                    <p>Conecte-se com profissionais especializados em autismo para orientação personalizada e suporte especializado.</p>
+                    <div class="btn-support">Entrar em Contato</div>
+                </a>
+            
+                <!-- Card: Perguntas Frequentes -->
+                <a href="html/perguntas.html" class="support-card" style="text-decoration: none; color: inherit;">
+                    <div class="support-icon">
+                        <img src="img/iconperguntas.png" alt="Ícone de Perguntas Frequentes" class="icon-img">
+                    </div>
+                    <h3>Perguntas Frequentes</h3>
+                    <p>Encontre respostas para as dúvidas mais comuns sobre autismo, diagnóstico, tratamentos e inclusão.</p>
+                    <div class="btn-support">Ver FAQ</div>
+                </a>
+            
+                <!-- Card: Contato por E-mail -->
+                <a href="mailto:mentesbrilhantestcc@gmail.com?subject=Contato%20-%20Mentes%20Brilhantes&body=Olá%20equipe%20Mentes%20Brilhantes,%0A%0AGostaria%20de%20entrar%20em%20contato%20para:%0A%0A[Digite%20aqui%20sua%20mensagem]%0A%0AAtenciosamente," class="support-card" style="text-decoration: none; color: inherit;">
+                    <div class="support-icon">
+                        <img src="img/iconemail.png" alt="Ícone de E-mail" class="icon-img">
+                    </div>
+                    <h3>Contato por E-mail</h3>
+                    <p>Envie suas dúvidas, sugestões ou solicite informações específicas através do nosso e-mail.</p>
+                    <div class="btn-support">Enviar E-mail</div>
+                </a>
+            </div>
+            
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Luna IA Section -->
+    <section class="luna-section" id="luna">
+        <div class="luna-container">
+            <div class="luna-visual">
+                <div class="luna-avatar">
+                    <div class="luna-glow"></div>
+                    <div class="luna-face">
+                        <div class="luna-eyes">
+                            <div class="eye"></div>
+                            <div class="eye"></div>
+                        </div>
+                        <div class="luna-mouth"></div>
+                    </div>
+                    <div class="neural-network">
+                        <div class="neural-dot" style="top: 20%; left: 15%;"></div>
+                        <div class="neural-dot" style="top: 40%; left: 10%;"></div>
+                        <div class="neural-dot" style="top: 60%; left: 20%;"></div>
+                        <div class="neural-dot" style="top: 30%; right: 15%;"></div>
+                        <div class="neural-dot" style="top: 50%; right: 10%;"></div>
+                        <div class="neural-dot" style="top: 70%; right: 25%;"></div>
+                        <div class="neural-connection" style="top: 25%; left: 20%; width: 60px; transform: rotate(45deg);"></div>
+                        <div class="neural-connection" style="top: 45%; left: 25%; width: 80px; transform: rotate(-30deg);"></div>
+                        <div class="neural-connection" style="top: 55%; right: 30%; width: 70px; transform: rotate(120deg);"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="luna-content">
+                
+                <h2>Conheça a <span class="luna-highlight">Luna IA</span></h2>
+                <p class="luna-description">
+                    a inteligência artificial que entende, acolhe e apoia pessoas no espectro autista.
+Desenvolvida com tecnologia de última geração e treinada com o conhecimento de especialistas em TEA, Luna vai muito além de uma IA comum. Ela aprende, se adapta e oferece um suporte verdadeiramente personalizado — respeitando o ritmo, as necessidades e a individualidade de cada pessoa.
+Mais que uma ferramenta, Luna é uma aliada na construção de uma jornada mais acessível, inclusiva e humana.
+                </p>
+                <div class="luna-features">
+                    <div class="luna-feature">
+                
+                <div class="luna-buttons">
+                    <a href="html/login.html" class="btn-luna-primary" onclick="showLogin()">
+                        Conversar com Luna
+                    </a>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+
+    <!-- App Section -->
+    <section class="app-section" id="app">
+        <div class="app-container">
+            <div class="app-content">
+                <h2>📲 Conheça o App Mentes Brilhantes</h2>
+                <p class="app-description">
+                    O App Mentes Brilhantes chegou para transformar a forma como famílias, educadores e a sociedade 
+                    se conectam com o universo autista. Explore guias interativos, ferramentas de rotina personalizadas, 
+                    espaço de apoio com especialistas, conteúdo educativo atualizado e muito mais. 
+                    Desenvolvido com design acessível e inclusivo, pensado para todos os tipos de mente. 
+                    Disponível para Android e iOS.
+                </p>
+                
+                <div class="download-buttons">
+                    <a href="#" class="btn-download" onclick="downloadApp('android')">
+                        📱 Baixar para Android
+                    </a>
+                </div>
+                
+                <div class="qr-placeholder">
+                    📱
+                </div>
+            </div>
+            
+            <div class="app-visual">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div>📲</div>
+                        <div style="font-size: 1rem; text-align: center;">
+                            Mentes Brilhantes<br>
+                            <small style="font-size: 0.8rem; opacity: 0.7;">App Interface</small>
+                        </div>
+                        <div>🧩</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Footer -->
+    <footer class="footer" id="contato">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        
+                        <div class="footer-logo-text">
+                            <span style="font-size: 24px; font-weight: 700;">Mentes Brilhantes</span>
+                            <p style="font-size: 14px; opacity: 0.8; margin-top: 5px;">No autismo, cada pessoa é única, com suas próprias formas de ver, sentir e viver o mundo. Aqui, celebramos essas diferenças e oferecemos um espaço de acolhimento, informação e respeito. Porque todos merecem ser compreendidos em sua singularidade. Bem-vindo(a) a um lugar onde você pode se sentir seguro(a), valorizado(a) e parte de algo especial.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-links-section">
+                    <h3>Links Úteis</h3>
+                    <div class="footer-links">
+                        <a href="#inicio">Início</a>
+                        <a href="#apoio">Apoio</a>
+                        <a href="#luna">IA Luna</a>
+                        <a href="#app">Aplicativo</a>
+                        <a href="html/saibamais.html">Saiba Mais</a>
+                        <a href="html/perguntas.html">FAQ</a>
+                    </div>
+                </div>
+
+                <div class="footer-support-section">
+                    <h3>Suporte</h3>
+                    <div class="footer-links">
+                        <a href="#" onclick="contactSpecialist()">Fale com Especialista</a>
+                        <a href="#" onclick="showAccessibility()">Acessibilidade</a>
+                        <a href="#" onclick="showPrivacy()">Política de Privacidade</a>
+                        <a href="#" onclick="showTerms()">Termos de Uso</a>
+                    </div>
+                </div>
+
+                <div class="footer-contact-section">
+                    <h3>Contato</h3>
+                    <div class="contact-info">
+                        <p>📧 mentesbrilhantestcc@gmail.com</p>
+                        <p>📱 (11) 97349-2001</p>
+                        <p>📍 São Paulo, SP - Brasil</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" onclick="openSocial('instagram')" title="Instagram">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.529l3.205-3.205 3.205 3.205c-.757.933-1.908 1.529-3.205 1.529z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" onclick="openSocial('twitter')" title="Twitter">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" onclick="openSocial('youtube')" title="YouTube">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2025 Mentes Brilhantes. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Carrossel de imagens
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to current slide and dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        function prevSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto-play carousel
+        let carouselInterval = setInterval(nextSlide, 4000);
+
+        // Pause auto-play on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(carouselInterval);
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            carouselInterval = setInterval(nextSlide, 4000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Funções de navegação
+        function showLogin() {
+            //alert('Redirecionando para página de login...');
+        }
+
+        function showRegister() {
+            //alert('Redirecionando para página de cadastro...');
+        }
+
+        // Funções de apoio
+        function contactSpecialist() {
+            alert('Abrindo formulário para contato com especialistas...');
+        }
+
+        function showFAQ() {
+            
+        }
+
+        function showResources() {
+            alert('Acessando área de recursos e materiais gratuitos...');
+        }
+
+        function sendEmail() {
+            window.location.href = 'mentesbrilhantestcc@gmail.com?subject=Contato - Mentes Brilhantes';
+        }
+
+        // Função da Luna IA
+        function chatWithLuna() {
+            //alert('Abrindo chat com Luna IA...');
+        }
+
+        // Funções do app
+        function downloadApp(platform) {
+            if (platform === 'android') {
+                alert('Redirecionando para Google Play Store...');
+            } else if (platform === 'ios') {
+                alert('Redirecionando para App Store...');
+            }
+        }
+
+        // Função de ajuda
+        function showHelp() {
+            alert('Precisa de ajuda?\n\n🔹 Use o menu de navegação\n🔹 Visite nossa seção de apoio\n🔹 Entre em contato conosco\n🔹 Baixe nosso app\n\nEstamos aqui para ajudar! 💙');
+        }
+
+        // Funções do footer
+        function showAccessibility() {
+            const modal = createModal('Acessibilidade', getAccessibilityContent());
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function showPrivacy() {
+            const modal = createModal('Política de Privacidade', getPrivacyContent());
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function showTerms() {
+            const modal = createModal('Termos de Uso', getTermsContent());
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        // Função para criar modal
+        function createModal(title, content) {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>${title}</h2>
+                        <button class="modal-close" onclick="closeModal(this)">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        ${content}
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-modal-close" onclick="closeModal(this)">Fechar</button>
+                    </div>
+                </div>
+            `;
+            return modal;
+        }
+
+        function closeModal(element) {
+            const modal = element.closest('.modal-overlay');
+            modal.classList.remove('show');
+            setTimeout(() => modal.remove(), 300);
+        }
+
+        // Conteúdos dos modais
+        function getAccessibilityContent() {
+            return `
+                <h3>Compromisso com a Acessibilidade</h3>
+                <p>O Mentes Brilhantes está comprometido em garantir que nosso site seja acessível a todas as pessoas, incluindo aquelas com deficiências. Trabalhamos continuamente para melhorar a experiência de todos os usuários.</p>
+                
+                <h4>Recursos de Acessibilidade Implementados:</h4>
+                <ul>
+                    <li><strong>Navegação por Teclado:</strong> Todo o conteúdo pode ser acessado usando apenas o teclado</li>
+                    <li><strong>Texto Alternativo:</strong> Todas as imagens possuem descrições alternativas</li>
+                    <li><strong>Contraste de Cores:</strong> Mantemos alto contraste para melhor legibilidade</li>
+                    <li><strong>Fontes Legíveis:</strong> Utilizamos tipografias claras e redimensionáveis</li>
+                    <li><strong>Estrutura Semântica:</strong> Código estruturado para leitores de tela</li>
+                </ul>
+
+                <h4>Ajuda com Acessibilidade:</h4>
+                <p>Se você encontrar qualquer barreira de acessibilidade em nosso site ou precisar de assistência para acessar algum conteúdo, entre em contato conosco:</p>
+                <ul>
+                    <li>Email: mentesbrilhantestcc@gmail.com</li>
+                    <li>Telefone: (11) 97340-2001</li>
+                </ul>
+
+                <h4>Padrões Seguidos:</h4>
+                <p>Nosso site segue as diretrizes WCAG 2.1 (Web Content Accessibility Guidelines) e está em conformidade com a Lei Brasileira de Inclusão da Pessoa com Deficiência (Lei 13.146/2015).</p>
+                
+                <p><small>Última atualização: Agosto de 2025</small></p>
+            `;
+        }
+
+        function getPrivacyContent() {
+            return `
+                <h3>Política de Privacidade - Mentes Brilhantes</h3>
+                <p><strong>Última atualização:</strong> Agosto de 2025</p>
+                
+                <h4>1. Informações que Coletamos</h4>
+                <p>Coletamos apenas as informações necessárias para fornecer nossos serviços de forma eficaz:</p>
+                <ul>
+                    <li><strong>Informações de Cadastro:</strong> Nome, email, telefone</li>
+                    <li><strong>Informações de Uso:</strong> Como você navega e utiliza nosso site</li>
+                    <li><strong>Informações Técnicas:</strong> Endereço IP, navegador, dispositivo</li>
+                </ul>
+
+                <h4>2. Como Utilizamos suas Informações</h4>
+                <ul>
+                    <li>Fornecer e melhorar nossos serviços</li>
+                    <li>Comunicar sobre atualizações e novidades</li>
+                    <li>Personalizar sua experiência</li>
+                    <li>Garantir a segurança da plataforma</li>
+                    <li>Cumprir obrigações legais</li>
+                </ul>
+
+                <h4>3. Compartilhamento de Informações</h4>
+                <p>Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros, exceto quando:</p>
+                <ul>
+                    <li>Você nos autorizar expressamente</li>
+                    <li>For necessário para cumprir obrigações legais</li>
+                    <li>For necessário para proteger direitos e segurança</li>
+                </ul>
+
+                <h4>4. Segurança dos Dados</h4>
+                <p>Implementamos medidas técnicas e organizacionais apropriadas para proteger suas informações contra acesso não autorizado, alteração, divulgação ou destruição.</p>
+
+                <h4>5. Seus Direitos (LGPD)</h4>
+                <p>Conforme a Lei Geral de Proteção de Dados, você tem direito a:</p>
+                <ul>
+                    <li>Confirmar a existência de tratamento de dados</li>
+                    <li>Acessar seus dados pessoais</li>
+                    <li>Corrigir dados incompletos ou incorretos</li>
+                    <li>Solicitar a exclusão de dados desnecessários</li>
+                    <li>Revogar o consentimento</li>
+                </ul>
+
+                <h4>6. Cookies</h4>
+                <p>Utilizamos cookies para melhorar sua experiência. Você pode configurar seu navegador para recusar cookies, mas isso pode afetar algumas funcionalidades.</p>
+
+                <h4>7. Contato</h4>
+                <p>Para exercer seus direitos ou esclarecer dúvidas sobre esta política:</p>
+                <ul>
+                    <li>Email: mentesbrilhantestcc@gmail.com</li>
+                    <li>Telefone: (11) 97340-2001</li>
+                </ul>
+
+                <h4>8. Alterações nesta Política</h4>
+                <p>Podemos atualizar esta política periodicamente. Notificaremos sobre mudanças significativas através do email cadastrado.</p>
+            `;
+        }
+
+        function getTermsContent() {
+            return `
+                <h3>Termos de Uso - Mentes Brilhantes</h3>
+                <p><strong>Última atualização:</strong> Agosto de 2025</p>
+                
+                <h4>1. Aceitação dos Termos</h4>
+                <p>Ao acessar e utilizar o site Mentes Brilhantes, você concorda em cumprir estes Termos de Uso. Se não concordar com qualquer parte destes termos, não utilize nossos serviços.</p>
+
+                <h4>2. Descrição do Serviço</h4>
+                <p>O Mentes Brilhantes é uma campanha de conscientização e valorização do autismo que oferece:</p>
+                <ul>
+                    <li>Informações educacionais sobre TEA (Transtorno do Espectro Autista)</li>
+                    <li>Recursos de apoio para famílias e cuidadores</li>
+                    <li>Ferramentas de comunicação e suporte</li>
+                    <li>Acesso à IA Luna para orientação especializada</li>
+                </ul>
+
+                <h4>3. Uso Apropriado</h4>
+                <p>Você se compromete a:</p>
+                <ul>
+                    <li>Usar o site apenas para fins legais e apropriados</li>
+                    <li>Não interferir no funcionamento do site</li>
+                    <li>Não tentar acessar áreas restritas</li>
+                    <li>Respeitar os direitos autorais e de propriedade intelectual</li>
+                    <li>Não transmitir conteúdo ofensivo ou prejudicial</li>
+                </ul>
+
+                <h4>4. Cadastro e Conta de Usuário</h4>
+                <ul>
+                    <li>Você é responsável por manter a confidencialidade de sua senha</li>
+                    <li>Deve fornecer informações precisas e atualizadas</li>
+                    <li>Notificar imediatamente sobre uso não autorizado de sua conta</li>
+                </ul>
+
+                <h4>5. Conteúdo do Usuário</h4>
+                <p>Ao enviar conteúdo para o site, você:</p>
+                <ul>
+                    <li>Garante ser o proprietário ou ter direitos necessários</li>
+                    <li>Concede ao Mentes Brilhantes licença para usar o conteúdo</li>
+                    <li>É responsável pela legalidade e adequação do conteúdo</li>
+                </ul>
+
+                <h4>6. Propriedade Intelectual</h4>
+                <p>Todo o conteúdo do site, incluindo textos, imagens, logotipos e software, é protegido por direitos autorais e outras leis de propriedade intelectual.</p>
+
+                <h4>7. Limitação de Responsabilidade</h4>
+                <p>O Mentes Brilhantes não se responsabiliza por:</p>
+                <ul>
+                    <li>Danos diretos ou indiretos decorrentes do uso do site</li>
+                    <li>Interrupções temporárias do serviço</li>
+                    <li>Conteúdo de terceiros ou links externos</li>
+                </ul>
+
+                <p><strong>Importante:</strong> Nossos serviços são informativos e não substituem orientação médica profissional.</p>
+
+                <h4>8. Modificações</h4>
+                <p>Reservamo-nos o direito de modificar estes termos a qualquer momento. Alterações serão comunicadas através do site.</p>
+
+                <h4>9. Suspensão e Encerramento</h4>
+                <p>Podemos suspender ou encerrar o acesso de usuários que violem estes termos, sem aviso prévio.</p>
+
+                <h4>10. Lei Aplicável</h4>
+                <p>Estes termos são regidos pelas leis brasileiras. Disputas serão resolvidas no foro da comarca de São Paulo/SP.</p>
+
+                <h4>11. Contato</h4>
+                <p>Para dúvidas sobre estes termos:</p>
+                <ul>
+                    <li>Email: mentesbrilhantestcc@gmail.com</li>
+                    <li>Telefone: (11) 97349-2001</li>
+                    <li>Endereço: São Paulo, SP - Brasil</li>
+                </ul>
+            `;
+        }
+
+        function openSocial(platform) {
+            alert(`Abrindo ${platform}...`);
+        }
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe support cards for animation
+        document.querySelectorAll('.support-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
