@@ -11,23 +11,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MentesBrilhantes">
-
-        <!-- SplashActivity agora é o LAUNCHER (primeira tela) -->
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VideosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JogosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FalasActivity"
+            android:exported="false" /> <!-- SplashActivity agora é o LAUNCHER (primeira tela) -->
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/MentesBrilhantesSplashTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/MentesBrilhantesSplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- MainActivity não é mais LAUNCHER (segunda tela) -->
+        </activity> <!-- MainActivity não é mais LAUNCHER (segunda tela) -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

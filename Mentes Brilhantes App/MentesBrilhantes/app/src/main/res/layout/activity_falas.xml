@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Container dos 4 botões funcionais -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Primeira linha de botões -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp">
+
+            <ImageButton
+                android:id="@+id/btn_social"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/social"
+                android:scaleType="centerCrop"
+                android:contentDescription="Social" />
+
+            <ImageButton
+                android:id="@+id/btn_lazer"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/lazer"
+                android:scaleType="centerCrop"
+                android:contentDescription="Lazer" />
+        </LinearLayout>
+
+        <!-- Segunda linha de botões -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btn_comidas"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/comidas"
+                android:scaleType="centerCrop"
+                android:contentDescription="Comidas" />
+
+            <ImageButton
+                android:id="@+id/btn_banheiro"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/banheiro"
+                android:scaleType="centerCrop"
+                android:contentDescription="Banheiro" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Linha dos botões de navegação -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="30dp">
+
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/sair"
+            android:scaleType="centerCrop"
+            android:contentDescription="Voltar ao Menu Principal" />
+
+        <ImageButton
+            android:id="@+id/btn_avancar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/avancar"
+            android:scaleType="centerCrop"
+            android:contentDescription="Avançar Página" />
+
+        <ImageButton
+            android:id="@+id/btn_voltar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="15dp"
+            android:src="@drawable/voltar"
+            android:scaleType="centerCrop"
+            android:contentDescription="Voltar Página"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

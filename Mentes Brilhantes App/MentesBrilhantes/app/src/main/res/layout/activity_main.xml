@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/btn_jogos"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginStart="55dp"
@@ -17,14 +17,14 @@
         android:layout_marginBottom="20dp"
         android:foreground="@drawable/jogos"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton5"
+        app:layout_constraintBottom_toTopOf="@+id/btn_videos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_falas" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_falas"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginStart="55dp"
@@ -33,14 +33,14 @@
         android:layout_marginBottom="14dp"
         android:foreground="@drawable/falas"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton4"
+        app:layout_constraintBottom_toTopOf="@+id/btn_jogos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/btn_videos"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginStart="55dp"
@@ -48,14 +48,14 @@
         android:layout_marginBottom="19dp"
         android:foreground="@drawable/videos"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton6"
+        app:layout_constraintBottom_toTopOf="@+id/btn_perfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_jogos" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/btn_perfil"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginStart="55dp"
@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_videos" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -76,7 +76,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="75dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+        app:layout_constraintBottom_toTopOf="@+id/btn_falas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />

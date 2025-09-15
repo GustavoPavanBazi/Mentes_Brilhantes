@@ -1,5 +1,6 @@
 package com.example.mentesbrilhantes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -23,6 +24,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+
+        // Configurar listeners dos ImageButtons para navegação
+        findViewById(R.id.btn_falas).setOnClickListener(v -> {
+            startActivity(new Intent(this, FalasActivity.class));
+        });
+
+        findViewById(R.id.btn_jogos).setOnClickListener(v -> {
+            startActivity(new Intent(this, JogosActivity.class));
+        });
+
+        findViewById(R.id.btn_videos).setOnClickListener(v -> {
+            startActivity(new Intent(this, VideosActivity.class));
+        });
+
+        findViewById(R.id.btn_perfil).setOnClickListener(v -> {
+            startActivity(new Intent(this, PerfilActivity.class));
+        });
     }
 }
