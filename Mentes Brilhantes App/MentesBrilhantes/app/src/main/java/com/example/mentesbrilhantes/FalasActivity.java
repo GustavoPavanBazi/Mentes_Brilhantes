@@ -2,6 +2,7 @@ package com.example.mentesbrilhantes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class FalasActivity extends AppCompatActivity {
 
     private ImageButton btnSocial, btnLazer, btnComidas, btnBanheiro;
-    private ImageButton btnEmocoes, btnAnimais, btnLugares, btnComunicacao;
-    private ImageButton btnHome, btnAvancar, btnVoltar;
+    private ImageButton btnSair, btnAvancar, btnVoltar;
     private int paginaAtual = 1;
     private final int TOTAL_PAGINAS = 2;
 
@@ -19,107 +19,117 @@ public class FalasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_falas);
 
-        // Inicializar botões
         inicializarBotoes();
-
-        // Configurar listeners
         configurarListeners();
-
-        // Mostrar primeira página
         mostrarPagina(paginaAtual);
     }
 
     private void inicializarBotoes() {
-        // Botões funcionais - Página 1
         btnSocial = findViewById(R.id.btn_social);
         btnLazer = findViewById(R.id.btn_lazer);
         btnComidas = findViewById(R.id.btn_comidas);
         btnBanheiro = findViewById(R.id.btn_banheiro);
 
-        // Botões de navegação
-        btnHome = findViewById(R.id.btn_home);
+        btnSair = findViewById(R.id.btn_sair);
         btnAvancar = findViewById(R.id.btn_avancar);
         btnVoltar = findViewById(R.id.btn_voltar);
     }
 
-    private void configurarListeners() {
-        // Botão voltar para tela principal
-        btnHome.setOnClickListener(v -> {
-            finish(); // Volta para MainActivity
-        });
+    private void configurarAnimacaoPressionar(View botao, Runnable acao) {
+        botao.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    // Diminuir quando pressiona
+                    v.animate()
+                            .scaleX(0.9f)
+                            .scaleY(0.9f)
+                            .setDuration(100)
+                            .start();
+                    return true;
 
-        // Botão avançar página
-        btnAvancar.setOnClickListener(v -> {
+                case MotionEvent.ACTION_UP:
+                    // Voltar ao normal e executar ação
+                    v.animate()
+                            .scaleX(1.0f)
+                            .scaleY(1.0f)
+                            .setDuration(100)
+                            .withEndAction(() -> {
+                                if (acao != null) {
+                                    acao.run();
+                                }
+                            })
+                            .start();
+                    return true;
+
+                case MotionEvent.ACTION_CANCEL:
+                    // Voltar ao normal se cancelar
+                    v.animate()
+                            .scaleX(1.0f)
+                            .scaleY(1.0f)
+                            .setDuration(100)
+                            .start();
+                    return true;
+            }
+            return false;
+        });
+    }
+
+    private void configurarListeners() {
+        // Botão sair
+        configurarAnimacaoPressionar(btnSair, () -> finish());
+
+        // Botão avançar
+        configurarAnimacaoPressionar(btnAvancar, () -> {
             if (paginaAtual < TOTAL_PAGINAS) {
                 paginaAtual++;
                 mostrarPagina(paginaAtual);
             }
         });
 
-        // Botão voltar página
-        btnVoltar.setOnClickListener(v -> {
+        // Botão voltar
+        configurarAnimacaoPressionar(btnVoltar, () -> {
             if (paginaAtual > 1) {
                 paginaAtual--;
                 mostrarPagina(paginaAtual);
             }
         });
 
-        // Listeners dos botões funcionais - Página 1
-        btnSocial.setOnClickListener(v -> {
-            if (paginaAtual == 1) {
-                // Ações sociais: "Olá", "Tchau", "Por favor", etc.
-            } else {
-                // Emoções: "Feliz", "Triste", "Com raiva", etc.
-            }
+        // Botões funcionais
+        configurarAnimacaoPressionar(btnSocial, () -> {
+            // Ação do botão social/emoções
         });
 
-        btnLazer.setOnClickListener(v -> {
-            if (paginaAtual == 1) {
-                // Atividades de lazer: "Brincar", "Assistir TV", "Música", etc.
-            } else {
-                // Animais: "Cachorro", "Gato", "Pássaro", etc.
-            }
+        configurarAnimacaoPressionar(btnLazer, () -> {
+            // Ação do botão lazer/animais
         });
 
-        btnComidas.setOnClickListener(v -> {
-            if (paginaAtual == 1) {
-                // Comidas: "Água", "Lanche", "Fruta", etc.
-            } else {
-                // Lugares: "Casa", "Escola", "Parque", etc.
-            }
+        configurarAnimacaoPressionar(btnComidas, () -> {
+            // Ação do botão comidas/lugares
         });
 
-        btnBanheiro.setOnClickListener(v -> {
-            if (paginaAtual == 1) {
-                // Necessidades: "Banheiro", "Sede", "Fome", etc.
-            } else {
-                // Comunicação: "Sim", "Não", "Mais", "Pare", etc.
-            }
+        configurarAnimacaoPressionar(btnBanheiro, () -> {
+            // Ação do botão banheiro/comunicação
         });
     }
 
     private void mostrarPagina(int pagina) {
         switch (pagina) {
             case 1:
-                // Página 1: Social, Lazer, Comidas, Banheiro
                 btnSocial.setImageResource(R.drawable.social);
                 btnLazer.setImageResource(R.drawable.lazer);
                 btnComidas.setImageResource(R.drawable.comidas);
                 btnBanheiro.setImageResource(R.drawable.banheiro);
 
-                // Controles de navegação
                 btnAvancar.setVisibility(View.VISIBLE);
                 btnVoltar.setVisibility(View.GONE);
                 break;
 
             case 2:
-                // Página 2: Emoções, Animais, Lugares, Comunicação
                 btnSocial.setImageResource(R.drawable.emocoes);
                 btnLazer.setImageResource(R.drawable.animais);
                 btnComidas.setImageResource(R.drawable.lugares);
                 btnBanheiro.setImageResource(R.drawable.comunicacao);
 
-                // Controles de navegação
                 btnAvancar.setVisibility(View.GONE);
                 btnVoltar.setVisibility(View.VISIBLE);
                 break;

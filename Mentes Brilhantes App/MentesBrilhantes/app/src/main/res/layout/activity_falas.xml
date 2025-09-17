@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center">
+    android:padding="12dp"
+    android:gravity="center"
+    android:background="@drawable/fundo_falas">
 
-    <!-- Container dos 4 botões funcionais -->
+    <!-- Container dos 4 botões funcionais com mais espaço superior -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginTop="140dp">
 
         <!-- Primeira linha de botões -->
         <LinearLayout
@@ -20,24 +22,30 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="10dp">
 
             <ImageButton
                 android:id="@+id/btn_social"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="10dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_margin="8dp"
                 android:src="@drawable/social"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:padding="0dp"
+                android:adjustViewBounds="false"
                 android:contentDescription="Social" />
 
             <ImageButton
                 android:id="@+id/btn_lazer"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="10dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_margin="8dp"
                 android:src="@drawable/lazer"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:padding="0dp"
+                android:adjustViewBounds="false"
                 android:contentDescription="Lazer" />
         </LinearLayout>
 
@@ -50,20 +58,26 @@
 
             <ImageButton
                 android:id="@+id/btn_comidas"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="10dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_margin="8dp"
                 android:src="@drawable/comidas"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:padding="0dp"
+                android:adjustViewBounds="false"
                 android:contentDescription="Comidas" />
 
             <ImageButton
                 android:id="@+id/btn_banheiro"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="10dp"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_margin="8dp"
                 android:src="@drawable/banheiro"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:padding="0dp"
+                android:adjustViewBounds="false"
                 android:contentDescription="Banheiro" />
         </LinearLayout>
     </LinearLayout>
@@ -74,33 +88,42 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="15dp">
 
         <ImageButton
-            android:id="@+id/btn_home"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="15dp"
+            android:id="@+id/btn_sair"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="8dp"
             android:src="@drawable/sair"
-            android:scaleType="centerCrop"
-            android:contentDescription="Voltar ao Menu Principal" />
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Sair" />
 
         <ImageButton
             android:id="@+id/btn_avancar"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="15dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="8dp"
             android:src="@drawable/avancar"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
             android:contentDescription="Avançar Página" />
 
         <ImageButton
             android:id="@+id/btn_voltar"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="15dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="8dp"
             android:src="@drawable/voltar"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
             android:contentDescription="Voltar Página"
             android:visibility="gone" />
     </LinearLayout>
