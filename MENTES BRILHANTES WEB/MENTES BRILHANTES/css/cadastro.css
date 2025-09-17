@@ -348,7 +348,6 @@ body {
 }
 
 .info-modal-content::before {
-    content: '👤';
     font-size: 40px;
     display: block;
     margin-bottom: 15px;
