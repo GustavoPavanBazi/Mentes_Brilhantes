@@ -12,6 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MentesBrilhantes">
         <activity
+            android:name=".SocialActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmocoesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LazerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnimaisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ComidasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LugaresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NecessidadesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ComunicacaoActivity"
+            android:exported="false" />
+        <activity
             android:name=".PerfilActivity"
             android:exported="false" />
         <activity

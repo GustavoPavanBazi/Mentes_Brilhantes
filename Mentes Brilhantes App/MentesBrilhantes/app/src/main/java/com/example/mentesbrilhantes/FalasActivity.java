@@ -14,14 +14,61 @@ public class FalasActivity extends AppCompatActivity {
     private int paginaAtual = 1;
     private final int TOTAL_PAGINAS = 2;
 
+    // FLAG GLOBAL COMPARTILHADA
+    private static boolean isAnyButtonProcessing = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // **CONFIGURAÇÃO FULLSCREEN**
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        );
+
         setContentView(R.layout.activity_falas);
 
         inicializarBotoes();
         configurarListeners();
         mostrarPagina(paginaAtual);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        manterFullscreen();
+        // Reset da flag quando volta para a tela
+        isAnyButtonProcessing = false;
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            manterFullscreen();
+        }
+    }
+
+    private void manterFullscreen() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        );
     }
 
     private void inicializarBotoes() {
@@ -35,80 +82,152 @@ public class FalasActivity extends AppCompatActivity {
         btnVoltar = findViewById(R.id.btn_voltar);
     }
 
-    private void configurarAnimacaoPressionar(View botao, Runnable acao) {
-        botao.setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    // Diminuir quando pressiona
-                    v.animate()
-                            .scaleX(0.9f)
-                            .scaleY(0.9f)
-                            .setDuration(100)
-                            .start();
-                    return true;
+    // MÉTODO CORRIGIDO - APENAS O PRIMEIRO BOTÃO EXECUTA AÇÃO
+    private void configurarBotaoProtegido(View botao, Runnable acao) {
+        botao.setOnTouchListener(new View.OnTouchListener() {
+            private boolean isThisButtonActive = false;
 
-                case MotionEvent.ACTION_UP:
-                    // Voltar ao normal e executar ação
-                    v.animate()
-                            .scaleX(1.0f)
-                            .scaleY(1.0f)
-                            .setDuration(100)
-                            .withEndAction(() -> {
-                                if (acao != null) {
-                                    acao.run();
-                                }
-                            })
-                            .start();
-                    return true;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // SÓ PERMITE SE NENHUM BOTÃO ESTÁ PROCESSANDO
+                        if (!isAnyButtonProcessing) {
+                            isAnyButtonProcessing = true;
+                            isThisButtonActive = true; // Marca ESTE botão como ativo
 
-                case MotionEvent.ACTION_CANCEL:
-                    // Voltar ao normal se cancelar
-                    v.animate()
-                            .scaleX(1.0f)
-                            .scaleY(1.0f)
-                            .setDuration(100)
-                            .start();
-                    return true;
+                            // Animação só no botão ativo
+                            v.animate()
+                                    .scaleX(0.95f)
+                                    .scaleY(0.95f)
+                                    .setDuration(80)
+                                    .start();
+                            return true;
+                        } else {
+                            // Outros botões ignoram completamente
+                            isThisButtonActive = false;
+                            return false;
+                        }
+
+                    case MotionEvent.ACTION_UP:
+                        // SÓ EXECUTA AÇÃO SE FOR O BOTÃO ATIVO
+                        if (isThisButtonActive) {
+                            v.animate()
+                                    .scaleX(1.0f)
+                                    .scaleY(1.0f)
+                                    .setDuration(80)
+                                    .withEndAction(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            // EXECUTA AÇÃO APENAS DO BOTÃO ATIVO
+                                            acao.run();
+                                            // LIBERA FLAGS
+                                            isAnyButtonProcessing = false;
+                                            isThisButtonActive = false;
+                                        }
+                                    })
+                                    .start();
+                        } else {
+                            // Outros botões voltam ao normal sem executar ação
+                            v.animate()
+                                    .scaleX(1.0f)
+                                    .scaleY(1.0f)
+                                    .setDuration(80)
+                                    .start();
+                        }
+                        return true;
+
+                    case MotionEvent.ACTION_CANCEL:
+                        // Cancela e libera flags
+                        v.animate()
+                                .scaleX(1.0f)
+                                .scaleY(1.0f)
+                                .setDuration(80)
+                                .start();
+
+                        if (isThisButtonActive) {
+                            isAnyButtonProcessing = false;
+                            isThisButtonActive = false;
+                        }
+                        return true;
+                }
+                return false;
             }
-            return false;
         });
     }
 
     private void configurarListeners() {
-        // Botão sair
-        configurarAnimacaoPressionar(btnSair, () -> finish());
+        // Todos os botões com proteção total
 
-        // Botão avançar
-        configurarAnimacaoPressionar(btnAvancar, () -> {
-            if (paginaAtual < TOTAL_PAGINAS) {
-                paginaAtual++;
-                mostrarPagina(paginaAtual);
+        configurarBotaoProtegido(btnSocial, new Runnable() {
+            @Override
+            public void run() {
+                if (paginaAtual == 1) {
+                    startActivity(new Intent(FalasActivity.this, SocialActivity.class));
+                } else {
+                    startActivity(new Intent(FalasActivity.this, EmocoesActivity.class));
+                }
             }
         });
 
-        // Botão voltar
-        configurarAnimacaoPressionar(btnVoltar, () -> {
-            if (paginaAtual > 1) {
-                paginaAtual--;
-                mostrarPagina(paginaAtual);
+        configurarBotaoProtegido(btnLazer, new Runnable() {
+            @Override
+            public void run() {
+                if (paginaAtual == 1) {
+                    startActivity(new Intent(FalasActivity.this, LazerActivity.class));
+                } else {
+                    startActivity(new Intent(FalasActivity.this, AnimaisActivity.class));
+                }
             }
         });
 
-        // Botões funcionais
-        configurarAnimacaoPressionar(btnSocial, () -> {
-            // Ação do botão social/emoções
+        configurarBotaoProtegido(btnComidas, new Runnable() {
+            @Override
+            public void run() {
+                if (paginaAtual == 1) {
+                    startActivity(new Intent(FalasActivity.this, ComidasActivity.class));
+                } else {
+                    startActivity(new Intent(FalasActivity.this, LugaresActivity.class));
+                }
+            }
         });
 
-        configurarAnimacaoPressionar(btnLazer, () -> {
-            // Ação do botão lazer/animais
+        configurarBotaoProtegido(btnBanheiro, new Runnable() {
+            @Override
+            public void run() {
+                if (paginaAtual == 1) {
+                    startActivity(new Intent(FalasActivity.this, NecessidadesActivity.class));
+                } else {
+                    startActivity(new Intent(FalasActivity.this, ComunicacaoActivity.class));
+                }
+            }
         });
 
-        configurarAnimacaoPressionar(btnComidas, () -> {
-            // Ação do botão comidas/lugares
+        configurarBotaoProtegido(btnSair, new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
         });
 
-        configurarAnimacaoPressionar(btnBanheiro, () -> {
-            // Ação do botão banheiro/comunicação
+        configurarBotaoProtegido(btnAvancar, new Runnable() {
+            @Override
+            public void run() {
+                if (paginaAtual < TOTAL_PAGINAS) {
+                    paginaAtual++;
+                    mostrarPagina(paginaAtual);
+                }
+            }
+        });
+
+        configurarBotaoProtegido(btnVoltar, new Runnable() {
+            @Override
+            public void run() {
+                if (paginaAtual > 1) {
+                    paginaAtual--;
+                    mostrarPagina(paginaAtual);
+                }
+            }
         });
     }
 

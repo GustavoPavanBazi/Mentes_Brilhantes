@@ -7,7 +7,7 @@
     android:gravity="center"
     android:background="@drawable/fundo_falas">
 
-    <!-- Container dos 4 botões funcionais com mais espaço superior -->
+    <!-- Container dos 4 botões funcionais com espaço superior -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,8 +26,8 @@
 
             <ImageButton
                 android:id="@+id/btn_social"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_margin="8dp"
                 android:src="@drawable/social"
                 android:scaleType="fitXY"
@@ -38,8 +38,8 @@
 
             <ImageButton
                 android:id="@+id/btn_lazer"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_margin="8dp"
                 android:src="@drawable/lazer"
                 android:scaleType="fitXY"
@@ -58,8 +58,8 @@
 
             <ImageButton
                 android:id="@+id/btn_comidas"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_margin="8dp"
                 android:src="@drawable/comidas"
                 android:scaleType="fitXY"
@@ -70,8 +70,8 @@
 
             <ImageButton
                 android:id="@+id/btn_banheiro"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
                 android:layout_margin="8dp"
                 android:src="@drawable/banheiro"
                 android:scaleType="fitXY"
@@ -92,8 +92,8 @@
 
         <ImageButton
             android:id="@+id/btn_sair"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_margin="8dp"
             android:src="@drawable/sair"
             android:scaleType="fitXY"
@@ -104,8 +104,8 @@
 
         <ImageButton
             android:id="@+id/btn_avancar"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_margin="8dp"
             android:src="@drawable/avancar"
             android:scaleType="fitXY"
@@ -116,8 +116,8 @@
 
         <ImageButton
             android:id="@+id/btn_voltar"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_margin="8dp"
             android:src="@drawable/voltar"
             android:scaleType="fitXY"
