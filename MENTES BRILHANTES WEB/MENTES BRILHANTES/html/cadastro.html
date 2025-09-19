@@ -151,7 +151,7 @@
     <!-- Modal de Sucesso -->
     <div class="success-modal" id="successModal">
         <div class="success-modal-content">
-            <h2>✅ Conta criada com sucesso!</h2>
+            <h2> Conta criada com sucesso!</h2>
             <p>Seu cadastro foi realizado com sucesso. Agora você pode fazer login e aproveitar todos os nossos serviços.</p>
             <button onclick="closeSuccessModal()">OK</button>
         </div>
@@ -171,11 +171,11 @@
     <!-- Modal de Redirecionamento para Cadastro do Neurodivergente - NOVO -->
     <div class="info-modal" id="redirectModal">
         <div class="info-modal-content">
-            <h2>Cadastro Concluído! 🎉</h2>
+            <h2>Cadastro Concluído!</h2>
             <p>Seu cadastro como <span class="highlight">responsável</span> foi realizado com sucesso!</p>
-            <p>Agora você será direcionado para a tela de <span class="highlight">cadastro do neurodivergente</span>.</p>
+            <p>Agora você poderá navegar cadastrado em nosso ambiente</span>.</p>
             <p>Lá você poderá registrar os dados da pessoa autista sob sua responsabilidade.</p>
-            <button class="info-modal-button" onclick="closeRedirectModal()">Continuar para o cadastro</button>
+            <button class="info-modal-button" onclick="closeRedirectModal()">Continuar</button>
         </div>
     </div>
 
@@ -831,7 +831,7 @@
         function closeRedirectModal() {
             document.getElementById('redirectModal').style.display = 'none';
             // Redirecionar para a página de cadastro do neurodivergente
-            window.location.href = "cadastroneuro.html";
+            window.location.href = "../index.html";
         }
 
         function showForgotPassword() {
