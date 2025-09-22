@@ -234,20 +234,19 @@ public class FalasActivity extends AppCompatActivity {
     private void mostrarPagina(int pagina) {
         switch (pagina) {
             case 1:
-                btnSocial.setImageResource(R.drawable.social);
-                btnLazer.setImageResource(R.drawable.lazer);
-                btnComidas.setImageResource(R.drawable.comidas);
-                btnBanheiro.setImageResource(R.drawable.banheiro);
+                btnSocial.setImageResource(R.drawable.btn_social);
+                btnLazer.setImageResource(R.drawable.btn_lazer);
+                btnComidas.setImageResource(R.drawable.btn_comidas);
+                btnBanheiro.setImageResource(R.drawable.btn_necessidades);
 
                 btnAvancar.setVisibility(View.VISIBLE);
                 btnVoltar.setVisibility(View.GONE);
                 break;
-
             case 2:
-                btnSocial.setImageResource(R.drawable.emocoes);
-                btnLazer.setImageResource(R.drawable.animais);
-                btnComidas.setImageResource(R.drawable.lugares);
-                btnBanheiro.setImageResource(R.drawable.comunicacao);
+                btnSocial.setImageResource(R.drawable.btn_emocoes);
+                btnLazer.setImageResource(R.drawable.btn_animais);
+                btnComidas.setImageResource(R.drawable.btn_lugares);
+                btnBanheiro.setImageResource(R.drawable.btn_comunicacao);
 
                 btnAvancar.setVisibility(View.GONE);
                 btnVoltar.setVisibility(View.VISIBLE);

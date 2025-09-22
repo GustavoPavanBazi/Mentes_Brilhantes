@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MentesBrilhantes">
         <activity
+            android:name=".VideoPlayerActivity"
+            android:exported="false" />
+        <activity
             android:name=".SocialActivity"
             android:exported="false" />
         <activity
