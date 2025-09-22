@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VideoPlayerActivity">
+    android:orientation="vertical"
+    android:background="#000000">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- WebView para o vídeo -->
+    <WebView
+        android:id="@+id/webview_video"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#000000" />
+
+    <!-- Botão Fechar -->
+    <LinearLayout
+        android:id="@+id/controls_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="15dp"
+        android:background="#333333">
+
+        <Button
+            android:id="@+id/btn_fechar"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:text="FECHAR VÍDEO"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="#FF6B6B"
+            android:layout_margin="10dp" />
+    </LinearLayout>
+
+</LinearLayout>
