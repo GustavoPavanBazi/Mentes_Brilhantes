@@ -21,16 +21,12 @@
                 <h1 class="form-title">Cadastro de Especialista</h1>
                 <p class="form-subtitle">Junte-se à nossa rede de profissionais especializados em autismo</p>
                 
-                <div class="specialist-badge">
-                    👨‍⚕️ Cadastro Profissional
-                </div>
-                
                 <form id="specialistForm">
                     <!-- Foto de Perfil -->
                     <div class="profile-photo-section">
                         <div class="profile-photo-container" onclick="document.getElementById('profilePhoto').click()">
                             <img id="profilePhotoPreview" class="profile-photo" alt="Foto de perfil">
-                            <div class="profile-photo-placeholder">👤</div>
+                            <div class="profile-photo-placeholder">📷</div>
                         </div>
                         <label class="profile-photo-label" for="profilePhoto">Adicionar foto profissional</label>
                         <input type="file" id="profilePhoto" class="profile-photo-input" accept="image/*">
@@ -48,6 +44,13 @@
                         <label class="form-label required" for="email">E-mail Profissional</label>
                         <input type="email" id="email" class="form-input" placeholder="Digite seu e-mail profissional">
                         <div class="error-message" id="emailError">E-mail válido é obrigatório</div>
+                    </div>
+
+                    <!-- CPF -->
+                    <div class="form-group">
+                        <label class="form-label required" for="cpf">CPF</label>
+                        <input type="text" id="cpf" class="form-input" placeholder="000.000.000-00" maxlength="14" required>
+                        <div class="error-message" id="cpfError">CPF deve ter 11 dígitos e ser válido</div>
                     </div>
                     
                     <!-- Curso/Formação -->
@@ -78,6 +81,20 @@
                         <label class="form-label" for="description">Descrição Profissional</label>
                         <textarea id="description" class="form-textarea" placeholder="Conte um pouco sobre sua experiência e especialização no atendimento a pessoas autistas..."></textarea>
                         <div class="error-message" id="descriptionError">Descrição muito curta</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label required" for="password">Senha</label>
+                            <input type="password" id="password" class="form-input" placeholder="Digite a senha" required>
+                            <div class="error-message" id="passwordError">Senha deve ter pelo menos 6 caracteres</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label required" for="confirmPassword">Confirmar Senha</label>
+                            <input type="password" id="confirmPassword" class="form-input" placeholder="Confirme a senha" required>
+                            <div class="error-message" id="confirmPasswordError">Senhas devem coincidir</div>
+                        </div>
                     </div>
                     
                     <button type="submit" class="register-btn">Cadastrar como Especialista</button>
@@ -159,6 +176,47 @@
             document.getElementById('successModal').style.display = 'none';
             window.location.href = '../index.html';
         }
+
+        // Máscara para CPF
+        function applyCPFMask(value) {
+            return value
+                .replace(/\D/g, '')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d)/, '$1.$2')
+                .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+                .replace(/(-\d{2})\d+?$/, '$1');
+        }
+
+        // Função para validar CPF
+        function isValidCPF(cpf) {
+            cpf = cpf.replace(/\D/g, '');
+            if (cpf.length !== 11) return false;
+            
+            // Verifica sequências iguais (CPFs inválidos conhecidos)
+            if (/^(\d)\1{10}$/.test(cpf)) return false;
+            
+            // Validação dos dígitos verificadores
+            let sum = 0;
+            for (let i = 0; i < 9; i++) {
+                sum += parseInt(cpf[i]) * (10 - i);
+            }
+            let digit1 = (sum * 10) % 11;
+            if (digit1 === 10) digit1 = 0;
+            
+            sum = 0;
+            for (let i = 0; i < 10; i++) {
+                sum += parseInt(cpf[i]) * (11 - i);
+            }
+            let digit2 = (sum * 10) % 11;
+            if (digit2 === 10) digit2 = 0;
+            
+            return digit1 === parseInt(cpf[9]) && digit2 === parseInt(cpf[10]);
+        }
+
+        // Aplicar máscara ao CPF
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            e.target.value = applyCPFMask(e.target.value);
+        });
 
         // Preview da foto de perfil
         document.getElementById('profilePhoto').addEventListener('change', function(e) {
@@ -259,6 +317,14 @@
                 showError('email', 'emailError', 'E-mail válido é obrigatório');
                 isValid = false;
             }
+
+            // Validar CPF
+            const cpf = document.getElementById('cpf').value;
+            const cpfNumbers = cpf.replace(/\D/g, '');
+            if (!cpf || cpfNumbers.length !== 11 || !isValidCPF(cpf)) {
+                showError('cpf', 'cpfError', 'CPF deve ter 11 dígitos e ser válido');
+                isValid = false;
+            }
             
             // Validar curso
             const course = document.getElementById('course').value.trim();
@@ -281,6 +347,20 @@
                 isValid = false;
             }
             
+            // Validar senha
+            const password = document.getElementById('password').value;
+            if (!password || password.length < 6) {
+                showError('password', 'passwordError', 'Senha deve ter pelo menos 6 caracteres');
+                isValid = false;
+            }
+            
+            // Validar confirmação de senha
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (!confirmPassword || password !== confirmPassword) {
+                showError('confirmPassword', 'confirmPasswordError', 'Senhas devem coincidir');
+                isValid = false;
+            }
+        
             // Se todos os campos estão válidos, mostrar sucesso
             if (isValid) {
                 showSuccessModal();
@@ -373,6 +453,35 @@
             const course = e.target.value.trim();
             if (course && course.length >= 2) {
                 clearError('course', 'courseError');
+            }
+        });
+
+        // Validação em tempo real para CPF
+        document.getElementById('cpf').addEventListener('blur', function(e) {
+            const cpf = e.target.value;
+            const cpfNumbers = cpf.replace(/\D/g, '');
+            if (cpf && cpfNumbers.length === 11 && isValidCPF(cpf)) {
+                clearError('cpf', 'cpfError');
+            } else if (cpf && (cpfNumbers.length !== 11 || !isValidCPF(cpf))) {
+                showError('cpf', 'cpfError', 'CPF deve ter 11 dígitos e ser válido');
+            }
+        });
+
+        // Validação em tempo real para senhas
+        document.getElementById('password').addEventListener('blur', function(e) {
+            const password = e.target.value;
+            if (password && password.length >= 6) {
+                clearError('password', 'passwordError');
+            }
+        });
+
+        document.getElementById('confirmPassword').addEventListener('blur', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = e.target.value;
+            if (confirmPassword && password === confirmPassword) {
+                clearError('confirmPassword', 'confirmPasswordError');
+            } else if (confirmPassword && password !== confirmPassword) {
+                showError('confirmPassword', 'confirmPasswordError', 'Senhas devem coincidir');
             }
         });
     </script>
