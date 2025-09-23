@@ -25,7 +25,6 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    min-width: 300px;
 }
 
 .logo {
@@ -46,63 +45,44 @@ body {
     flex: 1;
     background: #f5f5f5;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     padding: 15px;
     overflow-y: auto;
     overflow-x: hidden;
-    min-width: 400px;
-    /* Otimização para 1920x1080 */
-    max-height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .register-form {
     width: 100%;
-    max-width: 520px;
+    max-width: 480px;
     min-height: fit-content;
     display: flex;
     flex-direction: column;
-    /* Padding reduzido para caber na tela */
-    padding: 10px;
 }
 
 .form-title {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
 .form-subtitle {
-    font-size: 13px;
+    font-size: 14px;
     color: #666;
+    margin-bottom: 15px;
     text-align: center;
-    margin-bottom: 8px;
     line-height: 1.4;
-}
-
-/* Badge do especialista */
-.specialist-badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    background: linear-gradient(135deg, #4A90E2 0%, #7BB3F0 100%);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 15px;
-    margin: 0 auto 8px auto;
-    font-size: 11px;
-    font-weight: 600;
-    width: fit-content;
 }
 
 .profile-photo-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .profile-photo-container {
@@ -114,7 +94,7 @@ body {
     overflow: hidden;
     background: #fff;
     cursor: pointer;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
 .profile-photo {
@@ -135,10 +115,9 @@ body {
 }
 
 .profile-photo-label {
-    font-size: 10px;
+    font-size: 11px;
     color: #666;
     cursor: pointer;
-    font-weight: 500;
 }
 
 .profile-photo-input {
@@ -146,35 +125,25 @@ body {
 }
 
 .form-group {
-    margin-bottom: 6px;
+    margin-bottom: 9px;
     position: relative;
 }
 
 .form-row {
     display: flex;
-    gap: 8px;
+    gap: 7px;
 }
 
 .form-row .form-group {
     flex: 1;
 }
 
-/* Linha com 3 campos */
-.form-row-3 {
-    display: flex;
-    gap: 6px;
-}
-
-.form-row-3 .form-group {
-    flex: 1;
-}
-
 .form-label {
     display: block;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
 }
 
 .form-label.required::after {
@@ -185,9 +154,9 @@ body {
 
 .form-input {
     width: 100%;
-    padding: 6px 8px;
+    padding: 7px 9px;
     border: 2px solid #ddd;
-    border-radius: 12px;
+    border-radius: 16px;
     font-size: 12px;
     color: #666;
     background: white;
@@ -196,7 +165,7 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: #4A90E2;
+    border-color: #00bcd4;
 }
 
 .form-input.error {
@@ -205,34 +174,33 @@ body {
 
 .form-textarea {
     width: 100%;
-    padding: 6px 8px;
+    padding: 7px 9px;
     border: 2px solid #ddd;
-    border-radius: 12px;
+    border-radius: 16px;
     font-size: 12px;
     color: #666;
     background: white;
     transition: border-color 0.3s ease;
     resize: vertical;
-    min-height: 45px;
-    max-height: 60px;
+    min-height: 60px;
+    max-height: 80px;
     font-family: inherit;
 }
 
 .form-textarea:focus {
     outline: none;
-    border-color: #4A90E2;
+    border-color: #00bcd4;
 }
 
 .form-textarea.error {
     border-color: #ff4444;
 }
 
-/* Upload de certificados */
 .certificate-upload {
     position: relative;
     border: 2px dashed #4A90E2;
-    border-radius: 12px;
-    padding: 10px;
+    border-radius: 16px;
+    padding: 15px;
     text-align: center;
     cursor: pointer;
     background: rgba(74, 144, 226, 0.05);
@@ -250,29 +218,29 @@ body {
 }
 
 .certificate-upload-icon {
-    font-size: 20px;
+    font-size: 24px;
     color: #4A90E2;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 .certificate-upload-text {
-    font-size: 11px;
+    font-size: 12px;
     color: #666;
     font-weight: 500;
 }
 
 .certificate-upload-subtext {
-    font-size: 9px;
+    font-size: 10px;
     color: #999;
-    margin-top: 2px;
+    margin-top: 4px;
 }
 
 .certificate-file-info {
     display: none;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     color: #00c851;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
 }
 
@@ -280,8 +248,19 @@ body {
     display: none;
 }
 
+.character-counter {
+    font-size: 10px;
+    color: #999;
+    text-align: right;
+    margin-top: 2px;
+}
+
+.character-counter.error {
+    color: #ff4444;
+}
+
 .error-message {
-    font-size: 9px;
+    font-size: 10px;
     color: #ff4444;
     margin-top: 2px;
     display: none;
@@ -292,21 +271,20 @@ body {
 
 .register-btn {
     width: 100%;
-    padding: 8px;
+    padding: 9px;
     background: linear-gradient(135deg, #4A90E2 0%, #7BB3F0 100%);
     color: white;
     border: none;
-    border-radius: 12px;
-    font-size: 13px;
+    border-radius: 16px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    margin: 8px 0 6px 0;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 9px 0 7px 0;
+    transition: transform 0.2s ease;
 }
 
 .register-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
 }
 
 .register-btn:disabled {
@@ -318,20 +296,20 @@ body {
 
 .form-links {
     text-align: center;
-    margin: 6px 0;
+    margin: 7px 0;
 }
 
 .form-link {
     color: #666;
     text-decoration: underline;
-    font-size: 10px;
+    font-size: 11px;
     cursor: pointer;
     display: block;
-    margin: 3px 0;
+    margin: 5px 0;
 }
 
 .form-link:hover {
-    color: #4A90E2;
+    color: #00bcd4;
 }
 
 .social-login {
@@ -366,8 +344,8 @@ body {
 
 .login-link {
     text-align: center;
-    margin-top: 8px;
-    padding-top: 6px;
+    margin-top: 9px;
+    padding-top: 7px;
     border-top: 1px solid #ddd;
 }
 
@@ -375,7 +353,7 @@ body {
     color: #4A90E2;
     text-decoration: none;
     font-weight: 600;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .login-link a:hover {
@@ -383,11 +361,11 @@ body {
 }
 
 .terms {
-    font-size: 8px;
+    font-size: 9px;
     color: #666;
     text-align: center;
-    margin-top: 6px;
-    line-height: 1.3;
+    margin-top: 7px;
+    line-height: 1.25;
 }
 
 .terms a {
@@ -418,338 +396,30 @@ body {
     padding: 30px;
     border-radius: 20px;
     text-align: center;
-    max-width: 450px;
+    max-width: 400px;
     margin: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.success-modal-content::before {
-    content: '🎓';
-    font-size: 50px;
-    display: block;
-    margin-bottom: 15px;
 }
 
 .success-modal h2 {
-    color: #4A90E2;
+    color: #00bcd4;
     margin-bottom: 15px;
-    font-size: 24px;
 }
 
 .success-modal p {
     color: #666;
     margin-bottom: 20px;
-    line-height: 1.5;
 }
 
 .success-modal button {
-    padding: 12px 30px;
-    background: linear-gradient(135deg, #4A90E2 0%, #7BB3F0 100%);
+    padding: 10px 30px;
+    background: #00bcd4;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
 }
 
-/* Modal de informação */
-.info-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 1001;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-.info-modal-content {
-    background: white;
-    padding: 35px 30px;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 500px;
-    margin: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    position: relative;
-}
-
-.info-modal-content::before {
-    content: '👨‍⚕️';
-    font-size: 50px;
-    display: block;
-    margin-bottom: 15px;
-}
-
-.info-modal h2 {
-    color: #4A90E2;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.info-modal p {
-    color: #555;
-    margin-bottom: 15px;
-    font-size: 15px;
-    line-height: 1.6;
-}
-
-.info-modal .highlight {
-    color: #4A90E2;
-    font-weight: 600;
-    background: rgba(74, 144, 226, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-.info-modal-button {
-    padding: 12px 40px;
-    background: linear-gradient(135deg, #4A90E2 0%, #7BB3F0 100%);
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 10px;
-    transition: all 0.3s ease;
-}
-
-.info-modal-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* Modal Styles para Termos e Privacidade */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.modal-overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    max-width: 800px;
-    width: 90%;
-    max-height: 85vh;
-    overflow: hidden;
-    transform: scale(0.7) translateY(50px);
-    transition: all 0.3s ease;
-}
-
-.modal-overlay.show .modal-content {
-    transform: scale(1) translateY(0);
-}
-
-.modal-header {
-    background: linear-gradient(135deg, #4A90E2, #7BB3F0);
-    color: white;
-    padding: 25px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 15px 15px 0 0;
-}
-
-.modal-header h2 {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.modal-close {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-close:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: rotate(90deg);
-}
-
-.modal-body {
-    padding: 30px;
-    max-height: 60vh;
-    overflow-y: auto;
-    line-height: 1.6;
-    color: #2C3E50;
-}
-
-.modal-body h3 {
-    color: #4A90E2;
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #E8F4FD;
-    padding-bottom: 8px;
-}
-
-.modal-body h4 {
-    color: #2C3E50;
-    font-size: 1.1rem;
-    margin-top: 25px;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.modal-body p {
-    margin-bottom: 15px;
-    text-align: justify;
-}
-
-.modal-body ul {
-    margin-bottom: 20px;
-    padding-left: 20px;
-}
-
-.modal-body li {
-    margin-bottom: 8px;
-}
-
-.modal-body strong {
-    color: #4A90E2;
-    font-weight: 600;
-}
-
-.modal-body small {
-    color: #5A6C7D;
-    font-style: italic;
-}
-
-.modal-footer {
-    background: #F8FBFF;
-    padding: 20px 30px;
-    border-radius: 0 0 15px 15px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.btn-modal-close {
-    background: linear-gradient(135deg, #4A90E2, #7BB3F0);
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-}
-
-.btn-modal-close:hover {
-    background: linear-gradient(135deg, #3A80D2, #6BA3E0);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
-}
-
-/* Scrollbar personalizada para o modal */
-.modal-body::-webkit-scrollbar {
-    width: 8px;
-}
-
-.modal-body::-webkit-scrollbar-track {
-    background: #F1F5F9;
-    border-radius: 4px;
-}
-
-.modal-body::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #4A90E2, #7BB3F0);
-    border-radius: 4px;
-}
-
-.modal-body::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #3A80D2, #6BA3E0);
-}
-
-/* Responsividade aprimorada */
-@media (max-width: 1600px) {
-    .right-side {
-        padding: 15px;
-    }
-    
-    .register-form {
-        max-width: 480px;
-    }
-    
-    .form-title {
-        font-size: 19px;
-        margin-bottom: 7px;
-    }
-    
-    .form-subtitle {
-        font-size: 12px;
-        margin-bottom: 9px;
-    }
-}
-
-@media (max-width: 1366px) {
-    .right-side {
-        padding: 12px;
-    }
-    
-    .register-form {
-        max-width: 440px;
-    }
-    
-    .form-group {
-        margin-bottom: 7px;
-    }
-    
-    .form-input, .form-textarea {
-        padding: 7px 9px;
-    }
-    
-    .register-btn {
-        padding: 9px;
-        margin: 9px 0 7px 0;
-    }
-}
-
+/* Responsividade */
 @media (max-width: 1024px) {
     .container {
         flex-direction: column;
@@ -758,7 +428,6 @@ body {
     .left-side {
         min-height: 200px;
         flex: 0;
-        min-width: auto;
     }
     
     .logo img {
@@ -768,8 +437,7 @@ body {
     
     .right-side {
         padding: 20px;
-        min-width: auto;
-        max-height: none;
+        overflow-y: auto;
     }
 }
 
@@ -797,7 +465,6 @@ body {
         overflow-y: auto;
         flex: 1;
         align-items: flex-start;
-        min-width: auto;
     }
     
     .register-form {
@@ -807,26 +474,15 @@ body {
     
     .form-title {
         font-size: 18px;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
-    
+
     .form-subtitle {
         font-size: 13px;
-        margin-bottom: 15px;
+        margin-bottom: 18px;
     }
     
-    .specialist-badge {
-        font-size: 12px;
-        padding: 8px 14px;
-        margin-bottom: 15px;
-    }
-    
-    .profile-photo-container {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .form-row, .form-row-3 {
+    .form-row {
         flex-direction: column;
         gap: 0;
     }
@@ -840,38 +496,15 @@ body {
         font-size: 14px;
     }
     
-    .certificate-upload {
-        padding: 20px 15px;
+    .form-label {
+        font-size: 13px;
+        margin-bottom: 5px;
     }
     
     .register-btn {
         padding: 12px;
         font-size: 16px;
         margin: 15px 0 10px 0;
-    }
-
-    /* Modal responsivo */
-    .modal-content {
-        width: 95%;
-        max-height: 90vh;
-        margin: 20px;
-    }
-
-    .modal-header {
-        padding: 20px;
-    }
-
-    .modal-header h2 {
-        font-size: 1.5rem;
-    }
-
-    .modal-body {
-        padding: 20px;
-        max-height: 65vh;
-    }
-
-    .modal-footer {
-        padding: 15px 20px;
     }
 }
 
@@ -891,22 +524,17 @@ body {
     
     .form-title {
         font-size: 16px;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
     }
 
     .form-subtitle {
         font-size: 12px;
-        margin-bottom: 12px;
-    }
-    
-    .specialist-badge {
-        font-size: 11px;
-        padding: 6px 10px;
+        margin-bottom: 15px;
     }
     
     .profile-photo-container {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
     
     .profile-photo-placeholder {
@@ -914,25 +542,28 @@ body {
     }
     
     .profile-photo-label {
-        font-size: 9px;
+        font-size: 10px;
     }
     
     .form-input, .form-textarea {
         padding: 8px 10px;
         font-size: 13px;
-        border-radius: 10px;
+        border-radius: 12px;
     }
     
     .form-label {
-        font-size: 11px;
+        font-size: 12px;
+    }
+    
+    .register-btn {
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 12px;
     }
     
     .certificate-upload {
-        padding: 15px 10px;
-    }
-    
-    .certificate-upload-icon {
-        font-size: 24px;
+        padding: 12px;
+        border-radius: 12px;
     }
     
     .certificate-upload-text {
@@ -943,97 +574,34 @@ body {
         font-size: 9px;
     }
     
-    .register-btn {
-        padding: 10px;
-        font-size: 14px;
-        border-radius: 10px;
-    }
-    
     .form-links {
-        margin: 8px 0;
+        margin: 10px 0;
     }
     
     .form-link {
-        font-size: 11px;
-        margin: 6px 0;
+        font-size: 12px;
+        margin: 8px 0;
     }
     
     .terms {
-        font-size: 9px;
+        font-size: 10px;
         line-height: 1.3;
-        margin-top: 8px;
+        margin-top: 10px;
     }
     
     .login-link {
-        margin-top: 10px;
-        padding-top: 8px;
+        margin-top: 12px;
+        padding-top: 10px;
     }
     
     .login-link a {
-        font-size: 12px;
+        font-size: 13px;
     }
-
-    .info-modal-content {
-        padding: 25px 20px;
+    
+    .success-modal-content {
         margin: 15px;
-    }
-    
-    .info-modal h2 {
-        font-size: 20px;
-    }
-    
-    .info-modal p {
-        font-size: 14px;
-    }
-
-    /* Modal responsivo para mobile */
-    .modal-overlay {
-        padding: 10px;
-    }
-
-    .modal-content {
-        width: 100%;
-        max-height: 95vh;
-        margin: 0;
-        border-radius: 10px;
-    }
-
-    .modal-header {
-        padding: 15px 20px;
-        border-radius: 10px 10px 0 0;
-    }
-
-    .modal-header h2 {
-        font-size: 1.3rem;
-    }
-
-    .modal-close {
-        width: 35px;
-        height: 35px;
-        font-size: 20px;
-    }
-
-    .modal-body {
-        padding: 15px 20px;
-        max-height: 70vh;
-    }
-
-    .modal-body h3 {
-        font-size: 1.2rem;
-    }
-
-    .modal-body h4 {
-        font-size: 1rem;
-    }
-
-    .modal-footer {
-        padding: 12px 20px;
-        border-radius: 0 0 10px 10px;
-    }
-
-    .btn-modal-close {
-        padding: 10px 25px;
-        font-size: 0.9rem;
+        padding: 20px;
+        border-radius: 15px;
     }
 }
 
@@ -1059,27 +627,6 @@ body {
         padding: 9px;
         font-size: 13px;
     }
-
-    .modal-header {
-        padding: 12px 15px;
-    }
-
-    .modal-header h2 {
-        font-size: 1.1rem;
-    }
-
-    .modal-body {
-        padding: 12px 15px;
-    }
-
-    .modal-footer {
-        padding: 10px 15px;
-    }
-
-    .btn-modal-close {
-        padding: 8px 20px;
-        font-size: 0.85rem;
-    }
 }
 
 /* Melhorias gerais de responsividade */
@@ -1099,19 +646,19 @@ body {
     
     .form-title {
         font-size: 16px;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
     }
 
     .form-subtitle {
-        font-size: 11px;
-        margin-bottom: 6px;
+        font-size: 12px;
+        margin-bottom: 10px;
     }
     
     .profile-photo-section {
-        margin-bottom: 6px;
+        margin-bottom: 8px;
     }
     
     .form-group {
-        margin-bottom: 4px;
+        margin-bottom: 6px;
     }
 }
