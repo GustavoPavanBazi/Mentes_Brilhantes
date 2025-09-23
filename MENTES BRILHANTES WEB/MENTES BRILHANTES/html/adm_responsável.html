@@ -14,13 +14,13 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --primary-dark: #1d4ed8;
+            --primary-color: #6b7cb8;
+            --primary-dark: #5a6aa3;
             --secondary-color: #64748b;
             --success-color: #059669;
             --warning-color: #d97706;
             --error-color: #dc2626;
-            --background: #f8fafc;
+            --background: #ffffff;
             --surface: #ffffff;
             --border: #e2e8f0;
             --text-primary: #0f172a;
@@ -115,7 +115,7 @@
         }
 
         .user-profile:hover {
-            background: var(--background);
+            background: #f8fafc;
         }
 
         .user-avatar {
@@ -161,6 +161,7 @@
             box-shadow: var(--shadow);
             position: sticky;
             top: 80px;
+            border: 1px solid var(--border);
         }
 
         .nav-section {
@@ -191,7 +192,7 @@
 
         .nav-item:hover,
         .nav-item.active {
-            background: #eff6ff;
+            background: #f1f5f9;
             color: var(--primary-color);
             border-left-color: var(--primary-color);
         }
@@ -387,7 +388,7 @@
         }
 
         .btn-secondary:hover {
-            background: var(--background);
+            background: #f8fafc;
         }
 
         .btn-outline {
@@ -409,6 +410,13 @@
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
+        }
+
+        /* Disabled styles */
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed !important;
         }
 
         /* Forms */
@@ -441,7 +449,7 @@
         .form-textarea:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px rgba(107, 124, 184, 0.1);
         }
 
         .form-textarea {
@@ -549,7 +557,7 @@
         }
 
         .close-btn:hover {
-            background: var(--background);
+            background: #f8fafc;
             color: var(--text-primary);
         }
 
@@ -586,7 +594,7 @@
         }
 
         .dropdown-item:hover {
-            background: var(--background);
+            background: #f8fafc;
         }
 
         /* Toast */
@@ -648,7 +656,7 @@
         }
 
         .badge.primary {
-            background: #eff6ff;
+            background: #f1f5f9;
             color: var(--primary-color);
         }
 
@@ -963,10 +971,10 @@
                                         <i class="fas fa-calendar-plus"></i>
                                         Agendar Consulta
                                     </button>
-                                    <button class="btn btn-outline" onclick="openModal('editarPerfil')">
-                                        <i class="fas fa-user-edit"></i>
-                                        Editar Perfil
-                                    </button>
+                                    <a href="" class="btn btn-outline">
+                                        <i class="fas fa-user-plus"></i>
+                                        Cadastrar Neurodivergente
+                                    </a>
                                     <button class="btn btn-outline" onclick="showSection('luna')">
                                         <i class="fas fa-robot"></i>
                                         Falar com Luna
@@ -1045,7 +1053,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Informações Pessoais</h3>
-                                <button class="btn btn-outline btn-sm" onclick="openModal('editarPerfil')">
+                                <button class="btn btn-outline btn-sm disabled" title="Funcionalidade bloqueada">
                                     <i class="fas fa-edit"></i>
                                     Editar
                                 </button>
@@ -1500,31 +1508,25 @@
                                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                                         <div class="form-group">
                                             <label class="form-label">Nome Completo</label>
-                                            <input type="text" class="form-input" value="Maria Silva Santos" required>
+                                            <input type="text" class="form-input disabled" value="Maria Silva Santos" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Email</label>
-                                            <input type="email" class="form-input" value="maria.silva@email.com" required>
+                                            <input type="email" class="form-input disabled" value="maria.silva@email.com" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Telefone</label>
-                                            <input type="tel" class="form-input" value="(11) 99999-9999" required>
+                                            <input type="tel" class="form-input disabled" value="(11) 99999-9999" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Relação com o Autista</label>
-                                            <select class="form-select" required>
+                                            <select class="form-select disabled" required>
                                                 <option value="mae" selected>Mãe</option>
                                                 <option value="pai">Pai</option>
                                                 <option value="responsavel">Responsável</option>
                                                 <option value="cuidador">Cuidador</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="btn-group mt-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fas fa-save"></i>
-                                            Salvar Alterações
-                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -2199,11 +2201,6 @@
             if (document.getElementById('especialistas-section').classList.contains('active')) {
                 loadEspecialistas();
             }
-        });
-
-        document.getElementById('account-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('Configurações da conta salvas com sucesso!');
         });
 
         document.getElementById('notifications-form').addEventListener('submit', function(e) {
