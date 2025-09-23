@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentes Brilhantes</title>
+    <title>Mentes Brilhantes - Cadastro de Especialista</title>
     <link rel="stylesheet" href="../css/cadastroespecialista.css">
     <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
-    
 </head>
 <body>
     <div class="container">
@@ -36,14 +35,14 @@
                     <div class="form-group">
                         <label class="form-label required" for="fullName">Nome Completo</label>
                         <input type="text" id="fullName" class="form-input" placeholder="Digite seu nome completo">
-                        <div class="error-message" id="fullNameError">Nome completo é obrigatório</div>
+                        <div class="error-message" id="fullNameError">Nome completo deve ser preenchido</div>
                     </div>
                     
                     <!-- Email -->
                     <div class="form-group">
                         <label class="form-label required" for="email">E-mail Profissional</label>
                         <input type="email" id="email" class="form-input" placeholder="Digite seu e-mail profissional">
-                        <div class="error-message" id="emailError">E-mail válido é obrigatório</div>
+                        <div class="error-message" id="emailError">E-mail válido deve ser preenchido</div>
                     </div>
 
                     <!-- CPF -->
@@ -78,15 +77,16 @@
 
                     <!-- Descrição Profissional -->
                     <div class="form-group">
-                        <label class="form-label" for="description">Descrição Profissional</label>
-                        <textarea id="description" class="form-textarea" placeholder="Conte um pouco sobre sua experiência e especialização no atendimento a pessoas autistas..."></textarea>
-                        <div class="error-message" id="descriptionError">Descrição muito curta</div>
+                        <label class="form-label required" for="description">Descrição Profissional</label>
+                        <textarea id="description" class="form-textarea" placeholder="Conte um pouco sobre sua experiência e especialização no atendimento a pessoas autistas... (mínimo 50 caracteres)"></textarea>
+                        <div class="character-counter" id="descriptionCounter">0/500 caracteres (mín. 50)</div>
+                        <div class="error-message" id="descriptionError">Descrição deve ter pelo menos 50 caracteres</div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label required" for="password">Senha</label>
-                            <input type="password" id="password" class="form-input" placeholder="Digite a senha" required>
+                            <input type="password" id="password" class="form-input" placeholder="Digite a senha (mín. 6 caracteres)" required>
                             <div class="error-message" id="passwordError">Senha deve ter pelo menos 6 caracteres</div>
                         </div>
                         
@@ -142,41 +142,7 @@
         </div>
     </div>
 
-    <!-- Modal de Informação -->
-    <div class="info-modal" id="infoModal">
-        <div class="info-modal-content">
-            <h2>Cadastro de Especialista</h2>
-            <p>Bem-vindo ao processo de cadastro para <span class="highlight">profissionais especialistas</span> em autismo!</p>
-            <p>Para garantir a qualidade de nossos serviços, todos os profissionais passam por um processo de <span class="highlight">verificação de credenciais</span>.</p>
-            <p>Você precisará enviar seu certificado/diploma para comprovar sua especialização.</p>
-            <button class="info-modal-button" onclick="closeInfoModal()">Começar cadastro</button>
-        </div>
-    </div>
-
     <script>
-        // Mostrar modal informativo ao carregar a página
-        window.addEventListener('load', function() {
-            showInfoModal();
-        });
-
-        // Funções dos modais
-        function showInfoModal() {
-            document.getElementById('infoModal').style.display = 'flex';
-        }
-
-        function closeInfoModal() {
-            document.getElementById('infoModal').style.display = 'none';
-        }
-
-        function showSuccessModal() {
-            document.getElementById('successModal').style.display = 'flex';
-        }
-
-        function closeSuccessModal() {
-            document.getElementById('successModal').style.display = 'none';
-            window.location.href = '../index.html';
-        }
-
         // Máscara para CPF
         function applyCPFMask(value) {
             return value
@@ -291,6 +257,26 @@
             if (error) error.style.display = 'none';
         }
 
+        // Contador de caracteres para descrição
+        document.getElementById('description').addEventListener('input', function(e) {
+            const maxLength = 500;
+            const minLength = 50;
+            const currentLength = e.target.value.length;
+            const counter = document.getElementById('descriptionCounter');
+            
+            counter.textContent = `${currentLength}/${maxLength} caracteres (mín. ${minLength})`;
+            
+            if (currentLength > maxLength) {
+                counter.classList.add('error');
+                e.target.value = e.target.value.substring(0, maxLength);
+                counter.textContent = `${maxLength}/${maxLength} caracteres (mín. ${minLength})`;
+            } else if (currentLength < minLength) {
+                counter.classList.add('error');
+            } else {
+                counter.classList.remove('error');
+            }
+        });
+
         // Validação do formulário
         document.getElementById('specialistForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -304,17 +290,17 @@
             const inputElements = document.querySelectorAll('.form-input, .form-textarea');
             inputElements.forEach(input => input.classList.remove('error'));
             
-            // Validar nome completo
+            // Validar nome completo - OBRIGATÓRIO
             const fullName = document.getElementById('fullName').value.trim();
             if (!fullName || fullName.length < 2) {
-                showError('fullName', 'fullNameError', 'Nome completo é obrigatório');
+                showError('fullName', 'fullNameError', 'Nome completo deve ser preenchido');
                 isValid = false;
             }
             
-            // Validar email
+            // Validar email - OBRIGATÓRIO
             const email = document.getElementById('email').value.trim();
             if (!email || !isValidEmail(email)) {
-                showError('email', 'emailError', 'E-mail válido é obrigatório');
+                showError('email', 'emailError', 'E-mail válido deve ser preenchido');
                 isValid = false;
             }
 
@@ -340,14 +326,14 @@
                 isValid = false;
             }
             
-            // Validar descrição (opcional, mas se preenchida deve ter pelo menos 20 caracteres)
+            // Validar descrição - OBRIGATÓRIA com mínimo de 50 caracteres
             const description = document.getElementById('description').value.trim();
-            if (description && description.length < 20) {
-                showError('description', 'descriptionError', 'Descrição deve ter pelo menos 20 caracteres');
+            if (!description || description.length < 50) {
+                showError('description', 'descriptionError', 'Descrição deve ter pelo menos 50 caracteres');
                 isValid = false;
             }
             
-            // Validar senha
+            // Validar senha - mínimo 6 caracteres
             const password = document.getElementById('password').value;
             if (!password || password.length < 6) {
                 showError('password', 'passwordError', 'Senha deve ter pelo menos 6 caracteres');
@@ -383,29 +369,17 @@
             alert('Funcionalidade de cadastro com LinkedIn será implementada em breve!');
         }
 
-        // Contador de caracteres para descrição
-        document.getElementById('description').addEventListener('input', function(e) {
-            const maxLength = 500;
-            const currentLength = e.target.value.length;
-            
-            // Criar ou atualizar contador se não existir
-            let counter = document.getElementById('descriptionCounter');
-            if (!counter) {
-                counter = document.createElement('div');
-                counter.id = 'descriptionCounter';
-                counter.style.cssText = 'font-size: 11px; color: #999; text-align: right; margin-top: 4px;';
-                e.target.parentNode.appendChild(counter);
-            }
-            
-            counter.textContent = `${currentLength}/${maxLength} caracteres`;
-            
-            if (currentLength > maxLength) {
-                counter.style.color = '#ff4444';
-                e.target.value = e.target.value.substring(0, maxLength);
-            } else {
-                counter.style.color = '#999';
-            }
-        });
+        function showSuccessModal() {
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+            // Redirecionar para o index após um pequeno delay
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 300);
+        }
 
         // Adicionar eventos de foco para limpar erros
         document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
@@ -468,20 +442,43 @@
         });
 
         // Validação em tempo real para senhas
-        document.getElementById('password').addEventListener('blur', function(e) {
+        document.getElementById('password').addEventListener('input', function(e) {
             const password = e.target.value;
-            if (password && password.length >= 6) {
+            if (password.length >= 6) {
                 clearError('password', 'passwordError');
+            } else if (password.length > 0) {
+                showError('password', 'passwordError', 'Senha deve ter pelo menos 6 caracteres');
+            }
+            
+            // Verificar confirmação de senha se já foi preenchida
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (confirmPassword) {
+                if (password === confirmPassword) {
+                    clearError('confirmPassword', 'confirmPasswordError');
+                } else {
+                    showError('confirmPassword', 'confirmPasswordError', 'Senhas devem coincidir');
+                }
             }
         });
 
-        document.getElementById('confirmPassword').addEventListener('blur', function(e) {
+        document.getElementById('confirmPassword').addEventListener('input', function(e) {
             const password = document.getElementById('password').value;
             const confirmPassword = e.target.value;
+            
             if (confirmPassword && password === confirmPassword) {
                 clearError('confirmPassword', 'confirmPasswordError');
             } else if (confirmPassword && password !== confirmPassword) {
                 showError('confirmPassword', 'confirmPasswordError', 'Senhas devem coincidir');
+            }
+        });
+
+        // Validação em tempo real para descrição
+        document.getElementById('description').addEventListener('blur', function(e) {
+            const description = e.target.value.trim();
+            if (description.length >= 50) {
+                clearError('description', 'descriptionError');
+            } else if (description.length > 0 && description.length < 50) {
+                showError('description', 'descriptionError', `Descrição deve ter pelo menos 50 caracteres (${description.length}/50)`);
             }
         });
     </script>
