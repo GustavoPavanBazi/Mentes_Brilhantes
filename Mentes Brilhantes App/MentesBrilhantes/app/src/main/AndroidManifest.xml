@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permissões para Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -15,70 +16,102 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MentesBrilhantes">
-        <activity
-            android:name=".VideosRotinaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VideosRelaxarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VideosDesenhosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VideosEducativoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VideoPlayerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SocialActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EmocoesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LazerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AnimaisActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ComidasActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LugaresActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NecessidadesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ComunicacaoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PerfilActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VideosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".JogosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FalasActivity"
-            android:exported="false" /> <!-- SplashActivity agora é o LAUNCHER (primeira tela) -->
+
+        <!-- ===== ACTIVITIES PRINCIPAIS ===== -->
+
+        <!-- SplashActivity - LAUNCHER (primeira tela) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/MentesBrilhantesSplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- MainActivity não é mais LAUNCHER (segunda tela) -->
+        </activity>
+
+        <!-- MainActivity - Menu principal -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <!-- ===== ACTIVITIES DE FUNCIONALIDADES ===== -->
+
+        <!-- Área de Jogos -->
+        <activity
+            android:name=".JogosActivity"
+            android:exported="false" />
+
+        <!-- Área de Vídeos -->
+        <activity
+            android:name=".VideosActivity"
+            android:exported="false" />
+
+        <!-- Área de Falas/Comunicação -->
+        <activity
+            android:name=".FalasActivity"
+            android:exported="false" />
+
+        <!-- Área de Perfil -->
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+
+        <!-- ===== ACTIVITIES DE COMUNICAÇÃO ===== -->
+
+        <activity
+            android:name=".ComunicacaoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".NecessidadesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".LugaresActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ComidasActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AnimaisActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".LazerActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".EmocoesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".SocialActivity"
+            android:exported="false" />
+
+        <!-- ===== ACTIVITIES DE VÍDEOS ===== -->
+
+        <activity
+            android:name=".VideosEducativoActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".VideosDesenhosActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".VideosRotinaActivity"
+            android:exported="false" />
+
+        <!-- VideoPlayerActivity - Player de vídeos (ORIENTAÇÃO DINÂMICA) -->
+        <activity
+            android:name=".VideoPlayerActivity"
+            android:theme="@style/Theme.MentesBrilhantes"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false" />
+
     </application>
 
 </manifest>

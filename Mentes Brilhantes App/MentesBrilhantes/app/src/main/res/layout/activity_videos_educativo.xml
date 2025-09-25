@@ -1,10 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VideosEducativoActivity">
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:gravity="center"
+    android:background="@drawable/fundo_educativo">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Container dos vídeos com scroll (PADDING REDUZIDO) -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="170dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:scrollbarThumbVertical="@drawable/scrollbar_thumb"
+        android:scrollbarSize="8dp"
+        android:scrollbarStyle="outsideOverlay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Vídeo 1 - Alfabeto para Autistas -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Alfabeto para Autistas"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- FrameLayout com largura ajustada -->
+                <FrameLayout
+                    android:id="@+id/frame_video1"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video1"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb1"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Alfabeto para Autistas" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 2 - Números e Contagem -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Números e Contagem"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video2"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video2"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb1"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Números e Contagem" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 3 - Cores e Formas -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cores e Formas"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video3"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video3"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb2"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Cores e Formas" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 4 - Rotina Diária -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rotina Diária"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video4"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video4"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb3"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Rotina Diária" />
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp">
+
+        <ImageButton
+            android:id="@+id/btn_sair"
+            android:layout_width="356dp"
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/sair_azul"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:maxWidth="356dp"
+            android:maxHeight="100dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Sair" />
+    </LinearLayout>
+
+</LinearLayout>

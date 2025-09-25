@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000000">
+    android:background="#004bff">
 
     <!-- WebView para o vídeo -->
     <WebView
@@ -12,9 +12,107 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#000000" />
+        android:background="#004bff"
+        android:visibility="visible" />
 
-    <!-- Botão Fechar -->
+    <!-- Tela de erro sem internet (DOIS BOTÕES PADRONIZADOS) -->
+    <LinearLayout
+        android:id="@+id/no_internet_screen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#004bff"
+        android:padding="40dp"
+        android:visibility="gone">
+
+        <!-- Ícone WiFi com X -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📶❌"
+            android:textSize="80sp"
+            android:layout_marginBottom="30dp" />
+
+        <!-- Mensagem principal -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conecte-se à Internet"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_marginBottom="15dp" />
+
+        <!-- Submensagem -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verifique sua conexão WiFi ou dados móveis\npara assistir aos vídeos"
+            android:textSize="18sp"
+            android:textColor="#E0E0E0"
+            android:gravity="center"
+            android:layout_marginBottom="40dp"
+            android:lineSpacingExtra="4dp" />
+
+        <!-- Botões padronizados -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Botão Verde - TENTAR NOVAMENTE (PADRONIZADO) -->
+            <ImageButton
+                android:id="@+id/btn_tentar_novamente"
+                android:layout_width="356dp"
+                android:layout_height="120dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/sair"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:padding="0dp"
+                android:maxWidth="356dp"
+                android:maxHeight="100dp"
+                android:adjustViewBounds="false"
+                android:contentDescription="Tentar novamente" />
+
+            <!-- Texto sobreposto no botão verde -->
+            <TextView
+                android:layout_width="356dp"
+                android:layout_height="120dp"
+                android:layout_margin="8dp"
+                android:layout_marginTop="-136dp"
+                android:text="🔄 TENTAR NOVAMENTE"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:clickable="false"
+                android:focusable="false"
+                android:background="@android:color/transparent" />
+
+            <!-- Botão Azul - VOLTAR (PADRONIZADO) -->
+            <ImageButton
+                android:id="@+id/btn_voltar_erro"
+                android:layout_width="356dp"
+                android:layout_height="120dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/sair_azul"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:padding="0dp"
+                android:maxWidth="356dp"
+                android:maxHeight="100dp"
+                android:adjustViewBounds="false"
+                android:contentDescription="Voltar" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Botão Sair (original - para quando vídeo estiver carregado) -->
     <LinearLayout
         android:id="@+id/controls_container"
         android:layout_width="match_parent"
@@ -22,18 +120,21 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:padding="15dp"
-        android:background="#333333">
+        android:background="#004bff">
 
-        <Button
-            android:id="@+id/btn_fechar"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:text="FECHAR VÍDEO"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:background="#FF6B6B"
-            android:layout_margin="10dp" />
+        <ImageButton
+            android:id="@+id/btn_sair"
+            android:layout_width="356dp"
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/sair_azul"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:maxWidth="356dp"
+            android:maxHeight="100dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Sair do vídeo" />
     </LinearLayout>
 
 </LinearLayout>
