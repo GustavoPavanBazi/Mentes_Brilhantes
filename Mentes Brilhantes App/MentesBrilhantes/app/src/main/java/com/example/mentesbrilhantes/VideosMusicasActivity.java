@@ -8,34 +8,18 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class VideosEducativoActivity extends AppCompatActivity {
+public class VideosMusicasActivity extends AppCompatActivity {
 
-    // Declaração de todos os botões de vídeo
-    private ImageButton btnVideo1, btnVideo2, btnVideo3, btnVideo4, btnVideo5, btnVideo6, btnVideo7, btnVideo8,
-            btnVideo9, btnVideo10, btnVideo11, btnVideo12, btnVideo13, btnVideo14, btnVideo15, btnSair;
-
-    // Declaração de todos os FrameLayouts
-    private FrameLayout frameVideo1, frameVideo2, frameVideo3, frameVideo4, frameVideo5, frameVideo6, frameVideo7,
-            frameVideo8, frameVideo9, frameVideo10, frameVideo11, frameVideo12, frameVideo13, frameVideo14, frameVideo15;
+    private ImageButton btnVideo1, btnVideo2, btnVideo3, btnVideo4, btnSair;
+    private FrameLayout frameVideo1, frameVideo2, frameVideo3, frameVideo4; // ← ADICIONAR FRAMES
 
     private static boolean isAnyButtonProcessing = false;
 
     // IDs dos vídeos educativos do YouTube
-    private final String VIDEO_ID_1 = "H33UFg94PEI";
-    private final String VIDEO_ID_2 = "hb9REKMp54Y";
-    private final String VIDEO_ID_3 = "_RG-XDQg64U";
-    private final String VIDEO_ID_4 = "_NSkoWouWME";
-    private final String VIDEO_ID_5 = "4p32dIO_wCE";
-    private final String VIDEO_ID_6 = "x3ZFTkfUWz4";
-    private final String VIDEO_ID_7 = "V3PBSOu9j44";
-    private final String VIDEO_ID_8 = "0kjyR9Q2rwE";
-    private final String VIDEO_ID_9 = "MYY_JgfT5uo";
-    private final String VIDEO_ID_10 = "oHHd7yPOg34";
-    private final String VIDEO_ID_11 = "WxydNj9QYn4";
-    private final String VIDEO_ID_12 = "hHUW-cIclck";
-    private final String VIDEO_ID_13 = "xc_NBvviLDM";
-    private final String VIDEO_ID_14 = "DZCrP1Icq7c";
-    private final String VIDEO_ID_15 = "AuRZ3oQ4rEM";
+    private final String VIDEO_ID_1 = "dQw4w9WgXcQ";
+    private final String VIDEO_ID_2 = "9bZkp7q19f0";
+    private final String VIDEO_ID_3 = "jNQXAC9IVRw";
+    private final String VIDEO_ID_4 = "oHg5SJYRHA0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,17 +78,6 @@ public class VideosEducativoActivity extends AppCompatActivity {
         btnVideo2 = findViewById(R.id.btn_video2);
         btnVideo3 = findViewById(R.id.btn_video3);
         btnVideo4 = findViewById(R.id.btn_video4);
-        btnVideo5 = findViewById(R.id.btn_video5);
-        btnVideo6 = findViewById(R.id.btn_video6);
-        btnVideo7 = findViewById(R.id.btn_video7);
-        btnVideo8 = findViewById(R.id.btn_video8);
-        btnVideo9 = findViewById(R.id.btn_video9);
-        btnVideo10 = findViewById(R.id.btn_video10);
-        btnVideo11 = findViewById(R.id.btn_video11);
-        btnVideo12 = findViewById(R.id.btn_video12);
-        btnVideo13 = findViewById(R.id.btn_video13);
-        btnVideo14 = findViewById(R.id.btn_video14);
-        btnVideo15 = findViewById(R.id.btn_video15);
         btnSair = findViewById(R.id.btn_sair);
 
         // FrameLayouts (para animar borda + botão juntos)
@@ -112,19 +85,9 @@ public class VideosEducativoActivity extends AppCompatActivity {
         frameVideo2 = findViewById(R.id.frame_video2);
         frameVideo3 = findViewById(R.id.frame_video3);
         frameVideo4 = findViewById(R.id.frame_video4);
-        frameVideo5 = findViewById(R.id.frame_video5);
-        frameVideo6 = findViewById(R.id.frame_video6);
-        frameVideo7 = findViewById(R.id.frame_video7);
-        frameVideo8 = findViewById(R.id.frame_video8);
-        frameVideo9 = findViewById(R.id.frame_video9);
-        frameVideo10 = findViewById(R.id.frame_video10);
-        frameVideo11 = findViewById(R.id.frame_video11);
-        frameVideo12 = findViewById(R.id.frame_video12);
-        frameVideo13 = findViewById(R.id.frame_video13);
-        frameVideo14 = findViewById(R.id.frame_video14);
-        frameVideo15 = findViewById(R.id.frame_video15);
     }
 
+    // MÉTODO ATUALIZADO - Anima FrameLayout (borda + conteúdo)
     private void configurarBotaoProtegido(View botao, FrameLayout frame, Runnable acao) {
         botao.setOnTouchListener(new View.OnTouchListener() {
             private boolean isThisButtonActive = false;
@@ -192,25 +155,42 @@ public class VideosEducativoActivity extends AppCompatActivity {
     }
 
     private void configurarListeners() {
-        // Configurar todos os 15 vídeos
-        configurarBotaoProtegido(btnVideo1, frameVideo1, () -> abrirVideo(VIDEO_ID_1, "Aprendendo sobre Autismo"));
-        configurarBotaoProtegido(btnVideo2, frameVideo2, () -> abrirVideo(VIDEO_ID_2, "História sobre Autismo"));
-        configurarBotaoProtegido(btnVideo3, frameVideo3, () -> abrirVideo(VIDEO_ID_3, "Música do Alfabeto"));
-        configurarBotaoProtegido(btnVideo4, frameVideo4, () -> abrirVideo(VIDEO_ID_4, "Alfabeto 2"));
-        configurarBotaoProtegido(btnVideo5, frameVideo5, () -> abrirVideo(VIDEO_ID_5, "Alfabeto Fonético"));
-        configurarBotaoProtegido(btnVideo6, frameVideo6, () -> abrirVideo(VIDEO_ID_6, "Música da Letra E"));
-        configurarBotaoProtegido(btnVideo7, frameVideo7, () -> abrirVideo(VIDEO_ID_7, "Músicas de Cores"));
-        configurarBotaoProtegido(btnVideo8, frameVideo8, () -> abrirVideo(VIDEO_ID_8, "Magia das Cores"));
-        configurarBotaoProtegido(btnVideo9, frameVideo9, () -> abrirVideo(VIDEO_ID_9, "Números 1 a 10"));
-        configurarBotaoProtegido(btnVideo10, frameVideo10, () -> abrirVideo(VIDEO_ID_10, "Turma do Seu Lobato"));
-        configurarBotaoProtegido(btnVideo11, frameVideo11, () -> abrirVideo(VIDEO_ID_11, "3 Palavrinhas"));
-        configurarBotaoProtegido(btnVideo12, frameVideo12, () -> abrirVideo(VIDEO_ID_12, "Formas Geométricas"));
-        configurarBotaoProtegido(btnVideo13, frameVideo13, () -> abrirVideo(VIDEO_ID_13, "Cores e Letras"));
-        configurarBotaoProtegido(btnVideo14, frameVideo14, () -> abrirVideo(VIDEO_ID_14, "Matemática Decimal"));
-        configurarBotaoProtegido(btnVideo15, frameVideo15, () -> abrirVideo(VIDEO_ID_15, "Matemática para Autismo"));
+        // PASSA FRAMELAYOUT PARA CADA BOTÃO
+        configurarBotaoProtegido(btnVideo1, frameVideo1, new Runnable() {
+            @Override
+            public void run() {
+                abrirVideo(VIDEO_ID_1, "Alfabeto para Autistas");
+            }
+        });
+
+        configurarBotaoProtegido(btnVideo2, frameVideo2, new Runnable() {
+            @Override
+            public void run() {
+                abrirVideo(VIDEO_ID_2, "Números e Contagem");
+            }
+        });
+
+        configurarBotaoProtegido(btnVideo3, frameVideo3, new Runnable() {
+            @Override
+            public void run() {
+                abrirVideo(VIDEO_ID_3, "Cores e Formas");
+            }
+        });
+
+        configurarBotaoProtegido(btnVideo4, frameVideo4, new Runnable() {
+            @Override
+            public void run() {
+                abrirVideo(VIDEO_ID_4, "Rotina Diária");
+            }
+        });
 
         // BOTÃO SAIR (sem FrameLayout, usa método antigo)
-        configurarBotaoProtegidoSimples(btnSair, this::finish);
+        configurarBotaoProtegidoSimples(btnSair, new Runnable() {
+            @Override
+            public void run() {
+                finish();
+            }
+        });
     }
 
     // MÉTODO ANTIGO PARA BOTÃO SAIR
@@ -243,10 +223,13 @@ public class VideosEducativoActivity extends AppCompatActivity {
                                     .scaleX(1.0f)
                                     .scaleY(1.0f)
                                     .setDuration(80)
-                                    .withEndAction(() -> {
-                                        acao.run();
-                                        isAnyButtonProcessing = false;
-                                        isThisButtonActive = false;
+                                    .withEndAction(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            acao.run();
+                                            isAnyButtonProcessing = false;
+                                            isThisButtonActive = false;
+                                        }
                                     })
                                     .start();
                         } else {
@@ -277,7 +260,7 @@ public class VideosEducativoActivity extends AppCompatActivity {
     }
 
     private void abrirVideo(String videoId, String titulo) {
-        Intent intent = new Intent(VideosEducativoActivity.this, VideoPlayerActivity.class);
+        Intent intent = new Intent(VideosMusicasActivity.this, VideoPlayerActivity.class);
         intent.putExtra("VIDEO_ID", videoId);
         intent.putExtra("TITULO", titulo);
         startActivity(intent);

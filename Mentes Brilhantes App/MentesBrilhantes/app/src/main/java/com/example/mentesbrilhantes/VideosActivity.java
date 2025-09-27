@@ -176,7 +176,7 @@ public class VideosActivity extends AppCompatActivity {
         configurarBotaoProtegido(btnRotina, new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(VideosActivity.this, VideosRotinaActivity.class));
+                startActivity(new Intent(VideosActivity.this, VideosMusicasActivity.class));
             }
         });
 

@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
+import android.net.NetworkRequest;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -24,10 +27,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class VideoPlayerActivity extends AppCompatActivity {
 
     private WebView webView;
-    private ImageButton btnSair, btnTentarNovamente, btnVoltarErro;
+    private ImageButton btnSair, btnVoltarErro; // ✅ REMOVIDO: btnTentarNovamente
     private LinearLayout controlsContainer, noInternetScreen;
 
     private static boolean isAnyButtonProcessing = false;
+
+    private ConnectivityManager connectivityManager;
+    private ConnectivityManager.NetworkCallback networkCallback;
+    private boolean isMonitoringNetwork = false;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -45,8 +52,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         inicializarComponentes();
         configurarBackButton();
+        inicializarMonitoramentoRede();
 
-        // ✅ NOVO: Verificar internet e definir orientação
         if (verificarConexaoInternet()) {
             Log.d("VideoPlayer", "Internet disponível - Modo landscape + vídeo");
             configurarOrientacaoLandscape();
@@ -54,19 +61,111 @@ public class VideoPlayerActivity extends AppCompatActivity {
             carregarVideo(videoId);
             mostrarTelaVideo();
         } else {
-            Log.d("VideoPlayer", "Sem internet - Modo portrait + tela de erro");
+            Log.d("VideoPlayer", "Sem internet - Modo portrait + tela de erro + monitoramento automático");
             configurarOrientacaoPortrait();
             mostrarTelaErro();
+            iniciarMonitoramentoRede();
         }
     }
 
-    // ✅ NOVO: Configurar orientação para landscape (vídeo)
+    private void inicializarMonitoramentoRede() {
+        connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && connectivityManager != null) {
+            networkCallback = new ConnectivityManager.NetworkCallback() {
+                @Override
+                public void onAvailable(Network network) {
+                    super.onAvailable(network);
+                    Log.d("VideoPlayer", "🌐 Internet voltou automaticamente!");
+
+                    runOnUiThread(() -> {
+                        if (noInternetScreen.getVisibility() == View.VISIBLE) {
+                            Log.d("VideoPlayer", "Carregando vídeo automaticamente...");
+                            tentarCarregarVideoAutomaticamente();
+                        }
+                    });
+                }
+
+                @Override
+                public void onLost(Network network) {
+                    super.onLost(network);
+                    Log.d("VideoPlayer", "📶 Internet perdida");
+
+                    runOnUiThread(() -> {
+                        if (webView.getVisibility() == View.VISIBLE) {
+                            Log.d("VideoPlayer", "Mostrando tela de erro - conexão perdida");
+                            configurarOrientacaoPortrait();
+                            mostrarTelaErro();
+                            iniciarMonitoramentoRede();
+                        }
+                    });
+                }
+
+                @Override
+                public void onCapabilitiesChanged(Network network, android.net.NetworkCapabilities networkCapabilities) {
+                    super.onCapabilitiesChanged(network, networkCapabilities);
+                    Log.d("VideoPlayer", "Capacidades da rede mudaram");
+                }
+            };
+        } else {
+            Log.w("VideoPlayer", "NetworkCallback não disponível nesta versão do Android");
+        }
+    }
+
+    private void iniciarMonitoramentoRede() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N &&
+                connectivityManager != null &&
+                networkCallback != null &&
+                !isMonitoringNetwork) {
+
+            try {
+                NetworkRequest request = new NetworkRequest.Builder().build();
+                connectivityManager.registerNetworkCallback(request, networkCallback);
+                isMonitoringNetwork = true;
+                Log.d("VideoPlayer", "✅ Monitoramento automático de rede iniciado");
+            } catch (Exception e) {
+                Log.e("VideoPlayer", "Erro ao registrar NetworkCallback: " + e.getMessage());
+            }
+        }
+    }
+
+    private void pararMonitoramentoRede() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N &&
+                connectivityManager != null &&
+                networkCallback != null &&
+                isMonitoringNetwork) {
+
+            try {
+                connectivityManager.unregisterNetworkCallback(networkCallback);
+                isMonitoringNetwork = false;
+                Log.d("VideoPlayer", "❌ Monitoramento de rede parado");
+            } catch (Exception e) {
+                Log.e("VideoPlayer", "Erro ao desregistrar NetworkCallback: " + e.getMessage());
+            }
+        }
+    }
+
+    private void tentarCarregarVideoAutomaticamente() {
+        if (verificarConexaoInternet()) {
+            String videoId = getIntent().getStringExtra("VIDEO_ID");
+
+            Log.d("VideoPlayer", "🎬 Carregando vídeo automaticamente - Internet restaurada");
+
+            pararMonitoramentoRede();
+            configurarOrientacaoLandscape();
+            configurarWebView();
+            carregarVideo(videoId);
+            mostrarTelaVideo();
+        } else {
+            Log.d("VideoPlayer", "Falso positivo - ainda sem internet estável");
+        }
+    }
+
     private void configurarOrientacaoLandscape() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         Log.d("VideoPlayer", "Orientação definida: LANDSCAPE");
     }
 
-    // ✅ NOVO: Configurar orientação para portrait (erro)
     private void configurarOrientacaoPortrait() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Log.d("VideoPlayer", "Orientação definida: PORTRAIT");
@@ -107,18 +206,15 @@ public class VideoPlayerActivity extends AppCompatActivity {
         }
     }
 
-    // ✅ RESTAURADO: onConfigurationChanged para lidar com mudanças de orientação
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
-        // Só gerenciar orientação quando o vídeo estiver visível
         if (webView.getVisibility() == View.VISIBLE) {
             if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 controlsContainer.setVisibility(View.GONE);
                 Log.d("VideoPlayer", "LANDSCAPE - Controles ocultos");
             } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                // Se usuário forçar portrait durante vídeo, manter controles ocultos
                 controlsContainer.setVisibility(View.GONE);
                 Log.d("VideoPlayer", "PORTRAIT - Controles mantidos ocultos");
             }
@@ -136,6 +232,16 @@ public class VideoPlayerActivity extends AppCompatActivity {
         if (webView.getVisibility() == View.VISIBLE) {
             esconderControlesAutomaticamente();
         }
+
+        if (noInternetScreen.getVisibility() == View.VISIBLE && !isMonitoringNetwork) {
+            iniciarMonitoramentoRede();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        pararMonitoramentoRede();
     }
 
     @Override
@@ -185,11 +291,11 @@ public class VideoPlayerActivity extends AppCompatActivity {
         controlsContainer = findViewById(R.id.controls_container);
 
         noInternetScreen = findViewById(R.id.no_internet_screen);
-        btnTentarNovamente = findViewById(R.id.btn_tentar_novamente);
         btnVoltarErro = findViewById(R.id.btn_voltar_erro);
 
         configurarBotoes();
     }
+
 
     private void configurarBotoes() {
         // Botão sair (original)
@@ -200,33 +306,14 @@ public class VideoPlayerActivity extends AppCompatActivity {
             finish();
         });
 
-        // ✅ ATUALIZADO: Botão tentar novamente com mudança de orientação
-        configurarBotaoProtegido(btnTentarNovamente, () -> {
-            Log.d("VideoPlayer", "Tentando conectar novamente...");
+        // ✅ REMOVIDO: Configuração do btnTentarNovamente
 
-            if (verificarConexaoInternet()) {
-                String videoId = getIntent().getStringExtra("VIDEO_ID");
-
-                // ✅ MUDANÇA DE ORIENTAÇÃO: Portrait → Landscape
-                configurarOrientacaoLandscape();
-
-                configurarWebView();
-                carregarVideo(videoId);
-                mostrarTelaVideo();
-                Log.d("VideoPlayer", "Conexão restaurada - Mudando para landscape + carregando vídeo");
-            } else {
-                Log.d("VideoPlayer", "Ainda sem internet - Mantendo portrait");
-                // Manter na tela de erro em portrait
-            }
-        });
-
-        // Botão voltar (tela de erro)
+        // Botão voltar (único botão na tela de erro)
         configurarBotaoProtegido(btnVoltarErro, () -> {
-            Log.d("VideoPlayer", "Voltando sem carregar vídeo");
+            Log.d("VideoPlayer", "Voltando - usuário cancelou espera pela internet");
             finish();
         });
 
-        // Double tap no vídeo (só se estiver visível)
         configurarDoubleTapVideo();
     }
 
@@ -366,8 +453,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
                 if (errorCode == ERROR_HOST_LOOKUP || errorCode == ERROR_CONNECT || errorCode == ERROR_TIMEOUT) {
                     runOnUiThread(() -> {
-                        configurarOrientacaoPortrait(); // ✅ Voltar para portrait em erro
+                        configurarOrientacaoPortrait();
                         mostrarTelaErro();
+                        iniciarMonitoramentoRede();
                     });
                 }
             }
@@ -468,6 +556,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        pararMonitoramentoRede();
+
         if (webView != null) {
             webView.destroy();
         }

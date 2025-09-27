@@ -30,7 +30,7 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <!-- Vídeo 1 - Alfabeto para Autistas -->
+            <!-- Vídeo 1 - Aprendendo sobre autismo -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,14 +40,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Alfabeto para Autistas"
-                    android:textSize="20sp"
+                    android:text="Aprendendo sobre o autismo com o André! | Turma da Mônica"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
                     android:gravity="center"
                     android:layout_marginBottom="12dp" />
 
-                <!-- FrameLayout com largura ajustada -->
                 <FrameLayout
                     android:id="@+id/frame_video1"
                     android:layout_width="340dp"
@@ -64,11 +63,11 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="Assistir Alfabeto para Autistas" />
+                        android:contentDescription="Assistir Turma da Mônica Autismo" />
                 </FrameLayout>
             </LinearLayout>
 
-            <!-- Vídeo 2 - Números e Contagem -->
+            <!-- Vídeo 2 - História sobre autismo -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,8 +77,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Números e Contagem"
-                    android:textSize="20sp"
+                    android:text="TEA - Autismo explicado para crianças - Uma História sobre Autismo 🧩"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
                     android:gravity="center"
@@ -97,15 +96,15 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/video_thumb1"
+                        android:src="@drawable/video_thumb2"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="Assistir Números e Contagem" />
+                        android:contentDescription="Assistir História Autismo" />
                 </FrameLayout>
             </LinearLayout>
 
-            <!-- Vídeo 3 - Cores e Formas -->
+            <!-- Vídeo 3 - GUGUDADA Alfabeto -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,8 +114,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cores e Formas"
-                    android:textSize="20sp"
+                    android:text="GUGUDADA - A Música das Cores (animação infantil)"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
                     android:gravity="center"
@@ -134,15 +133,15 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/video_thumb2"
+                        android:src="@drawable/video_thumb3"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="Assistir Cores e Formas" />
+                        android:contentDescription="Assistir Música Alfabeto" />
                 </FrameLayout>
             </LinearLayout>
 
-            <!-- Vídeo 4 - Rotina Diária -->
+            <!-- Vídeo 4 - GUGUDADA Alfabeto 2 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,8 +151,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Rotina Diária"
-                    android:textSize="20sp"
+                    android:text="GUGUDADA - As Partes do Corpo (animação infantil)"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
                     android:gravity="center"
@@ -171,11 +170,418 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/video_thumb3"
+                        android:src="@drawable/video_thumb4"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="Assistir Rotina Diária" />
+                        android:contentDescription="Assistir Alfabeto 2" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 5 - Alfabeto Fonético -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GUGUDADA - A Música do Alfabeto (animação infantil)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video5"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video5"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb5"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Alfabeto Fonético" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 6 - Música da Letra E -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GUGUDADA - A Música das Frutas (animação infantil)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video6"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video6"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb6"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Música Letra E" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 7 - Música das Cores -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GUGUDADA - O Trem dos Animais (animação infantil)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video7"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video7"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb7"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Cores" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 8 - Mundo Bita Cores -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GUGUDADA - As Formas Geométricas (animação infantil)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video8"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video8"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb8"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Mundo Bita" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 9 - Números 1 a 10 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GUGUDADA - Grande e Pequeno (animação infantil)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video9"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video9"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb9"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Números" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 10 - Turma Seu Lobato TEA -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GUGUDADA - A Música das Vogais (animação infantil)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video10"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video10"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb10"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Seu Lobato" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 11 - 3 Palavrinhas -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ABC"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video11"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video11"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb11"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir 3 Palavrinhas" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 12 - Formas Geométricas -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Os animais cantam | Video Musical Infantil | Toobys"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video12"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video12"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb12"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Formas" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 13 - Cores e Letras -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cançao das letras | Video Musical Infantil | Toobys"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video13"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video13"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb13"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Cores Letras" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 14 - Aprendendo Matemática -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cançao dos números | Video Musical Infantil | Toobys"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video14"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video14"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb14"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Matemática" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Vídeo 15 - Matemática para Autismo -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Canção das cores | Video Musical Infantil | Toobys"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <FrameLayout
+                    android:id="@+id/frame_video15"
+                    android:layout_width="340dp"
+                    android:layout_height="195dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_video">
+
+                    <ImageButton
+                        android:id="@+id/btn_video15"
+                        android:layout_width="324dp"
+                        android:layout_height="179dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/video_thumb15"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/rounded_imagebutton"
+                        android:clipToOutline="true"
+                        android:contentDescription="Assistir Matemática Autismo" />
                 </FrameLayout>
             </LinearLayout>
 
