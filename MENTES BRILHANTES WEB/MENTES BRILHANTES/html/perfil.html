@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Mentes Brilhantes</title>
+    <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #4A90E2;
+            --primary-dark: #3A80D2;
+            --primary-light: #7BB3F0;
+            --secondary-color: #64748b;
+            --success-color: #54C7A4;
+            --warning-color: #FF9F43;
+            --error-color: #EE5A24;
+            --background: #f8fbff;
+            --surface: #ffffff;
+            --border: #e8f4fd;
+            --text-primary: #2C3E50;
+            --text-secondary: #5A6C7D;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #4A90E2 0%, #7BB3F0 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.2);
+            backdrop-filter: blur(20px);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 70px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .logo-section i {
+            font-size: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Profile Layout */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+
+        .profile-photo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-photo-wrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+        }
+
+        .profile-photo-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-email {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Info Sections */
+        .info-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .info-section:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--primary-color);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                position: relative;
+                top: auto;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .header-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Voltar
+            </a>
+            <a href="../index.html" class="logo-section">
+                <i class="fas fa-brain"></i>
+                <span>Mentes Brilhantes</span>
+            </a>
+            <div style="width: 80px;"></div> <!-- Spacer para centralizar o logo -->
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Meu Perfil</h1>
+            <p class="page-subtitle">Visualize suas informações cadastradas</p>
+        </div>
+
+        <div class="profile-layout">
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <div class="profile-photo-section">
+                    <div class="profile-photo-wrapper">
+                        <img id="profilePhoto" class="profile-photo" src="" alt="Foto de perfil" style="display: none;">
+                        <div id="profilePhotoPlaceholder" class="profile-photo-placeholder">MS</div>
+                    </div>
+                    <h2 class="profile-name" id="profileName">Maria Silva Santos</h2>
+                    <p class="profile-email" id="profileEmail">maria.silva@email.com</p>
+                </div>
+            </div>
+
+            <!-- Info Sections -->
+            <div>
+                <!-- Personal Information -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-user"></i>
+                            Informações Pessoais
+                        </h3>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Nome Completo</span>
+                            <span class="info-value" id="infoName">Maria Silva Santos</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">E-mail</span>
+                            <span class="info-value" id="infoEmail">maria.silva@email.com</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">CPF</span>
+                            <span class="info-value" id="infoCpf">123.456.789-00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Celular</span>
+                            <span class="info-value" id="infoCelular">(11) 99999-9999</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Information -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Endereço
+                        </h3>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">CEP</span>
+                            <span class="info-value" id="infoCep">01234-567</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Rua</span>
+                            <span class="info-value" id="infoRua">Rua das Flores</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Bairro</span>
+                            <span class="info-value" id="infoBairro">Centro</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Cidade</span>
+                            <span class="info-value" id="infoCidade">São Paulo - SP</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Número</span>
+                            <span class="info-value" id="infoNumero">123</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Complemento</span>
+                            <span class="info-value" id="infoComplemento">Apto 45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados do usuário (simulados - em produção viriam do banco de dados)
+        let userData = {
+            nome: 'Maria Silva Santos',
+            email: 'maria.silva@email.com',
+            cpf: '123.456.789-00',
+            celular: '(11) 99999-9999',
+            cep: '01234-567',
+            rua: 'Rua das Flores',
+            numero: '123',
+            complemento: 'Apto 45',
+            bairro: 'Centro',
+            cidade: 'São Paulo - SP',
+            foto: null
+        };
+
+        // Inicializar página com dados do usuário
+        function initializePage() {
+            // Atualizar informações na página
+            document.getElementById('profileName').textContent = userData.nome;
+            document.getElementById('profileEmail').textContent = userData.email;
+            
+            document.getElementById('infoName').textContent = userData.nome;
+            document.getElementById('infoEmail').textContent = userData.email;
+            document.getElementById('infoCpf').textContent = userData.cpf;
+            document.getElementById('infoCelular').textContent = userData.celular;
+            document.getElementById('infoCep').textContent = userData.cep;
+            document.getElementById('infoRua').textContent = userData.rua;
+            document.getElementById('infoBairro').textContent = userData.bairro;
+            document.getElementById('infoCidade').textContent = userData.cidade;
+            document.getElementById('infoNumero').textContent = userData.numero;
+            document.getElementById('infoComplemento').textContent = userData.complemento || 'Não informado';
+
+            // Atualizar placeholder com iniciais
+            const initials = userData.nome.split(' ')
+                .map(n => n[0])
+                .slice(0, 2)
+                .join('')
+                .toUpperCase();
+            document.getElementById('profilePhotoPlaceholder').textContent = initials;
+
+            // Se houver foto, mostrar
+            if (userData.foto) {
+                document.getElementById('profilePhoto').src = userData.foto;
+                document.getElementById('profilePhoto').style.display = 'block';
+                document.getElementById('profilePhotoPlaceholder').style.display = 'none';
+            }
+        }
+
+        // Inicializar página quando carregar
+        window.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>
