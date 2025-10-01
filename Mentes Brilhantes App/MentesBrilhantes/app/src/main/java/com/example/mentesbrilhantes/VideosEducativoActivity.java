@@ -192,22 +192,22 @@ public class VideosEducativoActivity extends AppCompatActivity {
     }
 
     private void configurarListeners() {
-        // Configurar todos os 15 vídeos
-        configurarBotaoProtegido(btnVideo1, frameVideo1, () -> abrirVideo(VIDEO_ID_1, "Aprendendo sobre Autismo"));
-        configurarBotaoProtegido(btnVideo2, frameVideo2, () -> abrirVideo(VIDEO_ID_2, "História sobre Autismo"));
-        configurarBotaoProtegido(btnVideo3, frameVideo3, () -> abrirVideo(VIDEO_ID_3, "Música do Alfabeto"));
-        configurarBotaoProtegido(btnVideo4, frameVideo4, () -> abrirVideo(VIDEO_ID_4, "Alfabeto 2"));
-        configurarBotaoProtegido(btnVideo5, frameVideo5, () -> abrirVideo(VIDEO_ID_5, "Alfabeto Fonético"));
-        configurarBotaoProtegido(btnVideo6, frameVideo6, () -> abrirVideo(VIDEO_ID_6, "Música da Letra E"));
-        configurarBotaoProtegido(btnVideo7, frameVideo7, () -> abrirVideo(VIDEO_ID_7, "Músicas de Cores"));
-        configurarBotaoProtegido(btnVideo8, frameVideo8, () -> abrirVideo(VIDEO_ID_8, "Magia das Cores"));
-        configurarBotaoProtegido(btnVideo9, frameVideo9, () -> abrirVideo(VIDEO_ID_9, "Números 1 a 10"));
-        configurarBotaoProtegido(btnVideo10, frameVideo10, () -> abrirVideo(VIDEO_ID_10, "Turma do Seu Lobato"));
-        configurarBotaoProtegido(btnVideo11, frameVideo11, () -> abrirVideo(VIDEO_ID_11, "3 Palavrinhas"));
-        configurarBotaoProtegido(btnVideo12, frameVideo12, () -> abrirVideo(VIDEO_ID_12, "Formas Geométricas"));
-        configurarBotaoProtegido(btnVideo13, frameVideo13, () -> abrirVideo(VIDEO_ID_13, "Cores e Letras"));
-        configurarBotaoProtegido(btnVideo14, frameVideo14, () -> abrirVideo(VIDEO_ID_14, "Matemática Decimal"));
-        configurarBotaoProtegido(btnVideo15, frameVideo15, () -> abrirVideo(VIDEO_ID_15, "Matemática para Autismo"));
+        // TÍTULOS CORRIGIDOS PARA FICAREM IGUAIS AO XML
+        configurarBotaoProtegido(btnVideo1, frameVideo1, () -> abrirVideo(VIDEO_ID_1, "Aprendendo sobre o autismo com o André! | Turma da Mônica"));
+        configurarBotaoProtegido(btnVideo2, frameVideo2, () -> abrirVideo(VIDEO_ID_2, "TEA - Autismo explicado para crianças - Uma História sobre Autismo 🧩"));
+        configurarBotaoProtegido(btnVideo3, frameVideo3, () -> abrirVideo(VIDEO_ID_3, "GUGUDADA - A Música das Cores (animação infantil)"));
+        configurarBotaoProtegido(btnVideo4, frameVideo4, () -> abrirVideo(VIDEO_ID_4, "GUGUDADA - As Partes do Corpo (animação infantil)"));
+        configurarBotaoProtegido(btnVideo5, frameVideo5, () -> abrirVideo(VIDEO_ID_5, "GUGUDADA - A Música do Alfabeto (animação infantil)"));
+        configurarBotaoProtegido(btnVideo6, frameVideo6, () -> abrirVideo(VIDEO_ID_6, "GUGUDADA - A Música das Frutas (animação infantil)"));
+        configurarBotaoProtegido(btnVideo7, frameVideo7, () -> abrirVideo(VIDEO_ID_7, "GUGUDADA - O Trem dos Animais (animação infantil)"));
+        configurarBotaoProtegido(btnVideo8, frameVideo8, () -> abrirVideo(VIDEO_ID_8, "GUGUDADA - As Formas Geométricas (animação infantil)"));
+        configurarBotaoProtegido(btnVideo9, frameVideo9, () -> abrirVideo(VIDEO_ID_9, "GUGUDADA - Grande e Pequeno (animação infantil)"));
+        configurarBotaoProtegido(btnVideo10, frameVideo10, () -> abrirVideo(VIDEO_ID_10, "GUGUDADA - A Música das Vogais (animação infantil)"));
+        configurarBotaoProtegido(btnVideo11, frameVideo11, () -> abrirVideo(VIDEO_ID_11, "ABC"));
+        configurarBotaoProtegido(btnVideo12, frameVideo12, () -> abrirVideo(VIDEO_ID_12, "Os animais cantam | Video Musical Infantil | Toobys"));
+        configurarBotaoProtegido(btnVideo13, frameVideo13, () -> abrirVideo(VIDEO_ID_13, "Cançao das letras | Video Musical Infantil | Toobys"));
+        configurarBotaoProtegido(btnVideo14, frameVideo14, () -> abrirVideo(VIDEO_ID_14, "Cançao dos números | Video Musical Infantil | Toobys"));
+        configurarBotaoProtegido(btnVideo15, frameVideo15, () -> abrirVideo(VIDEO_ID_15, "Canção das cores | Video Musical Infantil | Toobys"));
 
         // BOTÃO SAIR (sem FrameLayout, usa método antigo)
         configurarBotaoProtegidoSimples(btnSair, this::finish);

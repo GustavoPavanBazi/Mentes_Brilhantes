@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class VideosActivity extends AppCompatActivity {
 
-    private ImageButton btnEducativo, btnDesenho, btnRelaxante, btnRotina, btnSair;
+    private ImageButton btnEducativo, btnDesenho, btnRelaxante, btnMusicas, btnSair;
 
     // FLAG GLOBAL COMPARTILHADA - IGUAL À FALAS
     private static boolean isAnyButtonProcessing = false;
@@ -71,7 +71,7 @@ public class VideosActivity extends AppCompatActivity {
         btnEducativo = findViewById(R.id.btn_educativo);
         btnDesenho = findViewById(R.id.btn_desenho);
         btnRelaxante = findViewById(R.id.btn_relaxante);
-        btnRotina = findViewById(R.id.btn_rotina);
+        btnMusicas = findViewById(R.id.btn_musicas);
         btnSair = findViewById(R.id.btn_sair);
     }
 
@@ -173,7 +173,7 @@ public class VideosActivity extends AppCompatActivity {
             }
         });
 
-        configurarBotaoProtegido(btnRotina, new Runnable() {
+        configurarBotaoProtegido(btnMusicas, new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(VideosActivity.this, VideosMusicasActivity.class));

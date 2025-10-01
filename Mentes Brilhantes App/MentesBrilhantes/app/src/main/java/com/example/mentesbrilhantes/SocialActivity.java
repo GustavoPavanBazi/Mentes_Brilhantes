@@ -270,20 +270,20 @@ public class SocialActivity extends AppCompatActivity {
     private void mostrarPagina(int pagina) {
         switch (pagina) {
             case 1:
-                btnAudio1.setImageResource(R.drawable.social_oi);
-                btnAudio2.setImageResource(R.drawable.social_tchau);
-                btnAudio3.setImageResource(R.drawable.social_obrigado);
-                btnAudio4.setImageResource(R.drawable.social_porfavor);
+                btnAudio1.setImageResource(R.drawable.btn_social_oi);
+                btnAudio2.setImageResource(R.drawable.btn_social_tchau);
+                btnAudio3.setImageResource(R.drawable.btn_social_obrigado);
+                btnAudio4.setImageResource(R.drawable.btn_social_porfavor);
 
                 btnAvancar.setVisibility(View.VISIBLE);
                 btnVoltar.setVisibility(View.GONE);
                 break;
 
             case 2:
-                btnAudio1.setImageResource(R.drawable.social_desculpa);
-                btnAudio2.setImageResource(R.drawable.social_tudobem);
-                btnAudio3.setImageResource(R.drawable.social_sim);
-                btnAudio4.setImageResource(R.drawable.social_nao);
+                btnAudio1.setImageResource(R.drawable.btn_social_desculpa);
+                btnAudio2.setImageResource(R.drawable.btn_social_tudobem);
+                btnAudio3.setImageResource(R.drawable.btn_social_sim);
+                btnAudio4.setImageResource(R.drawable.btn_social_nao);
 
                 btnAvancar.setVisibility(View.GONE);
                 btnVoltar.setVisibility(View.VISIBLE);

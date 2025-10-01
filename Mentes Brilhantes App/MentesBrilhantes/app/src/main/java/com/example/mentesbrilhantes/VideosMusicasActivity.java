@@ -10,16 +10,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class VideosMusicasActivity extends AppCompatActivity {
 
-    private ImageButton btnVideo1, btnVideo2, btnVideo3, btnVideo4, btnSair;
-    private FrameLayout frameVideo1, frameVideo2, frameVideo3, frameVideo4; // ← ADICIONAR FRAMES
+    // Declaração dos 10 botões de música
+    private ImageButton btnVideo1, btnVideo2, btnVideo3, btnVideo4, btnVideo5,
+            btnVideo6, btnVideo7, btnVideo8, btnVideo9, btnVideo10, btnSair;
+
+    // Declaração dos 10 FrameLayouts
+    private FrameLayout frameVideo1, frameVideo2, frameVideo3, frameVideo4, frameVideo5,
+            frameVideo6, frameVideo7, frameVideo8, frameVideo9, frameVideo10;
 
     private static boolean isAnyButtonProcessing = false;
 
-    // IDs dos vídeos educativos do YouTube
-    private final String VIDEO_ID_1 = "dQw4w9WgXcQ";
-    private final String VIDEO_ID_2 = "9bZkp7q19f0";
-    private final String VIDEO_ID_3 = "jNQXAC9IVRw";
-    private final String VIDEO_ID_4 = "oHg5SJYRHA0";
+    // IDs dos 10 vídeos musicais do YouTube
+    private final String VIDEO_ID_1 = "cjONzZPJONc";
+    private final String VIDEO_ID_2 = "9WFYuIu7BKA";
+    private final String VIDEO_ID_3 = "Fn9adh4HWUU";
+    private final String VIDEO_ID_4 = "MuBgIfBR1kA";
+    private final String VIDEO_ID_5 = "MgG13r2fVOw";
+    private final String VIDEO_ID_6 = "NGYh8Lv56oc";
+    private final String VIDEO_ID_7 = "1BZ5s6BcvKg";
+    private final String VIDEO_ID_8 = "NL2ZHPji3Z0";
+    private final String VIDEO_ID_9 = "ZL9pTiY1RPg";
+    private final String VIDEO_ID_10 = "YjP0Ez5dRHM";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +50,7 @@ public class VideosMusicasActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         );
 
-        setContentView(R.layout.activity_videos_educativo);
+        setContentView(R.layout.activity_videos_musicas);
 
         inicializarBotoes();
         configurarListeners();
@@ -78,16 +89,27 @@ public class VideosMusicasActivity extends AppCompatActivity {
         btnVideo2 = findViewById(R.id.btn_video2);
         btnVideo3 = findViewById(R.id.btn_video3);
         btnVideo4 = findViewById(R.id.btn_video4);
+        btnVideo5 = findViewById(R.id.btn_video5);
+        btnVideo6 = findViewById(R.id.btn_video6);
+        btnVideo7 = findViewById(R.id.btn_video7);
+        btnVideo8 = findViewById(R.id.btn_video8);
+        btnVideo9 = findViewById(R.id.btn_video9);
+        btnVideo10 = findViewById(R.id.btn_video10);
         btnSair = findViewById(R.id.btn_sair);
 
-        // FrameLayouts (para animar borda + botão juntos)
+        // FrameLayouts
         frameVideo1 = findViewById(R.id.frame_video1);
         frameVideo2 = findViewById(R.id.frame_video2);
         frameVideo3 = findViewById(R.id.frame_video3);
         frameVideo4 = findViewById(R.id.frame_video4);
+        frameVideo5 = findViewById(R.id.frame_video5);
+        frameVideo6 = findViewById(R.id.frame_video6);
+        frameVideo7 = findViewById(R.id.frame_video7);
+        frameVideo8 = findViewById(R.id.frame_video8);
+        frameVideo9 = findViewById(R.id.frame_video9);
+        frameVideo10 = findViewById(R.id.frame_video10);
     }
 
-    // MÉTODO ATUALIZADO - Anima FrameLayout (borda + conteúdo)
     private void configurarBotaoProtegido(View botao, FrameLayout frame, Runnable acao) {
         botao.setOnTouchListener(new View.OnTouchListener() {
             private boolean isThisButtonActive = false;
@@ -100,7 +122,6 @@ public class VideosMusicasActivity extends AppCompatActivity {
                             isAnyButtonProcessing = true;
                             isThisButtonActive = true;
 
-                            // ANIMA O FRAMELAYOUT (borda + botão juntos)
                             frame.animate()
                                     .scaleX(0.95f)
                                     .scaleY(0.95f)
@@ -155,45 +176,22 @@ public class VideosMusicasActivity extends AppCompatActivity {
     }
 
     private void configurarListeners() {
-        // PASSA FRAMELAYOUT PARA CADA BOTÃO
-        configurarBotaoProtegido(btnVideo1, frameVideo1, new Runnable() {
-            @Override
-            public void run() {
-                abrirVideo(VIDEO_ID_1, "Alfabeto para Autistas");
-            }
-        });
+        // Configurar os 10 vídeos musicais
+        configurarBotaoProtegido(btnVideo1, frameVideo1, () -> abrirVideo(VIDEO_ID_1, "Fazendinha - Mundo Bita"));
+        configurarBotaoProtegido(btnVideo2, frameVideo2, () -> abrirVideo(VIDEO_ID_2, "Viajar Pelo Safari - Mundo Bita"));
+        configurarBotaoProtegido(btnVideo3, frameVideo3, () -> abrirVideo(VIDEO_ID_3, "Upa Cavalinho - Galinha Pintadinha"));
+        configurarBotaoProtegido(btnVideo4, frameVideo4, () -> abrirVideo(VIDEO_ID_4, "Dona Aranha - Galinha Pintadinha"));
+        configurarBotaoProtegido(btnVideo5, frameVideo5, () -> abrirVideo(VIDEO_ID_5, "Pula Pipoquinha - Bob Zoom"));
+        configurarBotaoProtegido(btnVideo6, frameVideo6, () -> abrirVideo(VIDEO_ID_6, "Pintinho Amarelinho - Bob Zoom"));
+        configurarBotaoProtegido(btnVideo7, frameVideo7, () -> abrirVideo(VIDEO_ID_7, "Funk do Pão de Queijo - Bolofofos"));
+        configurarBotaoProtegido(btnVideo8, frameVideo8, () -> abrirVideo(VIDEO_ID_8, "Domingo Abacaxi Flamingo - Bolofofos"));
+        configurarBotaoProtegido(btnVideo9, frameVideo9, () -> abrirVideo(VIDEO_ID_9, "O Patinho Colorido - Bento e Totó"));
+        configurarBotaoProtegido(btnVideo10, frameVideo10, () -> abrirVideo(VIDEO_ID_10, "Misturando os Bichos - Bento e Totó"));
 
-        configurarBotaoProtegido(btnVideo2, frameVideo2, new Runnable() {
-            @Override
-            public void run() {
-                abrirVideo(VIDEO_ID_2, "Números e Contagem");
-            }
-        });
-
-        configurarBotaoProtegido(btnVideo3, frameVideo3, new Runnable() {
-            @Override
-            public void run() {
-                abrirVideo(VIDEO_ID_3, "Cores e Formas");
-            }
-        });
-
-        configurarBotaoProtegido(btnVideo4, frameVideo4, new Runnable() {
-            @Override
-            public void run() {
-                abrirVideo(VIDEO_ID_4, "Rotina Diária");
-            }
-        });
-
-        // BOTÃO SAIR (sem FrameLayout, usa método antigo)
-        configurarBotaoProtegidoSimples(btnSair, new Runnable() {
-            @Override
-            public void run() {
-                finish();
-            }
-        });
+        // BOTÃO SAIR
+        configurarBotaoProtegidoSimples(btnSair, this::finish);
     }
 
-    // MÉTODO ANTIGO PARA BOTÃO SAIR
     private void configurarBotaoProtegidoSimples(View botao, Runnable acao) {
         botao.setOnTouchListener(new View.OnTouchListener() {
             private boolean isThisButtonActive = false;
@@ -223,13 +221,10 @@ public class VideosMusicasActivity extends AppCompatActivity {
                                     .scaleX(1.0f)
                                     .scaleY(1.0f)
                                     .setDuration(80)
-                                    .withEndAction(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            acao.run();
-                                            isAnyButtonProcessing = false;
-                                            isThisButtonActive = false;
-                                        }
+                                    .withEndAction(() -> {
+                                        acao.run();
+                                        isAnyButtonProcessing = false;
+                                        isThisButtonActive = false;
                                     })
                                     .start();
                         } else {
