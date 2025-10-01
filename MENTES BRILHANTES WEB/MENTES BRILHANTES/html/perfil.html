@@ -66,199 +66,50 @@
             font-size: 1.3rem;
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo-section i {
-            font-size: 2rem;
-        }
-
-        .header-nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .notifications {
-            position: relative;
             cursor: pointer;
-            color: white;
-            transition: all 0.3s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .notifications:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: var(--error-color);
-            color: white;
-            font-size: 0.7rem;
-            min-width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(238, 90, 36, 0.4);
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .user-profile:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #FF6B35, #E55A2B);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
-        }
-
-        .user-info h4 {
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: white;
-        }
-
-        .user-info p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.8rem;
-        }
-
-        /* Main Layout */
-        .main-layout {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            gap: 2rem;
-            padding: 2rem;
-            min-height: calc(100vh - 70px);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            background: var(--surface);
-            border-radius: 20px;
-            padding: 1.5rem 0;
-            height: fit-content;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 90px;
-            border: 1px solid var(--border);
-        }
-
-        .nav-section {
-            margin-bottom: 2rem;
-        }
-
-        .nav-title {
-            padding: 0 1.5rem;
-            margin-bottom: 1rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            letter-spacing: 0.1em;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 1.5rem;
             text-decoration: none;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
+        }
+
+        .logo-img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
             font-weight: 500;
-            border-left: 3px solid transparent;
-            position: relative;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 8px;
         }
 
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 0;
-            background: linear-gradient(90deg, rgba(74, 144, 226, 0.1), transparent);
-            transition: width 0.3s ease;
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.15);
         }
 
-        .nav-item:hover,
-        .nav-item.active {
-            background: linear-gradient(90deg, rgba(74, 144, 226, 0.08), transparent);
-            color: var(--primary-color);
-            border-left-color: var(--primary-color);
-        }
-
-        .nav-item:hover::before,
-        .nav-item.active::before {
-            width: 100%;
-        }
-
-        .nav-item i {
-            width: 22px;
-            text-align: center;
-            font-size: 1.1rem;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
         }
 
         .page-header {
-            margin-bottom: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
         .page-title {
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            color: var(--text-primary);
             background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -270,2372 +121,323 @@
             font-size: 1.1rem;
         }
 
-        /* Stats Cards */
-        .stats-grid {
+        /* Profile Layout */
+        .profile-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.8rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-5px);
-        }
-
-        .stat-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .stat-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.2rem;
-        }
-
-        .stat-title {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            color: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .stat-icon.primary { background: linear-gradient(135deg, var(--primary-color), var(--primary-light)); }
-        .stat-icon.success { background: linear-gradient(135deg, #54C7A4, #45A085); }
-        .stat-icon.warning { background: linear-gradient(135deg, #FF9F43, #d97706); }
-        .stat-icon.secondary { background: linear-gradient(135deg, var(--secondary-color), #7d8a9c); }
-
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 0.25rem;
-            color: var(--text-primary);
-        }
-
-        .stat-change {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .stat-change.positive { color: var(--success-color); }
-        .stat-change.negative { color: var(--error-color); }
-
-        /* Content Grid */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 350px;
+            grid-template-columns: 350px 1fr;
             gap: 2rem;
         }
 
-        .main-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .side-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        /* Cards */
-        .card {
+        /* Profile Card */
+        .profile-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 16px;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+
+        .profile-photo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-photo-wrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+        }
+
+        .profile-photo-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-email {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Info Sections */
+        .info-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
         }
 
-        .card:hover {
+        .info-section:hover {
             box-shadow: var(--shadow-lg);
             transform: translateY(-2px);
         }
 
-        .card-header {
-            padding: 1.8rem;
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
             border-bottom: 2px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
-        .card-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            flex: 1;
-        }
-
-        .card-content {
-            padding: 1.8rem;
-        }
-
-        .card-footer {
-            padding: 1.2rem 1.8rem;
-            border-top: 1px solid var(--border);
-            background: linear-gradient(to bottom, var(--surface), var(--background));
-            border-radius: 0 0 16px 16px;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            border: 2px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: transparent;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            color: white;
-            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
-        }
-
-        .btn-secondary {
-            border-color: var(--border);
-            color: var(--text-primary);
-            background: var(--surface);
-        }
-
-        .btn-secondary:hover {
-            background: var(--background);
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .btn-outline {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .btn-sm {
-            padding: 8px 16px;
-            font-size: 0.85rem;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        /* Disabled styles */
-        .disabled {
-            pointer-events: none;
-            opacity: 0.5;
-            cursor: not-allowed !important;
-        }
-
-        /* Forms */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.6rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.9rem;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-size: 0.95rem;
-            background: var(--surface);
-            transition: all 0.3s ease;
-            color: var(--text-primary);
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
-            background: white;
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        /* Tables */
-        .table-container {
-            overflow-x: auto;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .table th,
-        .table td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .table th {
-            font-weight: 700;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            background: linear-gradient(to bottom, var(--background), var(--surface));
-        }
-
-        .table tbody tr {
-            transition: all 0.2s ease;
-        }
-
-        .table tbody tr:hover {
-            background: var(--background);
-            transform: scale(1.01);
-        }
-
-        /* Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(44, 62, 80, 0.7);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 2rem;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal.show {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--surface);
-            border-radius: 20px;
-            max-width: 550px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            animation: modalSlideIn 0.3s ease;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            padding: 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            border-radius: 20px 20px 0 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: white;
-        }
-
-        .modal-title {
-            font-weight: 700;
+        .section-title {
             font-size: 1.4rem;
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        .modal-footer {
-            padding: 1.5rem 2rem;
-            border-top: 2px solid var(--border);
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            background: var(--background);
-            border-radius: 0 0 20px 20px;
-        }
-
-        .close-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: white;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
-        }
-
-        /* Dropdown */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            position: absolute;
-            top: calc(100% + 10px);
-            right: 0;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            min-width: 220px;
-            z-index: 1000;
-            display: none;
-            padding: 0.5rem 0;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .dropdown.show .dropdown-content {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 20px;
-            text-decoration: none;
+            font-weight: 700;
             color: var(--text-primary);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .dropdown-item:hover {
-            background: var(--background);
-            color: var(--primary-color);
-            padding-left: 25px;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            top: 90px;
-            right: 20px;
-            background: var(--surface);
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            padding: 1.2rem 1.5rem;
-            box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            max-width: 380px;
-            min-width: 300px;
-        }
-
-        .toast.show {
-            transform: translateX(0);
-        }
-
-        .toast.success {
-            border-left: 4px solid var(--success-color);
-            background: linear-gradient(to right, rgba(84, 199, 164, 0.1), var(--surface));
-        }
-
-        .toast.error {
-            border-left: 4px solid var(--error-color);
-            background: linear-gradient(to right, rgba(238, 90, 36, 0.1), var(--surface));
-        }
-
-        .toast.warning {
-            border-left: 4px solid var(--warning-color);
-            background: linear-gradient(to right, rgba(255, 159, 67, 0.1), var(--surface));
-        }
-
-        /* Progress Bar */
-        .progress {
-            width: 100%;
-            height: 10px;
-            background: var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-            border-radius: 10px;
-            transition: width 0.5s ease;
-            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
-        }
-
-        /* Badge */
-        .badge {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+            gap: 10px;
         }
 
-        .badge.primary {
-            background: rgba(74, 144, 226, 0.15);
+        .section-title i {
             color: var(--primary-color);
         }
 
-        .badge.success {
-            background: rgba(84, 199, 164, 0.15);
-            color: var(--success-color);
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
-        .badge.warning {
-            background: rgba(255, 159, 67, 0.15);
-            color: var(--warning-color);
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .badge.error {
-            background: rgba(238, 90, 36, 0.15);
-            color: var(--error-color);
+        .info-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Switch Toggle Styles */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 26px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 26px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        input:checked + .slider {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(24px);
+        .info-value {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            font-weight: 500;
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .content-grid {
+        @media (max-width: 968px) {
+            .profile-layout {
                 grid-template-columns: 1fr;
             }
 
-            .side-panel {
-                order: -1;
+            .profile-card {
+                position: relative;
+                top: auto;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .main-layout {
-                flex-direction: column;
-                padding: 1rem;
-                gap: 1rem;
-            }
-
-            .sidebar {
-                width: 100%;
-                position: relative;
-                top: auto;
-                padding: 1rem 0;
-            }
-
-            .nav-section {
-                margin-bottom: 1rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header-container {
-                padding: 0 1rem;
-            }
-
-            .user-info {
-                display: none;
+            .container {
+                padding: 2rem 1rem;
             }
 
             .page-title {
                 font-size: 2rem;
             }
-        }
-        .logo-section img {
-    height: 40px;
-    width: auto;
-    object-fit: contain;
-}
 
-        /* Utility Classes */
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .text-sm { font-size: 0.875rem; }
-        .text-xs { font-size: 0.75rem; }
-        .font-medium { font-weight: 500; }
-        .font-semibold { font-weight: 600; }
-        .mt-2 { margin-top: 0.5rem; }
-        .mb-2 { margin-bottom: 0.5rem; }
-        .mb-4 { margin-bottom: 1rem; }
-        .mt-4 { margin-top: 1rem; }
-        .flex { display: flex; }
-        .items-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
-        .gap-2 { gap: 0.5rem; }
-        .gap-4 { gap: 1rem; }
-        .text-secondary { color: var(--text-secondary); }
+            .header-container {
+                padding: 0 1rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <div class="logo-section">
-                <img src="../img/LogoMB.png"  style="height: 40px; width: auto;">
+            <a href="../html/adm_responsável.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Voltar
+            </a>
+            <a class="logo-section">
+                <img src="../img/LogoMB.png" class="logo-img">
                 <span>Mentes Brilhantes</span>
-            </div>
+            </a>
             
-                <div class="user-profile dropdown" onclick="toggleUserMenu()">
-                    <div class="user-avatar">MS</div>
-                    <div class="user-info">
-                        <h4>Maria Silva</h4>
-                        <p>Responsável</p>
-                    </div>
-                    <i class="fas fa-chevron-down text-xs"></i>
-                    <div class="dropdown-content">
-                        <a href="../html/perfil.html" class="dropdown-item" onclick="showProfile()">
-                            <i class="fas fa-user"></i> Meu Perfil
-                        </a>
-                        <a href="#configuracoes" class="dropdown-item" onclick="showSettings()">
-                            <i class="fas fa-cog"></i> Configurações
-                        </a>
-                        <a href="#" class="dropdown-item" onclick="logout()">
-                            <i class="fas fa-sign-out-alt"></i> Sair
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <div style="width: 80px;"></div> <!-- Spacer para centralizar o logo -->
         </div>
     </header>
 
-    <!-- Main Layout -->
-    <div class="main-layout">
-        <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="nav-section">
-                <div class="nav-title">Principal</div>
-                <a href="#" class="nav-item active" onclick="showSection('dashboard')">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="#" class="nav-item" onclick="showSection('autista')">
-                    <i class="fas fa-user-circle"></i>
-                    <span>Perfil Autista</span>
-                </a>
-                <a href="#" class="nav-item" onclick="showSection('luna')">
-                    <i class="fas fa-robot"></i>
-                    <span>Assistente Luna</span>
-                </a>
-            </div>
-            <div class="nav-section">
-                <div class="nav-title">Acompanhamento</div>
-                <a href="#" class="nav-item" onclick="showSection('progresso')">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Progresso</span>
-                </a>
-                <a href="#" class="nav-item" onclick="showSection('especialistas')">
-                    <i class="fas fa-user-md"></i>
-                    <span>Especialistas</span>
-                </a>
-                <a href="#" class="nav-item" onclick="showSection('relatorios')">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Relatórios</span>
-                </a>
-            </div>
-            <div class="nav-section">
-                <div class="nav-title">Sistema</div>
-                <a href="#" class="nav-item" onclick="showSection('configuracoes')">
-                    <i class="fas fa-cog"></i>
-                    <span>Configurações</span>
-                </a>
-            </div>
-        </nav>
+    <!-- Main Container -->
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Meu Perfil</h1>
+            <p class="page-subtitle">Visualize suas informações cadastradas</p>
+        </div>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard Section -->
-            <div id="dashboard-section" class="section active">
-                <div class="page-header">
-                    <h1 class="page-title">Bem-vinda, Maria</h1>
-                    <p class="page-subtitle">Acompanhe o desenvolvimento e progresso do João</p>
-                </div>
-
-                <!-- Content Grid -->
-                <div class="content-grid">
-                    <div class="main-panel">
-                        <!-- Recent Activity -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Atividade Recente</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="table-container">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Data</th>
-                                                <th>Atividade</th>
-                                                <th>Status</th>
-                                                <th>Especialista</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Hoje</td>
-                                                <td>Sessão de Fonoaudiologia</td>
-                                                <td><span class="badge success">Concluída</span></td>
-                                                <td>Dra. Ana Costa</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ontem</td>
-                                                <td>Atividade Cognitiva</td>
-                                                <td><span class="badge success">Concluída</span></td>
-                                                <td>Sistema</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15/11</td>
-                                                <td>Consulta Psicológica</td>
-                                                <td><span class="badge warning">Agendada</span></td>
-                                                <td>Dr. Carlos Lima</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Progress Overview -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Progresso Semanal</h3>
-                                <button class="btn btn-outline btn-sm">Ver Detalhes</button>
-                            </div>
-                            <div class="card-content">
-                                <div style="margin-bottom: 1.5rem;">
-                                    <div class="flex justify-between mb-2">
-                                        <span class="font-medium">Rotina Matinal</span>
-                                        <span class="text-sm text-secondary">95%</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 95%"></div>
-                                    </div>
-                                </div>
-                                <div style="margin-bottom: 1.5rem;">
-                                    <div class="flex justify-between mb-2">
-                                        <span class="font-medium">Comunicação</span>
-                                        <span class="text-sm text-secondary">78%</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 78%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-2">
-                                        <span class="font-medium">Atividades Cognitivas</span>
-                                        <span class="text-sm text-secondary">85%</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="profile-layout">
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <div class="profile-photo-section">
+                    <div class="profile-photo-wrapper">
+                        <img id="profilePhoto" class="profile-photo" src="" alt="Foto de perfil" style="display: none;">
+                        <div id="profilePhotoPlaceholder" class="profile-photo-placeholder">MS</div>
                     </div>
-
-                    <div class="side-panel">
-                        <!-- Quick Actions -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Ações Rápidas</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="btn-group" style="flex-direction: column; width: 100%;">
-                                    <button class="btn btn-primary" onclick="openModal('agendarConsulta')">
-                                        <i class="fas fa-calendar-plus"></i>
-                                        Agendar Consulta
-                                    </button>
-                                    <a href="../html/cadastroneuro.html" class="btn btn-outline">
-                                        <i class="fas fa-user-plus"></i>
-                                        Cadastrar Neurodivergente
-                                    </a>
-                                    <button class="btn btn-outline" onclick="showSection('luna')">
-                                        <i class="fas fa-robot"></i>
-                                        Falar com Luna
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Next Appointments -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Próximas Consultas</h3>
-                            </div>
-                            <div class="card-content">
-                                <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
-                                    <div class="font-semibold">Dra. Ana Costa</div>
-                                    <div class="text-sm text-secondary">Fonoaudióloga</div>
-                                    <div class="text-sm mt-2">
-                                        <i class="fas fa-calendar text-secondary"></i>
-                                        Sexta, 15/11 às 14:00
-                                    </div>
-                                </div>
-                                <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
-                                    <div class="font-semibold">Dr. Carlos Lima</div>
-                                    <div class="text-sm text-secondary">Psicólogo</div>
-                                    <div class="text-sm mt-2">
-                                        <i class="fas fa-calendar text-secondary"></i>
-                                        Segunda, 18/11 às 10:00
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-semibold">Dra. Fernanda Santos</div>
-                                    <div class="text-sm text-secondary">Terapeuta Ocupacional</div>
-                                    <div class="text-sm mt-2">
-                                        <i class="fas fa-calendar text-secondary"></i>
-                                        Quarta, 20/11 às 16:00
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- System Status -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Status do Sistema</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="flex items-center gap-2 mb-2">
-                                    <div style="width: 8px; height: 8px; background: var(--success-color); border-radius: 50%;"></div>
-                                    <span class="text-sm">Assistente Luna Online</span>
-                                </div>
-                                <div class="flex items-center gap-2 mb-2">
-                                    <div style="width: 8px; height: 8px; background: var(--success-color); border-radius: 50%;"></div>
-                                    <span class="text-sm">Sincronização Ativa</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <div style="width: 8px; height: 8px; background: var(--warning-color); border-radius: 50%;"></div>
-                                    <span class="text-sm">1 Notificação Pendente</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="profile-name" id="profileName">Maria Silva Santos</h2>
+                    <p class="profile-email" id="profileEmail">maria.silva@email.com</p>
                 </div>
             </div>
 
-            <!-- Perfil Section -->
-            <div id="perfil-section" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Meu Perfil</h1>
-                    <p class="page-subtitle">Gerencie suas informações pessoais e preferências</p>
-                </div>
-
-                <div class="content-grid">
-                    <div class="main-panel">
-                        <!-- Personal Information -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Informações Pessoais</h3>
-                                <button class="btn btn-outline btn-sm" onclick="enableEditMode()">
-                                    <i class="fas fa-edit"></i>
-                                    Editar
-                                </button>
-                            </div>
-                            <div class="card-content">
-                                <form id="personal-info-form">
-                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                                        <div>
-                                            <div class="form-group">
-                                                <label class="form-label">Nome Completo</label>
-                                                <input type="text" class="form-input" id="nome-completo" value="Maria Silva Santos" disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Email</label>
-                                                <input type="email" class="form-input" id="email" value="maria.silva@email.com" disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Telefone</label>
-                                                <input type="tel" class="form-input" id="telefone" value="(11) 99999-9999" disabled>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="form-group">
-                                                <label class="form-label">Data de Nascimento</label>
-                                                <input type="date" class="form-input" id="data-nascimento" value="1985-03-15" disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">CPF</label>
-                                                <input type="text" class="form-input" id="cpf" value="123.456.789-00" disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Relação com o Autista</label>
-                                                <select class="form-select" id="relacao" disabled>
-                                                    <option value="mae" selected>Mãe</option>
-                                                    <option value="pai">Pai</option>
-                                                    <option value="responsavel">Responsável</option>
-                                                    <option value="cuidador">Cuidador</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="btn-group mt-4" id="edit-buttons" style="display: none;">
-                                        <button type="button" class="btn btn-secondary" onclick="cancelEditMode()">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fas fa-save"></i>
-                                            Salvar Alterações
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Address Information -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Endereço</h3>
-                                <button class="btn btn-outline btn-sm" onclick="enableAddressEditMode()">
-                                    <i class="fas fa-edit"></i>
-                                    Editar
-                                </button>
-                            </div>
-                            <div class="card-content">
-                                <form id="address-form">
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                                        <div class="form-group">
-                                            <label class="form-label">CEP</label>
-                                            <input type="text" class="form-input" id="cep" value="01234-567" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Estado</label>
-                                            <input type="text" class="form-input" id="estado" value="São Paulo" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Cidade</label>
-                                            <input type="text" class="form-input" id="cidade" value="São Paulo" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Bairro</label>
-                                            <input type="text" class="form-input" id="bairro" value="Centro" disabled>
-                                        </div>
-                                        <div class="form-group" style="grid-column: 1 / -1;">
-                                            <label class="form-label">Endereço</label>
-                                            <input type="text" class="form-input" id="endereco" value="Rua das Flores, 123, Apto 45" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="btn-group mt-4" id="address-edit-buttons" style="display: none;">
-                                        <button type="button" class="btn btn-secondary" onclick="cancelAddressEditMode()">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fas fa-save"></i>
-                                            Salvar Endereço
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Security Settings -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Segurança</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="form-group">
-                                    <label class="form-label">Senha</label>
-                                    <div class="flex gap-2 items-center">
-                                        <input type="password" class="form-input" value="••••••••" disabled style="flex: 1;">
-                                        <button class="btn btn-outline btn-sm" onclick="openModal('alterarSenha')">
-                                            <i class="fas fa-lock"></i>
-                                            Alterar
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Autenticação em Dois Fatores</label>
-                                    <div class="flex justify-between items-center">
-                                        <div>
-                                            <div class="text-sm text-secondary">Adicione uma camada extra de segurança à sua conta</div>
-                                            <span class="badge error mt-1">Desabilitado</span>
-                                        </div>
-                                        <button class="btn btn-outline btn-sm">
-                                            <i class="fas fa-shield-alt"></i>
-                                            Configurar 2FA
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Últimos Acessos</label>
-                                    <div class="text-sm">
-                                        <div class="flex justify-between mb-1">
-                                            <span>Hoje, 14:30</span>
-                                            <span class="text-secondary">Chrome - Windows</span>
-                                        </div>
-                                        <div class="flex justify-between mb-1">
-                                            <span>Ontem, 09:15</span>
-                                            <span class="text-secondary">Safari - iPhone</span>
-                                        </div>
-                                        <div class="flex justify-between">
-                                            <span>15/11, 16:45</span>
-                                            <span class="text-secondary">Chrome - Windows</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Info Sections -->
+            <div>
+                <!-- Personal Information -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-user"></i>
+                            Informações Pessoais
+                        </h3>
                     </div>
-
-                    <div class="side-panel">
-                        <!-- Profile Photo -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Foto do Perfil</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="text-center">
-                                    <div class="user-avatar" style="width: 120px; height: 120px; font-size: 3rem; margin: 0 auto 1rem;">MS</div>
-                                    <button class="btn btn-outline btn-sm">
-                                        <i class="fas fa-camera"></i>
-                                        Alterar Foto
-                                    </button>
-                                    <div class="text-xs text-secondary mt-2">
-                                        Formatos aceitos: JPG, PNG<br>
-                                        Tamanho máximo: 5MB
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Nome Completo</span>
+                            <span class="info-value" id="infoName">Maria Silva Santos</span>
                         </div>
-
-                        <!-- Account Statistics -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Estatísticas da Conta</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="text-sm">
-                                    <div class="flex justify-between mb-2">
-                                        <span class="text-secondary">Membro desde:</span>
-                                        <span class="font-medium">Janeiro 2024</span>
-                                    </div>
-                                    <div class="flex justify-between mb-2">
-                                        <span class="text-secondary">Consultas agendadas:</span>
-                                        <span class="font-medium">24</span>
-                                    </div>
-                                    <div class="flex justify-between mb-2">
-                                        <span class="text-secondary">Relatórios gerados:</span>
-                                        <span class="font-medium">8</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-secondary">Último acesso:</span>
-                                        <span class="font-medium">Hoje</span>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="info-item">
+                            <span class="info-label">E-mail</span>
+                            <span class="info-value" id="infoEmail">maria.silva@email.com</span>
                         </div>
-
-                        <!-- Preferences -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Preferências</h3>
-                            </div>
-                            <div class="card-content">
-                                <form id="preferences-form">
-                                    <div class="form-group">
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                <div class="font-medium">Notificações por Email</div>
-                                                <div class="text-xs text-secondary">Receber atualizações por email</div>
-                                            </div>
-                                            <label class="switch">
-                                                <input type="checkbox" checked>
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                <div class="font-medium">Lembretes SMS</div>
-                                                <div class="text-xs text-secondary">Lembretes de consultas via SMS</div>
-                                            </div>
-                                            <label class="switch">
-                                                <input type="checkbox" checked>
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Idioma</label>
-                                        <select class="form-select">
-                                            <option value="pt-br" selected>Português (Brasil)</option>
-                                            <option value="en">English</option>
-                                            <option value="es">Español</option>
-                                        </select>
-                                    </div>
-                                    <div class="btn-group mt-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fas fa-save"></i>
-                                            Salvar Preferências
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="info-item">
+                            <span class="info-label">CPF</span>
+                            <span class="info-value" id="infoCpf">123.456.789-00</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Perfil Autista Section -->
-            <div id="autista-section" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Perfil do Autista</h1>
-                    <p class="page-subtitle">Informações e configurações do perfil do João</p>
-                </div>
-
-                <div class="content-grid">
-                    <div class="main-panel">
-                        <!-- Personal Info -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Informações Pessoais</h3>
-                                
-                            </div>
-                            <div class="card-content">
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="form-label">Nome Completo</label>
-                                            <div class="font-medium">João Silva Santos</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Data de Nascimento</label>
-                                            <div class="font-medium">15 de março de 2015 (8 anos)</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Nível TEA</label>
-                                            <div class="font-medium">
-                                                <span class="badge primary">Nível 1 - Suporte Leve</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="form-label">Escola</label>
-                                            <div class="font-medium">Escola Municipal João XXIII</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Série/Ano</label>
-                                            <div class="font-medium">3º Ano do Ensino Fundamental</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Data do Diagnóstico</label>
-                                            <div class="font-medium">10 de janeiro de 2020</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Interests and Preferences -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Interesses e Preferências</h3>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="form-label">Interesses Especiais</label>
-                                            <div class="flex gap-1 flex-wrap">
-                                                <span class="badge primary">Dinossauros</span>
-                                                <span class="badge primary">Matemática</span>
-                                                <span class="badge primary">Lego</span>
-                                                <span class="badge primary">Carros</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Atividades Preferidas</label>
-                                            <div class="flex gap-1 flex-wrap">
-                                                <span class="badge success">Quebra-cabeças</span>
-                                                <span class="badge success">Desenhar</span>
-                                                <span class="badge success">Jogos educativos</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="form-label">Cores Favoritas</label>
-                                            <div class="flex gap-1 flex-wrap">
-                                                <span class="badge" style="background: #3b82f6; color: white;">Azul</span>
-                                                <span class="badge" style="background: #10b981; color: white;">Verde</span>
-                                                <span class="badge" style="background: #8b5cf6; color: white;">Roxo</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Alimentos Preferidos</label>
-                                            <div class="text-sm">
-                                                • Macarrão com molho de tomate<br>
-                                                • Frango grelhado<br>
-                                                • Banana<br>
-                                                • Iogurte natural
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sensory Profile -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Perfil Sensorial</h3>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="form-label">Sensibilidades (Evitar)</label>
-                                            <div class="flex gap-1 flex-wrap">
-                                                <span class="badge error">Sons altos</span>
-                                                <span class="badge error">Luzes fluorescentes</span>
-                                                <span class="badge error">Texturas ásperas</span>
-                                                <span class="badge error">Multidões</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Estratégias de Autorregulação</label>
-                                            <div class="text-sm">
-                                                • Uso de fones com cancelamento de ruído<br>
-                                                • Pausas em ambiente calmo<br>
-                                                • Objeto de conforto (dinossauro de pelúcia)<br>
-                                                • Respiração profunda
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="form-group">
-                                            <label class="form-label">Estímulos Calmantes</label>
-                                            <div class="flex gap-1 flex-wrap">
-                                                <span class="badge success">Música clássica</span>
-                                                <span class="badge success">Luz natural</span>
-                                                <span class="badge success">Superfícies macias</span>
-                                                <span class="badge success">Movimentos repetitivos</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Observações Importantes</label>
-                                            <div class="text-sm">
-                                                Necessita de aviso prévio para mudanças na rotina. 
-                                                Responde bem a instruções visuais e pictogramas.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="side-panel">
-                        <!-- Development Milestones -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Marcos de Desenvolvimento</h3>
-                            </div>
-                            <div class="card-content">
-                                <div style="margin-bottom: 1rem;">
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm font-medium">Comunicação</span>
-                                        <span class="badge success">Alcançado</span>
-                                    </div>
-                                    <div class="text-xs text-secondary">Usa frases de 3-4 palavras</div>
-                                </div>
-                                <div style="margin-bottom: 1rem;">
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm font-medium">Interação Social</span>
-                                        <span class="badge warning">Em desenvolvimento</span>
-                                    </div>
-                                    <div class="text-xs text-secondary">Iniciando contato visual</div>
-                                </div>
-                                <div style="margin-bottom: 1rem;">
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm font-medium">Autonomia</span>
-                                        <span class="badge success">Alcançado</span>
-                                    </div>
-                                    <div class="text-xs text-secondary">Rotina de higiene básica</div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm font-medium">Motricidade</span>
-                                        <span class="badge success">Alcançado</span>
-                                    </div>
-                                    <div class="text-xs text-secondary">Coordenação motora fina</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Medical Team -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Equipe Médica</h3>
-                            </div>
-                            <div class="card-content">
-                                <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
-                                    <div class="font-semibold text-sm">Dr. Pedro Oliveira</div>
-                                    <div class="text-xs text-secondary">Neuropediatra</div>
-                                    <div class="text-xs mt-1">Diagnóstico e acompanhamento</div>
-                                </div>
-                                <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);">
-                                    <div class="text-xs text-secondary">Fonoaudióloga</div>
-                                    <div class="text-xs mt-1">Desenvolvimento da comunicação</div>
-                                </div>
-                                <div>
-                                    <div class="font-semibold text-sm">Dr. Carlos Lima</div>
-                                    <div class="text-xs text-secondary">Psicólogo</div>
-                                    <div class="text-xs mt-1">Terapia comportamental</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Emergency Contacts -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Contatos de Emergência</h3>
-                            </div>
-                            <div class="card-content">
-                                <div style="margin-bottom: 1rem;">
-                                    <div class="font-semibold text-sm">Maria Silva (Mãe)</div>
-                                    <div class="text-xs text-secondary">(11) 99999-9999</div>
-                                </div>
-                                <div style="margin-bottom: 1rem;">
-                                    <div class="font-semibold text-sm">José Santos (Pai)</div>
-                                    <div class="text-xs text-secondary">(11) 88888-8888</div>
-                                </div>
-                                <div>
-                                    <div class="font-semibold text-sm">Ana Silva (Avó)</div>
-                                    <div class="text-xs text-secondary">(11) 77777-7777</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Luna Section -->
-            <div id="luna-section" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Assistente Luna</h1>
-                    <p class="page-subtitle">IA especializada em Transtorno do Espectro Autista</p>
-                </div>
-
-                <div class="content-grid">
-                    <div class="main-panel">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Chat com Luna</h3>
-                                <div class="flex items-center gap-2">
-                                    <div style="width: 8px; height: 8px; background: var(--success-color); border-radius: 50%;"></div>
-                                    <span class="text-sm text-secondary">Online</span>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <div style="text-align: center; padding: 3rem 0; color: var(--text-secondary);">
-                                    <i class="fas fa-robot" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                                    <h3>Funcionalidade em Desenvolvimento</h3>
-                                    <p>O chat com Luna estará disponível em breve.</p>
-                                    <p class="text-sm mt-2">Esta funcionalidade permitirá conversar com nossa IA especializada em TEA para obter orientações personalizadas.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="side-panel">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Sobre Luna</h3>
-                            </div>
-                            <div class="card-content">
-                                <p class="text-sm text-secondary mb-4">
-                                    Luna é uma assistente de IA treinada especificamente para ajudar famílias no acompanhamento de pessoas com TEA.
-                                </p>
-                                <div class="text-sm">
-                                    <div class="mb-2">
-                                        <strong>Especialidades:</strong>
-                                    </div>
-                                    <ul style="list-style: none; padding: 0;">
-                                        <li>• Orientações sobre rotinas</li>
-                                        <li>• Estratégias de comunicação</li>
-                                        <li>• Atividades de desenvolvimento</li>
-                                        <li>• Gestão de comportamentos</li>
-                                        <li>• Recursos educativos</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Histórico de Conversas</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="text-sm text-secondary text-center" style="padding: 2rem 0;">
-                                    Nenhuma conversa registrada ainda.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Progresso Section -->
-            <div id="progresso-section" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Progresso</h1>
-                    <p class="page-subtitle">Acompanhamento detalhado do desenvolvimento</p>
-                </div>
-
-                <div class="card">
-                    <div class="card-content">
-                        <div style="text-align: center; padding: 3rem 0; color: var(--text-secondary);">
-                            <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                            <h3>Relatórios de Progresso</h3>
-                            <p>Esta seção estará disponível em breve.</p>
-                            <p class="text-sm mt-2">Aqui você poderá acompanhar gráficos detalhados, estatísticas e análises do desenvolvimento do João.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Especialistas Section -->
-            <div id="especialistas-section" class="section">
-                <div class="page-header">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h1 class="page-title">Especialistas</h1>
-                            <p class="page-subtitle">Gerencie sua equipe multidisciplinar</p>
-                        </div>
-                        <button class="btn btn-primary" href="../html/cadastroespecialista.html" onclick="openModal('adicionarEspecialista')">
-                            <i class="fas fa-plus"></i>
-                            Adicionar Especialista
-                        </button>
-                    </div>
-                </div>
-
-                
-
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Equipe Médica</h3>
-                    </div>
-                    <div class="card-content">
-                        <div class="table-container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Especialista</th>
-                                        <th>Especialidade</th>
-                                        <th>Contato</th>
-                                        <th>Próxima Consulta</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="especialistas-table">
-                                    <!-- Especialistas serão carregados aqui -->
-                                </tbody>
-                            </table>
+                        <div class="info-item">
+                            <span class="info-label">Celular</span>
+                            <span class="info-value" id="infoCelular">(11) 99999-9999</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Calendário de Consultas</h3>
+                <!-- Address Information -->
+                <div class="info-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Endereço
+                        </h3>
                     </div>
-                    <div class="card-content">
-                        <div class="table-container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Data</th>
-                                        <th>Horário</th>
-                                        <th>Especialista</th>
-                                        <th>Tipo</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="consultas-table">
-                                    <!-- Consultas serão carregadas aqui -->
-                                </tbody>
-                            </table>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">CEP</span>
+                            <span class="info-value" id="infoCep">01234-567</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Rua</span>
+                            <span class="info-value" id="infoRua">Rua das Flores</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Bairro</span>
+                            <span class="info-value" id="infoBairro">Centro</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Cidade</span>
+                            <span class="info-value" id="infoCidade">São Paulo - SP</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Número</span>
+                            <span class="info-value" id="infoNumero">123</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Complemento</span>
+                            <span class="info-value" id="infoComplemento">Apto 45</span>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Relatórios Section -->
-            <div id="relatorios-section" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Relatórios</h1>
-                    <p class="page-subtitle">Relatórios detalhados de acompanhamento</p>
-                </div>
-
-                <div class="card">
-                    <div class="card-content">
-                        <div style="text-align: center; padding: 3rem 0; color: var(--text-secondary);">
-                            <i class="fas fa-file-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                            <h3>Sistema de Relatórios</h3>
-                            <p>Esta funcionalidade estará disponível em breve.</p>
-                            <p class="text-sm mt-2">Aqui você poderá gerar relatórios personalizados sobre o desenvolvimento, atividades e marcos alcançados.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Configurações Section -->
-            <div id="configuracoes-section" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Configurações</h1>
-                    <p class="page-subtitle">Personalize sua experiência no sistema</p>
-                </div>
-
-                <div class="content-grid">
-                    <div class="main-panel">
-                        <!-- Account Settings -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Configurações da Conta</h3>
-                            </div>
-                            <div class="card-content">
-                                <form id="account-form">
-                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                                        <div class="form-group">
-                                            <label class="form-label">Nome Completo</label>
-                                            <input type="text" class="form-input disabled" value="Maria Silva Santos" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Email</label>
-                                            <input type="email" class="form-input disabled" value="maria.silva@email.com" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Telefone</label>
-                                            <input type="tel" class="form-input disabled" value="(11) 99999-9999" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Relação com o Autista</label>
-                                            <select class="form-select disabled" required>
-                                                <option value="mae" selected>Mãe</option>
-                                                <option value="pai">Pai</option>
-                                                <option value="responsavel">Responsável</option>
-                                                <option value="cuidador">Cuidador</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Notification Settings -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Notificações</h3>
-                            </div>
-                            <div class="card-content">
-                                <form id="notifications-form">
-                                    <div class="form-group">
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                <div class="font-medium">Lembretes de Consultas</div>
-                                                <div class="text-sm text-secondary">Receba notificações sobre consultas agendadas</div>
-                                            </div>
-                                            <label class="switch">
-                                                <input type="checkbox" checked>
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                <div class="font-medium">Relatórios de Progresso</div>
-                                                <div class="text-sm text-secondary">Notificações semanais sobre o desenvolvimento</div>
-                                            </div>
-                                            <label class="switch">
-                                                <input type="checkbox" checked>
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                <div class="font-medium">Mensagens da Luna</div>
-                                                <div class="text-sm text-secondary">Dicas e orientações da assistente IA</div>
-                                            </div>
-                                            <label class="switch">
-                                                <input type="checkbox" checked>
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                <div class="font-medium">Atualizações do Sistema</div>
-                                                <div class="text-sm text-secondary">Novos recursos e melhorias</div>
-                                            </div>
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="btn-group mt-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="fas fa-bell"></i>
-                                            Salvar Preferências
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Privacy Settings -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Privacidade e Segurança</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="form-group">
-                                    <div class="flex justify-between items-center">
-                                        <div>
-                                            <div class="font-medium">Compartilhamento de Dados</div>
-                                            <div class="text-sm text-secondary">Permitir compartilhamento de dados anonimizados para pesquisa</div>
-                                        </div>
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Alterar Senha</label>
-                                    <button class="btn btn-outline btn-sm" onclick="openModal('alterarSenha')">
-                                        <i class="fas fa-lock"></i>
-                                        Alterar Senha
-                                    </button>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Autenticação em Dois Fatores</label>
-                                    <div class="flex gap-2">
-                                        <button class="btn btn-outline btn-sm">
-                                            <i class="fas fa-shield-alt"></i>
-                                            Configurar 2FA
-                                        </button>
-                                        <span class="badge error">Desabilitado</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="side-panel">
-                        <!-- System Info -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Informações do Sistema</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="text-sm">
-                                    <div class="flex justify-between mb-2">
-                                        <span class="text-secondary">Versão:</span>
-                                        <span class="font-medium">2.1.4</span>
-                                    </div>
-                                    <div class="flex justify-between mb-2">
-                                        <span class="text-secondary">Último Update:</span>
-                                        <span class="font-medium">15/11/2024</span>
-                                    </div>
-                                    <div class="flex justify-between mb-2">
-                                        <span class="text-secondary">Status:</span>
-                                        <span class="badge success">Online</span>
-                                    </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-secondary">Backup:</span>
-                                        <span class="font-medium">Automático</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Support -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Suporte</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="btn-group" style="flex-direction: column; width: 100%;">
-                                    <button class="btn btn-outline">
-                                        <i class="fas fa-question-circle"></i>
-                                        Central de Ajuda
-                                    </button>
-                                    <button class="btn btn-outline">
-                                        <i class="fas fa-comments"></i>
-                                        Falar com Suporte
-                                    </button>
-                                    <button class="btn btn-outline">
-                                        <i class="fas fa-bug"></i>
-                                        Reportar Bug
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Account Actions -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Ações da Conta</h3>
-                            </div>
-                            <div class="card-content">
-                                <div class="btn-group" style="flex-direction: column; width: 100%;">
-                                    <button class="btn btn-outline">
-                                        <i class="fas fa-download"></i>
-                                        Exportar Dados
-                                    </button>
-                                    <button class="btn btn-outline" style="color: var(--error-color); border-color: var(--error-color);">
-                                        <i class="fas fa-trash"></i>
-                                        Excluir Conta
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- Modals -->
-    
-    <!-- Modal Editar Perfil -->
-    <div id="modal-editarPerfil" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Editar Perfil do Autista</h2>
-                <button class="close-btn" onclick="closeModal('editarPerfil')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="perfil-form">
-                    <div class="form-group">
-                        <label class="form-label">Nome Completo</label>
-                        <input type="text" class="form-input" value="João Silva Santos" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Data de Nascimento</label>
-                        <input type="date" class="form-input" value="2015-03-15" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Nível TEA</label>
-                        <select class="form-select" required>
-                            <option value="1" selected>Nível 1 - Suporte Leve</option>
-                            <option value="2">Nível 2 - Suporte Moderado</option>
-                            <option value="3">Nível 3 - Suporte Intenso</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Escola</label>
-                        <input type="text" class="form-input" value="Escola Municipal João XXIII">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Série/Ano</label>
-                        <input type="text" class="form-input" value="3º Ano do Ensino Fundamental">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Interesses Especiais</label>
-                        <input type="text" class="form-input" value="Dinossauros, Matemática, Lego, Carros">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Sensibilidades Sensoriais</label>
-                        <textarea class="form-textarea" placeholder="Descreva sensibilidades a sons, luzes, texturas, etc.">Sons altos, luzes fluorescentes, texturas ásperas</textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal('editarPerfil')">Cancelar</button>
-                <button type="submit" class="btn btn-primary" form="perfil-form">
-                    <i class="fas fa-save"></i>
-                    Salvar
-                </button>
             </div>
         </div>
-    </div>
-
-    <!-- Modal Agendar Consulta -->
-    <div id="modal-agendarConsulta" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Agendar Consulta</h2>
-                <button class="close-btn" onclick="closeModal('agendarConsulta')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="consulta-form">
-                    <div class="form-group">
-                        <label class="form-label">Especialista</label>
-                        <select class="form-select" required>
-                            <option value="">Selecione um especialista</option>
-                            <option value="ana-costa">Dra. Ana Costa - Fonoaudióloga</option>
-                            <option value="carlos-lima">Dr. Carlos Lima - Psicólogo</option>
-                            <option value="fernanda-santos">Dra. Fernanda Santos - Terapeuta Ocupacional</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Data</label>
-                        <input type="date" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Horário</label>
-                        <select class="form-select" required>
-                            <option value="">Selecione um horário</option>
-                            <option value="09:00">09:00</option>
-                            <option value="10:00">10:00</option>
-                            <option value="11:00">11:00</option>
-                            <option value="14:00">14:00</option>
-                            <option value="15:00">15:00</option>
-                            <option value="16:00">16:00</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Tipo de Consulta</label>
-                        <select class="form-select" required>
-                            <option value="">Selecione o tipo</option>
-                            <option value="consulta">Consulta Regular</option>
-                            <option value="retorno">Retorno</option>
-                            <option value="emergencia">Emergência</option>
-                            <option value="avaliacao">Avaliação</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Observações</label>
-                        <textarea class="form-textarea" placeholder="Informações adicionais para o especialista"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal('agendarConsulta')">Cancelar</button>
-                <button type="submit" class="btn btn-primary" form="consulta-form">
-                    <i class="fas fa-calendar-plus"></i>
-                    Agendar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Adicionar Especialista -->
-    <div id="modal-adicionarEspecialista" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Adicionar Especialista</h2>
-                <button class="close-btn" onclick="closeModal('adicionarEspecialista')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="especialista-form">
-                    <div class="form-group">
-                        <label class="form-label">Nome Completo</label>
-                        <input type="text" class="form-input" placeholder="Dr. João Silva" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Especialidade</label>
-                        <select class="form-select" required>
-                            <option value="">Selecione a especialidade</option>
-                            <option value="neuropediatra">Neuropediatra</option>
-                            <option value="psicologo">Psicólogo</option>
-                            <option value="fonoaudiologo">Fonoaudiólogo</option>
-                            <option value="terapeuta-ocupacional">Terapeuta Ocupacional</option>
-                            <option value="fisioterapeuta">Fisioterapeuta</option>
-                            <option value="nutricionista">Nutricionista</option>
-                            <option value="psiquiatra">Psiquiatra</option>
-                            <option value="outro">Outro</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">CRM/Registro</label>
-                        <input type="text" class="form-input" placeholder="CRM 123456">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Telefone</label>
-                        <input type="tel" class="form-input" placeholder="(11) 99999-9999" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-input" placeholder="especialista@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Endereço da Clínica</label>
-                        <textarea class="form-textarea" placeholder="Rua, número, bairro, cidade"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal('adicionarEspecialista')">Cancelar</button>
-                <button type="submit" class="btn btn-primary" form="especialista-form">
-                    <i class="fas fa-plus"></i>
-                    Adicionar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Alterar Senha -->
-    <div id="modal-alterarSenha" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Alterar Senha</h2>
-                <button class="close-btn" onclick="closeModal('alterarSenha')">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="senha-form">
-                    <div class="form-group">
-                        <label class="form-label">Senha Atual</label>
-                        <input type="password" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Nova Senha</label>
-                        <input type="password" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Confirmar Nova Senha</label>
-                        <input type="password" class="form-input" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModal('alterarSenha')">Cancelar</button>
-                <button type="submit" class="btn btn-primary" form="senha-form">
-                    <i class="fas fa-lock"></i>
-                    Alterar Senha
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <div id="toast-message"></div>
     </div>
 
     <script>
-        // Data Management
-        let especialistas = [
-            {
-                id: 1,
-                nome: 'Dra. Ana Costa',
-                especialidade: 'Fonoaudióloga',
-                telefone: '(11) 3333-4444',
-                email: 'ana.costa@clinica.com',
-                status: 'Ativo',
-                proximaConsulta: '2024-11-15 14:00'
-            },
-            {
-                id: 2,
-                nome: 'Dr. Carlos Lima',
-                especialidade: 'Psicólogo',
-                telefone: '(11) 5555-6666',
-                email: 'carlos.lima@psi.com',
-                status: 'Ativo',
-                proximaConsulta: '2024-11-18 10:00'
-            },
-            {
-                id: 3,
-                nome: 'Dra. Fernanda Santos',
-                especialidade: 'Terapeuta Ocupacional',
-                telefone: '(11) 7777-8888',
-                email: 'fernanda.santos@to.com',
-                status: 'Ativo',
-                proximaConsulta: '2024-11-20 16:00'
-            }
-        ];
+        // Dados do usuário (simulados - em produção viriam do banco de dados)
+        let userData = {
+            nome: 'Maria Silva Santos',
+            email: 'maria.silva@email.com',
+            cpf: '123.456.789-00',
+            celular: '(11) 99999-9999',
+            cep: '01234-567',
+            rua: 'Rua das Flores',
+            numero: '123',
+            complemento: 'Apto 45',
+            bairro: 'Centro',
+            cidade: 'São Paulo - SP',
+            foto: null
+        };
 
-        let consultas = [
-            {
-                id: 1,
-                data: '2024-11-15',
-                horario: '14:00',
-                especialista: 'Dra. Ana Costa',
-                tipo: 'Consulta Regular',
-                status: 'Agendada'
-            },
-            {
-                id: 2,
-                data: '2024-11-18',
-                horario: '10:00',
-                especialista: 'Dr. Carlos Lima',
-                tipo: 'Retorno',
-                status: 'Agendada'
-            },
-            {
-                id: 3,
-                data: '2024-11-20',
-                horario: '16:00',
-                especialista: 'Dra. Fernanda Santos',
-                tipo: 'Avaliação',
-                status: 'Agendada'
-            }
-        ];
+        // Inicializar página com dados do usuário
+        function initializePage() {
+            // Atualizar informações na página
+            document.getElementById('profileName').textContent = userData.nome;
+            document.getElementById('profileEmail').textContent = userData.email;
+            
+            document.getElementById('infoName').textContent = userData.nome;
+            document.getElementById('infoEmail').textContent = userData.email;
+            document.getElementById('infoCpf').textContent = userData.cpf;
+            document.getElementById('infoCelular').textContent = userData.celular;
+            document.getElementById('infoCep').textContent = userData.cep;
+            document.getElementById('infoRua').textContent = userData.rua;
+            document.getElementById('infoBairro').textContent = userData.bairro;
+            document.getElementById('infoCidade').textContent = userData.cidade;
+            document.getElementById('infoNumero').textContent = userData.numero;
+            document.getElementById('infoComplemento').textContent = userData.complemento || 'Não informado';
 
-        // Navigation
-        function showSection(sectionName) {
-            // Remove active from all nav items
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Add active to clicked nav item
-            event.target.closest('.nav-item').classList.add('active');
-            
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show selected section
-            const section = document.getElementById(sectionName + '-section');
-            if (section) {
-                section.classList.add('active');
-                
-                // Load section-specific data
-                if (sectionName === 'especialistas') {
-                    loadEspecialistas();
-                    loadConsultas();
-                }
+            // Atualizar placeholder com iniciais
+            const initials = userData.nome.split(' ')
+                .map(n => n[0])
+                .slice(0, 2)
+                .join('')
+                .toUpperCase();
+            document.getElementById('profilePhotoPlaceholder').textContent = initials;
+
+            // Se houver foto, mostrar
+            if (userData.foto) {
+                document.getElementById('profilePhoto').src = userData.foto;
+                document.getElementById('profilePhoto').style.display = 'block';
+                document.getElementById('profilePhotoPlaceholder').style.display = 'none';
             }
         }
 
-        // Profile Functions
-        function enableEditMode() {
-            const inputs = document.querySelectorAll('#personal-info-form input, #personal-info-form select');
-            const editButtons = document.getElementById('edit-buttons');
-            
-            inputs.forEach(input => {
-                input.disabled = false;
-                input.classList.remove('disabled');
-            });
-            
-            editButtons.style.display = 'flex';
-        }
-
-        function cancelEditMode() {
-            const inputs = document.querySelectorAll('#personal-info-form input, #personal-info-form select');
-            const editButtons = document.getElementById('edit-buttons');
-            
-            inputs.forEach(input => {
-                input.disabled = true;
-                input.classList.add('disabled');
-            });
-            
-            editButtons.style.display = 'none';
-        }
-
-        function enableAddressEditMode() {
-            const inputs = document.querySelectorAll('#address-form input');
-            const editButtons = document.getElementById('address-edit-buttons');
-            
-            inputs.forEach(input => {
-                input.disabled = false;
-                input.classList.remove('disabled');
-            });
-            
-            editButtons.style.display = 'flex';
-        }
-
-        function cancelAddressEditMode() {
-            const inputs = document.querySelectorAll('#address-form input');
-            const editButtons = document.getElementById('address-edit-buttons');
-            
-            inputs.forEach(input => {
-                input.disabled = true;
-                input.classList.add('disabled');
-            });
-            
-            editButtons.style.display = 'none';
-        }
-
-        // Modal Functions
-        function openModal(modalId) {
-            document.getElementById('modal-' + modalId).classList.add('show');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById('modal-' + modalId).classList.remove('show');
-        }
-
-        // Toast Notifications
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const messageEl = document.getElementById('toast-message');
-            
-            messageEl.textContent = message;
-            toast.className = `toast ${type} show`;
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        // User Menu Toggle
-        function toggleUserMenu() {
-            const dropdown = document.querySelector('.user-profile');
-            dropdown.classList.toggle('show');
-        }
-
-        // Load Specialists Table
-        function loadEspecialistas() {
-            const tbody = document.getElementById('especialistas-table');
-            tbody.innerHTML = '';
-            
-            especialistas.forEach(esp => {
-                const row = document.createElement('tr');
-                const proximaConsulta = esp.proximaConsulta ? 
-                    new Date(esp.proximaConsulta).toLocaleDateString('pt-BR') + ' às ' + 
-                    new Date(esp.proximaConsulta).toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'}) 
-                    : 'Não agendada';
-                
-                row.innerHTML = `
-                    <td>
-                        <div class="font-medium">${esp.nome}</div>
-                        <div class="text-xs text-secondary">${esp.email}</div>
-                    </td>
-                    <td>${esp.especialidade}</td>
-                    <td>${esp.telefone}</td>
-                    <td class="text-sm">${proximaConsulta}</td>
-                    <td><span class="badge success">${esp.status}</span></td>
-                    <td>
-                        <button class="btn btn-outline btn-sm" onclick="editarEspecialista(${esp.id})">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-outline btn-sm" onclick="removerEspecialista(${esp.id})" style="color: var(--error-color); border-color: var(--error-color); margin-left: 8px;">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Load Appointments Table
-        function loadConsultas() {
-            const tbody = document.getElementById('consultas-table');
-            tbody.innerHTML = '';
-            
-            consultas.forEach(consulta => {
-                const row = document.createElement('tr');
-                const dataFormatada = new Date(consulta.data + 'T00:00:00').toLocaleDateString('pt-BR');
-                
-                row.innerHTML = `
-                    <td>${dataFormatada}</td>
-                    <td>${consulta.horario}</td>
-                    <td>${consulta.especialista}</td>
-                    <td>${consulta.tipo}</td>
-                    <td><span class="badge warning">${consulta.status}</span></td>
-                    <td>
-                        <button class="btn btn-outline btn-sm" onclick="editarConsulta(${consulta.id})">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-outline btn-sm" onclick="cancelarConsulta(${consulta.id})" style="color: var(--error-color); border-color: var(--error-color); margin-left: 8px;">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Form Handlers
-        document.getElementById('personal-info-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('Informações pessoais atualizadas com sucesso!');
-            cancelEditMode();
-        });
-
-        document.getElementById('address-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('Endereço atualizado com sucesso!');
-            cancelAddressEditMode();
-        });
-
-        document.getElementById('preferences-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('Preferências salvas com sucesso!');
-        });
-
-        document.getElementById('perfil-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('Perfil atualizado com sucesso!');
-            closeModal('editarPerfil');
-        });
-
-        document.getElementById('consulta-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            
-            // Add new appointment to array
-            const newConsulta = {
-                id: consultas.length + 1,
-                data: formData.get('data') || document.querySelector('#consulta-form input[type="date"]').value,
-                horario: document.querySelector('#consulta-form select[name="horario"]') ? 
-                         document.querySelector('#consulta-form select[name="horario"]').value : '09:00',
-                especialista: document.querySelector('#consulta-form select').selectedOptions[0]?.text || 'Especialista',
-                tipo: 'Consulta Regular',
-                status: 'Agendada'
-            };
-            
-            consultas.push(newConsulta);
-            
-            showToast('Consulta agendada com sucesso!');
-            closeModal('agendarConsulta');
-            
-            // Reload table if on specialists section
-            if (document.getElementById('especialistas-section').classList.contains('active')) {
-                loadConsultas();
-            }
-        });
-
-        document.getElementById('especialista-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            
-            // Add new specialist to array
-            const newEspecialista = {
-                id: especialistas.length + 1,
-                nome: formData.get('nome') || document.querySelector('#especialista-form input[type="text"]').value,
-                especialidade: document.querySelector('#especialista-form select').selectedOptions[0]?.text || 'Especialista',
-                telefone: document.querySelector('#especialista-form input[type="tel"]').value,
-                email: document.querySelector('#especialista-form input[type="email"]').value,
-                status: 'Ativo',
-                proximaConsulta: null
-            };
-            
-            especialistas.push(newEspecialista);
-            
-            showToast('Especialista adicionado com sucesso!');
-            closeModal('adicionarEspecialista');
-            
-            // Reload table if on specialists section
-            if (document.getElementById('especialistas-section').classList.contains('active')) {
-                loadEspecialistas();
-            }
-        });
-
-        document.getElementById('notifications-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('Preferências de notificação salvas com sucesso!');
-        });
-
-        document.getElementById('senha-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('Senha alterada com sucesso!');
-            closeModal('alterarSenha');
-        });
-
-        // Specialist Management Functions
-        function editarEspecialista(id) {
-            const especialista = especialistas.find(esp => esp.id === id);
-            if (especialista) {
-                showToast(`Editar especialista: ${especialista.nome}`, 'warning');
-                // Here you would populate a modal with the specialist data
-            }
-        }
-
-        function removerEspecialista(id) {
-            if (confirm('Tem certeza que deseja remover este especialista?')) {
-                especialistas = especialistas.filter(esp => esp.id !== id);
-                loadEspecialistas();
-                showToast('Especialista removido com sucesso!');
-            }
-        }
-
-        // Appointment Management Functions
-        function editarConsulta(id) {
-            const consulta = consultas.find(c => c.id === id);
-            if (consulta) {
-                showToast(`Editar consulta: ${consulta.especialista}`, 'warning');
-                // Here you would populate a modal with the appointment data
-            }
-        }
-
-        function cancelarConsulta(id) {
-            if (confirm('Tem certeza que deseja cancelar esta consulta?')) {
-                const consultaIndex = consultas.findIndex(c => c.id === id);
-                if (consultaIndex !== -1) {
-                    consultas[consultaIndex].status = 'Cancelada';
-                    loadConsultas();
-                    showToast('Consulta cancelada com sucesso!');
-                }
-            }
-        }
-
-        // Other Functions
-        function showNotifications() {
-            showToast('3 novas notificações', 'warning');
-        }
-
-        function showProfile() {
-            showSection('perfil');
-        }
-
-        function showSettings() {
-            showSection('configuracoes');
-        }
-
-        function logout() {
-            if (confirm('Tem certeza que deseja sair?')) {
-                showToast('Logout realizado com sucesso!');
-                // Here you would redirect to login page
-            }
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const dropdown = document.querySelector('.dropdown');
-            if (!dropdown.contains(event.target)) {
-                dropdown.classList.remove('show');
-            }
-        });
-
-        // Close modal when clicking outside
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.classList.remove('show');
-            }
-        });
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set minimum date for appointment scheduling
-            const today = new Date().toISOString().split('T')[0];
-            const dateInputs = document.querySelectorAll('input[type="date"]');
-            dateInputs.forEach(input => {
-                input.min = today;
-            });
-        });
+        // Inicializar página quando carregar
+        window.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
 </html>
