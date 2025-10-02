@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Perfil - Mentes Brilhantes</title>
+    <title>Mentes Brilhantes</title>
     <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -70,9 +70,12 @@
             text-decoration: none;
         }
 
-        .logo-section i {
-            font-size: 2rem;
-        }
+        .logo-img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
 
         .back-button {
             display: inline-flex;
@@ -286,10 +289,11 @@
                 <i class="fas fa-arrow-left"></i>
                 Voltar
             </a>
-            <a  class="logo-section">
-                <i class="fas fa-brain"></i>
+            <a class="logo-section">
+                <img src="../img/LogoMB.png" class="logo-img">
                 <span>Mentes Brilhantes</span>
             </a>
+            
             <div style="width: 80px;"></div> <!-- Spacer para centralizar o logo -->
         </div>
     </header>
