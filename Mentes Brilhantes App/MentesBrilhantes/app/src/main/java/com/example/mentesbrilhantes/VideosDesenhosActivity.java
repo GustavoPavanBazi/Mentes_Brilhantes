@@ -20,17 +20,17 @@ public class VideosDesenhosActivity extends AppCompatActivity {
 
     private static boolean isAnyButtonProcessing = false;
 
-    // IDs dos 10 vídeos musicais do YouTube
-    private final String VIDEO_ID_1 = "";
-    private final String VIDEO_ID_2 = "";
-    private final String VIDEO_ID_3 = "";
-    private final String VIDEO_ID_4 = "";
-    private final String VIDEO_ID_5 = "";
-    private final String VIDEO_ID_6 = "";
-    private final String VIDEO_ID_7 = "";
-    private final String VIDEO_ID_8 = "";
-    private final String VIDEO_ID_9 = "";
-    private final String VIDEO_ID_10 = "";
+    // IDs dos 10 vídeos desenhos do YouTube
+    private final String VIDEO_ID_1 = "V8pM2TgnbfM";
+    private final String VIDEO_ID_2 = "Y4LfCOrzBtc";
+    private final String VIDEO_ID_3 = "M5Mof0JAUI0";
+    private final String VIDEO_ID_4 = "dirZ-28qnXg";
+    private final String VIDEO_ID_5 = "nzDF-MxT3Hs";
+    private final String VIDEO_ID_6 = "w8l-cEM4l1s";
+    private final String VIDEO_ID_7 = "3JtWIRnC-lk";
+    private final String VIDEO_ID_8 = "gcXLOAd8bG0";
+    private final String VIDEO_ID_9 = "dq5ymxcM3Jg";
+    private final String VIDEO_ID_10 = "TyhajW0oVL4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class VideosDesenhosActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         );
 
-        setContentView(R.layout.activity_videos_musicas);
+        setContentView(R.layout.activity_videos_desenhos);
 
         inicializarBotoes();
         configurarListeners();
@@ -177,16 +177,16 @@ public class VideosDesenhosActivity extends AppCompatActivity {
 
     private void configurarListeners() {
         // Configurar os 10 vídeos musicais
-        configurarBotaoProtegido(btnVideo1, frameVideo1, () -> abrirVideo(VIDEO_ID_1, ""));
-        configurarBotaoProtegido(btnVideo2, frameVideo2, () -> abrirVideo(VIDEO_ID_2, ""));
-        configurarBotaoProtegido(btnVideo3, frameVideo3, () -> abrirVideo(VIDEO_ID_3, ""));
-        configurarBotaoProtegido(btnVideo4, frameVideo4, () -> abrirVideo(VIDEO_ID_4, ""));
-        configurarBotaoProtegido(btnVideo5, frameVideo5, () -> abrirVideo(VIDEO_ID_5, ""));
-        configurarBotaoProtegido(btnVideo6, frameVideo6, () -> abrirVideo(VIDEO_ID_6, ""));
-        configurarBotaoProtegido(btnVideo7, frameVideo7, () -> abrirVideo(VIDEO_ID_7, ""));
-        configurarBotaoProtegido(btnVideo8, frameVideo8, () -> abrirVideo(VIDEO_ID_8, ""));
-        configurarBotaoProtegido(btnVideo9, frameVideo9, () -> abrirVideo(VIDEO_ID_9, ""));
-        configurarBotaoProtegido(btnVideo10, frameVideo10, () -> abrirVideo(VIDEO_ID_10, ""));
+        configurarBotaoProtegido(btnVideo1, frameVideo1, () -> abrirVideo(VIDEO_ID_1, "Mundo do Elmo e Elmo, o Musical - Vila Sésamo"));
+        configurarBotaoProtegido(btnVideo2, frameVideo2, () -> abrirVideo(VIDEO_ID_2, "Mundo do Elmo - Vila Sésamo"));
+        configurarBotaoProtegido(btnVideo3, frameVideo3, () -> abrirVideo(VIDEO_ID_3, "Em Casa com a Turma da Mônica - Turma da Mônica"));
+        configurarBotaoProtegido(btnVideo4, frameVideo4, () -> abrirVideo(VIDEO_ID_4, "Aniversário - Turma da Mônica"));
+        configurarBotaoProtegido(btnVideo5, frameVideo5, () -> abrirVideo(VIDEO_ID_5, "Vários Episódios - Bluey"));
+        configurarBotaoProtegido(btnVideo6, frameVideo6, () -> abrirVideo(VIDEO_ID_6, "Vários Episódios 2 - Bluey"));
+        configurarBotaoProtegido(btnVideo7, frameVideo7, () -> abrirVideo(VIDEO_ID_7, "Episódio 1 - Peppa Pig"));
+        configurarBotaoProtegido(btnVideo8, frameVideo8, () -> abrirVideo(VIDEO_ID_8, "Episódio 2 - Peppa Pig"));
+        configurarBotaoProtegido(btnVideo9, frameVideo9, () -> abrirVideo(VIDEO_ID_9, "Compilação De 1h 2ª Episódios da temporada - Simon Super Coelho"));
+        configurarBotaoProtegido(btnVideo10, frameVideo10, () -> abrirVideo(VIDEO_ID_10, "Compilação 2h Episódios da 2ª temporada- Simon Super Coelho"));
 
         // BOTÃO SAIR
         configurarBotaoProtegidoSimples(btnSair, this::finish);

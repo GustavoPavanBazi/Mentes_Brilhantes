@@ -20,17 +20,17 @@ public class VideosRelaxarActivity extends AppCompatActivity {
 
     private static boolean isAnyButtonProcessing = false;
 
-    // IDs dos 10 vídeos musicais do YouTube
-    private final String VIDEO_ID_1 = "";
-    private final String VIDEO_ID_2 = "";
-    private final String VIDEO_ID_3 = "";
-    private final String VIDEO_ID_4 = "";
-    private final String VIDEO_ID_5 = "";
-    private final String VIDEO_ID_6 = "";
-    private final String VIDEO_ID_7 = "";
-    private final String VIDEO_ID_8 = "";
-    private final String VIDEO_ID_9 = "";
-    private final String VIDEO_ID_10 = "";
+    // IDs dos 10 vídeos relaxantes do YouTube
+    private final String VIDEO_ID_1 = "HNYb1NnOSm4";
+    private final String VIDEO_ID_2 = "ulMGYYpag8A";
+    private final String VIDEO_ID_3 = "RKbA_ZsLmnU";
+    private final String VIDEO_ID_4 = "7_OQVGVGu0Y";
+    private final String VIDEO_ID_5 = "n4pW0qKkA80";
+    private final String VIDEO_ID_6 = "DRQyLZfUK8o";
+    private final String VIDEO_ID_7 = "ak69COjvaGo";
+    private final String VIDEO_ID_8 = "DlnYANIVslc";
+    private final String VIDEO_ID_9 = "wsNc35fkkdw";
+    private final String VIDEO_ID_10 = "8k-d52rfZso";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class VideosRelaxarActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         );
 
-        setContentView(R.layout.activity_videos_musicas);
+        setContentView(R.layout.activity_videos_relaxar);
 
         inicializarBotoes();
         configurarListeners();
@@ -177,16 +177,16 @@ public class VideosRelaxarActivity extends AppCompatActivity {
 
     private void configurarListeners() {
         // Configurar os 10 vídeos musicais
-        configurarBotaoProtegido(btnVideo1, frameVideo1, () -> abrirVideo(VIDEO_ID_1, ""));
-        configurarBotaoProtegido(btnVideo2, frameVideo2, () -> abrirVideo(VIDEO_ID_2, ""));
-        configurarBotaoProtegido(btnVideo3, frameVideo3, () -> abrirVideo(VIDEO_ID_3, ""));
-        configurarBotaoProtegido(btnVideo4, frameVideo4, () -> abrirVideo(VIDEO_ID_4, ""));
-        configurarBotaoProtegido(btnVideo5, frameVideo5, () -> abrirVideo(VIDEO_ID_5, ""));
-        configurarBotaoProtegido(btnVideo6, frameVideo6, () -> abrirVideo(VIDEO_ID_6, ""));
-        configurarBotaoProtegido(btnVideo7, frameVideo7, () -> abrirVideo(VIDEO_ID_7, ""));
-        configurarBotaoProtegido(btnVideo8, frameVideo8, () -> abrirVideo(VIDEO_ID_8, ""));
-        configurarBotaoProtegido(btnVideo9, frameVideo9, () -> abrirVideo(VIDEO_ID_9, ""));
-        configurarBotaoProtegido(btnVideo10, frameVideo10, () -> abrirVideo(VIDEO_ID_10, ""));
+        configurarBotaoProtegido(btnVideo1, frameVideo1, () -> abrirVideo(VIDEO_ID_1, "Música Para Acalmar Crises em Autistas e Hiperativos"));
+        configurarBotaoProtegido(btnVideo2, frameVideo2, () -> abrirVideo(VIDEO_ID_2, "Música Calmante e Vídeo Sensorial Para Autista em Crise"));
+        configurarBotaoProtegido(btnVideo3, frameVideo3, () -> abrirVideo(VIDEO_ID_3, "Asmr Para Relaxar Adultos Autistas - Sweet Carol"));
+        configurarBotaoProtegido(btnVideo4, frameVideo4, () -> abrirVideo(VIDEO_ID_4, "Música Calmante - Bill Paxton"));
+        configurarBotaoProtegido(btnVideo5, frameVideo5, () -> abrirVideo(VIDEO_ID_5, "Asmr Para Aliviar Crise de Autismo Infantil"));
+        configurarBotaoProtegido(btnVideo6, frameVideo6, () -> abrirVideo(VIDEO_ID_6, "Calming Visuals Rainbow Fireworks - Meltdown Remedy"));
+        configurarBotaoProtegido(btnVideo7, frameVideo7, () -> abrirVideo(VIDEO_ID_7, "Música Para Acalmar: Transtorno Sensorial do Autismo e Asperger"));
+        configurarBotaoProtegido(btnVideo8, frameVideo8, () -> abrirVideo(VIDEO_ID_8, "Autism Calming Sensory: Relaxing Music"));
+        configurarBotaoProtegido(btnVideo9, frameVideo9, () -> abrirVideo(VIDEO_ID_9, "Ondas Binaural - Acalmar a mente, sair do stress, ansiedade e medo"));
+        configurarBotaoProtegido(btnVideo10, frameVideo10, () -> abrirVideo(VIDEO_ID_10, "528 Hz - Música de Relaxamento"));
 
         // BOTÃO SAIR
         configurarBotaoProtegidoSimples(btnSair, this::finish);

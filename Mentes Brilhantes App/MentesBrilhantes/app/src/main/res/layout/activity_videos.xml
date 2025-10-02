@@ -73,12 +73,12 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/btn_musicas"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:padding="0dp"
                 android:adjustViewBounds="false"
-                android:contentDescription="Vídeos de Rotina" />
+                android:background="@null"
+                android:contentDescription="Vídeos de músicas"
+                android:padding="0dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_musicas" />
         </LinearLayout>
     </LinearLayout>
 

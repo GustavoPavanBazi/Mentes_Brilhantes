@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="12dp"
     android:gravity="center"
-    android:background="@drawable/fundo_relaxar">
+    android:background="@drawable/fundo_desenhos">
 
     <!-- Container dos vídeos com scroll (PADDING REDUZIDO) -->
     <ScrollView
@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Mundo do Elmo e Elmo, o Musical - Vila Sésamo"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -59,11 +59,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_educativo_thumb1"
+                        android:src="@drawable/videos_desenhos_thumb1"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Mundo do Elmo e Elmo, o Musical - Vila Sésamo" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -77,7 +77,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Mundo do Elmo - Vila Sésamo"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -96,11 +96,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_relaxar_thumb2"
+                        android:src="@drawable/videos_desenhos_thumb2"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Mundo do Elmo - Vila Sésamo" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -114,7 +114,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Em Casa com a Turma da Mônica - Turma da Mônica"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -133,11 +133,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_relaxar_thumb3"
+                        android:src="@drawable/videos_desenhos_thumb3"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Em Casa com a Turma da Mônica - Turma da Mônica" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -151,7 +151,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Aniversário - Turma da Mônica"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -170,11 +170,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_relaxar_thumb4"
+                        android:src="@drawable/videos_desenhos_thumb4"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Aniversário - Turma da Mônica" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -188,7 +188,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Vários Episódios - Bluey"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -207,11 +207,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_relaxar_thumb5"
+                        android:src="@drawable/videos_desenhos_thumb5"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Vários Episódios - Bluey" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -225,7 +225,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Vários Episódios 2 - Bluey"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -244,11 +244,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_relaxar_thumb6"
+                        android:src="@drawable/videos_desenhos_thumb6"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Vários Episódios 2 - Bluey" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -262,7 +262,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Episódio 1 - Peppa Pig"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -281,11 +281,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_relaxar_thumb7"
+                        android:src="@drawable/videos_desenhos_thumb7"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Episódio 1 - Peppa Pig" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -299,7 +299,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Episódio 2 - Peppa Pig"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -318,11 +318,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_relaxar_thumb8"
+                        android:src="@drawable/videos_desenhos_thumb8"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Episódio 2 - Peppa Pig" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -336,7 +336,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Compilação De 1h 2ª Episódios da temporada - Simon Super Coelho"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -355,11 +355,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_relaxar_thumb9"
+                        android:src="@drawable/videos_desenhos_thumb9"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Compilação De 1h 2ª Episódios da temporada - Simon Super Coelho" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -373,7 +373,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Compilação 2h Episódios da 2ª temporada- Simon Super Coelho"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -392,11 +392,11 @@
                         android:layout_width="324dp"
                         android:layout_height="179dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/videos_relaxar_thumb10"
+                        android:src="@drawable/videos_desenhos_thumb10"
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Compilação 2h Episódios da 2ª temporada- Simon Super Coelho" />
                 </FrameLayout>
             </LinearLayout>
 

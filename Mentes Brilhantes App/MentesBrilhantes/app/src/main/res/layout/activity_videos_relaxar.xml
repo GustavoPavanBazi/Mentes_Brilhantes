@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Música Para Acalmar Crises em Autistas e Hiperativos"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -63,7 +63,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Música Para Acalmar Crises em Autistas e Hiperativos" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -77,7 +77,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Música Calmante e Vídeo Sensorial Para Autista em Crise"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -100,7 +100,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Música Calmante e Vídeo Sensorial Para Autista em Crise" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -114,7 +114,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Asmr Para Relaxar Adultos Autistas - Sweet Carol"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -137,7 +137,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Asmr Para Relaxar Adultos Autistas - Sweet Carol" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -151,7 +151,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Música Calmante - Bill Paxton"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -174,7 +174,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Música Calmante - Bill Paxton" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -188,7 +188,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Asmr Para Aliviar Crise de Autismo Infantil"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -211,7 +211,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Asmr Para Aliviar Crise de Autismo Infantil" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -225,7 +225,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Calming Visuals Rainbow Fireworks - Meltdown Remedy"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -248,7 +248,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Calming Visuals Rainbow Fireworks - Meltdown Remedy" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -262,7 +262,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Música Para Acalmar: Transtorno Sensorial do Autismo e Asperger"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -285,7 +285,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Música Para Acalmar: Transtorno Sensorial do Autismo e Asperger" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -299,7 +299,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Autism Calming Sensory: Relaxing Music"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -322,7 +322,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Autism Calming Sensory: Relaxing Music" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -336,7 +336,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="Ondas Binaural - Acalmar a mente, sair do stress, ansiedade e medo"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -359,7 +359,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="Ondas Binaural - Acalmar a mente, sair do stress, ansiedade e medo" />
                 </FrameLayout>
             </LinearLayout>
 
@@ -373,7 +373,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="528 Hz - Música de Relaxamento"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF"
@@ -396,7 +396,7 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/rounded_imagebutton"
                         android:clipToOutline="true"
-                        android:contentDescription="" />
+                        android:contentDescription="528 Hz - Música de Relaxamento" />
                 </FrameLayout>
             </LinearLayout>
 
