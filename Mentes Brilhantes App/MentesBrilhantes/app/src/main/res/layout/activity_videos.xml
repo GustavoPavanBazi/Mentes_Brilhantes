@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:gravity="center"
+    android:background="@drawable/fundo_videos">
+
+    <!-- Container dos 4 botões de categorias com espaço superior -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="140dp">
+
+        <!-- Primeira linha de botões -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="10dp">
+
+            <ImageButton
+                android:id="@+id/btn_educativo"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/btn_educativo"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:padding="0dp"
+                android:adjustViewBounds="false"
+                android:contentDescription="Vídeos Educativos" />
+
+            <ImageButton
+                android:id="@+id/btn_desenho"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/btn_desenhos"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:padding="0dp"
+                android:adjustViewBounds="false"
+                android:contentDescription="Desenhos Animados" />
+        </LinearLayout>
+
+        <!-- Segunda linha de botões -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btn_relaxante"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                android:src="@drawable/btn_relaxar"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:padding="0dp"
+                android:adjustViewBounds="false"
+                android:contentDescription="Vídeos Relaxantes" />
+
+            <ImageButton
+                android:id="@+id/btn_musicas"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_margin="8dp"
+                android:adjustViewBounds="false"
+                android:background="@null"
+                android:contentDescription="Vídeos de músicas"
+                android:padding="0dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_musicas" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Linha do botão SAIR - ESTRUTURA IDÊNTICA AOS SUPERIORES -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
+        <ImageButton
+            android:id="@+id/btn_sair"
+            android:layout_width="356dp"
+            android:layout_height="120dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/btn_sair_azul"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:maxWidth="356dp"
+            android:maxHeight="100dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Sair" />
+    </LinearLayout>
+
+</LinearLayout>
