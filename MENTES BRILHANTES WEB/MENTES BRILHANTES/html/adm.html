@@ -41,6 +41,12 @@
                         </a>
                     </div>
                     <div class="nav-item">
+                        <a href="#" class="nav-link" onclick="showSection('especialistas-cadastrados')">
+                            <i class="fas fa-user-md"></i>
+                            Especialistas Cadastrados
+                        </a>
+                    </div>
+                    <div class="nav-item">
                         <a href="#" class="nav-link" onclick="showSection('especialistas')">
                             <i class="fas fa-user-md"></i>
                             Solicitações de Parceria
@@ -249,6 +255,248 @@
                     </div>
                     
                     <div class="no-results" id="noResults">
+                        <i class="fas fa-search"></i>
+                        <h3>Nenhum resultado encontrado</h3>
+                        <p>Tente buscar com outros termos ou verifique a ortografia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Especialistas Cadastrados Section -->
+            <div class="content-section" id="especialistas-cadastrados">
+                <div class="page-header">
+                    <h1 class="page-title">Especialistas Cadastrados</h1>
+                    <p class="page-description">Gerencie os especialistas parceiros da rede Mentes Brilhantes e acesse suas informações profissionais.</p>
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-header">
+                        <h2 class="data-card-title">Lista de Especialistas</h2>
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInputEspecialistas" placeholder="Buscar por nome, especialidade, CRP/CRM...">
+                            <button class="search-clear" id="clearSearchEspecialistas" title="Limpar busca">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="search-results-count" id="searchResultsCountEspecialistas"></div>
+                    
+                    <!-- Desktop Table View -->
+                    <div class="desktop-view">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Especialista</th>
+                                    <th>Contato</th>
+                                    <th>Especialidade</th>
+                                    <th>Registro</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="especialistasTable">
+                                <tr class="clickable" onclick="viewEspecialistaDetails('Dr. João Pereira', 'joao-pereira')">
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">JP</div>
+                                            <div class="user-details">
+                                                <h4>Dr. João Pereira</h4>
+                                                <p>Psicólogo Clínico</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>joao.pereira@clinica.com</div>
+                                        <div style="color: #64748b; font-size: 0.8rem;">(11) 98765-4321</div>
+                                    </td>
+                                    <td>
+                                        <span style="font-weight: 600; color: #3730a3;">TEA, ABA</span>
+                                        <div style="font-size: 0.8rem; color: #64748b;">Análise Aplicada do Comportamento</div>
+                                    </td>
+                                    <td>CRP 06/123456</td>
+                                    <td><span class="status-badge status-active">Ativo</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="clickable" onclick="viewEspecialistaDetails('Dra. Ana Costa', 'ana-costa')">
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">AC</div>
+                                            <div class="user-details">
+                                                <h4>Dra. Ana Costa</h4>
+                                                <p>Fonoaudióloga</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>ana.costa@fono.com</div>
+                                        <div style="color: #64748b; font-size: 0.8rem;">(11) 97654-3210</div>
+                                    </td>
+                                    <td>
+                                        <span style="font-weight: 600; color: #3730a3;">Fonoaudiologia</span>
+                                        <div style="font-size: 0.8rem; color: #64748b;">Comunicação Alternativa</div>
+                                    </td>
+                                    <td>CRFa 2-12345</td>
+                                    <td><span class="status-badge status-active">Ativo</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="clickable" onclick="viewEspecialistaDetails('Dr. Carlos Lima', 'carlos-lima')">
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar">CL</div>
+                                            <div class="user-details">
+                                                <h4>Dr. Carlos Lima</h4>
+                                                <p>Neuropediatra</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>carlos.lima@hospital.com</div>
+                                        <div style="color: #64748b; font-size: 0.8rem;">(11) 96543-2109</div>
+                                    </td>
+                                    <td>
+                                        <span style="font-weight: 600; color: #3730a3;">Neuropediatria</span>
+                                        <div style="font-size: 0.8rem; color: #64748b;">Transtornos do Neurodesenvolvimento</div>
+                                    </td>
+                                    <td>CRM-SP 98765</td>
+                                    <td><span class="status-badge status-active">Ativo</span></td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile Card View -->
+                    <div class="mobile-view">
+                        <div class="mobile-cards" id="mobileEspecialistas">
+                            <div class="mobile-card clickable" onclick="viewEspecialistaDetails('Dr. João Pereira', 'joao-pereira')">
+                                <div class="mobile-card-header">
+                                    <div class="user-info">
+                                        <div class="user-avatar">JP</div>
+                                        <div class="user-details">
+                                            <h4>Dr. João Pereira</h4>
+                                            <p>Psicólogo Clínico</p>
+                                        </div>
+                                    </div>
+                                    <span class="status-badge status-active">Ativo</span>
+                                </div>
+                                <div class="mobile-card-body">
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>joao.pereira@clinica.com</span>
+                                    </div>
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-phone"></i>
+                                        <span>(11) 98765-4321</span>
+                                    </div>
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-user-md"></i>
+                                        <span>TEA, ABA - Análise Aplicada do Comportamento</span>
+                                    </div>
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>CRP 06/123456</span>
+                                    </div>
+                                </div>
+                                <div class="mobile-card-actions">
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                        Editar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mobile-card clickable" onclick="viewEspecialistaDetails('Dra. Ana Costa', 'ana-costa')">
+                                <div class="mobile-card-header">
+                                    <div class="user-info">
+                                        <div class="user-avatar">AC</div>
+                                        <div class="user-details">
+                                            <h4>Dra. Ana Costa</h4>
+                                            <p>Fonoaudióloga</p>
+                                        </div>
+                                    </div>
+                                    <span class="status-badge status-active">Ativo</span>
+                                </div>
+                                <div class="mobile-card-body">
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>ana.costa@fono.com</span>
+                                    </div>
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-phone"></i>
+                                        <span>(11) 97654-3210</span>
+                                    </div>
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-user-md"></i>
+                                        <span>Fonoaudiologia - Comunicação Alternativa</span>
+                                    </div>
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>CRFa 2-12345</span>
+                                    </div>
+                                </div>
+                                <div class="mobile-card-actions">
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                        Editar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mobile-card clickable" onclick="viewEspecialistaDetails('Dr. Carlos Lima', 'carlos-lima')">
+                                <div class="mobile-card-header">
+                                    <div class="user-info">
+                                        <div class="user-avatar">CL</div>
+                                        <div class="user-details">
+                                            <h4>Dr. Carlos Lima</h4>
+                                            <p>Neuropediatra</p>
+                                        </div>
+                                    </div>
+                                    <span class="status-badge status-active">Ativo</span>
+                                </div>
+                                <div class="mobile-card-body">
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>carlos.lima@hospital.com</span>
+                                    </div>
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-phone"></i>
+                                        <span>(11) 96543-2109</span>
+                                    </div>
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-user-md"></i>
+                                        <span>Neuropediatria - Transtornos do Neurodesenvolvimento</span>
+                                    </div>
+                                    <div class="mobile-info-item">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>CRM-SP 98765</span>
+                                    </div>
+                                </div>
+                                <div class="mobile-card-actions">
+                                    <button class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                        Editar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="no-results" id="noResultsEspecialistas">
                         <i class="fas fa-search"></i>
                         <h3>Nenhum resultado encontrado</h3>
                         <p>Tente buscar com outros termos ou verifique a ortografia.</p>
@@ -604,6 +852,49 @@
             ]
         };
 
+        // Sample data for specialists
+        const especialistasData = {
+            'joao-pereira': {
+                name: 'Dr. João Pereira',
+                specialty: 'Psicólogo Clínico',
+                focus: 'TEA, ABA - Análise Aplicada do Comportamento',
+                registration: 'CRP 06/123456',
+                experience: '15 anos de experiência em TEA',
+                education: 'Mestre em Psicologia Clínica - USP',
+                clinic: 'Clínica Mente e Comportamento',
+                address: 'Rua das Flores, 123 - Vila Madalena, SP',
+                phone: '(11) 98765-4321',
+                email: 'joao.pereira@clinica.com',
+                registerDate: '10/03/2024'
+            },
+            'ana-costa': {
+                name: 'Dra. Ana Costa',
+                specialty: 'Fonoaudióloga',
+                focus: 'Fonoaudiologia - Comunicação Alternativa',
+                registration: 'CRFa 2-12345',
+                experience: '12 anos em comunicação alternativa',
+                education: 'Especialista em Comunicação Alternativa - PUC-SP',
+                clinic: 'Centro de Fonoaudiologia Integrada',
+                address: 'Av. Paulista, 456 - Bela Vista, SP',
+                phone: '(11) 97654-3210',
+                email: 'ana.costa@fono.com',
+                registerDate: '22/01/2024'
+            },
+            'carlos-lima': {
+                name: 'Dr. Carlos Lima',
+                specialty: 'Neuropediatra',
+                focus: 'Neuropediatria - Transtornos do Neurodesenvolvimento',
+                registration: 'CRM-SP 98765',
+                experience: '20 anos em neuropediatria',
+                education: 'Doutor em Neuropediatria - UNIFESP',
+                clinic: 'Hospital Infantil São Paulo',
+                address: 'Rua da Saúde, 789 - Paraíso, SP',
+                phone: '(11) 96543-2109',
+                email: 'carlos.lima@hospital.com',
+                registerDate: '05/11/2023'
+            }
+        };
+
         // Mobile sidebar toggle
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
@@ -908,14 +1199,14 @@
             }
         }
 
-        // Enhanced search functionality
-        function initializeSearch() {
+        // Enhanced search functionality for Responsaveis
+        function initializeSearchResponsaveis() {
             const searchInput = document.getElementById('searchInput');
             const clearButton = document.getElementById('clearSearch');
             const resultsCount = document.getElementById('searchResultsCount');
             const noResults = document.getElementById('noResults');
             const tableRows = document.querySelectorAll('#responsaveisTable tr');
-            const mobileCards = document.querySelectorAll('.mobile-card');
+            const mobileCards = document.querySelectorAll('#mobileResponsaveis .mobile-card');
             
             const originalRowsCount = tableRows.length;
 
@@ -1027,6 +1318,125 @@
             performSearch('');
         }
 
+        // Enhanced search functionality for Especialistas
+        function initializeSearchEspecialistas() {
+            const searchInput = document.getElementById('searchInputEspecialistas');
+            const clearButton = document.getElementById('clearSearchEspecialistas');
+            const resultsCount = document.getElementById('searchResultsCountEspecialistas');
+            const noResults = document.getElementById('noResultsEspecialistas');
+            const tableRows = document.querySelectorAll('#especialistasTable tr');
+            const mobileCards = document.querySelectorAll('#mobileEspecialistas .mobile-card');
+            
+            const originalRowsCount = tableRows.length;
+
+            function performSearch(searchTerm) {
+                searchTerm = searchTerm.toLowerCase().trim();
+                let visibleCount = 0;
+                
+                if (searchTerm === '') {
+                    // Show all rows and cards when search is empty
+                    tableRows.forEach(row => {
+                        row.classList.remove('hidden');
+                        visibleCount++;
+                    });
+                    mobileCards.forEach(card => {
+                        card.classList.remove('hidden');
+                    });
+                    resultsCount.textContent = '';
+                    noResults.style.display = 'none';
+                    clearButton.style.display = 'none';
+                } else {
+                    // Filter rows and cards based on search term
+                    tableRows.forEach(row => {
+                        const searchableText = extractEspecialistaSearchableText(row);
+                        if (searchableText.includes(searchTerm)) {
+                            row.classList.remove('hidden');
+                            visibleCount++;
+                        } else {
+                            row.classList.add('hidden');
+                        }
+                    });
+
+                    mobileCards.forEach(card => {
+                        const searchableText = extractEspecialistaMobileSearchableText(card);
+                        if (searchableText.includes(searchTerm)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                    
+                    updateEspecialistasSearchResults(visibleCount, originalRowsCount, searchTerm);
+                    clearButton.style.display = 'block';
+                }
+            }
+
+            function extractEspecialistaSearchableText(row) {
+                const especialistName = row.querySelector('.user-details h4')?.textContent || '';
+                const especialistRole = row.querySelector('.user-details p')?.textContent || '';
+                const email = row.querySelector('td:nth-child(2) div:first-child')?.textContent || '';
+                const phone = row.querySelector('td:nth-child(2) div:last-child')?.textContent || '';
+                const specialtyInfo = row.querySelector('td:nth-child(3)')?.textContent || '';
+                const registration = row.querySelector('td:nth-child(4)')?.textContent || '';
+                const status = row.querySelector('.status-badge')?.textContent || '';
+                
+                return [
+                    especialistName,
+                    especialistRole,
+                    email,
+                    phone,
+                    specialtyInfo,
+                    registration,
+                    status
+                ].join(' ').toLowerCase();
+            }
+
+            function extractEspecialistaMobileSearchableText(card) {
+                const especialistName = card.querySelector('.user-details h4')?.textContent || '';
+                const especialistRole = card.querySelector('.user-details p')?.textContent || '';
+                const infoItems = Array.from(card.querySelectorAll('.mobile-info-item span')).map(item => item.textContent);
+                const status = card.querySelector('.status-badge')?.textContent || '';
+                
+                return [especialistName, especialistRole, ...infoItems, status].join(' ').toLowerCase();
+            }
+
+            function updateEspecialistasSearchResults(visibleCount, totalCount, searchTerm) {
+                const resultsCount = document.getElementById('searchResultsCountEspecialistas');
+                const noResults = document.getElementById('noResultsEspecialistas');
+                
+                if (visibleCount === 0) {
+                    resultsCount.textContent = `Nenhum resultado encontrado para "${searchTerm}"`;
+                    noResults.style.display = 'block';
+                } else if (visibleCount === totalCount) {
+                    resultsCount.textContent = '';
+                    noResults.style.display = 'none';
+                } else {
+                    resultsCount.textContent = `Encontrado${visibleCount === 1 ? '' : 's'} ${visibleCount} resultado${visibleCount === 1 ? '' : 's'} de ${totalCount} para "${searchTerm}"`;
+                    noResults.style.display = 'none';
+                }
+            }
+
+            function clearSearchEspecialistas() {
+                searchInput.value = '';
+                performSearch('');
+                searchInput.focus();
+            }
+
+            searchInput.addEventListener('input', (e) => {
+                performSearch(e.target.value);
+            });
+
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    clearSearchEspecialistas();
+                }
+            });
+
+            clearButton.addEventListener('click', clearSearchEspecialistas);
+
+            performSearch('');
+        }
+
         // Core functionality
         function showSection(sectionId) {
             document.querySelectorAll('.content-section').forEach(section => {
@@ -1044,7 +1454,9 @@
             }
 
             if (sectionId === 'responsaveis') {
-                setTimeout(initializeSearch, 100);
+                setTimeout(initializeSearchResponsaveis, 100);
+            } else if (sectionId === 'especialistas-cadastrados') {
+                setTimeout(initializeSearchEspecialistas, 100);
             }
         }
 
@@ -1074,6 +1486,48 @@
                         </div>
                     </div>
                 `).join('')}</div>`;
+            modal.classList.add('active');
+        }
+
+        function viewEspecialistaDetails(especialistaName, especialistaId) {
+            const modal = document.getElementById('autistasModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const autistasContent = document.getElementById('autistasContent');
+            modalTitle.textContent = `Detalhes de ${especialistaName}`;
+            const especialista = especialistasData[especialistaId];
+            
+            if (!especialista) {
+                autistasContent.innerHTML = '<p>Informações do especialista não encontradas.</p>';
+            } else {
+                autistasContent.innerHTML = `
+                    <div class="autista-grid">
+                        <div class="autista-card" style="grid-column: 1 / -1;">
+                            <h4>${especialista.name}</h4>
+                            <div class="autista-info"><strong>Especialidade:</strong> ${especialista.specialty}</div>
+                            <div class="autista-info"><strong>Área de Foco:</strong> ${especialista.focus}</div>
+                            <div class="autista-info"><strong>Registro Profissional:</strong> ${especialista.registration}</div>
+                            <div class="autista-info"><strong>Experiência:</strong> ${especialista.experience}</div>
+                            <div class="autista-info"><strong>Formação:</strong> ${especialista.education}</div>
+                            <div class="autista-info"><strong>Clínica/Hospital:</strong> ${especialista.clinic}</div>
+                            <div class="autista-info"><strong>Endereço:</strong> ${especialista.address}</div>
+                            <div class="autista-info"><strong>Telefone:</strong> ${especialista.phone}</div>
+                            <div class="autista-info"><strong>Email:</strong> ${especialista.email}</div>
+                            <div class="autista-info"><strong>Data de Cadastro:</strong> ${especialista.registerDate}</div>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-edit"></i> Editar Dados
+                                </button>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-file-alt"></i> Ver Documentos
+                                </button>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-envelope"></i> Enviar Email
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
             modal.classList.add('active');
         }
 
@@ -1132,8 +1586,12 @@
         // Initialize search on page load if responsaveis section is active
         document.addEventListener('DOMContentLoaded', () => {
             const responsaveisSection = document.getElementById('responsaveis');
+            const especialistasSection = document.getElementById('especialistas-cadastrados');
+            
             if (responsaveisSection.classList.contains('active')) {
-                initializeSearch();
+                initializeSearchResponsaveis();
+            } else if (especialistasSection.classList.contains('active')) {
+                initializeSearchEspecialistas();
             }
         });
 
