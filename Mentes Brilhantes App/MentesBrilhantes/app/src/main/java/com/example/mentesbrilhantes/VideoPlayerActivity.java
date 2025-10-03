@@ -15,6 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -23,11 +25,12 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import java.io.ByteArrayInputStream;
 
 public class VideoPlayerActivity extends AppCompatActivity {
 
     private WebView webView;
-    private ImageButton btnSair, btnVoltarErro; // ✅ REMOVIDO: btnTentarNovamente
+    private ImageButton btnSair, btnVoltarErro;
     private LinearLayout controlsContainer, noInternetScreen;
 
     private static boolean isAnyButtonProcessing = false;
@@ -36,6 +39,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
     private ConnectivityManager.NetworkCallback networkCallback;
     private boolean isMonitoringNetwork = false;
 
+    // ✅ Controle do vídeo atual
+    private String currentVideoId;
+
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,9 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         String videoId = getIntent().getStringExtra("VIDEO_ID");
         String titulo = getIntent().getStringExtra("TITULO");
+
+        // ✅ Armazenar ID do vídeo atual
+        this.currentVideoId = videoId;
 
         Log.d("VideoPlayer", "VIDEO_ID recebido: " + videoId);
         Log.d("VideoPlayer", "TITULO recebido: " + titulo);
@@ -67,6 +76,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
             iniciarMonitoramentoRede();
         }
     }
+
+    // ... [TODOS os métodos de monitoramento de rede PERMANECEM IGUAIS] ...
 
     private void inicializarMonitoramentoRede() {
         connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -160,6 +171,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
             Log.d("VideoPlayer", "Falso positivo - ainda sem internet estável");
         }
     }
+
+    // ... [TODOS os métodos de orientação e conexão PERMANECEM IGUAIS] ...
 
     private void configurarOrientacaoLandscape() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -272,14 +285,10 @@ public class VideoPlayerActivity extends AppCompatActivity {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                if (webView != null && webView.canGoBack() && webView.getVisibility() == View.VISIBLE) {
-                    webView.goBack();
-                } else {
-                    if (webView != null) {
-                        webView.loadUrl("about:blank");
-                    }
-                    finish();
+                if (webView != null) {
+                    webView.loadUrl("about:blank");
                 }
+                finish();
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
@@ -296,7 +305,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
         configurarBotoes();
     }
 
-
     private void configurarBotoes() {
         // Botão sair (original)
         configurarBotaoProtegido(btnSair, () -> {
@@ -306,17 +314,17 @@ public class VideoPlayerActivity extends AppCompatActivity {
             finish();
         });
 
-        // ✅ REMOVIDO: Configuração do btnTentarNovamente
-
         // Botão voltar (único botão na tela de erro)
         configurarBotaoProtegido(btnVoltarErro, () -> {
             Log.d("VideoPlayer", "Voltando - usuário cancelou espera pela internet");
             finish();
         });
 
+        // ✅ MANTER double-tap para mostrar/ocultar controles
         configurarDoubleTapVideo();
     }
 
+    // ✅ RESTAURADO: Double-tap para controles
     private void configurarDoubleTapVideo() {
         webView.setOnClickListener(new View.OnClickListener() {
             private long lastClickTime = 0;
@@ -340,7 +348,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
                                 controlsContainer.setVisibility(View.GONE);
                                 Log.d("VideoPlayer", "Controles ocultos automaticamente");
                             }
-                        }, 3000);
+                        }, 4000); // 4 segundos para ocultar
                     }
                 }
 
@@ -413,6 +421,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         });
     }
 
+    // ✅ WebView com controle seletivo
     @SuppressLint("SetJavaScriptEnabled")
     private void configurarWebView() {
         WebSettings webSettings = webView.getSettings();
@@ -430,79 +439,248 @@ public class VideoPlayerActivity extends AppCompatActivity {
         webSettings.setAllowFileAccess(true);
         webSettings.setAllowContentAccess(true);
         webSettings.setUserAgentString("Mozilla/5.0 (Linux; Android 10; SM-A505FN) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36");
-
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-                Log.d("VideoPlayer", "Página iniciada: " + url);
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                Log.d("VideoPlayer", "Página carregada: " + url);
-            }
-
-            @Override
-            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                super.onReceivedError(view, errorCode, description, failingUrl);
-                Log.e("VideoPlayer", "Erro ao carregar: " + description + " - URL: " + failingUrl);
-
-                if (errorCode == ERROR_HOST_LOOKUP || errorCode == ERROR_CONNECT || errorCode == ERROR_TIMEOUT) {
-                    runOnUiThread(() -> {
-                        configurarOrientacaoPortrait();
-                        mostrarTelaErro();
-                        iniciarMonitoramentoRede();
-                    });
-                }
-            }
-        });
-
-        webView.setWebChromeClient(new WebChromeClient() {
-            private View customView;
-            private WebChromeClient.CustomViewCallback customViewCallback;
-
-            @Override
-            public void onShowCustomView(View view, CustomViewCallback callback) {
-                if (customView != null) {
-                    onHideCustomView();
-                    return;
-                }
-
-                customView = view;
-                customViewCallback = callback;
-
-                ViewGroup parent = findViewById(R.id.main_container);
-                parent.addView(customView, new FrameLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT));
-
-                controlsContainer.setVisibility(View.GONE);
-                Log.d("VideoPlayer", "Fullscreen YouTube ativado");
-            }
-
-            @Override
-            public void onHideCustomView() {
-                ViewGroup parent = findViewById(R.id.main_container);
-                if (customView != null) {
-                    parent.removeView(customView);
-                    customView = null;
-                }
-
-                if (customViewCallback != null) {
-                    customViewCallback.onCustomViewHidden();
-                    customViewCallback = null;
-                }
-
-                controlsContainer.setVisibility(View.GONE);
-                Log.d("VideoPlayer", "Fullscreen YouTube desativado - Controles mantidos ocultos");
-            }
-        });
+        // ✅ WebViewClient com controle seletivo
+        webView.setWebViewClient(new SelectiveWebViewClient());
+        webView.setWebChromeClient(new CustomWebChromeClient());
     }
 
+    // ✅ WebViewClient que remove APENAS elementos de navegação
+    private class SelectiveWebViewClient extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Log.d("VideoPlayer", "🔗 Tentativa de navegação para: " + url);
+
+            // ✅ Bloquear apenas navegação para canais, playlists, inscrições
+            if (url.contains("/channel/") ||
+                    url.contains("/user/") ||
+                    url.contains("/c/") ||
+                    url.contains("/playlist") ||
+                    url.contains("/watch?v=") && !url.contains(currentVideoId) ||
+                    url.contains("youtube.com/subscription_center") ||
+                    url.contains("youtube.com/account")) {
+
+                Log.d("VideoPlayer", "❌ URL de navegação bloqueada: " + url);
+                return true; // Bloquear navegação
+            }
+
+            // ✅ Permitir recursos necessários do YouTube
+            if (url.contains("youtube.com/embed/" + currentVideoId) ||
+                    url.contains("googlevideo.com") ||
+                    url.contains("youtube.com/youtubei/") ||
+                    url.contains("youtube.com/api/") ||
+                    url.startsWith("about:blank")) {
+
+                Log.d("VideoPlayer", "✅ URL permitida: " + url);
+                return false; // Permitir carregamento
+            }
+
+            return false; // Permitir outros recursos do YouTube
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                return shouldOverrideUrlLoading(view, request.getUrl().toString());
+            }
+            return false;
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, android.graphics.Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+            Log.d("VideoPlayer", "Página iniciada: " + url);
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            Log.d("VideoPlayer", "Página carregada: " + url);
+
+            // ✅ Injetar JavaScript para remover APENAS elementos de navegação
+            injetarJavaScriptSeletivo(view);
+        }
+
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
+            Log.e("VideoPlayer", "Erro ao carregar: " + description + " - URL: " + failingUrl);
+
+            if (errorCode == ERROR_HOST_LOOKUP || errorCode == ERROR_CONNECT || errorCode == ERROR_TIMEOUT) {
+                runOnUiThread(() -> {
+                    configurarOrientacaoPortrait();
+                    mostrarTelaErro();
+                    iniciarMonitoramentoRede();
+                });
+            }
+        }
+    }
+
+    // ✅ JavaScript que remove APENAS elementos de navegação
+    private void injetarJavaScriptSeletivo(WebView view) {
+        String javascript =
+                "javascript:(function() {" +
+                        "console.log('🔧 Removendo APENAS elementos de navegação...');" +
+
+                        // ✅ Função para remover elementos de navegação específicos
+                        "function removeNavigationElements() {" +
+                        "const navigationSelectors = [" +
+                        "'.ytp-title-channel'," +           // Nome do canal
+                        "'.ytp-title-expanded-overlay'," +  // Overlay de título expandido
+                        "'.ytp-youtube-button'," +          // Botão "Assistir no YouTube"
+                        "'.ytp-watch-later-button'," +      // Botão "Assistir mais tarde"
+                        "'.ytp-share-button'," +            // Botão compartilhar
+                        "'.ytp-more-button'," +             // Botão "Mais opções"
+                        "'.ytp-cards-button'," +            // Botão de cards
+                        "'.ytp-watermark'," +               // Marca d'água do canal
+                        "'.videowall-endscreen'," +         // Tela final com vídeos relacionados
+                        "'.ytp-ce-element'," +              // Elementos de call-to-action
+                        "'.ytp-ce-video'," +                // Vídeos relacionados
+                        "'.ytp-ce-playlist'," +             // Playlists relacionadas
+                        "'.ytp-ce-channel'," +              // Canais relacionados
+                        "'[class*=\"ytp-ce\"]'," +          // Qualquer elemento CE
+                        "'[class*=\"endscreen\"]'," +       // Elementos de tela final
+                        "'.annotation'," +                   // Anotações
+                        "'.iv-promo'," +                     // Promoções
+                        "'.iv-promo-contents'" +             // Conteúdo de promoções
+                        "];" +
+
+                        "navigationSelectors.forEach(function(selector) {" +
+                        "const elements = document.querySelectorAll(selector);" +
+                        "for(let i = 0; i < elements.length; i++) {" +
+                        "const el = elements[i];" +
+                        "if(el) {" +
+                        "el.style.display = 'none';" +
+                        "el.style.visibility = 'hidden';" +
+                        "console.log('🗑️ Elemento de navegação removido:', selector);" +
+                        "}" +
+                        "}" +
+                        "});" +
+
+                        // ✅ MANTER controles essenciais visíveis
+                        "const essentialControls = [" +
+                        "'.ytp-play-button'," +             // Botão play
+                        "'.ytp-pause-button'," +            // Botão pause
+                        "'.ytp-progress-bar-container'," +  // Barra de progresso
+                        "'.ytp-time-display'," +            // Display de tempo
+                        "'.ytp-volume-area'," +             // Área de volume
+                        "'.ytp-settings-button'," +         // Botão configurações
+                        "'.ytp-subtitles-button'," +        // Botão legendas
+                        "'.ytp-fullscreen-button'," +       // Botão fullscreen
+                        "'.ytp-chrome-controls'," +         // Container de controles
+                        "'.ytp-control-bar'" +              // Barra de controle
+                        "];" +
+
+                        "essentialControls.forEach(function(selector) {" +
+                        "const elements = document.querySelectorAll(selector);" +
+                        "for(let i = 0; i < elements.length; i++) {" +
+                        "const el = elements[i];" +
+                        "if(el) {" +
+                        "el.style.display = '';" +
+                        "el.style.visibility = 'visible';" +
+                        "console.log('✅ Controle essencial mantido:', selector);" +
+                        "}" +
+                        "}" +
+                        "});" +
+
+                        // ✅ Bloquear cliques apenas em elementos de navegação
+                        "document.addEventListener('click', function(e) {" +
+                        "const target = e.target;" +
+                        "const classList = target.classList || [];" +
+                        "const className = target.className || '';" +
+
+                        "// Bloquear cliques em elementos de navegação" +
+                        "if (className.includes('ytp-title') ||" +
+                        "className.includes('ytp-youtube-button') ||" +
+                        "className.includes('ytp-watermark') ||" +
+                        "className.includes('ytp-ce-') ||" +
+                        "className.includes('ytp-cards-button') ||" +
+                        "className.includes('ytp-more-button')) {" +
+                        "e.preventDefault();" +
+                        "e.stopPropagation();" +
+                        "console.log('🚫 Clique de navegação bloqueado');" +
+                        "return false;" +
+                        "}" +
+
+                        "// PERMITIR cliques em controles essenciais" +
+                        "if (className.includes('ytp-play-button') ||" +
+                        "className.includes('ytp-pause-button') ||" +
+                        "className.includes('ytp-progress-bar') ||" +
+                        "className.includes('ytp-settings-button') ||" +
+                        "className.includes('ytp-subtitles-button') ||" +
+                        "className.includes('ytp-fullscreen-button') ||" +
+                        "className.includes('ytp-volume')) {" +
+                        "console.log('✅ Clique em controle essencial permitido');" +
+                        "return true;" +
+                        "}" +
+                        "}, true);" +
+                        "}" +
+
+                        // ✅ EXECUTAR várias vezes para garantir
+                        "removeNavigationElements();" + // Imediato
+                        "setTimeout(removeNavigationElements, 500);" +  // 0.5s
+                        "setTimeout(removeNavigationElements, 1500);" + // 1.5s
+                        "setTimeout(removeNavigationElements, 3000);" + // 3s
+
+                        // ✅ Monitoramento periódico mais suave
+                        "setInterval(removeNavigationElements, 5000);" + // A cada 5 segundos
+
+                        "})();";
+
+        view.loadUrl(javascript);
+
+        // ✅ Reforço após carregamento completo
+        view.postDelayed(() -> {
+            view.loadUrl(javascript);
+            Log.d("VideoPlayer", "🔄 Reforço de remoção seletiva aplicado");
+        }, 3000);
+    }
+
+    // ✅ WebChromeClient personalizado
+    private class CustomWebChromeClient extends WebChromeClient {
+        private View customView;
+        private CustomViewCallback customViewCallback;
+
+        @Override
+        public void onShowCustomView(View view, CustomViewCallback callback) {
+            if (customView != null) {
+                onHideCustomView();
+                return;
+            }
+
+            customView = view;
+            customViewCallback = callback;
+
+            ViewGroup parent = findViewById(R.id.main_container);
+            parent.addView(customView, new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+
+            controlsContainer.setVisibility(View.GONE);
+            Log.d("VideoPlayer", "🎬 Fullscreen YouTube ativado");
+        }
+
+        @Override
+        public void onHideCustomView() {
+            ViewGroup parent = findViewById(R.id.main_container);
+            if (customView != null) {
+                parent.removeView(customView);
+                customView = null;
+            }
+
+            if (customViewCallback != null) {
+                customViewCallback.onCustomViewHidden();
+                customViewCallback = null;
+            }
+
+            controlsContainer.setVisibility(View.GONE);
+            Log.d("VideoPlayer", "Fullscreen YouTube desativado");
+        }
+    }
+
+    // ✅ HTML com controles ESSENCIAIS habilitados
     private void carregarVideo(String videoId) {
         String videoHtml = "<!DOCTYPE html>\n" +
                 "<html>\n" +
@@ -511,7 +689,10 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
                 "    <style>\n" +
                 "        * { margin: 0; padding: 0; box-sizing: border-box; }\n" +
-                "        body { background-color: #004bff; overflow: hidden; }\n" +
+                "        body { \n" +
+                "            background-color: #000000; \n" +
+                "            overflow: hidden; \n" +
+                "        }\n" +
                 "        .video-container {\n" +
                 "            position: relative;\n" +
                 "            width: 100vw;\n" +
@@ -519,12 +700,43 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 "            display: flex;\n" +
                 "            align-items: center;\n" +
                 "            justify-content: center;\n" +
-                "            background-color: #004bff;\n" +
+                "            background-color: #000000;\n" +
                 "        }\n" +
                 "        iframe {\n" +
                 "            width: 100%;\n" +
                 "            height: 100%;\n" +
                 "            border: none;\n" +
+                "        }\n" +
+                "        \n" +
+                "        /* ✅ CSS para ocultar APENAS elementos de navegação */\n" +
+                "        .ytp-title-channel,\n" +
+                "        .ytp-title-expanded-overlay,\n" +
+                "        .ytp-youtube-button,\n" +
+                "        .ytp-watch-later-button,\n" +
+                "        .ytp-share-button,\n" +
+                "        .ytp-more-button,\n" +
+                "        .ytp-cards-button,\n" +
+                "        .ytp-watermark,\n" +
+                "        .videowall-endscreen,\n" +
+                "        .ytp-ce-element,\n" +
+                "        .annotation,\n" +
+                "        .iv-promo {\n" +
+                "            display: none !important;\n" +
+                "            visibility: hidden !important;\n" +
+                "        }\n" +
+                "        \n" +
+                "        /* ✅ MANTER controles essenciais visíveis */\n" +
+                "        .ytp-play-button,\n" +
+                "        .ytp-pause-button,\n" +
+                "        .ytp-progress-bar-container,\n" +
+                "        .ytp-time-display,\n" +
+                "        .ytp-volume-area,\n" +
+                "        .ytp-settings-button,\n" +
+                "        .ytp-subtitles-button,\n" +
+                "        .ytp-fullscreen-button,\n" +
+                "        .ytp-chrome-controls {\n" +
+                "            display: block !important;\n" +
+                "            visibility: visible !important;\n" +
                 "        }\n" +
                 "    </style>\n" +
                 "</head>\n" +
@@ -532,25 +744,42 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 "    <div class=\"video-container\">\n" +
                 "        <iframe\n" +
                 "            src=\"https://www.youtube.com/embed/" + videoId + "?" +
-                "autoplay=1&" +
-                "controls=1&" +
-                "showinfo=0&" +
-                "rel=0&" +
-                "iv_load_policy=3&" +
-                "modestbranding=1&" +
-                "playsinline=1&" +
-                "fs=1&" +
-                "enablejsapi=1&" +
-                "origin=" + getPackageName() + "\"\n" +
+                // ✅ Parâmetros que MANTÊM controles essenciais
+                "autoplay=1&" +                    // Reprodução automática
+                "controls=1&" +                    // ✅ MANTER controles (1 = habilitado)
+                "showinfo=0&" +                    // SEM informações do canal
+                "rel=0&" +                         // SEM vídeos relacionados
+                "iv_load_policy=3&" +              // SEM anotações
+                "modestbranding=1&" +              // SEM logo YouTube
+                "playsinline=1&" +                 // Reprodução inline
+                "fs=1&" +                          // ✅ PERMITIR fullscreen
+                "disablekb=0&" +                   // ✅ PERMITIR controles teclado
+                "enablejsapi=1&" +                 // ✅ PERMITIR API JavaScript
+                "cc_load_policy=1&" +              // ✅ PERMITIR legendas
+                "loop=0&" +                        // SEM loop automático
+                "start=0&" +                       // Começar do início
+                "widget_referrer=" + getPackageName() + "\"\n" +
                 "            frameborder=\"0\"\n" +
+                "            scrolling=\"no\"\n" +
                 "            allowfullscreen\n" +
-                "            allow=\"autoplay; encrypted-media; gyroscope; picture-in-picture; accelerometer\">\n" +
+                "            sandbox=\"allow-scripts allow-same-origin allow-presentation\"\n" +
+                "            allow=\"autoplay; encrypted-media; accelerometer; gyroscope; picture-in-picture\">\n" +
                 "        </iframe>\n" +
                 "    </div>\n" +
+                "    \n" +
+                "    <script>\n" +
+                "        // ✅ Prevenir apenas clique direito\n" +
+                "        document.addEventListener('contextmenu', function(e) {\n" +
+                "            e.preventDefault();\n" +
+                "            return false;\n" +
+                "        });\n" +
+                "        \n" +
+                "        console.log('🛡️ YouTube com controles essenciais carregado');\n" +
+                "    </script>\n" +
                 "</body>\n" +
                 "</html>";
 
-        Log.d("VideoPlayer", "Carregando HTML do vídeo...");
+        Log.d("VideoPlayer", "🎬 Carregando vídeo com controles essenciais mantidos");
         webView.loadDataWithBaseURL("https://www.youtube.com", videoHtml, "text/html", "UTF-8", null);
     }
 
