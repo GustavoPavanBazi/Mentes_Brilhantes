@@ -18,7 +18,6 @@
         <div class="right-side">
             <div class="register-form">
                 <h1 class="form-title">Criar sua Conta</h1>
-                
                 <form id="registerForm" action="../php/cad_responsavel.php" method="post" enctype="multipart/form-data">
                     <!-- Foto de Perfil -->
                     <div class="profile-photo-section">
@@ -56,7 +55,6 @@
                         </div>
                     </div>
                     
-                    <!-- NOVA ORGANIZAÇÃO: CEP e RUA na mesma linha -->
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="cep">CEP:</label>
@@ -71,7 +69,6 @@
                         </div>
                     </div>
                     
-                    <!-- NOVA ORGANIZAÇÃO: BAIRRO e CIDADE trocados por NÚMERO e COMPLEMENTO -->
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="bairro">Bairro:</label>
@@ -117,16 +114,16 @@
                 </form>
                 
                 <div class="form-links">
-                    <a href="../index.html" class="form-link" onclick="continueWithoutLogin()">Continuar sem cadastrar</a>
+                    <a href="../index.html" class="form-link">Continuar sem cadastrar</a>
                 </div>
                 
                 <div class="social-login">
-                    <div class="social-btn" onclick="registerWithApple()">
+                    <div class="social-btn" onclick="alert('Funcionalidade em desenvolvimento')">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                             <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" fill="currentColor"/>
                         </svg>
                     </div>
-                    <div class="social-btn" onclick="registerWithGoogle()">
+                    <div class="social-btn" onclick="alert('Funcionalidade em desenvolvimento')">
                         <svg width="20" height="20" viewBox="0 0 24 24">
                             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                             <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -137,11 +134,11 @@
                 </div>
                 
                 <div class="terms">
-                    Ao criar uma conta, você concorda com nossos <a href="#" onclick="showTerms()">Termos de Uso</a> e <a href="#" onclick="showPrivacy()">Política de Privacidade</a>
+                    Ao criar uma conta, você concorda com nossos <a href="#" onclick="showModal('termsModal'); return false;">Termos de Uso</a> e <a href="#" onclick="showModal('privacyModal'); return false;">Política de Privacidade</a>
                 </div>
                 
                 <div class="login-link">
-                    <p>Já tem uma conta? <a href="login.html" onclick="showLogin()">Faça login</a></p>
+                    <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
                 </div>
             </div>
         </div>
@@ -150,7 +147,7 @@
     <!-- Modal de Sucesso -->
     <div class="success-modal" id="successModal">
         <div class="success-modal-content">
-            <h2> Conta criada com sucesso!</h2>
+            <h2>✅ Conta criada com sucesso!</h2>
             <p>Seu cadastro foi realizado com sucesso. Agora você pode fazer login e aproveitar todos os nossos serviços.</p>
             <button onclick="closeSuccessModal()">OK</button>
         </div>
@@ -175,6 +172,101 @@
             <p>Agora você poderá navegar cadastrado em nosso ambiente.</p>
             <p>Lá você poderá registrar os dados da pessoa autista sob sua responsabilidade.</p>
             <button class="info-modal-button" onclick="closeRedirectModal()">Continuar</button>
+        </div>
+    </div>
+
+    <!-- Modais de Termos e Privacidade -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Termos de Uso</h2>
+                <button class="modal-close" onclick="closeModal('termsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Termos de Uso - Mentes Brilhantes</h3>
+                <p><strong>Última atualização:</strong> Agosto de 2025</p>
+                
+                <h4>1. Aceitação dos Termos</h4>
+                <p>Ao acessar e utilizar o site Mentes Brilhantes, você concorda em cumprir estes Termos de Uso. Se não concordar com qualquer parte destes termos, não utilize nossos serviços.</p>
+
+                <h4>2. Descrição do Serviço</h4>
+                <p>O Mentes Brilhantes é uma campanha de conscientização e valorização do autismo que oferece:</p>
+                <ul>
+                    <li>Informações educacionais sobre TEA (Transtorno do Espectro Autista)</li>
+                    <li>Recursos de apoio para famílias e cuidadores</li>
+                    <li>Ferramentas de comunicação e suporte</li>
+                    <li>Acesso à IA Luna para orientação especializada</li>
+                </ul>
+
+                <h4>3. Uso Apropriado</h4>
+                <p>Você se compromete a:</p>
+                <ul>
+                    <li>Usar o site apenas para fins legais e apropriados</li>
+                    <li>Não interferir no funcionamento do site</li>
+                    <li>Não tentar acessar áreas restritas</li>
+                    <li>Respeitar os direitos autorais e de propriedade intelectual</li>
+                    <li>Não transmitir conteúdo ofensivo ou prejudicial</li>
+                </ul>
+
+                <h4>4. Cadastro e Conta de Usuário</h4>
+                <ul>
+                    <li>Você é responsável por manter a confidencialidade de sua senha</li>
+                    <li>Deve fornecer informações precisas e atualizadas</li>
+                    <li>Notificar imediatamente sobre uso não autorizado de sua conta</li>
+                </ul>
+
+                <h4>5. Contato</h4>
+                <p>Para dúvidas sobre estes termos:</p>
+                <ul>
+                    <li>Email: mentesbrilhantestcc@gmail.com</li>
+                    <li>Telefone: (11) 97349-2001</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-close" onclick="closeModal('termsModal')">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Política de Privacidade</h2>
+                <button class="modal-close" onclick="closeModal('privacyModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Política de Privacidade - Mentes Brilhantes</h3>
+                <p><strong>Última atualização:</strong> Agosto de 2025</p>
+                
+                <h4>1. Informações que Coletamos</h4>
+                <p>Coletamos apenas as informações necessárias para fornecer nossos serviços de forma eficaz:</p>
+                <ul>
+                    <li><strong>Informações de Cadastro:</strong> Nome, email, telefone</li>
+                    <li><strong>Informações de Uso:</strong> Como você navega e utiliza nosso site</li>
+                    <li><strong>Informações Técnicas:</strong> Endereço IP, navegador, dispositivo</li>
+                </ul>
+
+                <h4>2. Como Utilizamos suas Informações</h4>
+                <ul>
+                    <li>Fornecer e melhorar nossos serviços</li>
+                    <li>Comunicar sobre atualizações e novidades</li>
+                    <li>Personalizar sua experiência</li>
+                    <li>Garantir a segurança da plataforma</li>
+                </ul>
+
+                <h4>3. Segurança dos Dados</h4>
+                <p>Implementamos medidas técnicas e organizacionais apropriadas para proteger suas informações contra acesso não autorizado.</p>
+
+                <h4>4. Contato</h4>
+                <p>Para exercer seus direitos ou esclarecer dúvidas:</p>
+                <ul>
+                    <li>Email: mentesbrilhantestcc@gmail.com</li>
+                    <li>Telefone: (11) 97349-2001</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-close" onclick="closeModal('privacyModal')">Fechar</button>
+            </div>
         </div>
     </div>
 
@@ -241,10 +333,8 @@
             cpf = cpf.replace(/\D/g, '');
             if (cpf.length !== 11) return false;
             
-            // Verifica sequências iguais (CPFs inválidos conhecidos)
             if (/^(\d)\1{10}$/.test(cpf)) return false;
             
-            // Validação dos dígitos verificadores
             let sum = 0;
             for (let i = 0; i < 9; i++) {
                 sum += parseInt(cpf[i]) * (10 - i);
@@ -305,12 +395,10 @@
             const cep = e.target.value.replace(/\D/g, '');
             
             if (cep.length === 8) {
-                // Limpar campos antes de buscar
                 document.getElementById('rua').value = '';
                 document.getElementById('bairro').value = '';
                 document.getElementById('cidade').value = '';
                 
-                // Buscar informações do CEP
                 fetch(`https://viacep.com.br/ws/${cep}/json/`)
                     .then(response => response.json())
                     .then(data => {
@@ -319,7 +407,6 @@
                             document.getElementById('bairro').value = data.bairro || '';
                             document.getElementById('cidade').value = data.localidade || '';
                             
-                            // Limpar erros se preencheu os campos
                             if (data.logradouro) clearError('rua', 'ruaError');
                             if (data.bairro) clearError('bairro', 'bairroError');
                             if (data.localidade) clearError('cidade', 'cidadeError');
@@ -335,9 +422,7 @@
             }
         });
 
-        // ===== VALIDAÇÕES EM TEMPO REAL (BASEADAS NO CADASTRO ESPECIALISTA) =====
-
-        // Validação em tempo real para nome
+        // Validações em tempo real
         document.getElementById('nome').addEventListener('blur', function(e) {
             const name = e.target.value.trim();
             if (name.length >= 2) {
@@ -347,7 +432,6 @@
             }
         });
 
-        // Validação em tempo real para email
         document.getElementById('email').addEventListener('blur', function(e) {
             const email = e.target.value.trim();
             if (email && !isValidEmail(email)) {
@@ -357,7 +441,6 @@
             }
         });
 
-        // Validação em tempo real para CPF
         document.getElementById('cpf').addEventListener('blur', function(e) {
             const cpf = e.target.value;
             const cpfNumbers = cpf.replace(/\D/g, '');
@@ -368,7 +451,6 @@
             }
         });
 
-        // Validação em tempo real para celular
         document.getElementById('celular').addEventListener('blur', function(e) {
             const celular = e.target.value.replace(/\D/g, '');
             if (celular && celular.length === 11) {
@@ -378,57 +460,6 @@
             }
         });
 
-        // Validação em tempo real para CEP
-        document.getElementById('cep').addEventListener('blur', function(e) {
-            const cep = e.target.value.replace(/\D/g, '');
-            if (cep && cep.length === 8) {
-                clearError('cep', 'cepError');
-            } else if (cep && cep.length !== 8) {
-                showError('cep', 'cepError', 'CEP válido é obrigatório');
-            }
-        });
-
-        // Validação em tempo real para rua
-        document.getElementById('rua').addEventListener('blur', function(e) {
-            const rua = e.target.value.trim();
-            if (rua && rua.length >= 2) {
-                clearError('rua', 'ruaError');
-            } else if (rua && rua.length < 2) {
-                showError('rua', 'ruaError', 'Rua deve ser preenchida');
-            }
-        });
-
-        // Validação em tempo real para bairro
-        document.getElementById('bairro').addEventListener('blur', function(e) {
-            const bairro = e.target.value.trim();
-            if (bairro && bairro.length >= 2) {
-                clearError('bairro', 'bairroError');
-            } else if (bairro && bairro.length < 2) {
-                showError('bairro', 'bairroError', 'Bairro deve ser preenchido');
-            }
-        });
-
-        // Validação em tempo real para cidade
-        document.getElementById('cidade').addEventListener('blur', function(e) {
-            const cidade = e.target.value.trim();
-            if (cidade && cidade.length >= 2) {
-                clearError('cidade', 'cidadeError');
-            } else if (cidade && cidade.length < 2) {
-                showError('cidade', 'cidadeError', 'Cidade deve ser preenchida');
-            }
-        });
-
-        // Validação em tempo real para número
-        document.getElementById('numero').addEventListener('blur', function(e) {
-            const numero = e.target.value.trim();
-            if (numero && numero.length >= 1) {
-                clearError('numero', 'numeroError');
-            } else if (numero && numero.length === 0) {
-                showError('numero', 'numeroError', 'Número deve ser preenchido');
-            }
-        });
-
-        // Validação em tempo real para senhas
         document.getElementById('senha').addEventListener('input', function(e) {
             const password = e.target.value;
             if (password.length >= 6) {
@@ -437,7 +468,6 @@
                 showError('senha', 'senhaError', 'Senha deve ter pelo menos 6 caracteres');
             }
             
-            // Verificar confirmação de senha se já foi preenchida
             const confirmPassword = document.getElementById('confirmPassword').value;
             if (confirmPassword) {
                 if (password === confirmPassword) {
@@ -459,7 +489,6 @@
             }
         });
 
-        // Adicionar eventos de foco para limpar erros
         document.querySelectorAll('.form-input').forEach(input => {
             input.addEventListener('focus', function() {
                 const errorId = this.id + 'Error';
@@ -467,34 +496,30 @@
             });
         });
 
-        // Validação completa do formulário
+        // VALIDAÇÃO E ENVIO DO FORMULÁRIO - CORRIGIDO
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             let isValid = true;
             
-            // Limpar todos os erros primeiro
             const errorElements = document.querySelectorAll('.error-message');
             errorElements.forEach(error => error.style.display = 'none');
             
             const inputElements = document.querySelectorAll('.form-input');
             inputElements.forEach(input => input.classList.remove('error'));
             
-            // Validar nome completo - OBRIGATÓRIO
             const nome = document.getElementById('nome').value.trim();
             if (!nome || nome.length < 2) {
                 showError('nome', 'nomeError', 'Nome completo deve ser preenchido');
                 isValid = false;
             }
             
-            // Validar email - OBRIGATÓRIO
             const email = document.getElementById('email').value.trim();
             if (!email || !isValidEmail(email)) {
                 showError('email', 'emailError', 'E-mail válido deve ser preenchido');
                 isValid = false;
             }
             
-            // Validar CPF (deve ter exatamente 11 dígitos)
             const cpf = document.getElementById('cpf').value;
             const cpfNumbers = cpf.replace(/\D/g, '');
             if (!cpf || cpfNumbers.length !== 11 || !isValidCPF(cpf)) {
@@ -502,21 +527,18 @@
                 isValid = false;
             }
             
-            // Validar telefone (deve ter 11 dígitos: DDD + 9 dígitos)
             const celular = document.getElementById('celular').value.replace(/\D/g, '');
             if (!celular || celular.length !== 11) {
                 showError('celular', 'celularError', 'Celular deve ter 11 dígitos (DDD + número)');
                 isValid = false;
             }
             
-            // Validar CEP - OBRIGATÓRIO
             const cep = document.getElementById('cep').value.replace(/\D/g, '');
             if (!cep || cep.length !== 8) {
                 showError('cep', 'cepError', 'CEP válido deve ser preenchido');
                 isValid = false;
             }
             
-            // Validar campos de endereço - Obrigatórios quando CEP for preenchido
             const rua = document.getElementById('rua').value.trim();
             if (!rua) {
                 showError('rua', 'ruaError', 'Rua deve ser preenchida');
@@ -541,29 +563,65 @@
                 isValid = false;
             }
             
-            // Validar senha
             const senha = document.getElementById('senha').value;
             if (!senha || senha.length < 6) {
                 showError('senha', 'senhaError', 'Senha deve ter pelo menos 6 caracteres');
                 isValid = false;
             }
             
-            // Validar confirmação de senha
             const confirmPassword = document.getElementById('confirmPassword').value;
             if (!confirmPassword || senha !== confirmPassword) {
                 showError('confirmPassword', 'confirmPasswordError', 'Senhas devem coincidir');
                 isValid = false;
             }
             
-            // Se todos os campos estão válidos, enviar formulário
             if (isValid) {
-                // Se você quiser submeter o formulário para o PHP, descomente a linha abaixo:
-                // e.target.submit();
+                const formData = new FormData(this);
+                const submitBtn = this.querySelector('.register-btn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Cadastrando...';
                 
-                // Por enquanto, mostrar modal de sucesso
-                showSuccessModal();
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    try {
+                        const jsonData = JSON.parse(data);
+                        if (jsonData.success) {
+                            showSuccessModal();
+                        } else {
+                            alert('Erro: ' + jsonData.message);
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Criar Conta';
+                        }
+                    } catch (e) {
+                        if (data.includes('CPF já cadastrado')) {
+                            showError('cpf', 'cpfError', 'CPF já cadastrado no sistema');
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Criar Conta';
+                        } else if (data.includes('Email já cadastrado')) {
+                            showError('email', 'emailError', 'Email já cadastrado no sistema');
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Criar Conta';
+                        } else if (data.includes('sucesso') || data.includes('Dados salvos')) {
+                            showSuccessModal();
+                        } else {
+                            alert('Erro ao processar cadastro: ' + data);
+                            console.error('Resposta do servidor:', data);
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Criar Conta';
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao enviar formulário. Verifique sua conexão e tente novamente.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Criar Conta';
+                });
             } else {
-                // Scroll para o primeiro erro
                 const firstError = document.querySelector('.form-input.error');
                 if (firstError) {
                     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -572,59 +630,32 @@
             }
         });
 
-        // Função para mostrar modal de sucesso
         function showSuccessModal() {
             document.getElementById('successModal').style.display = 'flex';
         }
 
-        // Função para fechar modal de sucesso
         function closeSuccessModal() {
             document.getElementById('successModal').style.display = 'none';
-            // Mostrar modal de redirecionamento
             setTimeout(() => {
                 showRedirectModal();
             }, 500);
         }
 
-        // Função para mostrar modal de redirecionamento
         function showRedirectModal() {
             document.getElementById('redirectModal').style.display = 'flex';
         }
 
-        // Função para fechar modal de redirecionamento
         function closeRedirectModal() {
             document.getElementById('redirectModal').style.display = 'none';
-            // Redirecionar para a página inicial
             window.location.href = "../index.html";
         }
 
-        // Funções placeholder
-        function showForgotPassword() {
-            // Implementar funcionalidade
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
         }
 
-        function continueWithoutLogin() {
-            // Implementar funcionalidade
-        }
-
-        function registerWithApple() {
-            // Implementar funcionalidade
-        }
-
-        function registerWithGoogle() {
-            // Implementar funcionalidade
-        }
-
-        function showLogin() {
-            // Implementar funcionalidade
-        }
-
-        function showTerms() {
-            // Implementar funcionalidade
-        }
-
-        function showPrivacy() {
-            // Implementar funcionalidade
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
         }
     </script>
 </body>
