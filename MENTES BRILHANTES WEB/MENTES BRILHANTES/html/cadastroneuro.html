@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentes Brilhantes</title>
+    <title>Mentes Brilhantes - Cadastro Neurodivergente</title>
     <link rel="stylesheet" href="../css/cadastroneuro.css">
     <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
 </head>
@@ -63,7 +63,6 @@
                         <div class="error-message" id="celularError">Celular deve ter 11 dígitos (DDD + número)</div>
                     </div>
                     
-                    <!-- CEP e RUA na mesma linha -->
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="cep">CEP:</label>
@@ -78,7 +77,6 @@
                         </div>
                     </div>
                     
-                    <!-- BAIRRO e CIDADE -->
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="bairro">Bairro:</label>
@@ -124,11 +122,11 @@
                 </form>
                 
                 <div class="terms">
-                    Ao finalizar o cadastro, você concorda com nossos <a href="#" onclick="showTerms()">Termos de Uso</a> e <a href="#" onclick="showPrivacy()">Política de Privacidade</a>
+                    Ao finalizar o cadastro, você concorda com nossos <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>
                 </div>
                 
                 <div class="login-link">
-                    <p><a href="cadastro.html">← Voltar para cadastro do responsável</a></p>
+                    <p><a href="cadastroh.html">← Voltar para cadastro do responsável</a></p>
                 </div>
             </div>
         </div>
@@ -137,7 +135,7 @@
     <!-- Modal de Sucesso -->
     <div class="success-modal" id="successModal">
         <div class="success-modal-content">
-            <h2> Cadastro concluído com sucesso!</h2>
+            <h2>✅ Cadastro concluído com sucesso!</h2>
             <p>O cadastro do neurodivergente foi realizado com sucesso. Vocês já podem acessar a plataforma e aproveitar todos os recursos disponíveis!</p>
             <button onclick="closeSuccessModal()">Ir para o início</button>
         </div>
@@ -199,11 +197,8 @@
         function isValidCPF(cpf) {
             cpf = cpf.replace(/\D/g, '');
             if (cpf.length !== 11) return false;
-            
-            // Verifica sequências iguais (CPFs inválidos conhecidos)
             if (/^(\d)\1{10}$/.test(cpf)) return false;
             
-            // Validação dos dígitos verificadores
             let sum = 0;
             for (let i = 0; i < 9; i++) {
                 sum += parseInt(cpf[i]) * (10 - i);
@@ -268,12 +263,10 @@
             const cep = e.target.value.replace(/\D/g, '');
             
             if (cep.length === 8) {
-                // Limpar campos antes de buscar
                 document.getElementById('rua').value = '';
                 document.getElementById('bairro').value = '';
                 document.getElementById('cidade').value = '';
                 
-                // Buscar informações do CEP
                 fetch(`https://viacep.com.br/ws/${cep}/json/`)
                     .then(response => response.json())
                     .then(data => {
@@ -282,7 +275,6 @@
                             document.getElementById('bairro').value = data.bairro || '';
                             document.getElementById('cidade').value = data.localidade || '';
                             
-                            // Limpar erros se preencheu os campos
                             if (data.logradouro) clearError('rua', 'ruaError');
                             if (data.bairro) clearError('bairro', 'bairroError');
                             if (data.localidade) clearError('cidade', 'cidadeError');
@@ -298,9 +290,7 @@
             }
         });
 
-        // ===== VALIDAÇÕES EM TEMPO REAL =====
-
-        // Validação em tempo real para nome
+        // Validações em tempo real
         document.getElementById('nome').addEventListener('blur', function(e) {
             const nome = e.target.value.trim();
             if (nome.length >= 2) {
@@ -310,7 +300,6 @@
             }
         });
 
-        // Validação em tempo real para email
         document.getElementById('email').addEventListener('blur', function(e) {
             const email = e.target.value.trim();
             if (email && !isValidEmail(email)) {
@@ -320,7 +309,6 @@
             }
         });
 
-        // Validação em tempo real para RG
         document.getElementById('rg').addEventListener('blur', function(e) {
             const rg = e.target.value.trim();
             if (rg && rg.length >= 8) {
@@ -330,7 +318,6 @@
             }
         });
 
-        // Validação em tempo real para CPF
         document.getElementById('cpf').addEventListener('blur', function(e) {
             const cpf = e.target.value;
             const cpfNumbers = cpf.replace(/\D/g, '');
@@ -341,67 +328,15 @@
             }
         });
 
-        // Validação em tempo real para celular
         document.getElementById('celular').addEventListener('blur', function(e) {
             const celular = e.target.value.replace(/\D/g, '');
             if (celular && celular.length === 11) {
                 clearError('celular', 'celularError');
-            } else if (celular && celular.length !== 11) {
+            } else if (celular && celular.length > 0 && celular.length !== 11) {
                 showError('celular', 'celularError', 'Celular deve ter 11 dígitos (DDD + número)');
             }
         });
 
-        // Validação em tempo real para CEP
-        document.getElementById('cep').addEventListener('blur', function(e) {
-            const cep = e.target.value.replace(/\D/g, '');
-            if (cep && cep.length === 8) {
-                clearError('cep', 'cepError');
-            } else if (cep && cep.length !== 8) {
-                showError('cep', 'cepError', 'CEP válido é obrigatório');
-            }
-        });
-
-        // Validação em tempo real para rua
-        document.getElementById('rua').addEventListener('blur', function(e) {
-            const rua = e.target.value.trim();
-            if (rua && rua.length >= 2) {
-                clearError('rua', 'ruaError');
-            } else if (rua && rua.length < 2) {
-                showError('rua', 'ruaError', 'Rua deve ser preenchida');
-            }
-        });
-
-        // Validação em tempo real para bairro
-        document.getElementById('bairro').addEventListener('blur', function(e) {
-            const bairro = e.target.value.trim();
-            if (bairro && bairro.length >= 2) {
-                clearError('bairro', 'bairroError');
-            } else if (bairro && bairro.length < 2) {
-                showError('bairro', 'bairroError', 'Bairro deve ser preenchido');
-            }
-        });
-
-        // Validação em tempo real para cidade
-        document.getElementById('cidade').addEventListener('blur', function(e) {
-            const cidade = e.target.value.trim();
-            if (cidade && cidade.length >= 2) {
-                clearError('cidade', 'cidadeError');
-            } else if (cidade && cidade.length < 2) {
-                showError('cidade', 'cidadeError', 'Cidade deve ser preenchida');
-            }
-        });
-
-        // Validação em tempo real para número
-        document.getElementById('numero').addEventListener('blur', function(e) {
-            const numero = e.target.value.trim();
-            if (numero && numero.length >= 1) {
-                clearError('numero', 'numeroError');
-            } else if (numero && numero.length === 0) {
-                showError('numero', 'numeroError', 'Número deve ser preenchido');
-            }
-        });
-
-        // Validação em tempo real para senhas
         document.getElementById('senha').addEventListener('input', function(e) {
             const password = e.target.value;
             if (password.length >= 6) {
@@ -410,7 +345,6 @@
                 showError('senha', 'senhaError', 'Senha deve ter pelo menos 6 caracteres');
             }
             
-            // Verificar confirmação de senha se já foi preenchida
             const confirmPassword = document.getElementById('confirmPassword').value;
             if (confirmPassword) {
                 if (password === confirmPassword) {
@@ -432,7 +366,6 @@
             }
         });
 
-        // Adicionar eventos de foco para limpar erros
         document.querySelectorAll('.form-input').forEach(input => {
             input.addEventListener('focus', function() {
                 const errorId = this.id + 'Error';
@@ -440,41 +373,36 @@
             });
         });
 
-        // Validação completa do formulário
+        // VALIDAÇÃO E ENVIO DO FORMULÁRIO - CORRIGIDO
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             let isValid = true;
             
-            // Limpar todos os erros primeiro
             const errorElements = document.querySelectorAll('.error-message');
             errorElements.forEach(error => error.style.display = 'none');
             
             const inputElements = document.querySelectorAll('.form-input');
             inputElements.forEach(input => input.classList.remove('error'));
             
-            // Validar nome completo - OBRIGATÓRIO
             const nome = document.getElementById('nome').value.trim();
             if (!nome || nome.length < 2) {
                 showError('nome', 'nomeError', 'Nome completo deve ser preenchido');
                 isValid = false;
             }
             
-            // Validar email - OBRIGATÓRIO
             const email = document.getElementById('email').value.trim();
             if (!email || !isValidEmail(email)) {
                 showError('email', 'emailError', 'E-mail válido deve ser preenchido');
                 isValid = false;
             }
 
-            // Validar RG - OBRIGATÓRIO
             const rg = document.getElementById('rg').value.trim();
             if (!rg || rg.length < 8) {
                 showError('rg', 'rgError', 'RG deve ser preenchido');
                 isValid = false;
             }
             
-            // Validar CPF (deve ter exatamente 11 dígitos)
             const cpf = document.getElementById('cpf').value;
             const cpfNumbers = cpf.replace(/\D/g, '');
             if (!cpf || cpfNumbers.length !== 11 || !isValidCPF(cpf)) {
@@ -482,21 +410,18 @@
                 isValid = false;
             }
             
-            // Validar telefone (OPCIONAL - só valida se preenchido)
             const celular = document.getElementById('celular').value.replace(/\D/g, '');
             if (celular && celular.length !== 11) {
                 showError('celular', 'celularError', 'Celular deve ter 11 dígitos (DDD + número)');
                 isValid = false;
             }
             
-            // Validar CEP - OBRIGATÓRIO
             const cep = document.getElementById('cep').value.replace(/\D/g, '');
             if (!cep || cep.length !== 8) {
                 showError('cep', 'cepError', 'CEP válido deve ser preenchido');
                 isValid = false;
             }
             
-            // Validar campos de endereço - Obrigatórios quando CEP for preenchido
             const rua = document.getElementById('rua').value.trim();
             if (!rua) {
                 showError('rua', 'ruaError', 'Rua deve ser preenchida');
@@ -521,29 +446,65 @@
                 isValid = false;
             }
             
-            // Validar senha
             const senha = document.getElementById('senha').value;
             if (!senha || senha.length < 6) {
                 showError('senha', 'senhaError', 'Senha deve ter pelo menos 6 caracteres');
                 isValid = false;
             }
             
-            // Validar confirmação de senha
             const confirmPassword = document.getElementById('confirmPassword').value;
             if (!confirmPassword || senha !== confirmPassword) {
                 showError('confirmPassword', 'confirmPasswordError', 'Senhas devem coincidir');
                 isValid = false;
             }
             
-            // Se todos os campos estão válidos, submeter o formulário
             if (isValid) {
-                // Se você quiser submeter o formulário para o PHP, descomente a linha abaixo:
-                // e.target.submit();
+                const formData = new FormData(this);
+                const submitBtn = this.querySelector('.register-btn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Cadastrando...';
                 
-                // Por enquanto, mostrar modal de sucesso
-                showSuccessModal();
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    try {
+                        const jsonData = JSON.parse(data);
+                        if (jsonData.success) {
+                            showSuccessModal();
+                        } else {
+                            alert('Erro: ' + jsonData.message);
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Finalizar Cadastro';
+                        }
+                    } catch (e) {
+                        if (data.includes('CPF já cadastrado')) {
+                            showError('cpf', 'cpfError', 'CPF já cadastrado no sistema');
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Finalizar Cadastro';
+                        } else if (data.includes('RG já cadastrado')) {
+                            showError('rg', 'rgError', 'RG já cadastrado no sistema');
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Finalizar Cadastro';
+                        } else if (data.includes('sucesso') || data.includes('Dados salvos')) {
+                            showSuccessModal();
+                        } else {
+                            alert('Erro ao processar cadastro: ' + data);
+                            console.error('Resposta do servidor:', data);
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Finalizar Cadastro';
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao enviar formulário. Verifique sua conexão e tente novamente.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Finalizar Cadastro';
+                });
             } else {
-                // Scroll para o primeiro erro
                 const firstError = document.querySelector('.form-input.error');
                 if (firstError) {
                     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -552,27 +513,15 @@
             }
         });
 
-        // Função para mostrar modal de sucesso
         function showSuccessModal() {
             document.getElementById('successModal').style.display = 'flex';
         }
 
-        // Função para fechar modal de sucesso e redirecionar para o index
         function closeSuccessModal() {
             document.getElementById('successModal').style.display = 'none';
-            // Redirecionar para o index após um pequeno delay
             setTimeout(() => {
-                window.location.href = '../index.html';
+                window.location.href = 'adm_responsavel.html';
             }, 300);
-        }
-
-        // Funções placeholder
-        function showTerms() {
-            // Implementar funcionalidade
-        }
-
-        function showPrivacy() {
-            // Implementar funcionalidade
         }
     </script>
 </body>
