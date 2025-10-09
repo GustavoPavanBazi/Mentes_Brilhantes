@@ -1,1406 +1,971 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Especialistas Parceiros | Mentes Brilhantes</title>
-<link rel="stylesheet" href="../css/especialista.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentes Brilhantes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/especialista.css">
+    <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
 </head>
 <body>
-<!-- Header -->
-<header class="header" id="header">
-    <div class="nav-container">
-        <div class="logo-section">
-            <div class="logo">
-                <img src="../img/LogoMB.png" alt="Logo" />
+    <!-- ========== HEADER HARMONIZADO ========== -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <!-- Logo e Título -->
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="../img/LogoMB.png" alt="Logo Mentes Brilhantes">
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">Mentes Brilhantes</span>
+                </div>
             </div>
-            <div class="logo-text">
-                <div class="logo-title">Mentes Brilhantes</div>
+
+            <!-- Menu de Navegação Harmonizado -->
+            <div class="nav-menu">
+                <a href="#inicio" class="nav-link">Início</a>
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#especialistas" class="nav-link">Especialistas</a>
+                <a href="#recursos" class="nav-link">Recursos</a>
+                <a href="#contato" class="nav-link">Contato</a>
             </div>
-        </div>
-        <nav class="nav-menu">
-            <a href="../index.html#inicio">Início</a>
-            <a href="../index.html#apoio">Apoio</a>
-            <a href="../index.html#luna">Luna</a>
-            <a href="../index.html#app">Aplicativo</a>
-            <a href="../index.html#parceiros">Parceiros</a>
-            <a href="../index.html#contato">Contato</a>
+
+            <!-- Perfil do Usuário -->
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="Foto do Usuário">
+                </div>
+                <span class="user-name">Maria Silva</span>
+            </div>
+
+            <!-- Botão Menu Mobile -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
-       <!-- <div class="header-buttons">
-            <a href="login.html" class="btn-header btn-login" onclick="showLogin()">Entrar</a>
-            <div class="register-dropdown">
-                <a href="#" class="btn-header btn-register">Cadastrar</a>
-                <div class="dropdown-content">
-                    <a href="cadastro.html">Responsável</a>
-                    <a href="cadastroneuro.html">Neurodivergente</a>
-                    <a href="cadastroespecialista.html">Especialista</a>
-                </div>
-            </div>
-        </div>-->
-    </div>
-</header>
+    </header>
 
-<div class="container">
-    <!-- Lista de Especialistas -->
-    <div class="specialists-list" id="specialistsList">
-        <!-- Page Header -->
-        <div class="page-header">
-            <div class="header-icon">
-                <i class="fas fa-user-md"></i>
-            </div>
-            <h1 class="page-title">Especialistas <span class="highlight">Parceiros</span></h1>
-            <p class="page-description">
-                Conheça nossa rede de profissionais especializados em Transtorno do Espectro Autista. 
-                Todos os especialistas listados foram cuidadosamente avaliados e aprovados para fazer parte 
-                da comunidade Mentes Brilhantes.
-            </p>
-        </div>
-
-        <!-- Search and Filter Section -->
-        <div class="search-section">
-            <div class="search-container">
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar por nome, especialização, área de atuação...">
-                </div>
-                <select class="filter-dropdown" id="filterSpecialty">
-                    <option value="">Todas as Especialidades</option>
-                    <option value="psicologia">Psicologia</option>
-                    <option value="terapia-ocupacional">Terapia Ocupacional</option>
-                    <option value="fonoaudiologia">Fonoaudiologia</option>
-                    <option value="neurologia">Neurologia Pediátrica</option>
-                    <option value="psiquiatria">Psiquiatria</option>
-                    <option value="aba">Análise do Comportamento</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Results Counter -->
-        <div class="results-counter">
-            <span class="results-text" id="resultsText">Exibindo todos os especialistas disponíveis</span>
-            <span class="results-number" id="resultsNumber">1</span>
-        </div>
-
-        <!-- Specialists Grid -->
-        <div class="specialists-grid" id="specialistsGrid">
-            <!-- Specialist Cards serão inseridos via JavaScript -->
-        </div>
-
-        <!-- No Results -->
-        <div class="no-results" id="noResults">
-            <i class="fas fa-search"></i>
-            <h3>Nenhum especialista encontrado</h3>
-            <p>Tente ajustar seus critérios de busca ou filtros para encontrar o especialista ideal para suas necessidades.</p>
-        </div>
-    </div>
-
-    <!-- Perfil Detalhado -->
-    <div class="specialist-profile" id="specialistProfile">
-        <!-- Hero Section -->
-        <div class="profile-hero">
-            <div class="hero-content">
-                <div class="hero-avatar" id="profileAvatar">MF</div>
-                <div class="hero-info">
-                    <h1 id="profileName">Dra. Marina Fernandes</h1>
-                    <p class="hero-tagline" id="profileTagline">Psicóloga especializada em TEA - Transformando vidas através da terapia comportamental</p>
-                    <div class="hero-badges">
-                        <span class="badge verified"><i class="fas fa-check-circle"></i> Verificada</span>
-                        <span class="badge top-performer"><i class="fas fa-trophy"></i> Top Rated</span>
-                        <span class="badge"><i class="fas fa-medal"></i> Especialista Certificada</span>
+    <!-- ========== PÁGINA INÍCIO ========== -->
+    <section id="inicio" class="page-section active">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Conectando Famílias a <span class="highlight">Especialistas em TEA</span>
+                    </h1>
+                    <p class="hero-description">
+                        Encontre profissionais qualificados e certificados para apoiar o desenvolvimento de crianças no Transtorno do Espectro Autista
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#especialistas" class="btn-hero btn-primary">
+                            <i class="fas fa-search"></i>
+                            Encontrar Especialista
+                        </a>
+                        <a href="#sobre" class="btn-hero btn-secondary">
+                            <i class="fas fa-info-circle"></i>
+                            Saiba Mais
+                        </a>
                     </div>
-                    <button class="cta-primary" onclick="scheduleConsultation()">
-                        <i class="fas fa-calendar-plus"></i>
+                </div>
+                <div class="hero-image">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-user-md"></i>
+                        <div>
+                            <strong>500+</strong>
+                            <span>Especialistas</span>
+                        </div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-star"></i>
+                        <div>
+                            <strong>4.9/5</strong>
+                            <span>Avaliação</span>
+                        </div>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>10k+</strong>
+                            <span>Famílias</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Profissionais Certificados</h3>
+                    <p>Todos os especialistas são avaliados e certificados</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Agendamento Online</h3>
+                    <p>Marque consultas online de forma rápida e segura</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Cuidado Personalizado</h3>
+                    <p>Acompanhamento personalizado para cada família</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Recursos Educacionais</h3>
+                    <p>Acesso a materiais e conteúdos especializados</p>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Especialistas Cadastrados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10.000+</div>
+                    <div class="stat-label">Famílias Atendidas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.9</div>
+                    <div class="stat-label">Avaliação Média</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfação</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PÁGINA SOBRE ========== -->
+    <section id="sobre" class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <div class="header-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h1 class="page-title">Sobre Nós</h1>
+                <p class="page-description">
+                    Somos uma plataforma dedicada a conectar famílias e profissionais especializados em Transtorno do Espectro Autista
+                </p>
+            </div>
+
+            <div class="about-content-section">
+                <!-- Nossa Missão -->
+                <div class="about-mission">
+                    <div class="mission-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div>
+                        <h2>Nossa Missão</h2>
+                        <p>
+                            Facilitar o acesso a profissionais qualificados e certificados, oferecendo suporte integral para famílias que buscam os melhores cuidados para crianças com Transtorno do Espectro Autista. Acreditamos que toda criança merece atendimento de qualidade e personalizado.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Nossa Visão -->
+                <div class="about-vision">
+                    <div class="vision-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div>
+                        <h2>Nossa Visão</h2>
+                        <p>
+                            Ser a principal referência no Brasil em conectar famílias a especialistas em TEA, promovendo inclusão, desenvolvimento e qualidade de vida para todas as crianças no espectro autista.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Nossos Valores -->
+                <div class="about-values">
+                    <h2><i class="fas fa-gem"></i> Nossos Valores</h2>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Qualidade</h3>
+                            <p>Profissionais certificados e verificados</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-hands-helping"></i>
+                            <h3>Empatia</h3>
+                            <p>Cuidado humanizado e acolhedor</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Inovação</h3>
+                            <p>Tecnologia a serviço das famílias</p>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-universal-access"></i>
+                            <h3>Inclusão</h3>
+                            <p>Acesso para todas as famílias</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Como Funciona -->
+                <div class="about-how-it-works">
+                    <h2><i class="fas fa-cogs"></i> Como Funciona</h2>
+                    <div class="steps-grid">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <h3>Busque</h3>
+                            <p>Encontre especialistas por categoria, localização ou especialidade</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <h3>Escolha</h3>
+                            <p>Veja perfis, avaliações e disponibilidade dos profissionais</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <h3>Agende</h3>
+                            <p>Marque sua consulta de forma rápida e segura</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <h3>Acompanhe</h3>
+                            <p>Acompanhamento contínuo e acesso a recursos educacionais</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PÁGINA ESPECIALISTAS ========== -->
+    <section id="especialistas" class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <div class="header-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <h1 class="page-title">Encontre Especialistas</h1>
+                <p class="page-description">
+                    Conheça nossa rede de profissionais especializados em Transtorno do Espectro Autista. Todos os especialistas listados foram cuidadosamente avaliados e aprovados para fazer parte da comunidade Mentes Brilhantes.
+                </p>
+            </div>
+
+            <!-- Busca e Filtros Aprimorados -->
+            <div class="search-section-enhanced">
+                <div class="search-header">
+                    <h2><i class="fas fa-search"></i> Buscar Especialistas</h2>
+                    <p>Use os filtros abaixo para refinar sua busca</p>
+                </div>
+
+                <div class="search-filters-wrapper">
+                    <!-- Barra de Busca Principal -->
+                    <div class="search-bar-main">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Buscar por nome, especialidade ou localização...">
+                        <button class="search-clear-btn" id="clearSearch">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <!-- Filtros Avançados -->
+                    <div class="advanced-filters">
+                        <div class="filter-group">
+                            <label><i class="fas fa-briefcase"></i> Especialidade</label>
+                            <select class="filter-select" id="filterSpecialty">
+                                <option value="">Todas as Especialidades</option>
+                                <option value="analista-comportamental">Analista Comportamental</option>
+                                <option value="fonoaudiologo">Fonoaudiólogo</option>
+                                <option value="terapeuta-ocupacional">Terapeuta Ocupacional</option>
+                                <option value="neurologista">Neurologista</option>
+                                <option value="psicologo">Psicólogo</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label><i class="fas fa-map-marker-alt"></i> Localização</label>
+                            <select class="filter-select" id="filterLocation">
+                                <option value="">Todas as Localizações</option>
+                                <option value="sao-paulo">São Paulo</option>
+                                <option value="rio-janeiro">Rio de Janeiro</option>
+                                <option value="belo-horizonte">Belo Horizonte</option>
+                                <option value="brasilia">Brasília</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label><i class="fas fa-star"></i> Avaliação</label>
+                            <select class="filter-select" id="filterRating">
+                                <option value="">Todas as Avaliações</option>
+                                <option value="5">5 Estrelas</option>
+                                <option value="4">4+ Estrelas</option>
+                                <option value="3">3+ Estrelas</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label><i class="fas fa-clock"></i> Disponibilidade</label>
+                            <select class="filter-select" id="filterAvailability">
+                                <option value="">Qualquer horário</option>
+                                <option value="manha">Manhã</option>
+                                <option value="tarde">Tarde</option>
+                                <option value="noite">Noite</option>
+                            </select>
+                        </div>
+
+                        <button class="btn-reset-filters" id="resetFilters">
+                            <i class="fas fa-redo"></i>
+                            Limpar Filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contador de Resultados -->
+            <div class="results-counter">
+                <span>Mostrando <span class="results-number" id="resultsCount">12</span> especialistas</span>
+            </div>
+
+            <!-- Grid de Especialistas -->
+            <div class="specialists-grid" id="specialistsGrid">
+                <!-- Card 1 -->
+                <div class="specialist-card" data-specialty="analista-comportamental" data-location="sao-paulo" data-rating="5">
+                    <div class="specialist-badge">
+                        <i class="fas fa-certificate"></i> Verificado
+                    </div>
+                    <div class="specialist-header">
+                        <div class="specialist-avatar">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="specialist-info">
+                            <h3>Dra. Ana Carolina Santos</h3>
+                            <p class="specialist-role">Analista Comportamental (BCBA)</p>
+                            <p class="specialist-credentials">CRP 06/123456 • BACB 1-23-45678</p>
+                        </div>
+                    </div>
+                    <div class="specialist-specialization">
+                        <h4><i class="fas fa-brain"></i> Especialização</h4>
+                        <p>Terapia ABA, Intervenção Precoce, Suporte Familiar, Análise Comportamental</p>
+                    </div>
+                    <div class="specialist-experience">
+                        <span class="experience-item"><i class="fas fa-graduation-cap"></i> 12 anos de experiência</span>
+                        <span class="experience-item"><i class="fas fa-map-marker-alt"></i> São Paulo, SP</span>
+                        <span class="experience-item"><i class="fas fa-video"></i> Atendimento Online</span>
+                    </div>
+                    <div class="specialist-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">5.0 (87 avaliações)</span>
+                    </div>
+                    <button class="contact-button">
+                        <i class="fas fa-calendar-check"></i>
                         Agendar Consulta
                     </button>
                 </div>
-                <div class="hero-actions">
-                    <button class="action-button" onclick="shareProfile()" title="Compartilhar Perfil">
-                        <i class="fas fa-share-alt"></i>
-                    </button>
-                    <button class="action-button" onclick="reportProfile()" title="Reportar Perfil">
-                        <i class="fas fa-flag"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
 
-        <!-- Stats Bar -->
-        <div class="stats-bar">
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-users"></i></div>
-                <div class="stat-value" id="clientsCount">127</div>
-                <div class="stat-label">Clientes Atendidos</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-star"></i></div>
-                <div class="stat-value" id="rating">4.8</div>
-                <div class="stat-label">Avaliação Média</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                <div class="stat-value" id="experience">15</div>
-                <div class="stat-label">Anos de Experiência</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-                <div class="stat-value">12</div>
-                <div class="stat-label">Certificações</div>
-            </div>
-        </div>
-
-        <!-- Profile Navigation -->
-        <div class="profile-nav">
-            <div class="nav-tabs">
-                <button class="nav-tab active" onclick="showProfileSection('aboutSection')">
-                    <i class="fas fa-user"></i> Sobre mim
-                </button>
-                <button class="nav-tab" onclick="showProfileSection('reviewsSection')">
-                    <i class="fas fa-star"></i> Avaliações
-                </button>
-                <button class="nav-tab" onclick="showProfileSection('contentSection')">
-                    <i class="fas fa-book"></i> Conteúdos
-                </button>
-            </div>
-        </div>
-
-        <!-- About Section -->
-        <div class="profile-section active" id="aboutSection">
-            <h2 class="section-title">
-                <i class="fas fa-user"></i>
-                Sobre a Especialista
-            </h2>
-            <div class="about-content" id="aboutContent">
-                <p>Você já se sentiu perdido tentando entender o comportamento do seu filho autista? Eu ajudo famílias como a sua a desenvolver estratégias eficazes para promover o desenvolvimento e bem-estar de crianças no espectro autista.</p>
-                
-                <p>Com 15 anos de experiência em psicologia clínica especializada em TEA, tenho mestrado em Psicologia do Desenvolvimento pela USP e já atendi mais de 500 famílias. Minha abordagem integra terapias comportamentais baseadas em evidências com suporte familiar personalizado.</p>
-                
-                <p>Meus clientes tipicamente conseguem ver melhorias significativas na comunicação e comportamento de seus filhos em 3 meses, além de desenvolverem maior confiança como cuidadores.</p>
-                
-                <p>Vamos conversar sobre como posso ajudar sua família? Agende uma consulta gratuita de 15 minutos!</p>
-            </div>
-
-            <h3 style="color: #2C3E50; font-weight: 700; margin: 30px 0 20px 0; display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-brain" style="color: #4A90E2;"></i>
-                Áreas de Especialização
-            </h3>
-            <div class="specialties-cloud">
-                <!-- Especialidades serão inseridas via JavaScript -->
-            </div>
-        </div>
-
-        <!-- Reviews Section -->
-        <div class="profile-section" id="reviewsSection">
-            <div class="reviews-header">
-                <div class="rating-overview">
-                    <div class="rating-score">4.8</div>
-                    <div class="rating-details">
+                <!-- Card 2 -->
+                <div class="specialist-card" data-specialty="fonoaudiologo" data-location="rio-janeiro" data-rating="5">
+                    <div class="specialist-badge">
+                        <i class="fas fa-certificate"></i> Verificado
+                    </div>
+                    <div class="specialist-header">
+                        <div class="specialist-avatar">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="specialist-info">
+                            <h3>Dr. Pedro Henrique Oliveira</h3>
+                            <p class="specialist-role">Fonoaudiólogo Especialista em TEA</p>
+                            <p class="specialist-credentials">CRFa 1-123456</p>
+                        </div>
+                    </div>
+                    <div class="specialist-specialization">
+                        <h4><i class="fas fa-comments"></i> Especialização</h4>
+                        <p>Comunicação Alternativa, Linguagem Verbal e Não-Verbal, PECS</p>
+                    </div>
+                    <div class="specialist-experience">
+                        <span class="experience-item"><i class="fas fa-graduation-cap"></i> 8 anos de experiência</span>
+                        <span class="experience-item"><i class="fas fa-map-marker-alt"></i> Rio de Janeiro, RJ</span>
+                        <span class="experience-item"><i class="fas fa-home"></i> Atendimento Domiciliar</span>
+                    </div>
+                    <div class="specialist-rating">
                         <div class="stars">
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
-                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
-                        <div class="rating-count">Baseado em 127 avaliações</div>
+                        <span class="rating-text">5.0 (64 avaliações)</span>
                     </div>
+                    <button class="contact-button">
+                        <i class="fas fa-calendar-check"></i>
+                        Agendar Consulta
+                    </button>
                 </div>
-                <div class="review-filters">
-                    <button class="filter-button active">Todas</button>
-                    <button class="filter-button">5 estrelas</button>
-                    <button class="filter-button">4 estrelas</button>
-                    <button class="filter-button">3 estrelas</button>
+
+                <!-- Card 3 -->
+                <div class="specialist-card" data-specialty="terapeuta-ocupacional" data-location="belo-horizonte" data-rating="4">
+                    <div class="specialist-badge">
+                        <i class="fas fa-certificate"></i> Verificado
+                    </div>
+                    <div class="specialist-header">
+                        <div class="specialist-avatar">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="specialist-info">
+                            <h3>Dra. Juliana Costa</h3>
+                            <p class="specialist-role">Terapeuta Ocupacional</p>
+                            <p class="specialist-credentials">CREFITO-4 123456-TO</p>
+                        </div>
+                    </div>
+                    <div class="specialist-specialization">
+                        <h4><i class="fas fa-hands-helping"></i> Especialização</h4>
+                        <p>Integração Sensorial, Atividades da Vida Diária, Coordenação Motora</p>
+                    </div>
+                    <div class="specialist-experience">
+                        <span class="experience-item"><i class="fas fa-graduation-cap"></i> 10 anos de experiência</span>
+                        <span class="experience-item"><i class="fas fa-map-marker-alt"></i> Belo Horizonte, MG</span>
+                        <span class="experience-item"><i class="fas fa-video"></i> Atendimento Online</span>
+                    </div>
+                    <div class="specialist-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">4.9 (52 avaliações)</span>
+                    </div>
+                    <button class="contact-button">
+                        <i class="fas fa-calendar-check"></i>
+                        Agendar Consulta
+                    </button>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="specialist-card" data-specialty="neurologista" data-location="brasilia" data-rating="5">
+                    <div class="specialist-badge">
+                        <i class="fas fa-certificate"></i> Verificado
+                    </div>
+                    <div class="specialist-header">
+                        <div class="specialist-avatar">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="specialist-info">
+                            <h3>Dr. Ricardo Mendes</h3>
+                            <p class="specialist-role">Neurologista Infantil</p>
+                            <p class="specialist-credentials">CRM-DF 12345</p>
+                        </div>
+                    </div>
+                    <div class="specialist-specialization">
+                        <h4><i class="fas fa-brain"></i> Especialização</h4>
+                        <p>Diagnóstico TEA, Neurologia Infantil, Acompanhamento Medicamentoso</p>
+                    </div>
+                    <div class="specialist-experience">
+                        <span class="experience-item"><i class="fas fa-graduation-cap"></i> 15 anos de experiência</span>
+                        <span class="experience-item"><i class="fas fa-map-marker-alt"></i> Brasília, DF</span>
+                        <span class="experience-item"><i class="fas fa-hospital"></i> Clínica Própria</span>
+                    </div>
+                    <div class="specialist-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-text">5.0 (103 avaliações)</span>
+                    </div>
+                    <button class="contact-button">
+                        <i class="fas fa-calendar-check"></i>
+                        Agendar Consulta
+                    </button>
                 </div>
             </div>
 
-            <div id="reviewsList">
-                <!-- Reviews serão inseridas via JavaScript -->
+            <!-- Sem Resultados -->
+            <div class="no-results" id="noResults">
+                <i class="fas fa-search"></i>
+                <h3>Nenhum especialista encontrado</h3>
+                <p>Tente ajustar seus critérios de busca ou filtros para encontrar o especialista ideal para suas necessidades.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PÁGINA RECURSOS ========== -->
+    <section id="recursos" class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <div class="header-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h1 class="page-title">Recursos Educacionais</h1>
+                <p class="page-description">
+                    Acesse materiais, guias e conteúdos desenvolvidos por especialistas para apoiar famílias no cuidado com crianças no espectro autista
+                </p>
             </div>
 
-            <!-- Review Form -->
-            <div class="review-form">
-                <h3 class="form-title">Deixe sua avaliação</h3>
-                
-                <div class="rating-input">
-                    <div class="rating-stars">
-                        <i class="fas fa-star rating-star" onclick="setRating(1)"></i>
-                        <i class="fas fa-star rating-star" onclick="setRating(2)"></i>
-                        <i class="fas fa-star rating-star" onclick="setRating(3)"></i>
-                        <i class="fas fa-star rating-star" onclick="setRating(4)"></i>
-                        <i class="fas fa-star rating-star" onclick="setRating(5)"></i>
-                    </div>
-                    <div class="rating-text" id="ratingText">Clique nas estrelas para avaliar</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="reviewerName">Seu nome</label>
-                    <input type="text" id="reviewerName" class="form-input" placeholder="Digite seu nome">
-                </div>
-
-                <div class="form-group">
-                    <label for="reviewService">Serviço utilizado</label>
-                    <select id="reviewService" class="form-select">
-                        <option value="">Selecione o serviço</option>
-                        <option value="Consulta Individual">Consulta Individual</option>
-                        <option value="Terapia Familiar">Terapia Familiar</option>
-                        <option value="Avaliação Diagnóstica">Avaliação Diagnóstica</option>
-                        <option value="Orientação Escolar">Orientação Escolar</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="reviewComment">Sua experiência</label>
-                    <textarea id="reviewComment" class="form-textarea" placeholder="Compartilhe sua experiência com outros usuários..."></textarea>
-                </div>
-
-                <button class="submit-button" onclick="submitReview()">
-                    Publicar Avaliação
+            <!-- Categorias de Recursos -->
+            <div class="resources-categories">
+                <button class="category-tab active" data-category="all">
+                    <i class="fas fa-th"></i> Todos
+                </button>
+                <button class="category-tab" data-category="guias">
+                    <i class="fas fa-book-open"></i> Guias
+                </button>
+                <button class="category-tab" data-category="cursos">
+                    <i class="fas fa-graduation-cap"></i> Cursos
+                </button>
+                <button class="category-tab" data-category="atividades">
+                    <i class="fas fa-puzzle-piece"></i> Atividades
                 </button>
             </div>
-        </div>
 
-        <!-- Content Section -->
-        <div class="profile-section" id="contentSection">
-            <h2 class="section-title">
-                <i class="fas fa-book"></i>
-                Conteúdos Exclusivos
-            </h2>
-
-            <div class="content-grid">
-                <div class="content-item">
-                    <div class="premium-badge">
-                        <i class="fas fa-crown"></i>
-                        Premium
+            <!-- Grid de Recursos -->
+            <div class="resources-grid">
+                <!-- Recurso 1 -->
+                <div class="resource-card" data-category="guias">
+                    <div class="resource-badge">Gratuito</div>
+                    <div class="resource-image">
+                        <i class="fas fa-baby"></i>
                     </div>
-                    <h3 class="content-title">Guia Completo: Primeiros Sinais do Autismo</h3>
-                    <p class="content-excerpt">Um manual abrangente sobre como identificar os primeiros sinais do TEA em crianças de 0 a 3 anos. Inclui checklist detalhado e orientações para pais.</p>
-                    <div class="content-footer">
-                        <div class="content-price">R$ 89,90</div>
-                        <button class="access-button">Acessar</button>
+                    <h3>Guia de Sinais Precoces do TEA</h3>
+                    <p>Um manual abrangente sobre como identificar os primeiros sinais do TEA em crianças de 0 a 3 anos. Inclui checklist detalhado e orientações para pais.</p>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        <span><i class="fas fa-download"></i> 2.4k downloads</span>
                     </div>
+                    <button class="resource-btn">
+                        <i class="fas fa-download"></i> Baixar Agora
+                    </button>
                 </div>
 
-                <div class="content-item">
-                    <div class="premium-badge">
-                        <i class="fas fa-crown"></i>
-                        Premium
+                <!-- Recurso 2 -->
+                <div class="resource-card" data-category="cursos">
+                    <div class="resource-badge premium">Premium</div>
+                    <div class="resource-image">
+                        <i class="fas fa-comments"></i>
                     </div>
-                    <h3 class="content-title">Workshop: Estratégias de Comunicação</h3>
-                    <p class="content-excerpt">Curso online com técnicas práticas para melhorar a comunicação com crianças autistas. 4 horas de conteúdo + material de apoio.</p>
-                    <div class="content-footer">
-                        <div class="content-price">R$ 159,90</div>
-                        <button class="access-button">Acessar</button>
+                    <h3>Curso: Comunicação com Crianças Autistas</h3>
+                    <p>Curso online com técnicas práticas para melhorar a comunicação com crianças autistas. 4 horas de conteúdo + material de apoio.</p>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-video"></i> Vídeo</span>
+                        <span><i class="fas fa-users"></i> 856 alunos</span>
                     </div>
+                    <button class="resource-btn premium">
+                        <i class="fas fa-play"></i> Acessar Curso
+                    </button>
                 </div>
 
-                <div class="content-item">
-                    <div class="premium-badge">
-                        <i class="fas fa-crown"></i>
-                        Premium
+                <!-- Recurso 3 -->
+                <div class="resource-card" data-category="guias">
+                    <div class="resource-badge">Gratuito</div>
+                    <div class="resource-image">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <h3 class="content-title">E-book: Rotinas Estruturadas para TEA</h3>
-                    <p class="content-excerpt">Como criar e manter rotinas eficazes que promovem a independência e reduzem a ansiedade em crianças autistas.</p>
-                    <div class="content-footer">
-                        <div class="content-price">R$ 49,90</div>
-                        <button class="access-button">Acessar</button>
+                    <h3>Estabelecendo Rotinas Eficazes</h3>
+                    <p>Como criar e manter rotinas eficazes que promovem a independência e reduzem a ansiedade em crianças autistas.</p>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        <span><i class="fas fa-download"></i> 1.8k downloads</span>
                     </div>
+                    <button class="resource-btn">
+                        <i class="fas fa-download"></i> Baixar Agora
+                    </button>
                 </div>
 
-                <div class="content-item">
-                    <div class="premium-badge">
-                        <i class="fas fa-crown"></i>
-                        Premium
+                <!-- Recurso 4 -->
+                <div class="resource-card" data-category="guias">
+                    <div class="resource-badge">Gratuito</div>
+                    <div class="resource-image">
+                        <i class="fas fa-school"></i>
                     </div>
-                    <h3 class="content-title">Webinar: Preparação para a Escola</h3>
-                    <p class="content-excerpt">Orientações essenciais para preparar crianças autistas para o ambiente escolar. Inclui templates de comunicação com professores.</p>
-                    <div class="content-footer">
-                        <div class="content-price">R$ 79,90</div>
-                        <button class="access-button">Acessar</button>
+                    <h3>Preparação para a Escola</h3>
+                    <p>Orientações essenciais para preparar crianças autistas para o ambiente escolar. Inclui templates de comunicação com professores.</p>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        <span><i class="fas fa-download"></i> 3.1k downloads</span>
                     </div>
+                    <button class="resource-btn">
+                        <i class="fas fa-download"></i> Baixar Agora
+                    </button>
                 </div>
 
-                <div class="content-item">
-                    <div class="premium-badge">
-                        <i class="fas fa-crown"></i>
-                        Premium
+                <!-- Recurso 5 -->
+                <div class="resource-card" data-category="atividades">
+                    <div class="resource-badge premium">Premium</div>
+                    <div class="resource-image">
+                        <i class="fas fa-hand-sparkles"></i>
                     </div>
-                    <h3 class="content-title">Kit de Atividades Sensoriais</h3>
-                    <p class="content-excerpt">Mais de 50 atividades sensoriais adaptadas para diferentes níveis do espectro. Inclui instruções passo a passo e materiais necessários.</p>
-                    <div class="content-footer">
-                        <div class="content-price">R$ 69,90</div>
-                        <button class="access-button">Acessar</button>
+                    <h3>50 Atividades Sensoriais</h3>
+                    <p>Mais de 50 atividades sensoriais adaptadas para diferentes níveis do espectro. Inclui instruções passo a passo e materiais necessários.</p>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        <span><i class="fas fa-users"></i> 1.2k usuários</span>
                     </div>
+                    <button class="resource-btn premium">
+                        <i class="fas fa-shopping-cart"></i> Adquirir
+                    </button>
                 </div>
 
-                <div class="content-item">
-                    <div class="premium-badge">
-                        <i class="fas fa-crown"></i>
-                        Premium
+                <!-- Recurso 6 -->
+                <div class="resource-card" data-category="cursos">
+                    <div class="resource-badge premium">Premium</div>
+                    <div class="resource-image">
+                        <i class="fas fa-exclamation-triangle"></i>
                     </div>
-                    <h3 class="content-title">Masterclass: Manejo de Crises</h3>
-                    <p class="content-excerpt">Técnicas avançadas para prevenir e gerenciar episódios de crise. Baseado em evidências científicas e experiência clínica.</p>
-                    <div class="content-footer">
-                        <div class="content-price">R$ 129,90</div>
-                        <button class="access-button">Acessar</button>
+                    <h3>Gerenciamento de Crises</h3>
+                    <p>Técnicas avançadas para prevenir e gerenciar episódios de crise. Baseado em evidências científicas e experiência clínica.</p>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-video"></i> Vídeo</span>
+                        <span><i class="fas fa-users"></i> 642 alunos</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Scheduling Modal -->
-<div class="modal" id="schedulingModal">
-    <div class="modal-content">
-        <button class="modal-close" onclick="closeModal()">
-            <i class="fas fa-times"></i>
-        </button>
-        
-        <h2 class="modal-title">Agendar Consulta</h2>
-        <p class="modal-subtitle">com <span id="modalSpecialistName">Dra. Marina Fernandes</span></p>
-
-        <div class="scheduling-steps">
-            <div class="step active">
-                <div class="step-number">1</div>
-                <span>Serviço</span>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <span>Data & Hora</span>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <span>Contato</span>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <span>Confirmação</span>
-            </div>
-        </div>
-
-        <!-- Step 1: Service Selection -->
-        <div class="schedule-form-section" id="serviceSection">
-            <div class="section-header">
-                <i class="fas fa-clipboard-list"></i>
-                Escolha o tipo de consulta
-            </div>
-            
-            <div class="service-options">
-                <div class="service-option" onclick="selectService(this, 'Consulta Individual', 'R$ 280,00', '60 min')">
-                    <div class="service-option-header">
-                        <div class="service-name">Consulta Individual</div>
-                        <div class="service-price">R$ 280,00</div>
-                    </div>
-                    <div class="service-description">Avaliação e orientação personalizada para você e seu filho</div>
-                    <div class="service-duration">
-                        <i class="fas fa-clock"></i> 60 minutos
-                    </div>
-                </div>
-
-                <div class="service-option" onclick="selectService(this, 'Terapia Familiar', 'R$ 320,00', '75 min')">
-                    <div class="service-option-header">
-                        <div class="service-name">Terapia Familiar</div>
-                        <div class="service-price">R$ 320,00</div>
-                    </div>
-                    <div class="service-description">Sessão envolvendo toda a família para estratégias integradas</div>
-                    <div class="service-duration">
-                        <i class="fas fa-clock"></i> 75 minutos
-                    </div>
-                </div>
-
-                <div class="service-option" onclick="selectService(this, 'Avaliação Diagnóstica', 'R$ 480,00', '120 min')">
-                    <div class="service-option-header">
-                        <div class="service-name">Avaliação Diagnóstica</div>
-                        <div class="service-price">R$ 480,00</div>
-                    </div>
-                    <div class="service-description">Avaliação completa com relatório detalhado</div>
-                    <div class="service-duration">
-                        <i class="fas fa-clock"></i> 120 minutos
-                    </div>
-                </div>
-
-                <div class="service-option" onclick="selectService(this, 'Consulta Online', 'R$ 240,00', '50 min')">
-                    <div class="service-option-header">
-                        <div class="service-name">Consulta Online</div>
-                        <div class="service-price">R$ 240,00</div>
-                    </div>
-                    <div class="service-description">Atendimento por videoconferência</div>
-                    <div class="service-duration">
-                        <i class="fas fa-clock"></i> 50 minutos
-                    </div>
+                    <button class="resource-btn premium">
+                        <i class="fas fa-play"></i> Acessar Curso
+                    </button>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Step 2: Date & Time Selection -->
-        <div class="schedule-form-section" id="dateTimeSection" style="display: none;">
-            <div class="section-header">
-                <i class="fas fa-calendar-alt"></i>
-                Escolha data e horário
+    <!-- ========== PÁGINA CONTATO ========== -->
+    <section id="contato" class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <div class="header-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h1 class="page-title">Entre em Contato</h1>
+                <p class="page-description">
+                    Tem dúvidas ou precisa de ajuda? Nossa equipe está pronta para atendê-lo
+                </p>
             </div>
 
-            <div class="calendar-section">
-                <div class="calendar-widget">
-                    <div class="calendar-header">
-                        <button class="calendar-nav" onclick="previousMonth()">
-                            <i class="fas fa-chevron-left"></i>
+            <div class="contact-wrapper">
+                <!-- Informações de Contato -->
+                <div class="contact-info-box">
+                    <h2><i class="fas fa-info-circle"></i> Informações de Contato</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>E-mail</h3>
+                            <a href="mailto:contato@mentesbrilhantes.com.br">contato@mentesbrilhantes.com.br</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Telefone</h3>
+                            <a href="tel:+551140028922">(11) 4002-8922</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3>Horário de Atendimento</h3>
+                            <p>Segunda a Sexta: 8h às 18h<br>Sábado: 9h às 13h</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <h3><i class="fas fa-share-alt"></i> Redes Sociais</h3>
+                        <div class="social-icons">
+                            <a href="https://instagram.com" target="_blank" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" class="social-icon youtube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://facebook.com" target="_blank" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" class="social-icon linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário de Contato -->
+                <div class="contact-form-box">
+                    <h2><i class="fas fa-paper-plane"></i> Envie uma Mensagem</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-user"></i> Nome Completo</label>
+                                <input type="text" class="form-input" placeholder="Seu nome completo" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-envelope"></i> E-mail</label>
+                                <input type="email" class="form-input" placeholder="seu@email.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-phone"></i> Telefone</label>
+                                <input type="tel" class="form-input" placeholder="(11) 99999-9999" required>
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-tag"></i> Assunto</label>
+                                <select class="form-select" required>
+                                    <option value="">Selecione um assunto</option>
+                                    <option value="duvidas">Dúvidas Gerais</option>
+                                    <option value="agendamento">Agendamento</option>
+                                    <option value="cadastro">Cadastro de Profissional</option>
+                                    <option value="suporte">Suporte Técnico</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-comment"></i> Mensagem</label>
+                            <textarea class="form-textarea" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensagem
                         </button>
-                        <div class="calendar-month" id="currentMonth">Janeiro 2024</div>
-                        <button class="calendar-nav" onclick="nextMonth()">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-
-                    <div class="calendar-days">
-                        <div class="calendar-day-header">Dom</div>
-                        <div class="calendar-day-header">Seg</div>
-                        <div class="calendar-day-header">Ter</div>
-                        <div class="calendar-day-header">Qua</div>
-                        <div class="calendar-day-header">Qui</div>
-                        <div class="calendar-day-header">Sex</div>
-                        <div class="calendar-day-header">Sáb</div>
-                        
-                        <!-- Calendar days will be generated by JavaScript -->
-                        <div class="calendar-day unavailable">1</div>
-                        <div class="calendar-day unavailable">2</div>
-                        <div class="calendar-day available" onclick="selectDate(this, '3')">3</div>
-                        <div class="calendar-day available" onclick="selectDate(this, '4')">4</div>
-                        <div class="calendar-day available" onclick="selectDate(this, '5')">5</div>
-                        <div class="calendar-day unavailable">6</div>
-                        <div class="calendar-day unavailable">7</div>
-                        <div class="calendar-day available" onclick="selectDate(this, '8')">8</div>
-                        <div class="calendar-day available" onclick="selectDate(this, '9')">9</div>
-                        <div class="calendar-day available" onclick="selectDate(this, '10')">10</div>
-                        <div class="calendar-day available" onclick="selectDate(this, '11')">11</div>
-                        <div class="calendar-day available" onclick="selectDate(this, '12')">12</div>
-                        <div class="calendar-day unavailable">13</div>
-                        <div class="calendar-day unavailable">14</div>
-                    </div>
-                </div>
-
-                <div class="time-slots">
-                    <h4 style="margin-bottom: 15px; color: #2C3E50; font-weight: 700;">Horários Disponíveis</h4>
-                    <div class="time-slots-grid">
-                        <div class="time-slot" onclick="selectTimeSlot(this, '09:00')">09:00</div>
-                        <div class="time-slot" onclick="selectTimeSlot(this, '10:00')">10:00</div>
-                        <div class="time-slot" onclick="selectTimeSlot(this, '11:00')">11:00</div>
-                        <div class="time-slot unavailable">12:00</div>
-                        <div class="time-slot" onclick="selectTimeSlot(this, '14:00')">14:00</div>
-                        <div class="time-slot" onclick="selectTimeSlot(this, '15:00')">15:00</div>
-                        <div class="time-slot" onclick="selectTimeSlot(this, '16:00')">16:00</div>
-                        <div class="time-slot unavailable">17:00</div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Step 3: Contact Information -->
-        <div class="schedule-form-section" id="contactSection" style="display: none;">
-            <div class="section-header">
-                <i class="fas fa-user"></i>
-                Informações de contato
-            </div>
-
-            <div class="contact-info">
-                <h4><i class="fas fa-info-circle"></i> Dados pessoais</h4>
-                <div class="contact-inputs">
-                    <div class="input-group">
-                        <div class="form-group">
-                            <label>Nome completo</label>
-                            <input type="text" class="form-input" id="clientName" placeholder="Seu nome completo">
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail</label>
-                            <input type="email" class="form-input" id="clientEmail" placeholder="seu@email.com">
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <div class="form-group">
-                            <label>Telefone</label>
-                            <input type="tel" class="form-input" id="clientPhone" placeholder="(11) 99999-9999">
-                        </div>
-                        <div class="form-group">
-                            <label>Idade do paciente</label>
-                            <input type="number" class="form-input" id="patientAge" placeholder="Idade">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Observações (opcional)</label>
-                        <textarea class="form-textarea" id="observations" placeholder="Descreva brevemente o motivo da consulta ou informações importantes..."></textarea>
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Mentes Brilhantes</h3>
+                    <p>
+                        Conectando famílias a especialistas certificados em TEA, promovendo desenvolvimento, inclusão e qualidade de vida.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
+
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#especialistas">Especialistas</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Informações</h4>
+                    <ul>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Seja um Especialista</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Receba novidades e conteúdos exclusivos</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Seu e-mail">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mentes Brilhantes. Todos os direitos reservados.</p>
             </div>
         </div>
+    </footer>
 
-        <!-- Step 4: Confirmation -->
-        <div class="schedule-form-section" id="confirmationSection" style="display: none;">
-            <div class="section-header">
-                <i class="fas fa-check-circle"></i>
-                Confirmar agendamento
-            </div>
-
-            <div class="confirmation-summary">
-                <h3 class="summary-title">
-                    <i class="fas fa-clipboard-check"></i>
-                    Resumo do Agendamento
-                </h3>
-                <div class="summary-item">
-                    <span class="summary-label">Especialista:</span>
-                    <span class="summary-value">Dra. Marina Fernandes</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Serviço:</span>
-                    <span class="summary-value" id="summaryService">-</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Data:</span>
-                    <span class="summary-value" id="summaryDate">-</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Horário:</span>
-                    <span class="summary-value" id="summaryTime">-</span>
-                </div>
-                <div class="summary-item">
-                    <span class="summary-label">Duração:</span>
-                    <span class="summary-value" id="summaryDuration">-</span>
-                </div>
-                <div class="summary-item" style="border-top: 2px solid rgba(84, 199, 164, 0.3); padding-top: 15px; margin-top: 15px;">
-                    <span class="summary-label">Total:</span>
-                    <span class="summary-value" id="summaryPrice" style="font-size: 1.3rem; color: #4A90E2;">-</span>
-                </div>
-            </div>
-
-            <div style="background: rgba(74, 144, 226, 0.05); border-radius: 15px; padding: 20px; margin-bottom: 25px;">
-                <h4 style="color: #2C3E50; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-info-circle" style="color: #4A90E2;"></i>
-                    Informações importantes
-                </h4>
-                <ul style="color: #5A6C7D; line-height: 1.6; margin: 0; padding-left: 20px;">
-                    <li>Você receberá uma confirmação por e-mail e WhatsApp</li>
-                    <li>O pagamento será realizado no local da consulta</li>
-                    <li>Cancelamentos devem ser feitos com 24h de antecedência</li>
-                    <li>Em caso de dúvidas, entre em contato conosco</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="modal-actions">
-            <button class="btn-secondary" onclick="previousStep()" id="prevButton" style="display: none;">
-                <i class="fas fa-arrow-left"></i> Voltar
-            </button>
-            <button class="btn-primary" onclick="nextStep()" id="nextButton">
-                Próximo <i class="fas fa-arrow-right"></i>
-            </button>
-            <button class="btn-primary" onclick="confirmScheduling()" id="confirmButton" style="display: none;">
-                <i class="fas fa-check"></i> Confirmar Agendamento
-            </button>
-        </div>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Mensagem enviada com sucesso!</span>
     </div>
-</div>
 
-<!-- Toast Notification -->
-<div class="toast" id="toast">
-    <i class="fas fa-check-circle"></i>
-    <span id="toastMessage">Mensagem do sistema</span>
-</div>
+    <script>
+        // ========== NAVEGAÇÃO ========== 
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gerenciar navegação entre seções
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.page-section');
 
-<script>
-    // Dados dos especialistas - APENAS DRA. MARINA FERNANDES
-    const specialists = [
-        {
-            id: 1,
-            name: "Dra. Marina Fernandes",
-            avatar: "MF",
-            role: "Psicóloga Clínica",
-            credentials: "CRP 06/123456 • Mestre em Psicologia do Desenvolvimento - USP",
-            specialization: "Terapia Comportamental, Desenvolvimento Infantil, Apoio Familiar",
-            specialty: "psicologia",
-            experience: "15 anos",
-            clients: "127",
-            rating: "4.8",
-            responseTime: "2h",
-            tagline: "Psicóloga especializada em TEA - Transformando vidas através da terapia comportamental",
-            about: `
-                <p>Você já se sentiu perdido tentando entender o comportamento do seu filho autista? Eu ajudo famílias como a sua a desenvolver estratégias eficazes para promover o desenvolvimento e bem-estar de crianças no espectro autista.</p>
-                
-                <p>Com 15 anos de experiência em psicologia clínica especializada em TEA, tenho mestrado em Psicologia do Desenvolvimento pela USP e já atendi mais de 500 famílias. Minha abordagem integra terapias comportamentais baseadas em evidências com suporte familiar personalizado.</p>
-                
-                <p>Meus clientes tipicamente conseguem ver melhorias significativas na comunicação e comportamento de seus filhos em 3 meses, além de desenvolverem maior confiança como cuidadores.</p>
-                
-                <p>Vamos conversar sobre como posso ajudar sua família? Agende uma consulta gratuita de 15 minutos!</p>
-            `,
-            specialties: ["Terapia Comportamental", "Desenvolvimento Infantil", "Apoio Familiar", "Intervenção Precoce", "Habilidades Sociais", "Regulação Emocional"]
-        }
-    ];
-
-    // Estado da aplicação
-    let currentSpecialist = null;
-    let filteredSpecialists = specialists;
-    let currentView = 'list';
-    let userRating = 0;
-    let userReviews = [];
-    let schedulingData = {
-        step: 1,
-        service: null,
-        date: null,
-        time: null,
-        clientInfo: {}
-    };
-
-    // Reviews iniciais para demonstração
-    const initialReviews = [
-        {
-            id: 1,
-            author: "Ana Carolina",
-            avatar: "AC",
-            rating: 5,
-            service: "Terapia Individual",
-            date: "Há 2 semanas",
-            content: "A Dra. Marina transformou nossa rotina familiar. Meu filho João, de 7 anos, apresentava dificuldades severas de comunicação e comportamentos desafiadores. Em apenas 3 meses de terapia, ele já consegue expressar suas necessidades de forma mais clara e os episódios de crise diminuíram significativamente. O acompanhamento é excepcional!",
-            specialistResponse: "Ana, muito obrigada pelo feedback! É maravilhoso ver o progresso do João. Continue aplicando as estratégias que trabalhamos em casa - vocês estão no caminho certo!"
-        },
-        {
-            id: 2,
-            author: "Roberto Silva",
-            avatar: "RS",
-            rating: 5,
-            service: "Consultoria Familiar",
-            date: "Há 1 mês",
-            content: "Como pai de primeira viagem de uma criança autista, eu me sentia completamente perdido. A consultoria da Dra. Marina me deu as ferramentas e a confiança que eu precisava. Ela é muito didática e paciente, explicando cada estratégia de forma clara. Recomendo fortemente!"
-        },
-        {
-            id: 3,
-            author: "Maria Paula",
-            avatar: "MP",
-            rating: 4,
-            service: "Avaliação Completa",
-            date: "Há 2 meses",
-            content: "A avaliação foi muito completa e detalhada. O relatório me ajudou a entender melhor as necessidades da minha filha e a buscar os recursos adequados na escola. O único ponto a melhorar seria o tempo de entrega do relatório, que demorou um pouco mais do que esperado.",
-            specialistResponse: "Maria, obrigada pelo feedback construtivo! Já implementei melhorias no processo para entregar os relatórios mais rapidamente. Fico feliz que o documento tenha sido útil para vocês!"
-        }
-    ];
-
-    // Inicialização
-    document.addEventListener('DOMContentLoaded', function() {
-        renderSpecialists();
-        setupEventListeners();
-    });
-
-    function setupEventListeners() {
-        // Search input
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-            searchInput.addEventListener('input', filterSpecialists);
-        }
-
-        // Filter dropdown
-        const filterDropdown = document.getElementById('filterSpecialty');
-        if (filterDropdown) {
-            filterDropdown.addEventListener('change', filterSpecialists);
-        }
-
-        // Modal close events
-        window.addEventListener('click', function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    closeModal();
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
                 }
-            });
-        });
-
-        // ESC key to close modals
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        });
-    }
 
-    function renderSpecialists() {
-        const grid = document.getElementById('specialistsGrid');
-        const resultsNumber = document.getElementById('resultsNumber');
-        const resultsText = document.getElementById('resultsText');
-        const noResults = document.getElementById('noResults');
-
-        if (!grid) return;
-
-        grid.innerHTML = '';
-
-        if (filteredSpecialists.length === 0) {
-            if (noResults) noResults.classList.add('show');
-            if (resultsNumber) resultsNumber.textContent = '0';
-            if (resultsText) resultsText.textContent = 'Nenhum especialista encontrado';
-            return;
-        }
-
-        if (noResults) noResults.classList.remove('show');
-        if (resultsNumber) resultsNumber.textContent = filteredSpecialists.length;
-        if (resultsText) resultsText.textContent = `Exibindo ${filteredSpecialists.length} especialista${filteredSpecialists.length > 1 ? 's' : ''} disponível${filteredSpecialists.length > 1 ? 'eis' : ''}`;
-
-        filteredSpecialists.forEach(specialist => {
-            const card = createSpecialistCard(specialist);
-            grid.appendChild(card);
-        });
-    }
-
-    function createSpecialistCard(specialist) {
-        const card = document.createElement('div');
-        card.className = 'specialist-card';
-        card.onclick = () => showSpecialistProfile(specialist);
-
-        card.innerHTML = `
-            <div class="specialist-badge">
-                <i class="fas fa-check-circle"></i>
-                Verificado
-            </div>
-
-            <div class="specialist-header">
-                <div class="specialist-avatar">${specialist.avatar}</div>
-                <div class="specialist-info">
-                    <h3>${specialist.name}</h3>
-                    <div class="specialist-role">${specialist.role}</div>
-                    <div class="specialist-credentials">${specialist.credentials}</div>
-                </div>
-            </div>
-
-            <div class="specialist-specialization">
-                <h4><i class="fas fa-brain"></i> Áreas de Especialização</h4>
-                <p>${specialist.specialization}</p>
-            </div>
-
-            <div class="specialist-experience">
-                <div class="experience-item">
-                    <i class="fas fa-star"></i>
-                    <span>${specialist.rating} (${specialist.clients} avaliações)</span>
-                </div>
-                <div class="experience-item">
-                    <i class="fas fa-clock"></i>
-                    <span>Responde em ${specialist.responseTime}</span>
-                </div>
-            </div>
-
-            <button class="contact-button" onclick="event.stopPropagation(); scheduleConsultation()">
-                <i class="fas fa-calendar-plus"></i>
-                Agendar Consulta
-            </button>
-        `;
-
-        return card;
-    }
-
-    function filterSpecialists() {
-        const searchInput = document.getElementById('searchInput');
-        const filterDropdown = document.getElementById('filterSpecialty');
-        
-        const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-        const specialtyFilter = filterDropdown ? filterDropdown.value : '';
-
-        filteredSpecialists = specialists.filter(specialist => {
-            const matchesSearch = 
-                specialist.name.toLowerCase().includes(searchTerm) ||
-                specialist.role.toLowerCase().includes(searchTerm) ||
-                specialist.specialization.toLowerCase().includes(searchTerm) ||
-                specialist.credentials.toLowerCase().includes(searchTerm);
-
-            const matchesSpecialty = !specialtyFilter || specialist.specialty === specialtyFilter;
-
-            return matchesSearch && matchesSpecialty;
-        });
-
-        renderSpecialists();
-    }
-
-    function showSpecialistProfile(specialist) {
-        currentSpecialist = specialist;
-        currentView = 'profile';
-
-        // Hide specialists list
-        const specialistsList = document.getElementById('specialistsList');
-        if (specialistsList) specialistsList.classList.add('hidden');
-        
-        // Show profile
-        const specialistProfile = document.getElementById('specialistProfile');
-        if (specialistProfile) specialistProfile.classList.add('active');
-        
-        // Show back button
-        const backToList = document.getElementById('backToList');
-        const homeButton = document.getElementById('homeButton');
-        if (backToList) backToList.style.display = 'flex';
-        if (homeButton) homeButton.style.display = 'none';
-
-        // Populate profile data
-        populateProfile(specialist);
-
-        // Scroll to top
-        window.scrollTo(0, 0);
-    }
-
-    function populateProfile(specialist) {
-        // Hero section
-        const profileAvatar = document.getElementById('profileAvatar');
-        const profileName = document.getElementById('profileName');
-        const profileTagline = document.getElementById('profileTagline');
-        
-        if (profileAvatar) profileAvatar.textContent = specialist.avatar;
-        if (profileName) profileName.textContent = specialist.name;
-        if (profileTagline) profileTagline.textContent = specialist.tagline;
-
-        // Stats
-        const clientsCount = document.getElementById('clientsCount');
-        const rating = document.getElementById('rating');
-        const experience = document.getElementById('experience');
-        
-        if (clientsCount) clientsCount.textContent = specialist.clients;
-        if (rating) rating.textContent = specialist.rating;
-        if (experience) experience.textContent = specialist.experience.replace(' anos', '');
-
-        // About section
-        const aboutContent = document.getElementById('aboutContent');
-        if (aboutContent) aboutContent.innerHTML = specialist.about;
-
-        // Specialties
-        const specialtiesCloud = document.querySelector('.specialties-cloud');
-        if (specialtiesCloud) {
-            specialtiesCloud.innerHTML = '';
-            specialist.specialties.forEach(specialty => {
-                const tag = document.createElement('span');
-                tag.className = 'specialty-tag';
-                tag.textContent = specialty;
-                specialtiesCloud.appendChild(tag);
-            });
-        }
-
-        // Update modal specialist name
-        const modalSpecialistName = document.getElementById('modalSpecialistName');
-        if (modalSpecialistName) modalSpecialistName.textContent = specialist.name;
-
-        // Load reviews
-        loadReviews();
-    }
-
-    function showSpecialistsList() {
-        currentView = 'list';
-        
-        // Show specialists list
-        const specialistsList = document.getElementById('specialistsList');
-        if (specialistsList) specialistsList.classList.remove('hidden');
-        
-        // Hide profile
-        const specialistProfile = document.getElementById('specialistProfile');
-        if (specialistProfile) specialistProfile.classList.remove('active');
-        
-        // Show home button, hide back button
-        const backToList = document.getElementById('backToList');
-        const homeButton = document.getElementById('homeButton');
-        if (backToList) backToList.style.display = 'none';
-        if (homeButton) homeButton.style.display = 'flex';
-
-        // Scroll to top
-        window.scrollTo(0, 0);
-    }
-
-    function showProfileSection(sectionId) {
-        // Remove active class from all sections and tabs
-        document.querySelectorAll('.profile-section').forEach(section => {
-            section.classList.remove('active');
-        });
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            tab.classList.remove('active');
-        });
-
-        // Add active class to clicked tab
-        event.target.classList.add('active');
-
-        // Show selected section
-        const section = document.getElementById(sectionId);
-        if (section) section.classList.add('active');
-    }
-
-    // Scheduling System
-    function scheduleConsultation() {
-        resetSchedulingData();
-        const modal = document.getElementById('schedulingModal');
-        if (modal) modal.classList.add('show');
-        updateSchedulingStep();
-    }
-
-    function resetSchedulingData() {
-        schedulingData = {
-            step: 1,
-            service: null,
-            date: null,
-            time: null,
-            clientInfo: {}
-        };
-        
-        // Reset form selections
-        document.querySelectorAll('.service-option').forEach(option => {
-            option.classList.remove('selected');
-        });
-        document.querySelectorAll('.calendar-day').forEach(day => {
-            day.classList.remove('selected');
-        });
-        document.querySelectorAll('.time-slot').forEach(slot => {
-            slot.classList.remove('selected');
-        });
-    }
-
-    function updateSchedulingStep() {
-        // Hide all sections
-        const sections = ['serviceSection', 'dateTimeSection', 'contactSection', 'confirmationSection'];
-        sections.forEach(sectionId => {
-            const section = document.getElementById(sectionId);
-            if (section) section.style.display = 'none';
-        });
-
-        // Update step indicators
-        document.querySelectorAll('.step').forEach((step, index) => {
-            if (index + 1 <= schedulingData.step) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
-
-        // Show current section
-        const currentSectionId = sections[schedulingData.step - 1];
-        const currentSection = document.getElementById(currentSectionId);
-        if (currentSection) currentSection.style.display = 'block';
-
-        // Update buttons
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        const confirmButton = document.getElementById('confirmButton');
-
-        if (schedulingData.step === 1) {
-            if (prevButton) prevButton.style.display = 'none';
-            if (nextButton) nextButton.style.display = 'inline-flex';
-            if (confirmButton) confirmButton.style.display = 'none';
-        } else if (schedulingData.step === 4) {
-            if (prevButton) prevButton.style.display = 'inline-flex';
-            if (nextButton) nextButton.style.display = 'none';
-            if (confirmButton) confirmButton.style.display = 'inline-flex';
-            updateConfirmationSummary();
-        } else {
-            if (prevButton) prevButton.style.display = 'inline-flex';
-            if (nextButton) nextButton.style.display = 'inline-flex';
-            if (confirmButton) confirmButton.style.display = 'none';
-        }
-    }
-
-    function selectService(element, name, price, duration) {
-        // Remove selection from other options
-        document.querySelectorAll('.service-option').forEach(option => {
-            option.classList.remove('selected');
-        });
-        
-        // Select current option
-        element.classList.add('selected');
-        
-        // Store service data
-        schedulingData.service = {
-            name: name,
-            price: price,
-            duration: duration
-        };
-    }
-
-    function selectDate(element, date) {
-        // Remove selection from other dates
-        document.querySelectorAll('.calendar-day').forEach(day => {
-            day.classList.remove('selected');
-        });
-        
-        // Select current date
-        element.classList.add('selected');
-        
-        // Store date data
-        schedulingData.date = `${date} de Janeiro, 2024`;
-    }
-
-    function selectTimeSlot(element, time) {
-        // Remove selection from other time slots
-        document.querySelectorAll('.time-slot').forEach(slot => {
-            slot.classList.remove('selected');
-        });
-        
-        // Select current time slot
-        element.classList.add('selected');
-        
-        // Store time data
-        schedulingData.time = time;
-    }
-
-    function nextStep() {
-        // Validate current step
-        if (!validateCurrentStep()) {
-            return;
-        }
-        
-        // Collect data for contact step
-        if (schedulingData.step === 3) {
-            collectContactInfo();
-        }
-        
-        schedulingData.step++;
-        updateSchedulingStep();
-    }
-
-    function previousStep() {
-        schedulingData.step--;
-        updateSchedulingStep();
-    }
-
-    function validateCurrentStep() {
-        switch(schedulingData.step) {
-            case 1:
-                if (!schedulingData.service) {
-                    showToast('Por favor, selecione um tipo de consulta');
-                    return false;
-                }
-                break;
-            case 2:
-                if (!schedulingData.date || !schedulingData.time) {
-                    showToast('Por favor, selecione data e horário');
-                    return false;
-                }
-                break;
-            case 3:
-                const clientName = document.getElementById('clientName');
-                const clientEmail = document.getElementById('clientEmail');
-                const clientPhone = document.getElementById('clientPhone');
-                
-                const name = clientName ? clientName.value.trim() : '';
-                const email = clientEmail ? clientEmail.value.trim() : '';
-                const phone = clientPhone ? clientPhone.value.trim() : '';
-                
-                if (!name || !email || !phone) {
-                    showToast('Por favor, preencha todos os campos obrigatórios');
-                    return false;
-                }
-                
-                // Basic email validation
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    showToast('Por favor, digite um e-mail válido');
-                    return false;
-                }
-                break;
-        }
-        return true;
-    }
-
-    function collectContactInfo() {
-        const clientName = document.getElementById('clientName');
-        const clientEmail = document.getElementById('clientEmail');
-        const clientPhone = document.getElementById('clientPhone');
-        const patientAge = document.getElementById('patientAge');
-        const observations = document.getElementById('observations');
-        
-        schedulingData.clientInfo = {
-            name: clientName ? clientName.value.trim() : '',
-            email: clientEmail ? clientEmail.value.trim() : '',
-            phone: clientPhone ? clientPhone.value.trim() : '',
-            patientAge: patientAge ? patientAge.value.trim() : '',
-            observations: observations ? observations.value.trim() : ''
-        };
-    }
-
-    function updateConfirmationSummary() {
-        const summaryService = document.getElementById('summaryService');
-        const summaryDate = document.getElementById('summaryDate');
-        const summaryTime = document.getElementById('summaryTime');
-        const summaryDuration = document.getElementById('summaryDuration');
-        const summaryPrice = document.getElementById('summaryPrice');
-        
-        if (summaryService) summaryService.textContent = schedulingData.service?.name || '-';
-        if (summaryDate) summaryDate.textContent = schedulingData.date || '-';
-        if (summaryTime) summaryTime.textContent = schedulingData.time || '-';
-        if (summaryDuration) summaryDuration.textContent = schedulingData.service?.duration || '-';
-        if (summaryPrice) summaryPrice.textContent = schedulingData.service?.price || '-';
-    }
-
-    function confirmScheduling() {
-        // Here you would typically send the data to a server
-        showToast('Agendamento confirmado! Você receberá uma confirmação por email em breve.');
-        closeModal();
-        
-        // Reset for next use
-        resetSchedulingData();
-    }
-
-    function closeModal() {
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.classList.remove('show');
-        });
-    }
-
-    // Review System
-    function setRating(rating) {
-        userRating = rating;
-        const stars = document.querySelectorAll('.rating-star');
-        const ratingTexts = ['', 'Muito ruim', 'Ruim', 'Regular', 'Bom', 'Excelente'];
-        
-        stars.forEach((star, index) => {
-            if (index < rating) {
-                star.classList.add('active');
-                star.classList.remove('hover-preview');
-            } else {
-                star.classList.remove('active');
-                star.classList.remove('hover-preview');
-            }
-        });
-
-        const ratingText = document.getElementById('ratingText');
-        if (ratingText) ratingText.textContent = ratingTexts[rating];
-    }
-
-    function loadReviews() {
-        const reviewsList = document.getElementById('reviewsList');
-        if (!reviewsList) return;
-        
-        const allReviews = [...initialReviews, ...userReviews];
-        
-        reviewsList.innerHTML = '';
-        
-        allReviews.forEach(review => {
-            const reviewElement = createReviewElement(review);
-            reviewsList.appendChild(reviewElement);
-        });
-
-        // Setup star hover effects
-        setupRatingStars();
-    }
-
-    function setupRatingStars() {
-        const stars = document.querySelectorAll('.rating-star');
-        
-        stars.forEach((star, index) => {
-            star.addEventListener('mouseenter', () => {
-                if (userRating === 0) {
-                    for (let i = 0; i <= index; i++) {
-                        stars[i].classList.add('hover-preview');
-                    }
-                }
-            });
-
-            star.addEventListener('mouseleave', () => {
-                if (userRating === 0) {
-                    stars.forEach(s => s.classList.remove('hover-preview'));
-                }
-            });
-        });
-    }
-
-    function createReviewElement(review) {
-        const reviewItem = document.createElement('div');
-        reviewItem.className = 'review-item';
-        
-        const starsHtml = Array.from({length: 5}, (_, i) => 
-            `<i class="fas fa-star star${i < review.rating ? '' : ' inactive'}"></i>`
-        ).join('');
-
-        reviewItem.innerHTML = `
-            <div class="review-header">
-                <div class="reviewer-avatar">${review.avatar}</div>
-                <div class="reviewer-info">
-                    <h4>${review.author}</h4>
-                    <div class="review-meta">
-                        <div class="stars">
-                            ${starsHtml}
-                        </div>
-                        ${review.service ? `<span class="review-service">${review.service}</span>` : ''}
-                        <span>${review.date}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="review-content">
-                ${review.content}
-            </div>
-            ${review.specialistResponse ? `
-                <div class="specialist-response">
-                    <div class="response-header">
-                        <i class="fas fa-reply"></i>
-                        Resposta da Especialista
-                    </div>
-                    <p>${review.specialistResponse}</p>
-                </div>
-            ` : ''}
-        `;
-
-        return reviewItem;
-    }
-
-    function submitReview() {
-        const reviewerName = document.getElementById('reviewerName');
-        const reviewService = document.getElementById('reviewService');
-        const reviewComment = document.getElementById('reviewComment');
-        
-        const name = reviewerName ? reviewerName.value.trim() : '';
-        const service = reviewService ? reviewService.value : '';
-        const comment = reviewComment ? reviewComment.value.trim() : '';
-
-        // Validation
-        if (!name) {
-            showToast('Por favor, informe seu nome');
-            return;
-        }
-
-        if (userRating === 0) {
-            showToast('Por favor, selecione uma avaliação');
-            return;
-        }
-
-        if (!comment) {
-            showToast('Por favor, escreva um comentário');
-            return;
-        }
-
-        // Create new review
-        const newReview = {
-            id: Date.now(),
-            author: name,
-            avatar: name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2),
-            rating: userRating,
-            service: service,
-            date: 'Agora',
-            content: comment
-        };
-
-        // Add to list
-        userReviews.unshift(newReview);
-
-        // Clear form
-        if (reviewerName) reviewerName.value = '';
-        if (reviewService) reviewService.value = '';
-        if (reviewComment) reviewComment.value = '';
-        userRating = 0;
-        document.querySelectorAll('.rating-star').forEach(star => {
-            star.classList.remove('active');
-        });
-        const ratingText = document.getElementById('ratingText');
-        if (ratingText) ratingText.textContent = 'Clique nas estrelas para avaliar';
-
-        // Reload reviews
-        loadReviews();
-
-        // Update rating stats
-        updateRatingStats();
-
-        showToast('Sua avaliação foi publicada com sucesso!');
-    }
-
-    function updateRatingStats() {
-        const allReviews = [...initialReviews, ...userReviews];
-        const totalReviews = allReviews.length;
-        const averageRating = allReviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews;
-
-        // Update counters
-        const ratingCount = document.querySelector('.rating-count');
-        const ratingScore = document.querySelector('.rating-score');
-        const rating = document.getElementById('rating');
-        
-        if (ratingCount) ratingCount.textContent = `Baseado em ${totalReviews} avaliações`;
-        if (ratingScore) ratingScore.textContent = averageRating.toFixed(1);
-        if (rating) rating.textContent = averageRating.toFixed(1);
-
-        // Update stars in overview
-        const overviewStars = document.querySelector('.rating-overview .stars');
-        if (overviewStars) {
-            const fullStars = Math.floor(averageRating);
-            overviewStars.innerHTML = Array.from({length: 5}, (_, i) => 
-                `<i class="fas fa-star star${i < fullStars ? '' : ' inactive'}"></i>`
-            ).join('');
-        }
-    }
-
-    // Profile Actions
-    function shareProfile() {
-        if (navigator.share) {
-            navigator.share({
-                title: `Perfil de ${currentSpecialist.name}`,
-                text: `Conheça ${currentSpecialist.name} - ${currentSpecialist.tagline}`,
-                url: window.location.href
-            });
-        } else {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                showToast('Link do perfil copiado para a área de transferência!');
-            }).catch(() => {
-                showToast('Não foi possível copiar o link. Tente novamente.');
-            });
-        }
-    }
-
-    function reportProfile() {
-        const reason = prompt('Por favor, descreva brevemente o motivo do report:');
-        if (reason && reason.trim()) {
-            showToast('Obrigado pelo seu feedback. Nossa equipe analisará o relato em até 24 horas.');
-        }
-    }
-
-    // Utility Functions
-    function showToast(message) {
-        const toast = document.getElementById('toast');
-        const toastMessage = document.getElementById('toastMessage');
-        
-        if (toast && toastMessage) {
-            toastMessage.textContent = message;
-            toast.classList.add('show');
-
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 4000);
-        }
-    }
-
-    // Filter functionality for reviews
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('filter-button') && e.target.closest('.review-filters')) {
-            // Remove active from all review filter buttons
-            e.target.closest('.review-filters').querySelectorAll('.filter-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Add active to clicked button
-            e.target.classList.add('active');
-            
-            // Here you could implement actual filtering logic
-            showToast(`Filtrado por: ${e.target.textContent}`);
-        }
-    });
-
-    // Calendar navigation (placeholder functions)
-    function previousMonth() {
-        showToast('Navegação do calendário - mês anterior');
-    }
-
-    function nextMonth() {
-        showToast('Navegação do calendário - próximo mês');
-    }
-
-    // Accessibility improvements
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add keyboard navigation for specialist cards
-        setTimeout(() => {
-            document.querySelectorAll('.specialist-card').forEach(card => {
-                card.setAttribute('tabindex', '0');
-                card.setAttribute('role', 'button');
-                const nameElement = card.querySelector('h3');
-                if (nameElement) {
-                    card.setAttribute('aria-label', `Ver perfil de ${nameElement.textContent}`);
-                }
-                
-                card.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        card.click();
-                    }
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    showSection(targetId);
+                    
+                    // Atualizar active no menu
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
                 });
             });
-        }, 100);
-    });
-</script>
+
+            // Scroll header effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ========== BUSCA E FILTROS ESPECIALISTAS ==========
+            const searchInput = document.getElementById('searchInput');
+            const clearSearch = document.getElementById('clearSearch');
+            const filterSpecialty = document.getElementById('filterSpecialty');
+            const filterLocation = document.getElementById('filterLocation');
+            const filterRating = document.getElementById('filterRating');
+            const filterAvailability = document.getElementById('filterAvailability');
+            const resetFilters = document.getElementById('resetFilters');
+            const specialistCards = document.querySelectorAll('.specialist-card');
+            const resultsCount = document.getElementById('resultsCount');
+            const noResults = document.getElementById('noResults');
+
+            function filterSpecialists() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const specialty = filterSpecialty.value;
+                const location = filterLocation.value;
+                const rating = filterRating.value;
+                let visibleCount = 0;
+
+                specialistCards.forEach(card => {
+                    const cardText = card.textContent.toLowerCase();
+                    const cardSpecialty = card.dataset.specialty;
+                    const cardLocation = card.dataset.location;
+                    const cardRating = card.dataset.rating;
+
+                    const matchSearch = cardText.includes(searchTerm);
+                    const matchSpecialty = !specialty || cardSpecialty === specialty;
+                    const matchLocation = !location || cardLocation === location;
+                    const matchRating = !rating || parseFloat(cardRating) >= parseFloat(rating);
+
+                    if (matchSearch && matchSpecialty && matchLocation && matchRating) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                resultsCount.textContent = visibleCount;
+                noResults.classList.toggle('show', visibleCount === 0);
+                clearSearch.classList.toggle('active', searchTerm.length > 0);
+            }
+
+            searchInput.addEventListener('input', filterSpecialists);
+            filterSpecialty.addEventListener('change', filterSpecialists);
+            filterLocation.addEventListener('change', filterSpecialists);
+            filterRating.addEventListener('change', filterSpecialists);
+            filterAvailability.addEventListener('change', filterSpecialists);
+
+            clearSearch.addEventListener('click', () => {
+                searchInput.value = '';
+                filterSpecialists();
+            });
+
+            resetFilters.addEventListener('click', () => {
+                searchInput.value = '';
+                filterSpecialty.value = '';
+                filterLocation.value = '';
+                filterRating.value = '';
+                filterAvailability.value = '';
+                filterSpecialists();
+            });
+
+            // ========== RECURSOS - FILTRO DE CATEGORIA ==========
+            const categoryTabs = document.querySelectorAll('.category-tab');
+            const resourceCards = document.querySelectorAll('.resource-card');
+
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const category = tab.dataset.category;
+                    
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    resourceCards.forEach(card => {
+                        if (category === 'all' || card.dataset.category === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // ========== FORMULÁRIO DE CONTATO ==========
+            const contactForm = document.getElementById('contactForm');
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showToast('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                contactForm.reset();
+            });
+
+            function showToast(message) {
+                toastMessage.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // ========== MOBILE MENU ==========
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.querySelector('.nav-menu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
