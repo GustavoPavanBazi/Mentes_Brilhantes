@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentes Brilhantes - Cadastro Neurodivergente</title>
+    <title>Mentes Brilhantes</title>
     <link rel="stylesheet" href="../css/cadastroneuro.css">
     <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
 </head>
@@ -57,10 +57,22 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label optional" for="celular">*Celular (Opcional):</label>
-                        <input type="tel" id="celular" name="celular" class="form-input" placeholder="(00) 00000-0000" maxlength="15">
-                        <div class="error-message" id="celularError">Celular deve ter 11 dígitos (DDD + número)</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="sexo">Sexo:</label>
+                            <select id="sexo" name="sexo" class="form-input" required>
+                                <option value="">Selecione</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                            </select>
+                            <div class="error-message" id="sexoError">Sexo deve ser selecionado</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label optional" for="celular">*Celular (Opcional):</label>
+                            <input type="tel" id="celular" name="celular" class="form-input" placeholder="(00) 00000-0000" maxlength="15">
+                            <div class="error-message" id="celularError">Celular deve ter 11 dígitos (DDD + número)</div>
+                        </div>
                     </div>
                     
                     <div class="form-row">
@@ -121,12 +133,28 @@
                     <button type="submit" class="register-btn">Finalizar Cadastro</button>
                 </form>
                 
-                <div class="terms">
-                    Ao finalizar o cadastro, você concorda com nossos <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>
+                <div class="social-login">
+                    <div class="social-btn" onclick="alert('Funcionalidade em desenvolvimento')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="social-btn" onclick="alert('Funcionalidade em desenvolvimento')">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                    </div>
                 </div>
                 
+                <div class="terms">
+                    Ao finalizar o cadastro, você concorda com nossos <a href="#" onclick="showModal('termsModal'); return false;">Termos de Uso</a> e <a href="#" onclick="showModal('privacyModal'); return false;">Política de Privacidade</a>
+                </div>
+
                 <div class="login-link">
-                    <p><a href="cadastroh.html">← Voltar para cadastro do responsável</a></p>
+                    <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
                 </div>
             </div>
         </div>
@@ -138,6 +166,101 @@
             <h2>✅ Cadastro concluído com sucesso!</h2>
             <p>O cadastro do neurodivergente foi realizado com sucesso. Vocês já podem acessar a plataforma e aproveitar todos os recursos disponíveis!</p>
             <button onclick="closeSuccessModal()">Ir para o início</button>
+        </div>
+    </div>
+
+    <!-- Modais de Termos e Privacidade -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Termos de Uso</h2>
+                <button class="modal-close" onclick="closeModal('termsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Termos de Uso - Mentes Brilhantes</h3>
+                <p><strong>Última atualização:</strong> Agosto de 2025</p>
+                
+                <h4>1. Aceitação dos Termos</h4>
+                <p>Ao acessar e utilizar o site Mentes Brilhantes, você concorda em cumprir estes Termos de Uso. Se não concordar com qualquer parte destes termos, não utilize nossos serviços.</p>
+
+                <h4>2. Descrição do Serviço</h4>
+                <p>O Mentes Brilhantes é uma campanha de conscientização e valorização do autismo que oferece:</p>
+                <ul>
+                    <li>Informações educacionais sobre TEA (Transtorno do Espectro Autista)</li>
+                    <li>Recursos de apoio para famílias e cuidadores</li>
+                    <li>Ferramentas de comunicação e suporte</li>
+                    <li>Acesso à IA Luna para orientação especializada</li>
+                </ul>
+
+                <h4>3. Uso Apropriado</h4>
+                <p>Você se compromete a:</p>
+                <ul>
+                    <li>Usar o site apenas para fins legais e apropriados</li>
+                    <li>Não interferir no funcionamento do site</li>
+                    <li>Não tentar acessar áreas restritas</li>
+                    <li>Respeitar os direitos autorais e de propriedade intelectual</li>
+                    <li>Não transmitir conteúdo ofensivo ou prejudicial</li>
+                </ul>
+
+                <h4>4. Cadastro e Conta de Usuário</h4>
+                <ul>
+                    <li>Você é responsável por manter a confidencialidade de sua senha</li>
+                    <li>Deve fornecer informações precisas e atualizadas</li>
+                    <li>Notificar imediatamente sobre uso não autorizado de sua conta</li>
+                </ul>
+
+                <h4>5. Contato</h4>
+                <p>Para dúvidas sobre estes termos:</p>
+                <ul>
+                    <li>Email: mentesbrilhantestcc@gmail.com</li>
+                    <li>Telefone: (11) 97349-2001</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-close" onclick="closeModal('termsModal')">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Política de Privacidade</h2>
+                <button class="modal-close" onclick="closeModal('privacyModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Política de Privacidade - Mentes Brilhantes</h3>
+                <p><strong>Última atualização:</strong> Agosto de 2025</p>
+                
+                <h4>1. Informações que Coletamos</h4>
+                <p>Coletamos apenas as informações necessárias para fornecer nossos serviços de forma eficaz:</p>
+                <ul>
+                    <li><strong>Informações de Cadastro:</strong> Nome, email, telefone</li>
+                    <li><strong>Informações de Uso:</strong> Como você navega e utiliza nosso site</li>
+                    <li><strong>Informações Técnicas:</strong> Endereço IP, navegador, dispositivo</li>
+                </ul>
+
+                <h4>2. Como Utilizamos suas Informações</h4>
+                <ul>
+                    <li>Fornecer e melhorar nossos serviços</li>
+                    <li>Comunicar sobre atualizações e novidades</li>
+                    <li>Personalizar sua experiência</li>
+                    <li>Garantir a segurança da plataforma</li>
+                </ul>
+
+                <h4>3. Segurança dos Dados</h4>
+                <p>Implementamos medidas técnicas e organizacionais apropriadas para proteger suas informações contra acesso não autorizado.</p>
+
+                <h4>4. Contato</h4>
+                <p>Para exercer seus direitos ou esclarecer dúvidas:</p>
+                <ul>
+                    <li>Email: mentesbrilhantestcc@gmail.com</li>
+                    <li>Telefone: (11) 97349-2001</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-close" onclick="closeModal('privacyModal')">Fechar</button>
+            </div>
         </div>
     </div>
 
@@ -337,6 +460,14 @@
             }
         });
 
+        // Validação do campo Sexo
+        document.getElementById('sexo').addEventListener('change', function(e) {
+            const sexo = e.target.value;
+            if (sexo) {
+                clearError('sexo', 'sexoError');
+            }
+        });
+
         document.getElementById('senha').addEventListener('input', function(e) {
             const password = e.target.value;
             if (password.length >= 6) {
@@ -373,7 +504,7 @@
             });
         });
 
-        // VALIDAÇÃO E ENVIO DO FORMULÁRIO - CORRIGIDO
+        // VALIDAÇÃO E ENVIO DO FORMULÁRIO
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -437,6 +568,12 @@
             const cidade = document.getElementById('cidade').value.trim();
             if (!cidade) {
                 showError('cidade', 'cidadeError', 'Cidade deve ser preenchida');
+                isValid = false;
+            }
+            
+            const sexo = document.getElementById('sexo').value;
+            if (!sexo) {
+                showError('sexo', 'sexoError', 'Sexo deve ser selecionado');
                 isValid = false;
             }
             
@@ -522,6 +659,14 @@
             setTimeout(() => {
                 window.location.href = 'adm_responsavel.html';
             }, 300);
+        }
+
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
         }
     </script>
 </body>
