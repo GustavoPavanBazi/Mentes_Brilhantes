@@ -95,6 +95,11 @@ body {
     background: #fff;
     cursor: pointer;
     margin-bottom: 5px;
+    transition: transform 0.2s ease;
+}
+
+.profile-photo-container:hover {
+    transform: scale(1.05);
 }
 
 .profile-photo {
@@ -118,6 +123,11 @@ body {
     font-size: 11px;
     color: #666;
     cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.profile-photo-label:hover {
+    color: #4A90E2;
 }
 
 .profile-photo-input {
@@ -160,16 +170,24 @@ body {
     font-size: 12px;
     color: #666;
     background: white;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .form-input:focus {
     outline: none;
     border-color: #00bcd4;
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
 }
 
 .form-input.error {
     border-color: #ff4444;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
 }
 
 .form-textarea {
@@ -180,7 +198,7 @@ body {
     font-size: 12px;
     color: #666;
     background: white;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
     resize: vertical;
     min-height: 60px;
     max-height: 80px;
@@ -190,10 +208,12 @@ body {
 .form-textarea:focus {
     outline: none;
     border-color: #00bcd4;
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
 }
 
 .form-textarea.error {
     border-color: #ff4444;
+    animation: shake 0.3s ease;
 }
 
 .certificate-upload {
@@ -210,6 +230,7 @@ body {
 .certificate-upload:hover {
     background: rgba(74, 144, 226, 0.1);
     border-color: #7BB3F0;
+    transform: translateY(-2px);
 }
 
 .certificate-upload.has-file {
@@ -217,10 +238,27 @@ body {
     background: rgba(0, 200, 81, 0.05);
 }
 
+.certificate-upload.has-file:hover {
+    background: rgba(0, 200, 81, 0.1);
+}
+
+/* Estilo para erro do certificado */
+.certificate-upload[style*="border-color: rgb(255, 68, 68)"],
+.certificate-upload[style*="border-color:#ff4444"] {
+    border-color: #ff4444 !important;
+    background: rgba(255, 68, 68, 0.05);
+    animation: shake 0.3s ease;
+}
+
 .certificate-upload-icon {
     font-size: 24px;
     color: #4A90E2;
     margin-bottom: 8px;
+    transition: transform 0.2s ease;
+}
+
+.certificate-upload:hover .certificate-upload-icon {
+    transform: scale(1.1);
 }
 
 .certificate-upload-text {
@@ -238,10 +276,12 @@ body {
 .certificate-file-info {
     display: none;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     color: #00c851;
     font-size: 11px;
     font-weight: 500;
+    margin-top: 8px;
 }
 
 .certificate-input {
@@ -253,10 +293,12 @@ body {
     color: #999;
     text-align: right;
     margin-top: 2px;
+    transition: color 0.2s ease;
 }
 
 .character-counter.error {
     color: #ff4444;
+    font-weight: 600;
 }
 
 .error-message {
@@ -267,6 +309,7 @@ body {
     min-height: 0;
     line-height: 1.2;
     position: relative;
+    font-weight: 500;
 }
 
 .register-btn {
@@ -280,11 +323,18 @@ body {
     font-weight: 600;
     cursor: pointer;
     margin: 9px 0 7px 0;
-    transition: transform 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(74, 144, 226, 0.3);
 }
 
 .register-btn:hover {
     transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(74, 144, 226, 0.4);
+}
+
+.register-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(74, 144, 226, 0.3);
 }
 
 .register-btn:disabled {
@@ -306,6 +356,7 @@ body {
     cursor: pointer;
     display: block;
     margin: 5px 0;
+    transition: color 0.2s ease;
 }
 
 .form-link:hover {
@@ -335,6 +386,11 @@ body {
 .social-btn:hover {
     border-color: #4A90E2;
     transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.social-btn:active {
+    transform: translateY(0);
 }
 
 .social-btn svg {
@@ -349,15 +405,22 @@ body {
     border-top: 1px solid #ddd;
 }
 
+.login-link p {
+    font-size: 12px;
+    color: #666;
+}
+
 .login-link a {
     color: #4A90E2;
     text-decoration: none;
     font-weight: 600;
     font-size: 12px;
+    transition: color 0.2s ease;
 }
 
 .login-link a:hover {
     text-decoration: underline;
+    color: #7BB3F0;
 }
 
 .terms {
@@ -371,10 +434,12 @@ body {
 .terms a {
     color: #4A90E2;
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .terms a:hover {
     text-decoration: underline;
+    color: #7BB3F0;
 }
 
 /* Modal de sucesso */
@@ -389,6 +454,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .success-modal-content {
@@ -398,16 +464,32 @@ body {
     text-align: center;
     max-width: 400px;
     margin: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: modalAppear 0.3s ease;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .success-modal h2 {
     color: #00bcd4;
     margin-bottom: 15px;
+    font-size: 24px;
 }
 
 .success-modal p {
     color: #666;
     margin-bottom: 20px;
+    line-height: 1.5;
+    font-size: 14px;
 }
 
 .success-modal button {
@@ -417,6 +499,20 @@ body {
     border: none;
     border-radius: 20px;
     cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 188, 212, 0.3);
+}
+
+.success-modal button:hover {
+    background: #00a5bb;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 188, 212, 0.4);
+}
+
+.success-modal button:active {
+    transform: translateY(0);
 }
 
 /* Responsividade */
