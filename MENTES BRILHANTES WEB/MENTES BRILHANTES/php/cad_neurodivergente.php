@@ -31,10 +31,6 @@ if ($sql->connect_error) {
 // VERIFICAR SE RESPONSÁVEL ESTÁ LOGADO
 // ============================================
 
-// IMPORTANTE: O responsável deve estar logado para cadastrar um neurodivergente
-// Se não estiver logado, precisa pegar o ID do último responsável cadastrado
-// ou implementar um sistema de código/token
-
 $id_responsa = null;
 
 // Opção 1: Verificar se há sessão do responsável (RECOMENDADO)
@@ -74,6 +70,7 @@ $nome = sanitize($_POST["nome"]);
 $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
 $rg = preg_replace('/[^0-9]/', '', $_POST["rg"]);
 $cpf = preg_replace('/[^0-9]/', '', $_POST["cpf"]);
+$sexo = sanitize($_POST["sexo"]); // CAMPO ADICIONADO
 $celular = isset($_POST["celular"]) ? preg_replace('/[^0-9]/', '', $_POST["celular"]) : "";
 $cep = preg_replace('/[^0-9]/', '', $_POST["cep"]);
 $rua = sanitize($_POST["rua"]);
@@ -133,6 +130,11 @@ function validarCPF($cpf) {
 
 if (!validarCPF($cpf)) {
     $errors[] = "CPF inválido";
+}
+
+// Validar sexo - VALIDAÇÃO ADICIONADA
+if (empty($sexo) || !in_array($sexo, ['Masculino', 'Feminino'])) {
+    $errors[] = "Sexo deve ser selecionado";
 }
 
 // Validar celular (opcional)
@@ -303,10 +305,10 @@ if (isset($_FILES["perfil"]) && $_FILES["perfil"]["error"] == UPLOAD_ERR_OK) {
 $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
 // ============================================
-// INSERIR DADOS NO BANCO
+// INSERIR DADOS NO BANCO - ATUALIZADO COM SEXO
 // ============================================
 
-$stmt = $sql->prepare("INSERT INTO cad_neurodivergentes (nome, email, rg, cpf, celular, cep, rua, bairro, cidade, numero, complemento, senha, perfil, id_responsa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt = $sql->prepare("INSERT INTO cad_neurodivergentes (nome, email, rg, cpf, sexo, celular, cep, rua, bairro, cidade, numero, complemento, senha, perfil, id_responsa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 if (!$stmt) {
     echo json_encode([
@@ -316,7 +318,7 @@ if (!$stmt) {
     exit;
 }
 
-$stmt->bind_param("sssssssssssssi", $nome, $email, $rg, $cpf, $celular, $cep, $rua, $bairro, $cidade, $numero, $complemento, $senha_hash, $perfilbd, $id_responsa);
+$stmt->bind_param("ssssssssssssssi", $nome, $email, $rg, $cpf, $sexo, $celular, $cep, $rua, $bairro, $cidade, $numero, $complemento, $senha_hash, $perfilbd, $id_responsa);
 
 if ($stmt->execute()) {
     $id_inserido = $stmt->insert_id;
