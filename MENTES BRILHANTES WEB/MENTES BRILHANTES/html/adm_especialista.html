@@ -1,2880 +1,1384 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard do Especialista | Mentes Brilhantes</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <style>
-        /* RESET E CONFIGURAÇÕES GLOBAIS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #2C3E50;
-            background: #f8fbff;
-            overflow-x: hidden;
-        }
-
-        /* SIDEBAR NAVIGATION - Barra lateral de navegação */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 280px;
-            height: 100vh;
-            background: linear-gradient(135deg, #4A90E2 0%, #7BB3F0 100%);
-            color: white;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-            overflow-y: auto;
-        }
-
-        /* Estado móvel - sidebar oculta por padrão */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            
-            .sidebar.active {
-                transform: translateX(0);
-            }
-        }
-
-        /* CABEÇALHO DA SIDEBAR - Logo e informações do usuário */
-        .sidebar-header {
-            padding: 30px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .specialist-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .specialist-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .specialist-details h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .specialist-role {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* LOGO DA EMPRESA */
-        .brand-logo {
-            text-align: center;
-            padding: 15px 0;
-        }
-
-        .logo-text {
-            font-size: 1.3rem;
-            font-weight: 800;
-        }
-
-        .logo-subtitle {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
-
-        /* MENU DE NAVEGAÇÃO */
-        .nav-menu {
-            padding: 20px 0;
-        }
-
-        .nav-item {
-            display: block;
-            padding: 15px 25px;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            padding-left: 35px;
-        }
-
-        .nav-item.active {
-            background: rgba(255, 255, 255, 0.2);
-            border-right: 4px solid white;
-        }
-
-        .nav-item i {
-            width: 20px;
-            font-size: 1.1rem;
-        }
-
-        /* BOTÃO DE LOGOUT */
-        .logout-btn {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .logout-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* CONTEÚDO PRINCIPAL - Área principal do dashboard */
-        .main-content {
-            margin-left: 280px;
-            padding: 0;
-            min-height: 100vh;
-            transition: margin-left 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .main-content {
-                margin-left: 0;
-            }
-        }
-
-        /* HEADER SUPERIOR - Cabeçalho com botão mobile e notificações */
-        .top-header {
-            background: white;
-            padding: 20px 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 500;
-        }
-
-        /* BOTÃO MOBILE MENU - Visível apenas em dispositivos móveis */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #4A90E2;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-
-        /* INFORMAÇÕES DO HEADER */
-        .header-info h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2C3E50;
-        }
-
-        .header-subtitle {
-            color: #5A6C7D;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        /* AÇÕES DO HEADER - Notificações e configurações */
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .notification-btn, .settings-btn {
-            position: relative;
-            background: #f8fbff;
-            border: 2px solid rgba(74, 144, 226, 0.1);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #4A90E2;
-        }
-
-        .notification-btn:hover, .settings-btn:hover {
-            background: #4A90E2;
-            color: white;
-        }
-
-        /* BADGE DE NOTIFICAÇÃO */
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #FF6B35;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-        }
-
-        /* CONTAINER PRINCIPAL - Wrapper para o conteúdo das páginas */
-        .page-container {
-            padding: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 768px) {
-            .page-container {
-                padding: 20px 15px;
-            }
-        }
-
-        /* SEÇÕES DO DASHBOARD - Cada página do dashboard */
-        .dashboard-section {
-            display: none;
-        }
-
-        .dashboard-section.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* CARDS ESTATÍSTICOS - Cartões de resumo na página inicial */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        /* TIPOS DE CARDS COLORIDOS */
-        .stat-card.primary {
-            border-color: rgba(74, 144, 226, 0.2);
-        }
-
-        .stat-card.success {
-            border-color: rgba(84, 199, 164, 0.2);
-        }
-
-        .stat-card.warning {
-            border-color: rgba(255, 193, 7, 0.2);
-        }
-
-        .stat-card.danger {
-            border-color: rgba(255, 107, 53, 0.2);
-        }
-
-        /* CONTEÚDO DOS CARDS */
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .stat-info h3 {
-            color: #5A6C7D;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .stat-value {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #2C3E50;
-        }
-
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .stat-icon.primary { background: linear-gradient(135deg, #4A90E2, #7BB3F0); }
-        .stat-icon.success { background: linear-gradient(135deg, #54C7A4, #45A085); }
-        .stat-icon.warning { background: linear-gradient(135deg, #FFC107, #FFB300); }
-        .stat-icon.danger { background: linear-gradient(135deg, #FF6B35, #FF8E53); }
-
-        /* TENDÊNCIA DOS STATS */
-        .stat-trend {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .trend-up { color: #54C7A4; }
-        .trend-down { color: #FF6B35; }
-
-        /* GRÁFICOS E WIDGETS */
-        .chart-container {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .chart-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2C3E50;
-        }
-
-        /* TABELAS - Estilo para tabelas de dados */
-        .data-table {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-        }
-
-        .table-header {
-            padding: 25px 30px;
-            background: linear-gradient(135deg, #f8fbff, #f1f7fd);
-            border-bottom: 2px solid rgba(74, 144, 226, 0.1);
-        }
-
-        .table-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2C3E50;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .table-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .filter-btn, .export-btn, .add-btn {
-            background: rgba(74, 144, 226, 0.1);
-            border: 2px solid rgba(74, 144, 226, 0.2);
-            color: #4A90E2;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .add-btn {
-            background: linear-gradient(135deg, #4A90E2, #7BB3F0);
-            color: white;
-            border-color: #4A90E2;
-        }
-
-        .filter-btn:hover, .export-btn:hover {
-            background: #4A90E2;
-            color: white;
-        }
-
-        .add-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
-        }
-
-        /* CONTEÚDO DA TABELA */
-        .table-content {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 15px 30px;
-            text-align: left;
-            border-bottom: 1px solid rgba(74, 144, 226, 0.1);
-        }
-
-        th {
-            background: rgba(74, 144, 226, 0.05);
-            font-weight: 600;
-            color: #2C3E50;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        td {
-            color: #5A6C7D;
-        }
-
-        /* STATUS BADGES - Badges coloridos para status */
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .status-badge.confirmed {
-            background: rgba(84, 199, 164, 0.1);
-            color: #54C7A4;
-        }
-
-        .status-badge.pending {
-            background: rgba(255, 193, 7, 0.1);
-            color: #FFC107;
-        }
-
-        .status-badge.cancelled {
-            background: rgba(255, 107, 53, 0.1);
-            color: #FF6B35;
-        }
-
-        .status-badge.completed {
-            background: rgba(74, 144, 226, 0.1);
-            color: #4A90E2;
-        }
-
-        /* BOTÕES DE AÇÃO - Botões pequenos para ações rápidas */
-        .action-btn {
-            background: none;
-            border: none;
-            padding: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .action-btn.edit {
-            color: #4A90E2;
-        }
-
-        .action-btn.delete {
-            color: #FF6B35;
-        }
-
-        .action-btn.view {
-            color: #54C7A4;
-        }
-
-        .action-btn:hover {
-            background: rgba(0, 0, 0, 0.05);
-            transform: scale(1.1);
-        }
-
-        /* FORMULÁRIOS - Estilo para formulários do dashboard */
-        .form-container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-        }
-
-        .form-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2C3E50;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-subtitle {
-            color: #5A6C7D;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: #2C3E50;
-            margin-bottom: 8px;
-        }
-
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid rgba(74, 144, 226, 0.1);
-            border-radius: 12px;
-            font-size: 1rem;
-            background: white;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: none;
-            border-color: #4A90E2;
-            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
-        }
-
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        /* GRID DE FORMULÁRIO */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        /* BOTÕES PRIMÁRIOS */
-        .btn-primary, .btn-secondary, .btn-danger {
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-            text-decoration: none;
-            border: 2px solid transparent;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #4A90E2, #7BB3F0);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #4A90E2;
-            border-color: rgba(74, 144, 226, 0.2);
-        }
-
-        .btn-danger {
-            background: linear-gradient(135deg, #FF6B35, #FF8E53);
-            color: white;
-        }
-
-        .btn-primary:hover, .btn-danger:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(74, 144, 226, 0.1);
-        }
-
-        /* MODAL - Janelas modais */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal.show {
-            display: flex;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 25px;
-            padding: 40px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #5A6C7D;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .modal-close:hover {
-            background: rgba(74, 144, 226, 0.1);
-            color: #4A90E2;
-        }
-
-        /* TOAST NOTIFICATIONS - Notificações temporárias */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #54C7A4, #45A085);
-            color: white;
-            padding: 18px 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(84, 199, 164, 0.3);
-            font-weight: 600;
-            transform: translateX(100%);
-            transition: all 0.4s ease;
-            z-index: 3000;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .toast.show {
-            transform: translateX(0);
-        }
-
-        .toast.error {
-            background: linear-gradient(135deg, #FF6B35, #FF8E53);
-        }
-
-        .toast.warning {
-            background: linear-gradient(135deg, #FFC107, #FFB300);
-        }
-
-        /* LOADING STATE - Estados de carregamento */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            color: #5A6C7D;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(74, 144, 226, 0.2);
-            border-top-color: #4A90E2;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 15px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* EMPTY STATE - Estados vazios */
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #5A6C7D;
-        }
-
-        .empty-state i {
-            font-size: 4rem;
-            color: rgba(74, 144, 226, 0.3);
-            margin-bottom: 20px;
-        }
-
-        .empty-state h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #2C3E50;
-        }
-
-        /* RESPONSIVE ADJUSTMENTS - Ajustes responsivos */
-        @media (max-width: 1024px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            th, td {
-                padding: 12px 15px;
-            }
-            
-            .modal-content {
-                padding: 30px 20px;
-                margin: 20px;
-            }
-        }
-
-        /* UTILITY CLASSES - Classes utilitárias */
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .mt-20 { margin-top: 20px; }
-        .mb-20 { margin-bottom: 20px; }
-        .hidden { display: none; }
-        .flex { display: flex; }
-        .justify-between { justify-content: space-between; }
-        .align-center { align-items: center; }
-        .gap-10 { gap: 10px; }
-        .gap-15 { gap: 15px; }
-        .gap-20 { gap: 20px; }
-
-        /* CAMPOS PROTEGIDOS */
-        .protected-field {
-            background-color: #f8fbff !important;
-            cursor: not-allowed !important;
-            opacity: 0.8;
-        }
-
-        .info-box {
-            background: rgba(255, 193, 7, 0.1);
-            border-left: 4px solid #FFC107;
-            padding: 15px;
-            margin-bottom: 25px;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .info-box-title {
-            color: #B8860B;
-            font-weight: 600;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .info-box-text {
-            color: #2C3E50;
-            margin: 0;
-            font-size: 0.9rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentes Brilhantes</title>
+  <link rel="stylesheet" href="../css/adm_especialista.css">
+  <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- SIDEBAR DE NAVEGAÇÃO -->
-    <div class="sidebar" id="sidebar">
-        <!-- Cabeçalho da sidebar com informações do especialista -->
-        <div class="sidebar-header">
-            <div class="specialist-info">
-                <div class="specialist-avatar">MF</div>
-                <div class="specialist-details">
-                    <h3>Dra. Marina Fernandes</h3>
-                    <div class="specialist-role">Psicóloga Clínica</div>
-                </div>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="logo-section">
+        <img src="../img/LogoMB.png" alt="Mentes Brilhantes">
+        <span>Mentes Brilhantes</span>
+      </div>
+      <div class="user-profile" onclick="toggleUserDropdown()">
+        <div class="user-avatar">MF</div>
+        <div class="user-info">
+          <h4>Dra. Marina Fernandes</h4>
+          <p>Especialista</p>
+        </div>
+        <i class="fas fa-chevron-down text-xs"></i>
+        <div class="user-dropdown" id="userDropdown">
+          <div class="user-dropdown-item" onclick="navigateTo('perfil')">
+            <i class="fas fa-user"></i> Meu Perfil
+          </div>
+          <div class="user-dropdown-item" onclick="navigateTo('configuracoes')">
+            <i class="fas fa-cog"></i> Configurações
+          </div>
+          <div class="user-dropdown-item" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> Sair
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="main-layout">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="nav-section">
+        <div class="nav-title">Principal</div>
+        <a class="nav-item active" data-section="dashboard">
+          <i class="fas fa-chart-line"></i><span>Dashboard</span>
+        </a>
+        <a class="nav-item" data-section="consultas">
+          <i class="fas fa-calendar-alt"></i><span>Consultas</span>
+        </a>
+        <a class="nav-item" data-section="pacientes">
+          <i class="fas fa-users"></i><span>Pacientes</span>
+        </a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-title">Gestão</div>
+        <a class="nav-item" data-section="avaliacoes">
+          <i class="fas fa-star"></i><span>Avaliações</span>
+        </a>
+        <a class="nav-item" data-section="conteudos">
+          <i class="fas fa-book"></i><span>Conteúdos</span>
+        </a>
+        <a class="nav-item" data-section="agenda">
+          <i class="fas fa-clock"></i><span>Agenda</span>
+        </a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-title">Conta</div>
+        <a class="nav-item" data-section="perfil">
+          <i class="fas fa-user-cog"></i><span>Meu Perfil</span>
+        </a>
+        <a class="nav-item" data-section="configuracoes">
+          <i class="fas fa-cog"></i><span>Configurações</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dashboard Section -->
+      <div class="section active" id="dashboard">
+        <div class="page-header">
+          <h1 class="page-title">Bem-vinda, Dra. Marina</h1>
+          <p class="page-subtitle">Aqui está um resumo das suas atividades recentes.</p>
+        </div>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon primary">
+              <i class="fas fa-calendar-check"></i>
             </div>
-            
-            <div class="brand-logo">
-                <div class="logo-text">Mentes Brilhantes</div>
-                <div class="logo-subtitle">Dashboard do Especialista</div>
+            <div class="stat-value" id="totalConsultas">24</div>
+            <div class="stat-label">Consultas do Mês</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon success">
+              <i class="fas fa-users"></i>
             </div>
+            <div class="stat-value" id="totalPacientes">127</div>
+            <div class="stat-label">Pacientes Ativos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon warning">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-value" id="receitaMensal">R$ 6.720</div>
+            <div class="stat-label">Receita Mensal</div>
+          </div>
         </div>
 
-        <!-- Menu de navegação -->
-        <nav class="nav-menu">
-            <button class="nav-item active" onclick="showSection('dashboard')">
-                <i class="fas fa-chart-line"></i>
-                <span>Dashboard</span>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Próximas Consultas</span>
+            <button class="btn btn-primary btn-sm" onclick="navigateTo('consultas')">
+              Ver Todas
             </button>
-            <button class="nav-item" onclick="showSection('appointments')">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Consultas</span>
-            </button>
-            <button class="nav-item" onclick="showSection('patients')">
-                <i class="fas fa-users"></i>
-                <span>Pacientes</span>
-            </button>
-            <button class="nav-item" onclick="showSection('reviews')">
-                <i class="fas fa-star"></i>
-                <span>Avaliações</span>
-            </button>
-            <button class="nav-item" onclick="showSection('content')">
-                <i class="fas fa-book"></i>
-                <span>Conteúdos</span>
-            </button>
-            <button class="nav-item" onclick="showSection('schedule')">
-                <i class="fas fa-clock"></i>
-                <span>Agenda</span>
-            </button>
-            <button class="nav-item" onclick="showSection('profile')">
-                <i class="fas fa-user-cog"></i>
-                <span>Meu Perfil</span>
-            </button>
-            <button class="nav-item" onclick="showSection('settings')">
-                <i class="fas fa-cog"></i>
-                <span>Configurações</span>
-            </button>
-        </nav>
+          </div>
+          <div class="card-content">
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Paciente</th>
+                    <th>Data/Hora</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="dashboardConsultasTable">
+                  <!-- Preenchido via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- Botão de logout -->
-        <button class="logout-btn" onclick="logout()">
-            <i class="fas fa-sign-out-alt"></i>
-            <span>Sair</span>
+      <!-- Consultas Section -->
+      <div class="section" id="consultas">
+        <div class="page-header">
+          <h1 class="page-title">Gerenciar Consultas</h1>
+          <p class="page-subtitle">Visualize e gerencie todas as suas consultas.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Filtros</span>
+          </div>
+          <div class="card-content">
+            <div class="filter-panel">
+              <div class="filter-grid">
+                <div class="form-group">
+                  <label>Status</label>
+                  <select id="filterStatus" onchange="applyFilters()">
+                    <option value="">Todos</option>
+                    <option value="Confirmada">Confirmada</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Cancelada">Cancelada</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Tipo</label>
+                  <select id="filterTipo" onchange="applyFilters()">
+                    <option value="">Todos</option>
+                    <option value="Presencial">Presencial</option>
+                    <option value="Online">Online</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Data Inicial</label>
+                  <input type="date" id="filterDataInicio" onchange="applyFilters()">
+                </div>
+                <div class="form-group">
+                  <label>Data Final</label>
+                  <input type="date" id="filterDataFim" onchange="applyFilters()">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Todas as Consultas</span>
+            <div class="btn-group">
+              <button class="btn btn-outline" onclick="exportConsultations()">
+                <i class="fas fa-download"></i> Exportar
+              </button>
+              <button class="btn btn-primary" onclick="showModal('addAppointmentModal')">
+                <i class="fas fa-plus"></i> Nova Consulta
+              </button>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Paciente</th>
+                    <th>Data/Hora</th>
+                    <th>Tipo</th>
+                    <th>Status</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="consultasTable">
+                  <!-- Preenchido via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pacientes Section -->
+      <div class="section" id="pacientes">
+        <div class="page-header">
+          <h1 class="page-title">Meus Pacientes</h1>
+          <p class="page-subtitle">Gerencie informações dos seus pacientes.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Buscar Paciente</span>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <input type="text" id="searchPaciente" placeholder="Digite o nome do paciente..." onkeyup="searchPatients()">
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Lista de Pacientes</span>
+            <div class="btn-group">
+              <button class="btn btn-outline" onclick="exportPatients()">
+                <i class="fas fa-download"></i> Exportar
+              </button>
+              <button class="btn btn-primary" onclick="showModal('addPatientModal')">
+                <i class="fas fa-user-plus"></i> Novo Paciente
+              </button>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Responsável</th>
+                    <th>Telefone</th>
+                    <th>Última Consulta</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="pacientesTable">
+                  <!-- Preenchido via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avaliações Section -->
+      <div class="section" id="avaliacoes">
+        <div class="page-header">
+          <h1 class="page-title">Avaliações</h1>
+          <p class="page-subtitle">Veja o feedback dos seus pacientes.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon warning">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="stat-value">4.8</div>
+            <div class="stat-label">Avaliação Média</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon primary">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="stat-value" id="totalAvaliacoes">156</div>
+            <div class="stat-label">Total de Avaliações</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Últimas Avaliações</span>
+          </div>
+          <div class="card-content" id="avaliacoesContent">
+            <!-- Preenchido via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Conteúdos Section -->
+      <div class="section" id="conteudos">
+        <div class="page-header">
+          <h1 class="page-title">Conteúdos Educativos</h1>
+          <p class="page-subtitle">Gerencie materiais e recursos para seus pacientes.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Meus Conteúdos</span>
+            <button class="btn btn-primary" onclick="showModal('addContentModal')">
+              <i class="fas fa-plus"></i> Novo Conteúdo
+            </button>
+          </div>
+          <div class="card-content" id="conteudosGrid">
+            <!-- Preenchido via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Agenda Section -->
+      <div class="section" id="agenda">
+        <div class="page-header">
+          <h1 class="page-title">Minha Agenda</h1>
+          <p class="page-subtitle">Visualize e gerencie sua disponibilidade.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Configurar Horários</span>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <label>Dia da Semana</label>
+              <select id="agendaDia">
+                <option>Segunda-feira</option>
+                <option>Terça-feira</option>
+                <option>Quarta-feira</option>
+                <option>Quinta-feira</option>
+                <option>Sexta-feira</option>
+                <option>Sábado</option>
+                <option>Domingo</option>
+              </select>
+            </div>
+            <div class="filter-grid">
+              <div class="form-group">
+                <label>Horário Início</label>
+                <input type="time" id="agendaInicio" value="09:00">
+              </div>
+              <div class="form-group">
+                <label>Horário Fim</label>
+                <input type="time" id="agendaFim" value="18:00">
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="saveAgenda()">
+              <i class="fas fa-save"></i> Salvar Horário
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Horários Configurados</span>
+          </div>
+          <div class="card-content" id="agendaList">
+            <!-- Preenchido via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Perfil Section -->
+      <div class="section" id="perfil">
+        <div class="page-header">
+          <h1 class="page-title">Meu Perfil</h1>
+          <p class="page-subtitle">Gerencie suas informações pessoais e profissionais.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Informações Pessoais</span>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <label>Nome Completo</label>
+              <input type="text" id="perfilNome" value="Marina Fernandes">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="perfilEmail" value="marina.fernandes@mentesbrilhantes.com.br">
+            </div>
+            <div class="filter-grid">
+              <div class="form-group">
+                <label>Telefone</label>
+                <input type="tel" id="perfilTelefone" value="(11) 98765-4321">
+              </div>
+              <div class="form-group">
+                <label>CRP</label>
+                <input type="text" id="perfilCRP" value="06/123456">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Especialidade</label>
+              <input type="text" id="perfilEspecialidade" value="Psicologia Infantil">
+            </div>
+            <div class="form-group">
+              <label>Biografia</label>
+              <textarea id="perfilBio">Psicóloga especializada em desenvolvimento infantil com mais de 10 anos de experiência.</textarea>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-secondary" onclick="cancelEdit()">
+                <i class="fas fa-times"></i> Cancelar
+              </button>
+              <button class="btn btn-primary" onclick="saveProfile()">
+                <i class="fas fa-save"></i> Salvar Alterações
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Configurações Section -->
+      <div class="section" id="configuracoes">
+        <div class="page-header">
+          <h1 class="page-title">Configurações</h1>
+          <p class="page-subtitle">Personalize suas preferências do sistema.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Notificações</span>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <label style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" id="notifEmail" checked style="width: auto;">
+                Receber notificações por email
+              </label>
+            </div>
+            <div class="form-group">
+              <label style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" id="notifSMS" style="width: auto;">
+                Receber notificações por SMS
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Segurança</span>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <label>Senha Atual</label>
+              <input type="password" id="senhaAtual">
+            </div>
+            <div class="form-group">
+              <label>Nova Senha</label>
+              <input type="password" id="senhaNova">
+            </div>
+            <div class="form-group">
+              <label>Confirmar Nova Senha</label>
+              <input type="password" id="senhaConfirm">
+            </div>
+            <button class="btn btn-primary" onclick="changePassword()">
+              <i class="fas fa-lock"></i> Alterar Senha
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modais -->
+  <!-- Modal Nova Consulta -->
+  <div class="modal" id="addAppointmentModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('addAppointmentModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3>Nova Consulta</h3>
+      <div class="form-group">
+        <label>Paciente</label>
+        <select id="consultaPaciente">
+          <option value="">Selecione um paciente</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Data e Hora</label>
+        <input type="datetime-local" id="consultaDataHora">
+      </div>
+      <div class="form-group">
+        <label>Tipo</label>
+        <select id="consultaTipo">
+          <option>Presencial</option>
+          <option>Online</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Valor (R$)</label>
+        <input type="number" id="consultaValor" value="280" step="10">
+      </div>
+      <div class="form-group">
+        <label>Observações</label>
+        <textarea id="consultaObs" placeholder="Observações adicionais..."></textarea>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal('addAppointmentModal')">
+          <i class="fas fa-times"></i> Cancelar
         </button>
+        <button class="btn btn-primary" onclick="addAppointment()">
+          <i class="fas fa-save"></i> Salvar
+        </button>
+      </div>
     </div>
+  </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <div class="main-content">
-        <!-- Header superior com menu mobile -->
-        <header class="top-header">
-            <!-- Botão para menu mobile -->
-            <button class="mobile-menu-btn" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
+  <!-- Modal Novo Paciente -->
+  <div class="modal" id="addPatientModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('addPatientModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3>Novo Paciente</h3>
+      <div class="form-group">
+        <label>Nome Completo</label>
+        <input type="text" id="pacienteNome" placeholder="Nome do paciente">
+      </div>
+      <div class="form-group">
+        <label>Data de Nascimento</label>
+        <input type="date" id="pacienteDataNasc">
+      </div>
+      <div class="form-group">
+        <label>Nome do Responsável</label>
+        <input type="text" id="pacienteResponsavel" placeholder="Nome do responsável">
+      </div>
+      <div class="form-group">
+        <label>Telefone</label>
+        <input type="tel" id="pacienteTelefone" placeholder="(11) 98765-4321">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="pacienteEmail" placeholder="email@exemplo.com">
+      </div>
+      <div class="form-group">
+        <label>Observações</label>
+        <textarea id="pacienteObs" placeholder="Informações relevantes sobre o paciente..."></textarea>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal('addPatientModal')">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+        <button class="btn btn-primary" onclick="addPatient()">
+          <i class="fas fa-save"></i> Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Visualizar Consulta -->
+  <div class="modal" id="viewAppointmentModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('viewAppointmentModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3>Detalhes da Consulta</h3>
+      <div id="appointmentDetails"></div>
+    </div>
+  </div>
+
+  <!-- Modal Visualizar Paciente -->
+  <div class="modal" id="viewPatientModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('viewPatientModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3>Detalhes do Paciente</h3>
+      <div id="patientDetails"></div>
+    </div>
+  </div>
+
+  <!-- Modal Novo Conteúdo -->
+  <div class="modal" id="addContentModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('addContentModal')">
+        <i class="fas fa-times"></i>
+      </button>
+      <h3>Novo Conteúdo</h3>
+      <div class="form-group">
+        <label>Título</label>
+        <input type="text" id="contentTitulo" placeholder="Título do conteúdo">
+      </div>
+      <div class="form-group">
+        <label>Tipo</label>
+        <select id="contentTipo">
+          <option>Artigo</option>
+          <option>Vídeo</option>
+          <option>PDF</option>
+          <option>Link</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Descrição</label>
+        <textarea id="contentDesc" placeholder="Descrição do conteúdo..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>URL/Link</label>
+        <input type="url" id="contentUrl" placeholder="https://...">
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="closeModal('addContentModal')">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+        <button class="btn btn-primary" onclick="addContent()">
+          <i class="fas fa-save"></i> Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============= DADOS SIMULADOS =============
+    let consultas = [
+      { id: 1, paciente: "Lucas Silva", data: "2025-10-10T14:00", tipo: "Presencial", status: "Confirmada", valor: 320 },
+      { id: 2, paciente: "Ana Souza", data: "2025-10-15T09:30", tipo: "Online", status: "Pendente", valor: 280 },
+      { id: 3, paciente: "Gabriel Lima", data: "2025-10-12T16:00", tipo: "Presencial", status: "Confirmada", valor: 320 },
+      { id: 4, paciente: "Mariana Costa", data: "2025-10-18T10:00", tipo: "Online", status: "Pendente", valor: 280 },
+    ];
+
+    let pacientes = [
+      { id: 1, nome: "Gabriel Lima", dataNasc: "2016-05-12", responsavel: "Larissa Lima", telefone: "(11) 97700-1234", email: "larissa@email.com", ultimaConsulta: "2025-09-07", status: "Ativo" },
+      { id: 2, nome: "Lucas Silva", dataNasc: "2014-03-20", responsavel: "Carlos Silva", telefone: "(11) 98888-5555", email: "carlos@email.com", ultimaConsulta: "2025-09-15", status: "Ativo" },
+      { id: 3, nome: "Ana Souza", dataNasc: "2015-07-08", responsavel: "Fernanda Souza", telefone: "(11) 99999-3333", email: "fernanda@email.com", ultimaConsulta: "2025-09-20", status: "Ativo" },
+      { id: 4, nome: "Mariana Costa", dataNasc: "2013-11-15", responsavel: "Roberto Costa", telefone: "(11) 97777-8888", email: "roberto@email.com", ultimaConsulta: "2025-08-30", status: "Ativo" },
+    ];
+
+    let avaliacoes = [
+      { paciente: "Lucas Silva", nota: 5, comentario: "Excelente profissional! Muito atenciosa e dedicada.", data: "2025-09-20" },
+      { paciente: "Ana Souza", nota: 5, comentario: "Minha filha adorou as sessões. Recomendo!", data: "2025-09-18" },
+      { paciente: "Gabriel Lima", nota: 4, comentario: "Ótimo atendimento e ambiente acolhedor.", data: "2025-09-15" },
+    ];
+
+    let conteudos = [
+      { id: 1, titulo: "Desenvolvimento Infantil", tipo: "Artigo", descricao: "Guia completo sobre marcos do desenvolvimento", url: "#" },
+      { id: 2, titulo: "Lidando com Ansiedade", tipo: "Vídeo", descricao: "Técnicas para ajudar crianças ansiosas", url: "#" },
+      { id: 3, titulo: "Rotina Saudável", tipo: "PDF", descricao: "Dicas para estabelecer rotinas", url: "#" },
+    ];
+
+    let horarios = [
+      { dia: "Segunda-feira", inicio: "09:00", fim: "18:00" },
+      { dia: "Quarta-feira", inicio: "09:00", fim: "18:00" },
+      { dia: "Sexta-feira", inicio: "09:00", fim: "16:00" },
+    ];
+
+    // ============= NAVEGAÇÃO =============
+    function navigateTo(section) {
+      // Remover classe active de todas as seções e nav-items
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      
+      // Adicionar classe active na seção e nav-item correspondente
+      document.getElementById(section).classList.add('active');
+      const navItem = document.querySelector(`[data-section="${section}"]`);
+      if (navItem) navItem.classList.add('active');
+      
+      // Carregar dados da seção
+      loadSectionData(section);
+      
+      // Fechar dropdown do usuário se estiver aberto
+      document.getElementById('userDropdown').classList.remove('active');
+    }
+
+    // Event listeners para navegação
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const section = item.getAttribute('data-section');
+        navigateTo(section);
+      });
+    });
+
+    // ============= MODAIS =============
+    function showModal(id) {
+      document.getElementById(id).classList.add('active');
+      if (id === 'addAppointmentModal') {
+        loadPatientOptions();
+      }
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    // Fechar modal clicando fora
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    });
+
+    // ============= USER DROPDOWN =============
+    function toggleUserDropdown() {
+      const dropdown = document.getElementById('userDropdown');
+      dropdown.classList.toggle('active');
+    }
+
+    // Fechar dropdown ao clicar fora
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.user-profile')) {
+        document.getElementById('userDropdown').classList.remove('active');
+      }
+    });
+
+    function logout() {
+      if (confirm('Deseja realmente sair do sistema?')) {
+        alert('Logout realizado com sucesso!');
+        window.location.href = '../index.html';
+      }
+    }
+
+    // ============= CARREGAR DADOS DAS SEÇÕES =============
+    function loadSectionData(section) {
+      switch(section) {
+        case 'dashboard':
+          renderDashboardConsultas();
+          updateStats();
+          break;
+        case 'consultas':
+          renderConsultas();
+          break;
+        case 'pacientes':
+          renderPacientes();
+          break;
+        case 'avaliacoes':
+          renderAvaliacoes();
+          break;
+        case 'conteudos':
+          renderConteudos();
+          break;
+        case 'agenda':
+          renderAgenda();
+          break;
+      }
+    }
+
+    // ============= DASHBOARD =============
+    function updateStats() {
+      document.getElementById('totalConsultas').textContent = consultas.length;
+      document.getElementById('totalPacientes').textContent = pacientes.length;
+      const receita = consultas.reduce((sum, c) => sum + c.valor, 0);
+      document.getElementById('receitaMensal').textContent = `R$ ${receita.toLocaleString('pt-BR')}`;
+      document.getElementById('totalAvaliacoes').textContent = avaliacoes.length;
+    }
+
+    function renderDashboardConsultas() {
+      const tbody = document.getElementById('dashboardConsultasTable');
+      const proximasConsultas = consultas.slice(0, 3);
+      
+      tbody.innerHTML = proximasConsultas.map(c => `
+        <tr>
+          <td>${c.paciente}</td>
+          <td>${formatDateTime(c.data)}</td>
+          <td>${c.tipo}</td>
+          <td><span class="badge ${getStatusBadge(c.status)}">${c.status}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    // ============= CONSULTAS =============
+    function renderConsultas() {
+      const tbody = document.getElementById('consultasTable');
+      const consultasFiltradas = applyFilters();
+      
+      if (consultasFiltradas.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7">
+              <div class="empty-state">
+                <i class="fas fa-calendar-times"></i>
+                <h3>Nenhuma consulta encontrada</h3>
+                <p>Adicione uma nova consulta para começar.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+      
+      tbody.innerHTML = consultasFiltradas.map(c => `
+        <tr>
+          <td>#${c.id}</td>
+          <td>${c.paciente}</td>
+          <td>${formatDateTime(c.data)}</td>
+          <td>${c.tipo}</td>
+          <td><span class="badge ${getStatusBadge(c.status)}">${c.status}</span></td>
+          <td>R$ ${c.valor}</td>
+          <td>
+            <button class="action-btn view" title="Ver" onclick="viewAppointment(${c.id})">
+              <i class="fas fa-eye"></i>
             </button>
-            
-            <!-- Informações do header -->
-            <div class="header-info">
-                <h1 id="pageTitle">Dashboard</h1>
-                <div class="header-subtitle" id="pageSubtitle">Visão geral das suas atividades</div>
-            </div>
-
-            <!-- Ações do header -->
-            <div class="header-actions">
-                <button class="notification-btn" onclick="showNotifications()">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </button>
-                <button class="settings-btn" onclick="showSection('settings')">
-                    <i class="fas fa-cog"></i>
-                </button>
-            </div>
-        </header>
-
-        <!-- Container das páginas -->
-        <div class="page-container">
-            <!-- PÁGINA DASHBOARD - Página inicial com estatísticas -->
-            <div class="dashboard-section active" id="dashboard">
-                <!-- Cards de estatísticas -->
-                <div class="stats-grid">
-                    <!-- Card de consultas do mês -->
-                    <div class="stat-card primary">
-                        <div class="stat-header">
-                            <div class="stat-info">
-                                <h3>Consultas este Mês</h3>
-                                <div class="stat-value">24</div>
-                                <div class="stat-trend trend-up">
-                                    <i class="fas fa-arrow-up"></i>
-                                    +12% vs mês anterior
-                                </div>
-                            </div>
-                            <div class="stat-icon primary">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card de pacientes ativos -->
-                    <div class="stat-card success">
-                        <div class="stat-header">
-                            <div class="stat-info">
-                                <h3>Receita Mensal</h3>
-                                <div class="stat-value">R$ 6.720</div>
-                                <div class="stat-trend trend-up">
-                                    <i class="fas fa-arrow-up"></i>
-                                    +8% vs mês anterior
-                                </div>
-                            </div>
-                            <div class="stat-icon success">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card de pacientes ativos -->
-                    <div class="stat-card warning">
-                        <div class="stat-header">
-                            <div class="stat-info">
-                                <h3>Pacientes Ativos</h3>
-                                <div class="stat-value">127</div>
-                                <div class="stat-trend trend-up">
-                                    <i class="fas fa-arrow-up"></i>
-                                    +5% vs mês anterior
-                                </div>
-                            </div>
-                            <div class="stat-icon warning">
-                                <i class="fas fa-users"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card de avaliação média -->
-                    <div class="stat-card danger">
-                        <div class="stat-header">
-                            <div class="stat-info">
-                                <h3>Avaliação Média</h3>
-                                <div class="stat-value">4.8</div>
-                                <div class="stat-trend trend-up">
-                                    <i class="fas fa-arrow-up"></i>
-                                    Baseado em 127 avaliações
-                                </div>
-                            </div>
-                            <div class="stat-icon danger">
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gráfico de consultas -->
-                <div class="chart-container">
-                    <div class="chart-header">
-                        <h2 class="chart-title">Consultas nos Últimos 6 Meses</h2>
-                        <select class="form-select" style="width: auto;">
-                            <option>Últimos 6 meses</option>
-                            <option>Último ano</option>
-                            <option>Todos os tempos</option>
-                        </select>
-                    </div>
-                    <canvas id="consultasChart" style="max-height: 300px;"></canvas>
-                </div>
-
-                <!-- Próximas consultas e atividades recentes -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-                    <!-- Próximas consultas -->
-                    <div class="data-table">
-                        <div class="table-header">
-                            <h3 class="table-title">
-                                <i class="fas fa-calendar-alt"></i>
-                                Próximas Consultas
-                            </h3>
-                        </div>
-                        <div class="table-content">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Paciente</th>
-                                        <th>Data/Hora</th>
-                                        <th>Tipo</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="upcomingAppointments">
-                                    <!-- Dados serão inseridos via JavaScript -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Atividades recentes -->
-                    <div class="data-table">
-                        <div class="table-header">
-                            <h3 class="table-title">
-                                <i class="fas fa-history"></i>
-                                Atividades Recentes
-                            </h3>
-                        </div>
-                        <div class="table-content">
-                            <div id="recentActivities">
-                                <!-- Atividades serão inseridas via JavaScript -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PÁGINA DE CONSULTAS - Gerenciamento de agendamentos -->
-            <div class="dashboard-section" id="appointments">
-                <!-- Cabeçalho com ações -->
-                <div class="data-table">
-                    <div class="table-header">
-                        <h2 class="table-title">
-                            <i class="fas fa-calendar-alt"></i>
-                            Gerenciar Consultas
-                        </h2>
-                        <div class="table-actions">
-                            <button class="filter-btn">
-                                <i class="fas fa-filter"></i>
-                                Filtrar
-                            </button>
-                            <button class="export-btn">
-                                <i class="fas fa-download"></i>
-                                Exportar
-                            </button>
-                            <button class="add-btn" onclick="showModal('addAppointmentModal')">
-                                <i class="fas fa-plus"></i>
-                                Nova Consulta
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Tabela de consultas -->
-                    <div class="table-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Paciente</th>
-                                    <th>Data/Hora</th>
-                                    <th>Tipo de Consulta</th>
-                                    <th>Status</th>
-                                    <th>Valor</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="appointmentsTable">
-                                <!-- Dados serão inseridos via JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PÁGINA DE PACIENTES - Gerenciamento de pacientes -->
-            <div class="dashboard-section" id="patients">
-                <div class="data-table">
-                    <div class="table-header">
-                        <h2 class="table-title">
-                            <i class="fas fa-users"></i>
-                            Meus Pacientes
-                        </h2>
-                        <div class="table-actions">
-                            <button class="filter-btn">
-                                <i class="fas fa-search"></i>
-                                Buscar
-                            </button>
-                            <button class="export-btn">
-                                <i class="fas fa-download"></i>
-                                Exportar
-                            </button>
-                            <button class="add-btn" onclick="showModal('addPatientModal')">
-                                <i class="fas fa-user-plus"></i>
-                                Novo Paciente
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="table-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Idade</th>
-                                    <th>Responsável</th>
-                                    <th>Telefone</th>
-                                    <th>Última Consulta</th>
-                                    <th>Status</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="patientsTable">
-                                <!-- Dados serão inseridos via JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PÁGINA DE AVALIAÇÕES - Gerenciamento de reviews -->
-            <div class="dashboard-section" id="reviews">
-                <!-- Stats das avaliações -->
-                <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 30px;">
-                    <div class="stat-card primary">
-                        <div class="stat-header">
-                            <div class="stat-info">
-                                <h3>Avaliação Média</h3>
-                                <div class="stat-value">4.8</div>
-                            </div>
-                            <div class="stat-icon primary">
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card success">
-                        <div class="stat-header">
-                            <div class="stat-info">
-                                <h3>Total de Avaliações</h3>
-                                <div class="stat-value">127</div>
-                            </div>
-                            <div class="stat-icon success">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card warning">
-                        <div class="stat-header">
-                            <div class="stat-info">
-                                <h3>Pendentes Resposta</h3>
-                                <div class="stat-value">3</div>
-                            </div>
-                            <div class="stat-icon warning">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card danger">
-                        <div class="stat-header">
-                            <div class="stat-info">
-                                <h3>Este Mês</h3>
-                                <div class="stat-value">12</div>
-                            </div>
-                            <div class="stat-icon danger">
-                                <i class="fas fa-calendar"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lista de avaliações -->
-                <div class="data-table">
-                    <div class="table-header">
-                        <h2 class="table-title">
-                            <i class="fas fa-star"></i>
-                            Avaliações dos Pacientes
-                        </h2>
-                        <div class="table-actions">
-                            <button class="filter-btn">
-                                <i class="fas fa-filter"></i>
-                                Filtrar por Nota
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div id="reviewsList" style="padding: 30px;">
-                        <!-- Reviews serão inseridas via JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- PÁGINA DE CONTEÚDOS - Gerenciamento de conteúdos educativos -->
-            <div class="dashboard-section" id="content">
-                <div class="data-table">
-                    <div class="table-header">
-                        <h2 class="table-title">
-                            <i class="fas fa-book"></i>
-                            Meus Conteúdos
-                        </h2>
-                        <div class="table-actions">
-                            <button class="filter-btn">
-                                <i class="fas fa-filter"></i>
-                                Filtrar
-                            </button>
-                            <button class="add-btn" onclick="showModal('addContentModal')">
-                                <i class="fas fa-plus"></i>
-                                Novo Conteúdo
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="table-content">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Título</th>
-                                    <th>Tipo</th>
-                                    <th>Status</th>
-                                    <th>Preço</th>
-                                    <th>Vendas</th>
-                                    <th>Data</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="contentTable">
-                                <!-- Dados serão inseridos via JavaScript -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PÁGINA DE AGENDA - Configuração de horários -->
-            <div class="dashboard-section" id="schedule">
-                <div class="form-container">
-                    <h2 class="form-title">
-                        <i class="fas fa-clock"></i>
-                        Configurar Agenda
-                    </h2>
-                    <p class="form-subtitle">Configure seus horários de atendimento e disponibilidade</p>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Horário de Início</label>
-                            <input type="time" class="form-input" value="08:00">
-                        </div>
-                        <div class="form-group">
-                            <label>Horário de Término</label>
-                            <input type="time" class="form-input" value="18:00">
-                        </div>
-                        <div class="form-group">
-                            <label>Duração da Consulta (minutos)</label>
-                            <select class="form-select">
-                                <option value="30">30 minutos</option>
-                                <option value="45">45 minutos</option>
-                                <option value="60" selected>60 minutos</option>
-                                <option value="90">90 minutos</option>
-                                <option value="120">120 minutos</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Intervalo entre Consultas (minutos)</label>
-                            <select class="form-select">
-                                <option value="0">Sem intervalo</option>
-                                <option value="15" selected>15 minutos</option>
-                                <option value="30">30 minutos</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Dias da semana -->
-                    <div class="form-group">
-                        <label>Dias de Atendimento</label>
-                        <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px;">
-                            <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 0;">
-                                <input type="checkbox" checked> Segunda-feira
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 0;">
-                                <input type="checkbox" checked> Terça-feira
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 0;">
-                                <input type="checkbox" checked> Quarta-feira
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 0;">
-                                <input type="checkbox" checked> Quinta-feira
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 0;">
-                                <input type="checkbox" checked> Sexta-feira
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 0;">
-                                <input type="checkbox"> Sábado
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 0;">
-                                <input type="checkbox"> Domingo
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-15 mt-20">
-                        <button class="btn-primary" onclick="saveSchedule()">
-                            <i class="fas fa-save"></i>
-                            Salvar Configurações
-                        </button>
-                        <button class="btn-secondary">
-                            <i class="fas fa-undo"></i>
-                            Restaurar Padrão
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Bloqueios de agenda -->
-                <div class="form-container">
-                    <h2 class="form-title">
-                        <i class="fas fa-ban"></i>
-                        Bloquear Horários
-                    </h2>
-                    <p class="form-subtitle">Bloqueie horários específicos para férias, compromissos ou outros eventos</p>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Data Inicial</label>
-                            <input type="date" class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <label>Data Final</label>
-                            <input type="date" class="form-input">
-                        </div>
-                        <div class="form-group">
-                            <label>Motivo do Bloqueio</label>
-                            <input type="text" class="form-input" placeholder="Ex: Férias, Congresso, etc.">
-                        </div>
-                        <div class="form-group">
-                            <label>Tipo de Bloqueio</label>
-                            <select class="form-select">
-                                <option>Dia completo</option>
-                                <option>Período específico</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button class="btn-primary" onclick="blockSchedule()">
-                        <i class="fas fa-ban"></i>
-                        Bloquear Horário
-                    </button>
-                </div>
-            </div>
-
-            <!-- PÁGINA DE PERFIL - Edição de perfil profissional -->
-            <div class="dashboard-section" id="profile">
-                <div class="form-container">
-                    <h2 class="form-title">
-                        <i class="fas fa-user-cog"></i>
-                        Meu Perfil Profissional
-                    </h2>
-                    <p class="form-subtitle">Mantenha suas informações atualizadas para oferecer a melhor experiência aos pacientes</p>
-                    
-                    <div class="info-box">
-                        <div class="info-box-title">
-                            <i class="fas fa-info-circle"></i>
-                            Informação Importante
-                        </div>
-                        <p class="info-box-text">
-                            Os campos Nome, Especialização, CRP e E-mail principal são informações protegidas e não podem ser alteradas diretamente. 
-                            Para modificar esses dados, entre em contato com o suporte através do email: suporte@mentesbrilhantes.com.br
-                        </p>
-                    </div>
-                    
-                    <!-- Informações básicas -->
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Nome Completo</label>
-                            <input type="text" class="form-input protected-field" value="Dra. Marina Fernandes" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>Especialização</label>
-                            <input type="text" class="form-input protected-field" value="Psicóloga Clínica" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>CRP/Registro</label>
-                            <input type="text" class="form-input protected-field" value="CRP 06/123456" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>E-mail Principal</label>
-                            <input type="email" class="form-input protected-field" value="marina.fernandes@email.com" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>Anos de Experiência</label>
-                            <input type="number" class="form-input" value="15">
-                        </div>
-                        <div class="form-group">
-                            <label>Telefone Principal</label>
-                            <input type="tel" class="form-input" value="(11) 99999-9999">
-                        </div>
-                    </div>
-
-                    <!-- Sobre mim -->
-                    <div class="form-group">
-                        <label>Sobre Mim</label>
-                        <textarea class="form-textarea" placeholder="Conte um pouco sobre sua experiência, abordagem terapêutica e como você pode ajudar seus pacientes...">Você já se sentiu perdido tentando entender o comportamento do seu filho autista? Eu ajudo famílias como a sua a desenvolver estratégias eficazes para promover o desenvolvimento e bem-estar de crianças no espectro autista.
-
-Com 15 anos de experiência em psicologia clínica especializada em TEA, tenho mestrado em Psicologia do Desenvolvimento pela USP e já atendi mais de 500 famílias. Minha abordagem integra terapias comportamentais baseadas em evidências com suporte familiar personalizado.</textarea>
-                    </div>
-
-                    <!-- Especialidades -->
-                    <div class="form-group">
-                        <label>Áreas de Especialização</label>
-                        <input type="text" class="form-input" value="Terapia Comportamental, Desenvolvimento Infantil, Apoio Familiar, Intervenção Precoce, Habilidades Sociais, Regulação Emocional">
-                        <small style="color: #5A6C7D; margin-top: 5px; display: block;">Separe as especialidades com vírgulas</small>
-                    </div>
-
-                    <!-- Preços dos serviços -->
-                    <h3 style="margin: 30px 0 20px 0; color: #2C3E50;">Preços dos Serviços</h3>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Consulta Individual (60 min)</label>
-                            <input type="text" class="form-input" value="R$ 280,00">
-                        </div>
-                        <div class="form-group">
-                            <label>Terapia Familiar (75 min)</label>
-                            <input type="text" class="form-input" value="R$ 320,00">
-                        </div>
-                        <div class="form-group">
-                            <label>Avaliação Diagnóstica (120 min)</label>
-                            <input type="text" class="form-input" value="R$ 480,00">
-                        </div>
-                        <div class="form-group">
-                            <label>Consulta Online (50 min)</label>
-                            <input type="text" class="form-input" value="R$ 240,00">
-                        </div>
-                    </div>
-
-                    <div class="flex gap-15 mt-20">
-                        <button class="btn-primary" onclick="saveProfile()">
-                            <i class="fas fa-save"></i>
-                            Salvar Alterações
-                        </button>
-                        <button class="btn-secondary">
-                            <i class="fas fa-undo"></i>
-                            Cancelar
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PÁGINA DE CONFIGURAÇÕES - Configurações gerais do sistema -->
-            <div class="dashboard-section" id="settings">
-                <div class="form-container">
-                    <h2 class="form-title">
-                        <i class="fas fa-cog"></i>
-                        Configurações Gerais
-                    </h2>
-                    <p class="form-subtitle">Personalize as configurações do seu dashboard</p>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Tema do Dashboard</label>
-                            <select class="form-select">
-                                <option>Claro (Padrão)</option>
-                                <option>Escuro</option>
-                                <option>Automático</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Idioma</label>
-                            <select class="form-select">
-                                <option>Português (Brasil)</option>
-                                <option>English</option>
-                                <option>Español</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Fuso Horário</label>
-                            <select class="form-select">
-                                <option>São Paulo (GMT-3)</option>
-                                <option>Rio de Janeiro (GMT-3)</option>
-                                <option>Manaus (GMT-4)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Formato de Data</label>
-                            <select class="form-select">
-                                <option>DD/MM/AAAA</option>
-                                <option>MM/DD/AAAA</option>
-                                <option>AAAA-MM-DD</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Notificações -->
-                    <h3 style="margin: 30px 0 20px 0; color: #2C3E50;">Notificações</h3>
-                    <div style="display: flex; flex-direction: column; gap: 15px;">
-                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 0;">
-                            <input type="checkbox" checked>
-                            <span>Notificar sobre novas consultas agendadas</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 0;">
-                            <input type="checkbox" checked>
-                            <span>Lembrar sobre consultas 1 hora antes</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 0;">
-                            <input type="checkbox" checked>
-                            <span>Notificar sobre novas avaliações de pacientes</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 0;">
-                            <input type="checkbox">
-                            <span>Relatórios semanais de atividade</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 0;">
-                            <input type="checkbox">
-                            <span>Novidades e atualizações da plataforma</span>
-                        </label>
-                    </div>
-
-                    <div class="flex gap-15 mt-20">
-                        <button class="btn-primary" onclick="saveSettings()">
-                            <i class="fas fa-save"></i>
-                            Salvar Configurações
-                        </button>
-                        <button class="btn-danger" onclick="resetSettings()">
-                            <i class="fas fa-trash"></i>
-                            Restaurar Padrões
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Segurança -->
-                <div class="form-container">
-                    <h2 class="form-title">
-                        <i class="fas fa-shield-alt"></i>
-                        Segurança da Conta
-                    </h2>
-                    <p class="form-subtitle">Mantenha sua conta protegida</p>
-                    
-                    <div class="form-group">
-                        <label>Senha Atual</label>
-                        <input type="password" class="form-input" placeholder="Digite sua senha atual">
-                    </div>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label>Nova Senha</label>
-                            <input type="password" class="form-input" placeholder="Digite a nova senha">
-                        </div>
-                        <div class="form-group">
-                            <label>Confirmar Nova Senha</label>
-                            <input type="password" class="form-input" placeholder="Confirme a nova senha">
-                        </div>
-                    </div>
-
-                    <button class="btn-primary" onclick="changePassword()">
-                        <i class="fas fa-lock"></i>
-                        Alterar Senha
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAIS -->
-    
-    <!-- Modal de Nova Consulta -->
-    <div class="modal" id="addAppointmentModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('addAppointmentModal')">
-                <i class="fas fa-times"></i>
+            <button class="action-btn edit" title="Editar" onclick="editAppointment(${c.id})">
+              <i class="fas fa-edit"></i>
             </button>
-            
-            <h2 class="form-title">
-                <i class="fas fa-calendar-plus"></i>
-                Agendar Nova Consulta
-            </h2>
-            
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Paciente *</label>
-                    <select class="form-select" required>
-                        <option value="">Selecione um paciente</option>
-                        <option value="1">João Silva (5 anos)</option>
-                        <option value="2">Maria Santos (8 anos)</option>
-                        <option value="3">Pedro Oliveira (12 anos)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Tipo de Consulta *</label>
-                    <select class="form-select" required>
-                        <option value="">Selecione o tipo</option>
-                        <option value="individual">Consulta Individual</option>
-                        <option value="familiar">Terapia Familiar</option>
-                        <option value="avaliacao">Avaliação Diagnóstica</option>
-                        <option value="online">Consulta Online</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Data *</label>
-                    <input type="date" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label>Horário *</label>
-                    <input type="time" class="form-input" required>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label>Observações</label>
-                <textarea class="form-textarea" placeholder="Observações sobre a consulta..."></textarea>
-            </div>
-            
-            <div class="flex gap-15 justify-between mt-20">
-                <button class="btn-secondary" onclick="closeModal('addAppointmentModal')">
-                    Cancelar
-                </button>
-                <button class="btn-primary" onclick="addAppointment()">
-                    <i class="fas fa-save"></i>
-                    Agendar Consulta
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de Novo Paciente -->
-    <div class="modal" id="addPatientModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('addPatientModal')">
-                <i class="fas fa-times"></i>
+            <button class="action-btn delete" title="Excluir" onclick="deleteAppointment(${c.id})">
+              <i class="fas fa-trash"></i>
             </button>
-            
-            <h2 class="form-title">
-                <i class="fas fa-user-plus"></i>
-                Cadastrar Novo Paciente
-            </h2>
-            
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Nome do Paciente *</label>
-                    <input type="text" class="form-input" required placeholder="Nome completo">
-                </div>
-                <div class="form-group">
-                    <label>Data de Nascimento *</label>
-                    <input type="date" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label>Nome do Responsável *</label>
-                    <input type="text" class="form-input" required placeholder="Nome do pai/mãe/responsável">
-                </div>
-                <div class="form-group">
-                    <label>E-mail *</label>
-                    <input type="email" class="form-input" required placeholder="email@exemplo.com">
-                </div>
-                <div class="form-group">
-                    <label>Telefone *</label>
-                    <input type="tel" class="form-input" required placeholder="(11) 99999-9999">
-                </div>
-                <div class="form-group">
-                    <label>Diagnóstico Atual</label>
-                    <select class="form-select">
-                        <option value="">Selecione (se houver)</option>
-                        <option value="tea">TEA - Transtorno do Espectro Autista</option>
-                        <option value="investigacao">Em investigação</option>
-                        <option value="outro">Outro</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label>Observações Iniciais</label>
-                <textarea class="form-textarea" placeholder="Histórico, comportamentos observados, necessidades específicas..."></textarea>
-            </div>
-            
-            <div class="flex gap-15 justify-between mt-20">
-                <button class="btn-secondary" onclick="closeModal('addPatientModal')">
-                    Cancelar
-                </button>
-                <button class="btn-primary" onclick="addPatient()">
-                    <i class="fas fa-save"></i>
-                    Cadastrar Paciente
-                </button>
-            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function applyFilters() {
+      const status = document.getElementById('filterStatus')?.value || '';
+      const tipo = document.getElementById('filterTipo')?.value || '';
+      const dataInicio = document.getElementById('filterDataInicio')?.value || '';
+      const dataFim = document.getElementById('filterDataFim')?.value || '';
+      
+      return consultas.filter(c => {
+        if (status && c.status !== status) return false;
+        if (tipo && c.tipo !== tipo) return false;
+        if (dataInicio && new Date(c.data) < new Date(dataInicio)) return false;
+        if (dataFim && new Date(c.data) > new Date(dataFim)) return false;
+        return true;
+      });
+    }
+
+    function loadPatientOptions() {
+      const select = document.getElementById('consultaPaciente');
+      select.innerHTML = '<option value="">Selecione um paciente</option>' +
+        pacientes.map(p => `<option value="${p.id}">${p.nome}</option>`).join('');
+    }
+
+    function addAppointment() {
+      const pacienteId = document.getElementById('consultaPaciente').value;
+      const dataHora = document.getElementById('consultaDataHora').value;
+      const tipo = document.getElementById('consultaTipo').value;
+      const valor = parseFloat(document.getElementById('consultaValor').value);
+      
+      if (!pacienteId || !dataHora) {
+        alert('Por favor, preencha todos os campos obrigatórios!');
+        return;
+      }
+      
+      const paciente = pacientes.find(p => p.id == pacienteId);
+      const novaConsulta = {
+        id: consultas.length + 1,
+        paciente: paciente.nome,
+        data: dataHora,
+        tipo: tipo,
+        status: "Pendente",
+        valor: valor
+      };
+      
+      consultas.push(novaConsulta);
+      closeModal('addAppointmentModal');
+      alert('Consulta agendada com sucesso!');
+      renderConsultas();
+      updateStats();
+    }
+
+    function viewAppointment(id) {
+      const consulta = consultas.find(c => c.id === id);
+      const details = document.getElementById('appointmentDetails');
+      
+      details.innerHTML = `
+        <div style="margin-bottom: 1rem;">
+          <strong>ID:</strong> #${consulta.id}<br>
+          <strong>Paciente:</strong> ${consulta.paciente}<br>
+          <strong>Data/Hora:</strong> ${formatDateTime(consulta.data)}<br>
+          <strong>Tipo:</strong> ${consulta.tipo}<br>
+          <strong>Status:</strong> <span class="badge ${getStatusBadge(consulta.status)}">${consulta.status}</span><br>
+          <strong>Valor:</strong> R$ ${consulta.valor}
         </div>
-    </div>
-
-    <!-- Modal de Novo Conteúdo -->
-    <div class="modal" id="addContentModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('addContentModal')">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <h2 class="form-title">
-                <i class="fas fa-plus"></i>
-                Adicionar Novo Conteúdo
-            </h2>
-            
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Título *</label>
-                    <input type="text" class="form-input" required placeholder="Título do conteúdo">
-                </div>
-                <div class="form-group">
-                    <label>Tipo de Conteúdo *</label>
-                    <select class="form-select" required>
-                        <option value="">Selecione o tipo</option>
-                        <option value="ebook">E-book</option>
-                        <option value="video">Vídeo/Curso</option>
-                        <option value="webinar">Webinar</option>
-                        <option value="guia">Guia Prático</option>
-                        <option value="workshop">Workshop</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Preço (R$)</label>
-                    <input type="number" class="form-input" placeholder="0.00" step="0.01">
-                </div>
-                <div class="form-group">
-                    <label>Status</label>
-                    <select class="form-select">
-                        <option value="rascunho">Rascunho</option>
-                        <option value="publicado">Publicado</option>
-                        <option value="arquivado">Arquivado</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label>Descrição *</label>
-                <textarea class="form-textarea" required placeholder="Descreva o conteúdo e seus benefícios..."></textarea>
-            </div>
-            
-            <div class="flex gap-15 justify-between mt-20">
-                <button class="btn-secondary" onclick="closeModal('addContentModal')">
-                    Cancelar
-                </button>
-                <button class="btn-primary" onclick="addContent()">
-                    <i class="fas fa-save"></i>
-                    Salvar Conteúdo
-                </button>
-            </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="closeModal('viewAppointmentModal')">
+            <i class="fas fa-check"></i> OK
+          </button>
         </div>
-    </div>
+      `;
+      
+      showModal('viewAppointmentModal');
+    }
 
-    <!-- TOAST DE NOTIFICAÇÃO -->
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Mensagem do sistema</span>
-    </div>
+    function editAppointment(id) {
+      alert(`Funcionalidade de edição da consulta #${id} será implementada em breve!`);
+    }
 
-    <!-- SCRIPTS JAVASCRIPT -->
-    <script>
-        /* =================================
-         * VARIÁVEIS GLOBAIS E CONFIGURAÇÕES
-         * ================================= */
-        
-        // Dados simulados para demonstração (normalmente viriam de uma API)
-        let dashboardData = {
-            // Dados das próximas consultas
-            upcomingAppointments: [
-                { patient: "João Silva", datetime: "Hoje, 14:00", type: "Individual" },
-                { patient: "Maria Santos", datetime: "Amanhã, 10:30", type: "Familiar" },
-                { patient: "Pedro Oliveira", datetime: "15/01, 16:00", type: "Avaliação" }
-            ],
-            
-            // Dados das consultas completas
-            appointments: [
-                { 
-                    id: 1, 
-                    patient: "João Silva", 
-                    datetime: "2024-01-15 14:00", 
-                    type: "Consulta Individual", 
-                    status: "confirmed", 
-                    value: "R$ 280,00" 
-                },
-                { 
-                    id: 2, 
-                    patient: "Maria Santos", 
-                    datetime: "2024-01-16 10:30", 
-                    type: "Terapia Familiar", 
-                    status: "confirmed", 
-                    value: "R$ 320,00" 
-                },
-                { 
-                    id: 3, 
-                    patient: "Pedro Oliveira", 
-                    datetime: "2024-01-17 16:00", 
-                    type: "Avaliação Diagnóstica", 
-                    status: "pending", 
-                    value: "R$ 480,00" 
-                },
-                { 
-                    id: 4, 
-                    patient: "Ana Costa", 
-                    datetime: "2024-01-12 09:00", 
-                    type: "Consulta Online", 
-                    status: "completed", 
-                    value: "R$ 240,00" 
-                }
-            ],
-            
-            // Dados dos pacientes
-            patients: [
-                { 
-                    id: 1, 
-                    name: "João Silva", 
-                    age: 5, 
-                    responsible: "Maria Silva", 
-                    phone: "(11) 99999-1111", 
-                    lastConsult: "12/01/2024", 
-                    status: "active" 
-                },
-                { 
-                    id: 2, 
-                    name: "Maria Santos", 
-                    age: 8, 
-                    responsible: "Carlos Santos", 
-                    phone: "(11) 99999-2222", 
-                    lastConsult: "10/01/2024", 
-                    status: "active" 
-                },
-                { 
-                    id: 3, 
-                    name: "Pedro Oliveira", 
-                    age: 12, 
-                    responsible: "Ana Oliveira", 
-                    phone: "(11) 99999-3333", 
-                    lastConsult: "08/01/2024", 
-                    status: "active" 
-                }
-            ],
-            
-            // Dados das avaliações/reviews
-            reviews: [
-                {
-                    id: 1,
-                    patient: "Ana Carolina",
-                    rating: 5,
-                    date: "Há 2 semanas",
-                    service: "Terapia Individual",
-                    content: "A Dra. Marina transformou nossa rotina familiar. Meu filho João, de 7 anos, apresentava dificuldades severas de comunicação e comportamentos desafiadores. Em apenas 3 meses de terapia, ele já consegue expressar suas necessidades de forma mais clara e os episódios de crise diminuíram significativamente.",
-                    responded: true,
-                    response: "Ana, muito obrigada pelo feedback! É maravilhoso ver o progresso do João. Continue aplicando as estratégias que trabalhamos em casa."
-                },
-                {
-                    id: 2,
-                    patient: "Roberto Silva",
-                    rating: 5,
-                    date: "Há 1 mês",
-                    service: "Consultoria Familiar",
-                    content: "Como pai de primeira viagem de uma criança autista, eu me sentia completamente perdido. A consultoria da Dra. Marina me deu as ferramentas e a confiança que eu precisava.",
-                    responded: false,
-                    response: null
-                },
-                {
-                    id: 3,
-                    patient: "Maria Paula",
-                    rating: 4,
-                    date: "Há 2 meses",
-                    service: "Avaliação Completa",
-                    content: "A avaliação foi muito completa e detalhada. O relatório me ajudou a entender melhor as necessidades da minha filha e a buscar os recursos adequados na escola.",
-                    responded: true,
-                    response: "Maria, obrigada pelo feedback construtivo! Já implementei melhorias no processo para entregar os relatórios mais rapidamente."
-                }
-            ],
-            
-            // Dados dos conteúdos
-            contents: [
-                { 
-                    id: 1, 
-                    title: "Guia Completo: Primeiros Sinais do Autismo", 
-                    type: "E-book", 
-                    status: "published", 
-                    price: "R$ 89,90", 
-                    sales: 45, 
-                    date: "10/12/2023" 
-                },
-                { 
-                    id: 2, 
-                    title: "Workshop: Estratégias de Comunicação", 
-                    type: "Vídeo", 
-                    status: "published", 
-                    price: "R$ 159,90", 
-                    sales: 32, 
-                    date: "05/12/2023" 
-                },
-                { 
-                    id: 3, 
-                    title: "E-book: Rotinas Estruturadas para TEA", 
-                    type: "E-book", 
-                    status: "draft", 
-                    price: "R$ 49,90", 
-                    sales: 0, 
-                    date: "15/01/2024" 
-                }
-            ],
-            
-            // Atividades recentes
-            recentActivities: [
-                { type: "appointment", text: "Nova consulta agendada com João Silva", time: "2 horas atrás" },
-                { type: "review", text: "Nova avaliação recebida (5 estrelas)", time: "1 dia atrás" },
-                { type: "payment", text: "Pagamento de R$ 280,00 recebido", time: "1 dia atrás" },
-                { type: "content", text: "E-book vendido: Guia Primeiros Sinais", time: "2 dias atrás" }
-            ]
-        };
+    function deleteAppointment(id) {
+      if (confirm('Tem certeza que deseja excluir esta consulta?')) {
+        consultas = consultas.filter(c => c.id !== id);
+        renderConsultas();
+        updateStats();
+        alert('Consulta excluída com sucesso!');
+      }
+    }
 
-        /* =================================
-         * FUNÇÕES DE NAVEGAÇÃO E INTERFACE
-         * ================================= */
-        
-        /**
-         * Alterna a visibilidade da sidebar em dispositivos móveis
-         */
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
+    function exportConsultations() {
+      const csv = 'ID,Paciente,Data/Hora,Tipo,Status,Valor\n' +
+        consultas.map(c => `${c.id},${c.paciente},${c.data},${c.tipo},${c.status},${c.valor}`).join('\n');
+      
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'consultas_export.csv';
+      a.click();
+      alert('Consultas exportadas com sucesso!');
+    }
+
+    // ============= PACIENTES =============
+    function renderPacientes() {
+      const tbody = document.getElementById('pacientesTable');
+      
+      if (pacientes.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8">
+              <div class="empty-state">
+                <i class="fas fa-users"></i>
+                <h3>Nenhum paciente cadastrado</h3>
+                <p>Adicione um novo paciente para começar.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+      
+      tbody.innerHTML = pacientes.map(p => {
+        const idade = calcularIdade(p.dataNasc);
+        return `
+          <tr>
+            <td>#${p.id}</td>
+            <td>${p.nome}</td>
+            <td>${idade} anos</td>
+            <td>${p.responsavel}</td>
+            <td>${p.telefone}</td>
+            <td>${formatDate(p.ultimaConsulta)}</td>
+            <td><span class="badge ${getStatusBadge(p.status)}">${p.status}</span></td>
+            <td>
+              <button class="action-btn view" title="Ver" onclick="viewPatient(${p.id})">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="action-btn edit" title="Editar" onclick="editPatient(${p.id})">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="action-btn delete" title="Excluir" onclick="deletePatient(${p.id})">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function searchPatients() {
+      const search = document.getElementById('searchPaciente').value.toLowerCase();
+      const tbody = document.getElementById('pacientesTable');
+      
+      const filtered = pacientes.filter(p => 
+        p.nome.toLowerCase().includes(search) || 
+        p.responsavel.toLowerCase().includes(search)
+      );
+      
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8">
+              <div class="empty-state">
+                <i class="fas fa-search"></i>
+                <h3>Nenhum paciente encontrado</h3>
+                <p>Tente buscar por outro nome.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+      
+      tbody.innerHTML = filtered.map(p => {
+        const idade = calcularIdade(p.dataNasc);
+        return `
+          <tr>
+            <td>#${p.id}</td>
+            <td>${p.nome}</td>
+            <td>${idade} anos</td>
+            <td>${p.responsavel}</td>
+            <td>${p.telefone}</td>
+            <td>${formatDate(p.ultimaConsulta)}</td>
+            <td><span class="badge ${getStatusBadge(p.status)}">${p.status}</span></td>
+            <td>
+              <button class="action-btn view" title="Ver" onclick="viewPatient(${p.id})">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="action-btn edit" title="Editar" onclick="editPatient(${p.id})">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="action-btn delete" title="Excluir" onclick="deletePatient(${p.id})">
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function addPatient() {
+      const nome = document.getElementById('pacienteNome').value;
+      const dataNasc = document.getElementById('pacienteDataNasc').value;
+      const responsavel = document.getElementById('pacienteResponsavel').value;
+      const telefone = document.getElementById('pacienteTelefone').value;
+      const email = document.getElementById('pacienteEmail').value;
+      
+      if (!nome || !dataNasc || !responsavel || !telefone) {
+        alert('Por favor, preencha todos os campos obrigatórios!');
+        return;
+      }
+      
+      const novoPaciente = {
+        id: pacientes.length + 1,
+        nome: nome,
+        dataNasc: dataNasc,
+        responsavel: responsavel,
+        telefone: telefone,
+        email: email,
+        ultimaConsulta: new Date().toISOString().split('T')[0],
+        status: "Ativo"
+      };
+      
+      pacientes.push(novoPaciente);
+      closeModal('addPatientModal');
+      alert('Paciente cadastrado com sucesso!');
+      renderPacientes();
+      updateStats();
+      
+      // Limpar campos
+      document.getElementById('pacienteNome').value = '';
+      document.getElementById('pacienteDataNasc').value = '';
+      document.getElementById('pacienteResponsavel').value = '';
+      document.getElementById('pacienteTelefone').value = '';
+      document.getElementById('pacienteEmail').value = '';
+      document.getElementById('pacienteObs').value = '';
+    }
+
+    function viewPatient(id) {
+      const paciente = pacientes.find(p => p.id === id);
+      const idade = calcularIdade(paciente.dataNasc);
+      const details = document.getElementById('patientDetails');
+      
+      details.innerHTML = `
+        <div style="margin-bottom: 1rem;">
+          <strong>ID:</strong> #${paciente.id}<br>
+          <strong>Nome:</strong> ${paciente.nome}<br>
+          <strong>Idade:</strong> ${idade} anos<br>
+          <strong>Data de Nascimento:</strong> ${formatDate(paciente.dataNasc)}<br>
+          <strong>Responsável:</strong> ${paciente.responsavel}<br>
+          <strong>Telefone:</strong> ${paciente.telefone}<br>
+          <strong>Email:</strong> ${paciente.email}<br>
+          <strong>Última Consulta:</strong> ${formatDate(paciente.ultimaConsulta)}<br>
+          <strong>Status:</strong> <span class="badge ${getStatusBadge(paciente.status)}">${paciente.status}</span>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="closeModal('viewPatientModal')">
+            <i class="fas fa-check"></i> OK
+          </button>
+        </div>
+      `;
+      
+      showModal('viewPatientModal');
+    }
+
+    function editPatient(id) {
+      alert(`Funcionalidade de edição do paciente #${id} será implementada em breve!`);
+    }
+
+    function deletePatient(id) {
+      if (confirm('Tem certeza que deseja remover este paciente?')) {
+        pacientes = pacientes.filter(p => p.id !== id);
+        renderPacientes();
+        updateStats();
+        alert('Paciente removido com sucesso!');
+      }
+    }
+
+    function exportPatients() {
+      const csv = 'ID,Nome,Data Nascimento,Responsável,Telefone,Email,Última Consulta,Status\n' +
+        pacientes.map(p => `${p.id},${p.nome},${p.dataNasc},${p.responsavel},${p.telefone},${p.email},${p.ultimaConsulta},${p.status}`).join('\n');
+      
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'pacientes_export.csv';
+      a.click();
+      alert('Pacientes exportados com sucesso!');
+    }
+
+    // ============= AVALIAÇÕES =============
+    function renderAvaliacoes() {
+      const container = document.getElementById('avaliacoesContent');
+      
+      if (avaliacoes.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-star"></i>
+            <h3>Nenhuma avaliação ainda</h3>
+            <p>As avaliações dos pacientes aparecerão aqui.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = avaliacoes.map(a => `
+        <div style="padding: 1rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <strong>${a.paciente}</strong>
+            <div style="color: var(--warning-color);">
+              ${'★'.repeat(a.nota)}${'☆'.repeat(5-a.nota)}
+            </div>
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">${a.comentario}</p>
+          <small style="color: var(--text-secondary);">${formatDate(a.data)}</small>
+        </div>
+      `).join('');
+    }
+
+    // ============= CONTEÚDOS =============
+    function renderConteudos() {
+      const container = document.getElementById('conteudosGrid');
+      
+      if (conteudos.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-book"></i>
+            <h3>Nenhum conteúdo cadastrado</h3>
+            <p>Adicione materiais educativos para seus pacientes.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = `
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+          ${conteudos.map(c => `
+            <div class="stat-card">
+              <div class="stat-icon primary">
+                <i class="fas fa-${getContentIcon(c.tipo)}"></i>
+              </div>
+              <h4 style="margin-bottom: 0.5rem;">${c.titulo}</h4>
+              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">${c.descricao}</p>
+              <span class="badge primary">${c.tipo}</span>
+              <div style="margin-top: 1rem;">
+                <button class="action-btn view" onclick="window.open('${c.url}', '_blank')">
+                  <i class="fas fa-external-link-alt"></i>
+                </button>
+                <button class="action-btn edit" onclick="editContent(${c.id})">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="action-btn delete" onclick="deleteContent(${c.id})">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function addContent() {
+      const titulo = document.getElementById('contentTitulo').value;
+      const tipo = document.getElementById('contentTipo').value;
+      const descricao = document.getElementById('contentDesc').value;
+      const url = document.getElementById('contentUrl').value;
+      
+      if (!titulo || !descricao || !url) {
+        alert('Por favor, preencha todos os campos!');
+        return;
+      }
+      
+      const novoConteudo = {
+        id: conteudos.length + 1,
+        titulo: titulo,
+        tipo: tipo,
+        descricao: descricao,
+        url: url
+      };
+      
+      conteudos.push(novoConteudo);
+      closeModal('addContentModal');
+      alert('Conteúdo adicionado com sucesso!');
+      renderConteudos();
+      
+      // Limpar campos
+      document.getElementById('contentTitulo').value = '';
+      document.getElementById('contentDesc').value = '';
+      document.getElementById('contentUrl').value = '';
+    }
+
+    function editContent(id) {
+      alert(`Funcionalidade de edição do conteúdo #${id} será implementada em breve!`);
+    }
+
+    function deleteContent(id) {
+      if (confirm('Tem certeza que deseja excluir este conteúdo?')) {
+        conteudos = conteudos.filter(c => c.id !== id);
+        renderConteudos();
+        alert('Conteúdo excluído com sucesso!');
+      }
+    }
+
+    function getContentIcon(tipo) {
+      const icons = {
+        'Artigo': 'file-alt',
+        'Vídeo': 'video',
+        'PDF': 'file-pdf',
+        'Link': 'link'
+      };
+      return icons[tipo] || 'file';
+    }
+
+    // ============= AGENDA =============
+    function renderAgenda() {
+      const container = document.getElementById('agendaList');
+      
+      if (horarios.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-clock"></i>
+            <h3>Nenhum horário configurado</h3>
+            <p>Configure seus horários de atendimento.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = horarios.map((h, index) => `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--background); border-radius: 10px; margin-bottom: 0.5rem;">
+          <div>
+            <strong>${h.dia}</strong><br>
+            <span style="color: var(--text-secondary);">${h.inicio} - ${h.fim}</span>
+          </div>
+          <button class="action-btn delete" onclick="deleteHorario(${index})">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function saveAgenda() {
+      const dia = document.getElementById('agendaDia').value;
+      const inicio = document.getElementById('agendaInicio').value;
+      const fim = document.getElementById('agendaFim').value;
+      
+      if (!inicio || !fim) {
+        alert('Por favor, preencha os horários!');
+        return;
+      }
+      
+      // Verificar se já existe horário para este dia
+      const exists = horarios.findIndex(h => h.dia === dia);
+      if (exists !== -1) {
+        if (confirm('Já existe um horário configurado para este dia. Deseja substituir?')) {
+          horarios[exists] = { dia, inicio, fim };
+        } else {
+          return;
         }
+      } else {
+        horarios.push({ dia, inicio, fim });
+      }
+      
+      alert('Horário configurado com sucesso!');
+      renderAgenda();
+    }
 
-        /**
-         * Mostra uma seção específica do dashboard e atualiza a navegação
-         * @param {string} sectionId - ID da seção a ser exibida
-         */
-        function showSection(sectionId) {
-            // Remove classe 'active' de todas as seções
-            document.querySelectorAll('.dashboard-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Remove classe 'active' de todos os itens de navegação
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Ativa a seção selecionada
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-            
-            // Ativa o item de navegação correspondente
-            event.target.classList.add('active');
-            
-            // Atualiza o título da página
-            updatePageTitle(sectionId);
-            
-            // Carrega os dados específicos da seção
-            loadSectionData(sectionId);
-            
-            // Fecha a sidebar em dispositivos móveis
-            if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.remove('active');
-            }
-        }
+    function deleteHorario(index) {
+      if (confirm('Deseja remover este horário?')) {
+        horarios.splice(index, 1);
+        renderAgenda();
+        alert('Horário removido com sucesso!');
+      }
+    }
 
-        /**
-         * Atualiza o título da página baseado na seção ativa
-         * @param {string} sectionId - ID da seção
-         */
-        function updatePageTitle(sectionId) {
-            const titles = {
-                'dashboard': { title: 'Dashboard', subtitle: 'Visão geral das suas atividades' },
-                'appointments': { title: 'Consultas', subtitle: 'Gerencie seus agendamentos' },
-                'patients': { title: 'Pacientes', subtitle: 'Lista de pacientes cadastrados' },
-                'reviews': { title: 'Avaliações', subtitle: 'Feedback dos seus pacientes' },
-                'content': { title: 'Conteúdos', subtitle: 'Seus materiais educativos' },
-                'schedule': { title: 'Agenda', subtitle: 'Configure seus horários de atendimento' },
-                'profile': { title: 'Meu Perfil', subtitle: 'Informações profissionais' },
-                'settings': { title: 'Configurações', subtitle: 'Personalize seu dashboard' }
-            };
-            
-            const pageInfo = titles[sectionId] || { title: 'Dashboard', subtitle: 'Visão geral' };
-            
-            document.getElementById('pageTitle').textContent = pageInfo.title;
-            document.getElementById('pageSubtitle').textContent = pageInfo.subtitle;
-        }
+    // ============= PERFIL E CONFIGURAÇÕES =============
+    function saveProfile() {
+      const nome = document.getElementById('perfilNome').value;
+      const email = document.getElementById('perfilEmail').value;
+      
+      if (!nome || !email) {
+        alert('Por favor, preencha todos os campos obrigatórios!');
+        return;
+      }
+      
+      alert('Perfil atualizado com sucesso!');
+    }
 
-        /* =================================
-         * FUNÇÕES DE CARREGAMENTO DE DADOS
-         * ================================= */
-        
-        /**
-         * Carrega os dados específicos de cada seção
-         * @param {string} sectionId - ID da seção
-         */
-        function loadSectionData(sectionId) {
-            switch(sectionId) {
-                case 'dashboard':
-                    loadDashboardData();
-                    break;
-                case 'appointments':
-                    loadAppointmentsData();
-                    break;
-                case 'patients':
-                    loadPatientsData();
-                    break;
-                case 'reviews':
-                    loadReviewsData();
-                    break;
-                case 'content':
-                    loadContentData();
-                    break;
-            }
-        }
+    function cancelEdit() {
+      if (confirm('Deseja descartar as alterações?')) {
+        // Restaurar valores originais
+        document.getElementById('perfilNome').value = "Marina Fernandes";
+        document.getElementById('perfilEmail').value = "marina.fernandes@mentesbrilhantes.com.br";
+        alert('Alterações descartadas.');
+      }
+    }
 
-        /**
-         * Carrega os dados do dashboard principal
-         */
-        function loadDashboardData() {
-            // Carrega próximas consultas
-            loadUpcomingAppointments();
-            // Carrega atividades recentes
-            loadRecentActivities();
-            // Aqui você carregaria dados do gráfico se tivesse Chart.js implementado
-        }
+    function changePassword() {
+      const atual = document.getElementById('senhaAtual').value;
+      const nova = document.getElementById('senhaNova').value;
+      const confirm = document.getElementById('senhaConfirm').value;
+      
+      if (!atual || !nova || !confirm) {
+        alert('Por favor, preencha todos os campos!');
+        return;
+      }
+      
+      if (nova !== confirm) {
+        alert('As senhas não coincidem!');
+        return;
+      }
+      
+      if (nova.length < 6) {
+        alert('A senha deve ter pelo menos 6 caracteres!');
+        return;
+      }
+      
+      alert('Senha alterada com sucesso!');
+      document.getElementById('senhaAtual').value = '';
+      document.getElementById('senhaNova').value = '';
+      document.getElementById('senhaConfirm').value = '';
+    }
 
-        /**
-         * Carrega as próximas consultas na tabela do dashboard
-         */
-        function loadUpcomingAppointments() {
-            const tbody = document.getElementById('upcomingAppointments');
-            if (!tbody) return;
-            
-            tbody.innerHTML = '';
-            
-            dashboardData.upcomingAppointments.forEach(appointment => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${appointment.patient}</td>
-                    <td>${appointment.datetime}</td>
-                    <td>${appointment.type}</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
+    // ============= FUNÇÕES AUXILIARES =============
+    function formatDateTime(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
 
-        /**
-         * Carrega as atividades recentes
-         */
-        function loadRecentActivities() {
-            const container = document.getElementById('recentActivities');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            
-            dashboardData.recentActivities.forEach(activity => {
-                const activityElement = document.createElement('div');
-                activityElement.style.cssText = `
-                    padding: 15px; 
-                    border-bottom: 1px solid rgba(74, 144, 226, 0.1);
-                    display: flex;
-                    align-items: center;
-                    gap: 12px;
-                `;
-                
-                const icon = getActivityIcon(activity.type);
-                
-                activityElement.innerHTML = `
-                    <i class="fas ${icon}" style="color: #4A90E2; width: 20px;"></i>
-                    <div style="flex: 1;">
-                        <div style="font-weight: 600; color: #2C3E50;">${activity.text}</div>
-                        <div style="font-size: 0.9rem; color: #5A6C7D; margin-top: 2px;">${activity.time}</div>
-                    </div>
-                `;
-                
-                container.appendChild(activityElement);
-            });
-        }
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('pt-BR');
+    }
 
-        /**
-         * Retorna o ícone apropriado para cada tipo de atividade
-         * @param {string} type - Tipo da atividade
-         * @returns {string} - Classe do ícone Font Awesome
-         */
-        function getActivityIcon(type) {
-            const icons = {
-                'appointment': 'fa-calendar-plus',
-                'review': 'fa-star',
-                'payment': 'fa-dollar-sign',
-                'content': 'fa-book'
-            };
-            return icons[type] || 'fa-info-circle';
-        }
+    function getStatusBadge(status) {
+      const badges = {
+        'Confirmada': 'success',
+        'Pendente': 'warning',
+        'Cancelada': 'error',
+        'Ativo': 'success',
+        'Inativo': 'error'
+      };
+      return badges[status] || 'primary';
+    }
 
-        /**
-         * Carrega os dados da tabela de consultas
-         */
-        function loadAppointmentsData() {
-            const tbody = document.getElementById('appointmentsTable');
-            if (!tbody) return;
-            
-            tbody.innerHTML = '';
-            
-            dashboardData.appointments.forEach(appointment => {
-                const row = document.createElement('tr');
-                const statusBadge = getStatusBadge(appointment.status);
-                const formattedDate = formatDateTime(appointment.datetime);
-                
-                row.innerHTML = `
-                    <td>${appointment.patient}</td>
-                    <td>${formattedDate}</td>
-                    <td>${appointment.type}</td>
-                    <td>${statusBadge}</td>
-                    <td>${appointment.value}</td>
-                    <td>
-                        <button class="action-btn view" onclick="viewAppointment(${appointment.id})" title="Ver detalhes">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="action-btn edit" onclick="editAppointment(${appointment.id})" title="Editar">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="action-btn delete" onclick="deleteAppointment(${appointment.id})" title="Excluir">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
+    function calcularIdade(dataNasc) {
+      const hoje = new Date();
+      const nascimento = new Date(dataNasc);
+      let idade = hoje.getFullYear() - nascimento.getFullYear();
+      const mes = hoje.getMonth() - nascimento.getMonth();
+      if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+        idade--;
+      }
+      return idade;
+    }
 
-        /**
-         * Carrega os dados da tabela de pacientes
-         */
-        function loadPatientsData() {
-            const tbody = document.getElementById('patientsTable');
-            if (!tbody) return;
-            
-            tbody.innerHTML = '';
-            
-            dashboardData.patients.forEach(patient => {
-                const row = document.createElement('tr');
-                const statusBadge = getStatusBadge(patient.status);
-                
-                row.innerHTML = `
-                    <td>${patient.name}</td>
-                    <td>${patient.age} anos</td>
-                    <td>${patient.responsible}</td>
-                    <td>${patient.phone}</td>
-                    <td>${patient.lastConsult}</td>
-                    <td>${statusBadge}</td>
-                    <td>
-                        <button class="action-btn view" onclick="viewPatient(${patient.id})" title="Ver perfil">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="action-btn edit" onclick="editPatient(${patient.id})" title="Editar">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="action-btn delete" onclick="deletePatient(${patient.id})" title="Excluir">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        /**
-         * Carrega os dados das avaliações/reviews
-         */
-        function loadReviewsData() {
-            const container = document.getElementById('reviewsList');
-            if (!container) return;
-            
-            container.innerHTML = '';
-            
-            dashboardData.reviews.forEach(review => {
-                const reviewElement = createReviewElement(review);
-                container.appendChild(reviewElement);
-            });
-        }
-
-        /**
-         * Cria um elemento HTML para uma avaliação
-         * @param {Object} review - Dados da avaliação
-         * @returns {HTMLElement} - Elemento da avaliação
-         */
-        function createReviewElement(review) {
-            const reviewDiv = document.createElement('div');
-            reviewDiv.style.cssText = `
-                background: linear-gradient(135deg, #f8fbff, #f1f7fd);
-                border: 2px solid rgba(74, 144, 226, 0.1);
-                border-radius: 20px;
-                padding: 25px;
-                margin-bottom: 20px;
-            `;
-            
-            const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
-            const responseSection = review.responded ? 
-                `<div style="background: rgba(84, 199, 164, 0.1); border-left: 4px solid #54C7A4; padding: 15px; margin-top: 15px; border-radius: 0 10px 10px 0;">
-                    <div style="color: #54C7A4; font-weight: 600; margin-bottom: 8px;">
-                        <i class="fas fa-reply"></i> Sua Resposta
-                    </div>
-                    <p style="color: #2C3E50; margin: 0;">${review.response}</p>
-                </div>` :
-                `<button class="btn-primary" onclick="respondReview(${review.id})" style="margin-top: 15px;">
-                    <i class="fas fa-reply"></i> Responder
-                </button>`;
-            
-            reviewDiv.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px;">
-                    <div>
-                        <h4 style="color: #2C3E50; margin-bottom: 5px;">${review.patient}</h4>
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
-                            <div style="color: #fbbf24; font-size: 1.2rem;">${stars}</div>
-                            <span style="background: rgba(74, 144, 226, 0.1); color: #4A90E2; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 600;">${review.service}</span>
-                        </div>
-                        <div style="color: #5A6C7D; font-size: 0.9rem;">${review.date}</div>
-                    </div>
-                </div>
-                <p style="color: #5A6C7D; line-height: 1.6; margin-bottom: 15px;">${review.content}</p>
-                ${responseSection}
-            `;
-            
-            return reviewDiv;
-        }
-
-        /**
-         * Carrega os dados da tabela de conteúdos
-         */
-        function loadContentData() {
-            const tbody = document.getElementById('contentTable');
-            if (!tbody) return;
-            
-            tbody.innerHTML = '';
-            
-            dashboardData.contents.forEach(content => {
-                const row = document.createElement('tr');
-                const statusBadge = getStatusBadge(content.status);
-                
-                row.innerHTML = `
-                    <td>${content.title}</td>
-                    <td>${content.type}</td>
-                    <td>${statusBadge}</td>
-                    <td>${content.price}</td>
-                    <td>${content.sales}</td>
-                    <td>${content.date}</td>
-                    <td>
-                        <button class="action-btn view" onclick="viewContent(${content.id})" title="Ver detalhes">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="action-btn edit" onclick="editContent(${content.id})" title="Editar">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="action-btn delete" onclick="deleteContent(${content.id})" title="Excluir">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        /* =================================
-         * FUNÇÕES UTILITÁRIAS
-         * ================================= */
-        
-        /**
-         * Retorna um badge colorido baseado no status
-         * @param {string} status - Status do item
-         * @returns {string} - HTML do badge
-         */
-        function getStatusBadge(status) {
-            const badges = {
-                'confirmed': '<span class="status-badge confirmed">Confirmada</span>',
-                'pending': '<span class="status-badge pending">Pendente</span>',
-                'cancelled': '<span class="status-badge cancelled">Cancelada</span>',
-                'completed': '<span class="status-badge completed">Concluída</span>',
-                'active': '<span class="status-badge confirmed">Ativo</span>',
-                'inactive': '<span class="status-badge cancelled">Inativo</span>',
-                'published': '<span class="status-badge confirmed">Publicado</span>',
-                'draft': '<span class="status-badge pending">Rascunho</span>',
-                'archived': '<span class="status-badge cancelled">Arquivado</span>'
-            };
-            return badges[status] || `<span class="status-badge">${status}</span>`;
-        }
-
-        /**
-         * Formata data e hora para exibição
-         * @param {string} datetime - String de data/hora
-         * @returns {string} - Data formatada
-         */
-        function formatDateTime(datetime) {
-            const date = new Date(datetime);
-            return date.toLocaleDateString('pt-BR') + ' às ' + date.toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'});
-        }
-
-        /**
-         * Exibe uma notificação toast
-         * @param {string} message - Mensagem a ser exibida
-         * @param {string} type - Tipo da notificação (success, error, warning)
-         */
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            
-            if (toast && toastMessage) {
-                // Remove classes de tipo anteriores
-                toast.classList.remove('error', 'warning');
-                
-                // Adiciona a classe do tipo se não for success
-                if (type !== 'success') {
-                    toast.classList.add(type);
-                }
-                
-                toastMessage.textContent = message;
-                toast.classList.add('show');
-
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 4000);
-            }
-        }
-
-        /* =================================
-         * FUNÇÕES DE MODAL
-         * ================================= */
-        
-        /**
-         * Exibe um modal específico
-         * @param {string} modalId - ID do modal
-         */
-        function showModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('show');
-            }
-        }
-
-        /**
-         * Fecha um modal específico
-         * @param {string} modalId - ID do modal
-         */
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('show');
-            }
-        }
-
-        // Fecha modais ao clicar fora deles
-        window.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.classList.remove('show');
-            }
-        });
-
-        /* =================================
-         * FUNÇÕES DE CRUD (CREATE, READ, UPDATE, DELETE)
-         * ================================= */
-        
-        /**
-         * Adiciona uma nova consulta
-         */
-        function addAppointment() {
-            // Aqui você coletaria os dados do formulário e enviaria para o servidor
-            showToast('Consulta agendada com sucesso!');
-            closeModal('addAppointmentModal');
-            loadAppointmentsData(); // Recarrega os dados
-        }
-
-        /**
-         * Adiciona um novo paciente
-         */
-        function addPatient() {
-            // Aqui você coletaria os dados do formulário e enviaria para o servidor
-            showToast('Paciente cadastrado com sucesso!');
-            closeModal('addPatientModal');
-            loadPatientsData(); // Recarrega os dados
-        }
-
-        /**
-         * Adiciona um novo conteúdo
-         */
-        function addContent() {
-            // Aqui você coletaria os dados do formulário e enviaria para o servidor
-            showToast('Conteúdo adicionado com sucesso!');
-            closeModal('addContentModal');
-            loadContentData(); // Recarrega os dados
-        }
-
-        function viewAppointment(id) {
-            const appointment = dashboardData.appointments.find(apt => apt.id === id);
-            if (appointment) {
-                alert(`Detalhes da consulta:\nPaciente: ${appointment.patient}\nData: ${appointment.datetime}\nTipo: ${appointment.type}`);
-            }
-        }
-
-        /**
-         * Edita uma consulta
-         * @param {number} id - ID da consulta
-         */
-        function editAppointment(id) {
-            showToast('Função de edição em desenvolvimento', 'warning');
-        }
-
-        /**
-         * Exclui uma consulta
-         * @param {number} id - ID da consulta
-         */
-        function deleteAppointment(id) {
-            if (confirm('Tem certeza que deseja excluir esta consulta?')) {
-                // Aqui você removeria do servidor e atualizaria os dados locais
-                dashboardData.appointments = dashboardData.appointments.filter(apt => apt.id !== id);
-                loadAppointmentsData();
-                showToast('Consulta excluída com sucesso!');
-            }
-        }
-
-        /**
-         * Visualiza detalhes de um paciente
-         * @param {number} id - ID do paciente
-         */
-        function viewPatient(id) {
-            const patient = dashboardData.patients.find(p => p.id === id);
-            if (patient) {
-                alert(`Perfil do paciente:\nNome: ${patient.name}\nIdade: ${patient.age} anos\nResponsável: ${patient.responsible}\nTelefone: ${patient.phone}`);
-            }
-        }
-
-        /**
-         * Edita um paciente
-         * @param {number} id - ID do paciente
-         */
-        function editPatient(id) {
-            showToast('Função de edição em desenvolvimento', 'warning');
-        }
-
-        /**
-         * Exclui um paciente
-         * @param {number} id - ID do paciente
-         */
-        function deletePatient(id) {
-            if (confirm('Tem certeza que deseja excluir este paciente?')) {
-                dashboardData.patients = dashboardData.patients.filter(p => p.id !== id);
-                loadPatientsData();
-                showToast('Paciente excluído com sucesso!');
-            }
-        }
-
-        /**
-         * Visualiza detalhes de um conteúdo
-         * @param {number} id - ID do conteúdo
-         */
-        function viewContent(id) {
-            const content = dashboardData.contents.find(c => c.id === id);
-            if (content) {
-                alert(`Detalhes do conteúdo:\nTítulo: ${content.title}\nTipo: ${content.type}\nStatus: ${content.status}\nPreço: ${content.price}`);
-            }
-        }
-
-        /**
-         * Edita um conteúdo
-         * @param {number} id - ID do conteúdo
-         */
-        function editContent(id) {
-            showToast('Função de edição em desenvolvimento', 'warning');
-        }
-
-        /**
-         * Exclui um conteúdo
-         * @param {number} id - ID do conteúdo
-         */
-        function deleteContent(id) {
-            if (confirm('Tem certeza que deseja excluir este conteúdo?')) {
-                dashboardData.contents = dashboardData.contents.filter(c => c.id !== id);
-                loadContentData();
-                showToast('Conteúdo excluído com sucesso!');
-            }
-        }
-
-        /**
-         * Responde a uma avaliação
-         * @param {number} id - ID da avaliação
-         */
-        function respondReview(id) {
-            const response = prompt('Digite sua resposta para esta avaliação:');
-            if (response && response.trim()) {
-                // Aqui você enviaria a resposta para o servidor
-                const review = dashboardData.reviews.find(r => r.id === id);
-                if (review) {
-                    review.responded = true;
-                    review.response = response.trim();
-                    loadReviewsData();
-                    showToast('Resposta enviada com sucesso!');
-                }
-            }
-        }
-
-        /* =================================
-         * FUNÇÕES DE CONFIGURAÇÃO E PERFIL
-         * ================================= */
-        
-        /**
-         * Salva as configurações de agenda
-         */
-        function saveSchedule() {
-            // Aqui você coletaria todos os dados do formulário de agenda
-            // e enviaria para o servidor para persistir as configurações
-            showToast('Configurações de agenda salvas com sucesso!');
-        }
-
-        /**
-         * Bloqueia horários na agenda
-         */
-        function blockSchedule() {
-            // Aqui você coletaria os dados do formulário de bloqueio
-            // e enviaria para o servidor
-            showToast('Horário bloqueado com sucesso!');
-        }
-
-        /**
-         * Salva as alterações no perfil
-         */
-        function saveProfile() {
-            // Aqui você coletaria todos os dados do formulário de perfil
-            // e enviaria para o servidor
-            showToast('Perfil atualizado com sucesso!');
-        }
-
-        /**
-         * Salva as configurações gerais
-         */
-        function saveSettings() {
-            // Aqui você coletaria todas as configurações
-            // e enviaria para o servidor
-            showToast('Configurações salvas com sucesso!');
-        }
-
-        /**
-         * Restaura as configurações padrão
-         */
-        function resetSettings() {
-            if (confirm('Tem certeza que deseja restaurar as configurações padrão? Esta ação não pode ser desfeita.')) {
-                // Aqui você resetaria as configurações no servidor
-                showToast('Configurações restauradas com sucesso!');
-            }
-        }
-
-        /**
-         * Altera a senha do usuário
-         */
-        function changePassword() {
-            // Aqui você validaria a senha atual e salvaria a nova
-            showToast('Senha alterada com sucesso!');
-        }
-
-        /* =================================
-         * FUNÇÕES DE NOTIFICAÇÃO E SISTEMA
-         * ================================= */
-        
-        /**
-         * Exibe o painel de notificações
-         */
-        function showNotifications() {
-            // Aqui você poderia abrir um modal ou dropdown com notificações
-            showToast('Você tem 3 notificações não lidas', 'warning');
-        }
-
-        /**
-         * Função de logout do sistema
-         */
-        function logout() {
-            if (confirm('Tem certeza que deseja sair do sistema?')) {
-                showToast('Redirecionando...', 'warning');
-                // Simula redirecionamento após 2 segundos
-                setTimeout(() => {
-                    window.location.href = '/login.html';
-                }, 2000);
-            }
-        }
-
-        /* =================================
-         * INICIALIZAÇÃO DO SISTEMA
-         * ================================= */
-        
-        /**
-         * Inicializa o dashboard quando o DOM estiver carregado
-         */
-        document.addEventListener('DOMContentLoaded', function() {
-            // Carrega os dados iniciais do dashboard
-            loadDashboardData();
-            
-            // Configura eventos para fechar sidebar em cliques fora dela (mobile)
-            document.addEventListener('click', function(event) {
-                const sidebar = document.getElementById('sidebar');
-                const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-                
-                // Se clicou fora da sidebar e do botão mobile, fecha a sidebar
-                if (window.innerWidth <= 768 && 
-                    !sidebar.contains(event.target) && 
-                    !mobileMenuBtn.contains(event.target)) {
-                    sidebar.classList.remove('active');
-                }
-            });
-            
-            // Adiciona listeners para formulários
-            setupFormListeners();
-            
-            // Configura atalhos de teclado
-            setupKeyboardShortcuts();
-            
-            console.log('Dashboard do Especialista carregado com sucesso!');
-        });
-
-        /**
-         * Configura os listeners dos formulários
-         */
-        function setupFormListeners() {
-            // Previne submit padrão dos formulários e chama as funções apropriadas
-            document.addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                // Identifica qual formulário foi submetido baseado no botão clicado
-                const submitButton = event.submitter;
-                if (submitButton) {
-                    const action = submitButton.getAttribute('onclick');
-                    if (action) {
-                        eval(action);
-                    }
-                }
-            });
-        }
-
-        /**
-         * Configura atalhos de teclado para navegação rápida
-         */
-        function setupKeyboardShortcuts() {
-            document.addEventListener('keydown', function(event) {
-                // Só funciona se não estiver digitando em um input
-                if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
-                    return;
-                }
-                
-                // Atalhos com Alt + número
-                if (event.altKey) {
-                    switch(event.key) {
-                        case '1':
-                            event.preventDefault();
-                            showSection('dashboard');
-                            break;
-                        case '2':
-                            event.preventDefault();
-                            showSection('appointments');
-                            break;
-                        case '3':
-                            event.preventDefault();
-                            showSection('patients');
-                            break;
-                        case '4':
-                            event.preventDefault();
-                            showSection('reviews');
-                            break;
-                        case '5':
-                            event.preventDefault();
-                            showSection('content');
-                            break;
-                    }
-                }
-                
-                // ESC para fechar modais
-                if (event.key === 'Escape') {
-                    document.querySelectorAll('.modal.show').forEach(modal => {
-                        modal.classList.remove('show');
-                    });
-                }
-            });
-        }
-
-        /* =================================
-         * FUNÇÕES DE RESPONSIVIDADE
-         * ================================= */
-        
-        /**
-         * Ajusta layout baseado no tamanho da tela
-         */
-        function handleResize() {
-            const sidebar = document.getElementById('sidebar');
-            
-            // Em telas grandes, sempre mostra a sidebar
-            if (window.innerWidth > 768) {
-                sidebar.classList.remove('active');
-            }
-        }
-
-        // Listener para redimensionamento da janela
-        window.addEventListener('resize', handleResize);
-
-        /* =================================
-         * FUNÇÕES DE VALIDAÇÃO
-         * ================================= */
-        
-        /**
-         * Valida campos obrigatórios de um formulário
-         * @param {HTMLElement} form - Elemento do formulário
-         * @returns {boolean} - True se válido
-         */
-        function validateForm(form) {
-            const requiredFields = form.querySelectorAll('[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.style.borderColor = '#FF6B35';
-                    isValid = false;
-                } else {
-                    field.style.borderColor = 'rgba(74, 144, 226, 0.1)';
-                }
-            });
-            
-            return isValid;
-        }
-
-        /**
-         * Valida formato de email
-         * @param {string} email - Email a ser validado
-         * @returns {boolean} - True se válido
-         */
-        function validateEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        /**
-         * Valida formato de telefone brasileiro
-         * @param {string} phone - Telefone a ser validado
-         * @returns {boolean} - True se válido
-         */
-        function validatePhone(phone) {
-            const phoneRegex = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
-            return phoneRegex.test(phone);
-        }
-
-        /* =================================
-         * FUNÇÕES DE FORMATAÇÃO
-         * ================================= */
-        
-        /**
-         * Formata valor monetário para exibição
-         * @param {number} value - Valor numérico
-         * @returns {string} - Valor formatado
-         */
-        function formatCurrency(value) {
-            return new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format(value);
-        }
-
-        /**
-         * Formata telefone com máscara brasileira
-         * @param {string} phone - Telefone sem formatação
-         * @returns {string} - Telefone formatado
-         */
-        function formatPhone(phone) {
-            const cleaned = phone.replace(/\D/g, '');
-            if (cleaned.length === 11) {
-                return cleaned.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-            } else if (cleaned.length === 10) {
-                return cleaned.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
-            }
-            return phone;
-        }
-
-        /* =================================
-         * FUNÇÕES DE EXPORTAÇÃO
-         * ================================= */
-        
-        /**
-         * Exporta dados para CSV
-         * @param {Array} data - Dados para exportar
-         * @param {string} filename - Nome do arquivo
-         */
-        function exportToCSV(data, filename) {
-            if (!data || !data.length) {
-                showToast('Não há dados para exportar', 'warning');
-                return;
-            }
-            
-            // Cria cabeçalho CSV baseado nas chaves do primeiro objeto
-            const headers = Object.keys(data[0]).join(',');
-            
-            // Cria linhas CSV
-            const csvContent = [headers, ...data.map(row => 
-                Object.values(row).map(value => 
-                    typeof value === 'string' && value.includes(',') ? `"${value}"` : value
-                ).join(',')
-            )].join('\n');
-            
-            // Cria e baixa o arquivo
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = `${filename}.csv`;
-            link.click();
-            
-            showToast(`Dados exportados para ${filename}.csv`);
-        }
-
-        /* =================================
-         * FUNÇÕES DE BUSCA E FILTRO
-         * ================================= */
-        
-        /**
-         * Filtra dados baseado em termo de busca
-         * @param {Array} data - Array de dados
-         * @param {string} searchTerm - Termo de busca
-         * @param {Array} searchFields - Campos para buscar
-         * @returns {Array} - Dados filtrados
-         */
-        function filterData(data, searchTerm, searchFields) {
-            if (!searchTerm) return data;
-            
-            const term = searchTerm.toLowerCase();
-            return data.filter(item => 
-                searchFields.some(field => 
-                    item[field] && item[field].toString().toLowerCase().includes(term)
-                )
-            );
-        }
-
-        /**
-         * Ordena dados por campo específico
-         * @param {Array} data - Array de dados
-         * @param {string} field - Campo para ordenar
-         * @param {string} direction - 'asc' ou 'desc'
-         * @returns {Array} - Dados ordenados
-         */
-        function sortData(data, field, direction = 'asc') {
-            return [...data].sort((a, b) => {
-                let aVal = a[field];
-                let bVal = b[field];
-                
-                // Converte strings para comparação
-                if (typeof aVal === 'string') aVal = aVal.toLowerCase();
-                if (typeof bVal === 'string') bVal = bVal.toLowerCase();
-                
-                if (direction === 'asc') {
-                    return aVal > bVal ? 1 : -1;
-                } else {
-                    return aVal < bVal ? 1 : -1;
-                }
-            });
-        }
-
-        // Fim do arquivo JavaScript
-        console.log('Todas as funções do dashboard foram carregadas!');
-    </script>
+    // ============= INICIALIZAÇÃO =============
+    document.addEventListener('DOMContentLoaded', function() {
+      loadSectionData('dashboard');
+    });
+  </script>
 </body>
 </html>

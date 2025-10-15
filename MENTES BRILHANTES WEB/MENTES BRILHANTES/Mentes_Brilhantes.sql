@@ -1,8 +1,9 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           8.0.30 - MySQL Community Server - GPL
+-- Versão do servidor:           8.4.3 - MySQL Community Server - GPL
 -- OS do Servidor:               Win64
--- HeidiSQL Versão:              12.1.0.6537
+-- HeidiSQL Versão:              12.8.0.6908
+-- ATUALIZADO: Campo 'sexo' adicionado na tabela cad_neurodivergentes
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -29,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `cad_especialista` (
   `certificado` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `descricao` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `perfil` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `senha` varchar(255) NOT NULL,
   PRIMARY KEY (`id_especial`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `cpf` (`cpf`)
@@ -37,12 +39,14 @@ CREATE TABLE IF NOT EXISTS `cad_especialista` (
 -- Copiando dados para a tabela mentes_brilhantes.cad_especialista: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela mentes_brilhantes.cad_neurodivergentes
+-- ATUALIZADO: Adicionado campo 'sexo' após 'cpf'
 CREATE TABLE IF NOT EXISTS `cad_neurodivergentes` (
   `id_neuro` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(150) NOT NULL,
   `email` varchar(100) NOT NULL,
   `rg` char(12) NOT NULL,
   `cpf` char(14) NOT NULL,
+  `sexo` enum('Masculino','Feminino') NOT NULL,
   `celular` char(15) NOT NULL,
   `cep` char(9) NOT NULL,
   `rua` varchar(100) NOT NULL,
@@ -51,8 +55,8 @@ CREATE TABLE IF NOT EXISTS `cad_neurodivergentes` (
   `numero` varchar(10) NOT NULL,
   `complemento` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `id_responsa` int NOT NULL,
   `perfil` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_responsa` int NOT NULL,
   PRIMARY KEY (`id_neuro`) USING BTREE,
   UNIQUE KEY `cpf` (`cpf`),
   UNIQUE KEY `rg` (`rg`),
@@ -80,9 +84,11 @@ CREATE TABLE IF NOT EXISTS `cad_responsavel` (
   PRIMARY KEY (`id_responsa`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `cpf` (`cpf`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Copiando dados para a tabela mentes_brilhantes.cad_responsavel: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela mentes_brilhantes.cad_responsavel: ~1 rows (aproximadamente)
+INSERT INTO `cad_responsavel` (`id_responsa`, `nome`, `email`, `cpf`, `celular`, `cep`, `rua`, `bairro`, `cidade`, `numero`, `complemento`, `senha`, `perfil`) VALUES
+	(1, 'Henrique Nogueira De Oliveira', 'henriquenogueira2811@gmail.com', '412.019.748-44', '(11) 91234-5678', '05836-350', 'Avenida Tomás de Sousa', 'Jardim Monte Azul', 'São Paulo', '168', 'Casa', '123456789', 'img_cad/412.019.748-44.');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
