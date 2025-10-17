@@ -2,29 +2,46 @@
 // Iniciar sessão
 session_start();
 
+// Configurar para retornar JSON
+header('Content-Type: application/json; charset=utf-8');
+
 // Ativar exibição de erros para debug (remover em produção)
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0); // Desabilitado para não interferir no JSON
+
+// Função para retornar erro e parar execução
+function returnError($message) {
+    echo json_encode([
+        'success' => false,
+        'message' => $message
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+// Função para retornar sucesso
+function returnSuccess($message, $data = []) {
+    echo json_encode(array_merge([
+        'success' => true,
+        'message' => $message
+    ], $data), JSON_UNESCAPED_UNICODE);
+    exit;
+}
 
 // Incluir arquivo de conexão
+if (!file_exists("conexao.php")) {
+    returnError('Arquivo de conexão não encontrado');
+}
+
 include "conexao.php";
 
 // Verificar se o formulário foi enviado via POST
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Método de requisição inválido'
-    ]);
-    exit;
+    returnError('Método de requisição inválido');
 }
 
 // Verificar conexão com banco de dados
-if ($sql->connect_error) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Erro de conexão com o banco de dados: ' . $sql->connect_error
-    ]);
-    exit;
+if (!isset($sql) || $sql->connect_error) {
+    returnError('Erro de conexão com o banco de dados');
 }
 
 // ============================================
@@ -33,52 +50,70 @@ if ($sql->connect_error) {
 
 $id_responsa = null;
 
-// Opção 1: Verificar se há sessão do responsável (RECOMENDADO)
-if (isset($_SESSION['id_responsa'])) {
-    $id_responsa = $_SESSION['id_responsa'];
+// Verificar se há sessão do responsável
+if (isset($_SESSION['id_responsa']) && !empty($_SESSION['id_responsa'])) {
+    $id_responsa = intval($_SESSION['id_responsa']);
+    
+    // Verificar se o responsável existe no banco
+    $stmt_check = $sql->prepare("SELECT id_responsa FROM cad_responsavel WHERE id_responsa = ?");
+    $stmt_check->bind_param("i", $id_responsa);
+    $stmt_check->execute();
+    $result_check = $stmt_check->get_result();
+    
+    if ($result_check->num_rows == 0) {
+        $id_responsa = null;
+    }
+    $stmt_check->close();
 }
-// Opção 2: Pegar o último responsável cadastrado (TEMPORÁRIO - apenas para testes)
-else {
+
+// Se não encontrou na sessão, pegar o último cadastrado (TEMPORÁRIO)
+if (!$id_responsa) {
     $result = $sql->query("SELECT id_responsa FROM cad_responsavel ORDER BY id_responsa DESC LIMIT 1");
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $id_responsa = $row['id_responsa'];
+        $id_responsa = intval($row['id_responsa']);
     }
 }
 
-// Se não encontrou o ID do responsável
+// Se ainda não encontrou o ID do responsável
 if (!$id_responsa) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Você precisa estar logado como responsável para cadastrar um neurodivergente. Por favor, faça login primeiro.'
-    ]);
-    exit;
+    returnError('Você precisa estar logado como responsável para cadastrar um neurodivergente. Por favor, faça login primeiro.');
 }
 
 // ============================================
-// SANITIZAÇÃO E VALIDAÇÃO DOS DADOS
+// VERIFICAR SE COLUNA data_nascimento EXISTE
+// ============================================
+
+$columns_check = $sql->query("SHOW COLUMNS FROM cad_neurodivergentes LIKE 'data_nascimento'");
+$has_data_nascimento = ($columns_check && $columns_check->num_rows > 0);
+
+// ============================================
+// SANITIZAÇÃO DOS DADOS
 // ============================================
 
 function sanitize($data) {
+    if ($data === null) return "";
     $data = trim($data);
     $data = stripslashes($data);
-    $data = htmlspecialchars($data);
+    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
     return $data;
 }
 
-$nome = sanitize($_POST["nome"]);
-$email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-$rg = preg_replace('/[^0-9]/', '', $_POST["rg"]);
-$cpf = preg_replace('/[^0-9]/', '', $_POST["cpf"]);
-$sexo = sanitize($_POST["sexo"]); // CAMPO ADICIONADO
-$celular = isset($_POST["celular"]) ? preg_replace('/[^0-9]/', '', $_POST["celular"]) : "";
-$cep = preg_replace('/[^0-9]/', '', $_POST["cep"]);
-$rua = sanitize($_POST["rua"]);
-$bairro = sanitize($_POST["bairro"]);
-$cidade = sanitize($_POST["cidade"]);
-$numero = sanitize($_POST["numero"]);
-$complemento = isset($_POST["complemento"]) ? sanitize($_POST["complemento"]) : "";
-$senha = $_POST["senha"];
+// Receber e sanitizar dados
+$nome = sanitize($_POST["nome"] ?? "");
+$email = filter_var(trim($_POST["email"] ?? ""), FILTER_SANITIZE_EMAIL);
+$data_nascimento = sanitize($_POST["data_nascimento"] ?? "");
+$rg = preg_replace('/[^0-9]/', '', $_POST["rg"] ?? "");
+$cpf = preg_replace('/[^0-9]/', '', $_POST["cpf"] ?? "");
+$sexo = sanitize($_POST["sexo"] ?? "");
+$celular = preg_replace('/[^0-9]/', '', $_POST["celular"] ?? "");
+$cep = preg_replace('/[^0-9]/', '', $_POST["cep"] ?? "");
+$rua = sanitize($_POST["rua"] ?? "");
+$bairro = sanitize($_POST["bairro"] ?? "");
+$cidade = sanitize($_POST["cidade"] ?? "");
+$numero = sanitize($_POST["numero"] ?? "");
+$complemento = sanitize($_POST["complemento"] ?? "");
+$senha = $_POST["senha"] ?? "";
 
 // ============================================
 // VALIDAÇÕES
@@ -94,6 +129,20 @@ if (empty($nome) || strlen($nome) < 2) {
 // Validar email
 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors[] = "Email inválido";
+}
+
+// Validar data de nascimento
+if ($has_data_nascimento && !empty($data_nascimento)) {
+    $date = DateTime::createFromFormat('Y-m-d', $data_nascimento);
+    if (!$date || $date->format('Y-m-d') !== $data_nascimento) {
+        $errors[] = "Data de nascimento inválida";
+    } else {
+        $hoje = new DateTime();
+        $idade = $hoje->diff($date)->y;
+        if ($date > $hoje || $idade > 120) {
+            $errors[] = "Data de nascimento inválida";
+        }
+    }
 }
 
 // Validar RG
@@ -132,14 +181,14 @@ if (!validarCPF($cpf)) {
     $errors[] = "CPF inválido";
 }
 
-// Validar sexo - VALIDAÇÃO ADICIONADA
+// Validar sexo
 if (empty($sexo) || !in_array($sexo, ['Masculino', 'Feminino'])) {
     $errors[] = "Sexo deve ser selecionado";
 }
 
 // Validar celular (opcional)
 if (!empty($celular) && strlen($celular) != 11) {
-    $errors[] = "Celular deve ter 11 dígitos (DDD + número)";
+    $errors[] = "Celular deve ter 11 dígitos";
 }
 
 // Validar CEP
@@ -148,21 +197,10 @@ if (empty($cep) || strlen($cep) != 8) {
 }
 
 // Validar endereço
-if (empty($rua)) {
-    $errors[] = "Rua é obrigatória";
-}
-
-if (empty($bairro)) {
-    $errors[] = "Bairro é obrigatório";
-}
-
-if (empty($cidade)) {
-    $errors[] = "Cidade é obrigatória";
-}
-
-if (empty($numero)) {
-    $errors[] = "Número é obrigatório";
-}
+if (empty($rua)) $errors[] = "Rua é obrigatória";
+if (empty($bairro)) $errors[] = "Bairro é obrigatório";
+if (empty($cidade)) $errors[] = "Cidade é obrigatória";
+if (empty($numero)) $errors[] = "Número é obrigatório";
 
 // Validar senha
 if (empty($senha) || strlen($senha) < 6) {
@@ -171,11 +209,7 @@ if (empty($senha) || strlen($senha) < 6) {
 
 // Se houver erros, retornar
 if (!empty($errors)) {
-    echo json_encode([
-        'success' => false,
-        'message' => implode(", ", $errors)
-    ]);
-    exit;
+    returnError(implode(", ", $errors));
 }
 
 // ============================================
@@ -184,11 +218,7 @@ if (!empty($errors)) {
 
 $stmt = $sql->prepare("SELECT cpf, rg FROM cad_neurodivergentes WHERE cpf = ? OR rg = ?");
 if (!$stmt) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Erro ao preparar consulta: ' . $sql->error
-    ]);
-    exit;
+    returnError('Erro ao preparar consulta: ' . $sql->error);
 }
 
 $stmt->bind_param("ss", $cpf, $rg);
@@ -198,22 +228,12 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if ($row['cpf'] == $cpf) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'CPF já cadastrado!'
-        ]);
         $stmt->close();
-        $sql->close();
-        exit;
+        returnError('CPF já cadastrado!');
     }
     if ($row['rg'] == $rg) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'RG já cadastrado!'
-        ]);
         $stmt->close();
-        $sql->close();
-        exit;
+        returnError('RG já cadastrado!');
     }
 }
 $stmt->close();
@@ -223,7 +243,6 @@ $stmt->close();
 // ============================================
 
 $perfilbd = "";
-$upload_success = true;
 $upload_message = "";
 
 if (isset($_FILES["perfil"]) && $_FILES["perfil"]["error"] == UPLOAD_ERR_OK) {
@@ -236,30 +255,18 @@ if (isset($_FILES["perfil"]) && $_FILES["perfil"]["error"] == UPLOAD_ERR_OK) {
     $ext = strtolower(pathinfo($arquivo["name"], PATHINFO_EXTENSION));
     
     if (!in_array($ext, $extensoes_permitidas)) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'Apenas imagens JPG, PNG ou GIF são permitidas!'
-        ]);
-        exit;
+        returnError('Apenas imagens JPG, PNG ou GIF são permitidas!');
     }
     
     // Validar tamanho (máximo 5MB)
     if ($arquivo["size"] > 5242880) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'Arquivo muito grande! Tamanho máximo: 5MB'
-        ]);
-        exit;
+        returnError('Arquivo muito grande! Tamanho máximo: 5MB');
     }
     
     // Validar se é realmente uma imagem
     $check = getimagesize($arquivo["tmp_name"]);
     if ($check === false) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'O arquivo não é uma imagem válida!'
-        ]);
-        exit;
+        returnError('O arquivo não é uma imagem válida!');
     }
     
     // Criar nome único do arquivo
@@ -270,32 +277,15 @@ if (isset($_FILES["perfil"]) && $_FILES["perfil"]["error"] == UPLOAD_ERR_OK) {
     // Criar diretório se não existir
     if (!file_exists($voltar . $pasta)) {
         if (!mkdir($voltar . $pasta, 0755, true)) {
-            echo json_encode([
-                'success' => false,
-                'message' => 'Erro ao criar diretório para imagens'
-            ]);
-            exit;
+            returnError('Erro ao criar diretório para imagens');
         }
     }
     
     // Mover arquivo
     if (!move_uploaded_file($arquivo['tmp_name'], $caminho_completo)) {
-        $upload_success = false;
-        $upload_message = "Aviso: Não foi possível fazer upload da imagem";
+        $upload_message = " (Imagem não pôde ser salva)";
         $perfilbd = "";
     }
-} elseif (isset($_FILES["perfil"]) && $_FILES["perfil"]["error"] != UPLOAD_ERR_NO_FILE) {
-    $upload_errors = [
-        UPLOAD_ERR_INI_SIZE => 'Arquivo muito grande (limite do servidor)',
-        UPLOAD_ERR_FORM_SIZE => 'Arquivo muito grande',
-        UPLOAD_ERR_PARTIAL => 'Upload incompleto',
-        UPLOAD_ERR_NO_TMP_DIR => 'Diretório temporário não encontrado',
-        UPLOAD_ERR_CANT_WRITE => 'Erro ao gravar arquivo',
-        UPLOAD_ERR_EXTENSION => 'Extensão não permitida'
-    ];
-    
-    $error_code = $_FILES["perfil"]["error"];
-    $upload_message = "Aviso: " . (isset($upload_errors[$error_code]) ? $upload_errors[$error_code] : "Erro desconhecido no upload");
 }
 
 // ============================================
@@ -305,43 +295,45 @@ if (isset($_FILES["perfil"]) && $_FILES["perfil"]["error"] == UPLOAD_ERR_OK) {
 $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
 // ============================================
-// INSERIR DADOS NO BANCO - ATUALIZADO COM SEXO
+// INSERIR DADOS NO BANCO
 // ============================================
 
-$stmt = $sql->prepare("INSERT INTO cad_neurodivergentes (nome, email, rg, cpf, sexo, celular, cep, rua, bairro, cidade, numero, complemento, senha, perfil, id_responsa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-if (!$stmt) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Erro ao preparar inserção: ' . $sql->error
-    ]);
-    exit;
+// Preparar query com ou sem data_nascimento
+if ($has_data_nascimento && !empty($data_nascimento)) {
+    $sql_insert = "INSERT INTO cad_neurodivergentes (nome, email, data_nascimento, rg, cpf, sexo, celular, cep, rua, bairro, cidade, numero, complemento, senha, perfil, id_responsa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $sql->prepare($sql_insert);
+    
+    if (!$stmt) {
+        returnError('Erro ao preparar inserção: ' . $sql->error);
+    }
+    
+    $stmt->bind_param("sssssssssssssssi", $nome, $email, $data_nascimento, $rg, $cpf, $sexo, $celular, $cep, $rua, $bairro, $cidade, $numero, $complemento, $senha_hash, $perfilbd, $id_responsa);
+} else {
+    $sql_insert = "INSERT INTO cad_neurodivergentes (nome, email, rg, cpf, sexo, celular, cep, rua, bairro, cidade, numero, complemento, senha, perfil, id_responsa) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $sql->prepare($sql_insert);
+    
+    if (!$stmt) {
+        returnError('Erro ao preparar inserção: ' . $sql->error);
+    }
+    
+    $stmt->bind_param("ssssssssssssssi", $nome, $email, $rg, $cpf, $sexo, $celular, $cep, $rua, $bairro, $cidade, $numero, $complemento, $senha_hash, $perfilbd, $id_responsa);
 }
-
-$stmt->bind_param("ssssssssssssssi", $nome, $email, $rg, $cpf, $sexo, $celular, $cep, $rua, $bairro, $cidade, $numero, $complemento, $senha_hash, $perfilbd, $id_responsa);
 
 if ($stmt->execute()) {
     $id_inserido = $stmt->insert_id;
+    $stmt->close();
+    $sql->close();
     
-    $message = 'Cadastro do neurodivergente realizado com sucesso!';
-    if (!empty($upload_message)) {
-        $message .= ' ' . $upload_message;
-    }
+    $message = 'Cadastro do neurodivergente realizado com sucesso!' . $upload_message;
     
-    echo json_encode([
-        'success' => true,
-        'message' => $message,
+    returnSuccess($message, [
         'id' => $id_inserido,
         'id_responsa' => $id_responsa
     ]);
-    
 } else {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Erro ao salvar dados: ' . $stmt->error
-    ]);
+    $error_msg = $stmt->error;
+    $stmt->close();
+    $sql->close();
+    returnError('Erro ao salvar dados: ' . $error_msg);
 }
-
-$stmt->close();
-$sql->close();
 ?>
