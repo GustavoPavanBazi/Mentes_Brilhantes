@@ -9,6 +9,331 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+<!-- ========== ONBOARDING MODAL ========== -->
+<div id="onboardingModal" class="onboarding-modal">
+    <div class="onboarding-content">
+        <!-- Close Button (Hidden on first view) -->
+        <button class="onboarding-close" id="closeOnboarding" style="display: none;">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Progress Bar -->
+        <div class="onboarding-progress">
+            <div class="onboarding-progress-bar" id="onboardingProgress"></div>
+        </div>
+        <div class="onboarding-step-indicator">
+            <span id="currentStep">1</span> de 5
+        </div>
+
+        <!-- Step 1: Bem-vindo -->
+        <div class="onboarding-step active" data-step="1">
+            <div class="onboarding-icon">
+                <i class="fas fa-hand-sparkles"></i>
+            </div>
+            <h2 class="onboarding-title">Bem-vindo ao Mentes Brilhantes!</h2>
+            <p class="onboarding-description">
+                Sua plataforma completa para conectar especialistas em autismo com famílias que precisam de suporte profissional. Vamos guiá-lo em uma rápida introdução.
+            </p>
+            <div class="onboarding-illustration">
+                <i class="fas fa-users" style="font-size: 4rem; color: var(--primary-blue); opacity: 0.3;"></i>
+            </div>
+        </div>
+
+        <!-- Step 2: Como Funciona -->
+        <div class="onboarding-step" data-step="2">
+            <div class="onboarding-icon">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <h2 class="onboarding-title">Gerenciamento Simplificado</h2>
+            <p class="onboarding-description">
+                Gerencie suas consultas, pacientes, horários e recebimentos em um único lugar. Organize sua agenda de forma profissional e eficiente.
+            </p>
+            <ul class="onboarding-features">
+                <li><i class="fas fa-check-circle"></i> Agenda online integrada</li>
+                <li><i class="fas fa-check-circle"></i> Perfil de pacientes completo</li>
+                <li><i class="fas fa-check-circle"></i> Notificações automáticas</li>
+                <li><i class="fas fa-check-circle"></i> Controle financeiro em tempo real</li>
+            </ul>
+        </div>
+
+        <!-- Step 3: Conecte-se com Pacientes -->
+        <div class="onboarding-step" data-step="3">
+            <div class="onboarding-icon">
+                <i class="fas fa-video"></i>
+            </div>
+            <h2 class="onboarding-title">Consultas Online e Presenciais</h2>
+            <p class="onboarding-description">
+                Ofereça atendimento presencial ou online através da nossa plataforma. Amplie seu alcance e atenda famílias de todo o Brasil.
+            </p>
+            <div class="onboarding-highlight">
+                <i class="fas fa-star"></i>
+                <p>Famílias podem encontrar você facilmente através do nosso sistema de busca personalizado</p>
+            </div>
+        </div>
+
+        <!-- Step 4: Recursos Educativos -->
+        <div class="onboarding-step" data-step="4">
+            <div class="onboarding-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <h2 class="onboarding-title">Compartilhe Conteúdos</h2>
+            <p class="onboarding-description">
+                Publique materiais educativos, vídeos e recursos para seus pacientes. Fortaleça o vínculo terapêutico além das consultas.
+            </p>
+            <ul class="onboarding-features">
+                <li><i class="fas fa-check-circle"></i> Biblioteca de recursos personalizável</li>
+                <li><i class="fas fa-check-circle"></i> Upload de vídeos e documentos</li>
+                <li><i class="fas fa-check-circle"></i> Materiais organizados por categoria</li>
+            </ul>
+        </div>
+
+        <!-- Step 5: Termos e Comissão -->
+        <div class="onboarding-step" data-step="5">
+            <div class="onboarding-icon">
+                <i class="fas fa-file-contract"></i>
+            </div>
+            <h2 class="onboarding-title">Termos de Uso e Comissão</h2>
+            <p class="onboarding-description">
+                Antes de começar, é importante conhecer nossos termos de serviço e modelo de negócio.
+            </p>
+            
+            <!-- Commission Notice -->
+            <div class="onboarding-commission-notice">
+                <div class="commission-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="commission-info">
+                    <h4>Taxa de Serviço da Plataforma</h4>
+                    <p>
+                        Para manter a plataforma funcionando e continuar melhorando nossos serviços, 
+                        <strong>cobramos uma taxa de 10% sobre o valor de cada consulta realizada</strong> 
+                        através do Mentes Brilhantes.
+                    </p>
+                    <p class="commission-detail">
+                        <i class="fas fa-calculator"></i> 
+                        Exemplo: Consulta de R$ 200,00 → Você recebe R$ 180,00
+                    </p>
+                </div>
+            </div>
+
+            <!-- Terms Acceptance -->
+            <div class="onboarding-terms">
+                <label class="onboarding-checkbox-container">
+                    <input type="checkbox" id="acceptTerms" required>
+                    <span class="checkmark"></span>
+                    <span class="checkbox-label">
+                        Li e concordo com os 
+                        <a href="../html/termos-de-uso.html" target="_blank">Termos de Uso</a> 
+                        e 
+                        <a href="../html/politica-privacidade.html" target="_blank">Política de Privacidade</a>
+                    </span>
+                </label>
+                
+                <label class="onboarding-checkbox-container">
+                    <input type="checkbox" id="acceptCommission" required>
+                    <span class="checkmark"></span>
+                    <span class="checkbox-label">
+                        Estou ciente e concordo com a taxa de serviço de 10% sobre cada consulta
+                    </span>
+                </label>
+            </div>
+
+            <p class="onboarding-terms-note">
+                <i class="fas fa-shield-alt"></i>
+                Seus dados estão protegidos e seguimos a LGPD rigorosamente
+            </p>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="onboarding-navigation">
+            <button class="btn-onboarding btn-onboarding-secondary" id="prevStep" style="visibility: hidden;">
+                <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <button class="btn-onboarding btn-onboarding-primary" id="nextStep">
+                Próximo <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn-onboarding btn-onboarding-primary" id="finishOnboarding" style="display: none;">
+                Começar a Usar <i class="fas fa-check"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript do Onboarding -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('onboardingModal');
+    const steps = document.querySelectorAll('.onboarding-step');
+    const progressBar = document.getElementById('onboardingProgress');
+    const currentStepText = document.getElementById('currentStep');
+    const nextBtn = document.getElementById('nextStep');
+    const prevBtn = document.getElementById('prevStep');
+    const finishBtn = document.getElementById('finishOnboarding');
+    const skipBtn = document.getElementById('skipOnboarding');
+    const closeBtn = document.getElementById('closeOnboarding');
+    const acceptTerms = document.getElementById('acceptTerms');
+    const acceptCommission = document.getElementById('acceptCommission');
+    
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    // Verifica se o usuário já viu o onboarding
+    const hasSeenOnboarding = localStorage.getItem('hasSeenOnboarding');
+    
+    if (!hasSeenOnboarding) {
+        // Mostra o modal após um pequeno delay
+        setTimeout(() => {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }, 500);
+    }
+
+    // Função para atualizar o progresso
+    function updateProgress() {
+        const progress = (currentStep / totalSteps) * 100;
+        progressBar.style.width = progress + '%';
+        currentStepText.textContent = currentStep;
+    }
+
+    // Função para mostrar step atual
+    function showStep(stepNumber) {
+        steps.forEach(step => {
+            step.classList.remove('active');
+        });
+        
+        const activeStep = document.querySelector(`[data-step="${stepNumber}"]`);
+        if (activeStep) {
+            activeStep.classList.add('active');
+        }
+
+        // Controla visibilidade dos botões
+        if (stepNumber === 1) {
+            prevBtn.style.visibility = 'hidden';
+        } else {
+            prevBtn.style.visibility = 'visible';
+        }
+
+        if (stepNumber === totalSteps) {
+            nextBtn.style.display = 'none';
+            finishBtn.style.display = 'inline-flex';
+            document.getElementById('skipOption').style.display = 'none';
+        } else {
+            nextBtn.style.display = 'inline-flex';
+            finishBtn.style.display = 'none';
+        }
+
+        updateProgress();
+    }
+
+    // Próximo step
+    nextBtn.addEventListener('click', function() {
+        if (currentStep < totalSteps) {
+            currentStep++;
+            showStep(currentStep);
+        }
+    });
+
+    // Step anterior
+    prevBtn.addEventListener('click', function() {
+        if (currentStep > 1) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    });
+
+    // Finalizar onboarding
+    finishBtn.addEventListener('click', function() {
+        // Valida se os checkboxes foram marcados
+        if (!acceptTerms.checked || !acceptCommission.checked) {
+            // Cria toast de erro
+            showToast('Por favor, aceite os termos e a taxa de serviço para continuar', 'error');
+            
+            // Adiciona animação de shake nos checkboxes
+            const termsContainer = document.querySelector('.onboarding-terms');
+            termsContainer.style.animation = 'shake 0.5s';
+            setTimeout(() => {
+                termsContainer.style.animation = '';
+            }, 500);
+            return;
+        }
+
+        // Salva que o usuário completou o onboarding
+        localStorage.setItem('hasSeenOnboarding', 'true');
+        localStorage.setItem('acceptedTermsDate', new Date().toISOString());
+        
+        closeOnboardingModal();
+        showToast('Bem-vindo ao Mentes Brilhantes! 🎉', 'success');
+    });
+
+    // Pular onboarding
+    skipBtn.addEventListener('click', function() {
+        if (confirm('Tem certeza que deseja pular o tutorial? Você pode acessá-lo novamente nas configurações.')) {
+            localStorage.setItem('hasSeenOnboarding', 'true');
+            closeOnboardingModal();
+        }
+    });
+
+    // Fechar modal
+    closeBtn.addEventListener('click', function() {
+        if (confirm('Deseja fechar o tutorial?')) {
+            closeOnboardingModal();
+        }
+    });
+
+    // Função para fechar o modal
+    function closeOnboardingModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    // Fecha ao clicar fora do conteúdo
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeBtn.click();
+        }
+    });
+
+    // Função para mostrar toast
+    function showToast(message, type) {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type} show`;
+        toast.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+            <span>${message}</span>
+        `;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+
+    // Adiciona animação de shake
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Inicializa o primeiro step
+    showStep(currentStep);
+
+    // Opção para reabrir o onboarding (adicione um botão nas configurações)
+    window.restartOnboarding = function() {
+        localStorage.removeItem('hasSeenOnboarding');
+        currentStep = 1;
+        showStep(currentStep);
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    };
+});
+</script>
+
   <!-- Header -->
   <header class="header">
     <div class="header-container">
@@ -388,11 +713,11 @@
           <div class="card-content">
             <div class="form-group">
               <label>Nome Completo</label>
-              <input type="text" id="perfilNome" value="Marina Fernandes">
+              <input type="text" id="perfilNome" value="Marina Fernandes" disabled title="Este campo não pode ser alterado">
             </div>
             <div class="form-group">
               <label>Email</label>
-              <input type="email" id="perfilEmail" value="marina.fernandes@mentesbrilhantes.com.br">
+              <input type="email" id="perfilEmail" value="marina.fernandes@mentesbrilhantes.com.br" disabled title="Este campo não pode ser alterado">
             </div>
             <div class="filter-grid">
               <div class="form-group">
@@ -401,12 +726,13 @@
               </div>
               <div class="form-group">
                 <label>CRP</label>
-                <input type="text" id="perfilCRP" value="06/123456">
+                <input type="text" id="perfilCRP" value="06/123456" disabled title="Este campo não pode ser alterado">
               </div>
             </div>
             <div class="form-group">
               <label>Especialidade</label>
-              <input type="text" id="perfilEspecialidade" value="Psicologia Infantil">
+              <input type="text" id="perfilEspecialidade" value="Psicologia Infantil" disabled title="Este campo não pode ser alterado">
+
             </div>
             <div class="form-group">
               <label>Biografia</label>
