@@ -9,6 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = mysqli_real_escape_string($sql, trim($_POST["nome"]));
     $email = mysqli_real_escape_string($sql, trim($_POST["email"]));
     $cpf = mysqli_real_escape_string($sql, preg_replace('/[^0-9]/', '', $_POST["cpf"]));
+    $data_nascimento = mysqli_real_escape_string($sql, $_POST["data_nascimento"]);
+    $sexo = mysqli_real_escape_string($sql, $_POST["sexo"]);
     $formacao = mysqli_real_escape_string($sql, trim($_POST["formacao"]));
     $descricao = mysqli_real_escape_string($sql, trim($_POST["descricao"]));
     $senha = password_hash($_POST["senha"], PASSWORD_DEFAULT);
@@ -35,6 +37,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if (strlen($cpf) != 11) {
         $erros[] = "CPF deve ter 11 dígitos";
+    }
+    
+    // Validar data de nascimento
+    if (empty($data_nascimento)) {
+        $erros[] = "Data de nascimento é obrigatória";
+    } else {
+        $hoje = new DateTime();
+        $nascimento = new DateTime($data_nascimento);
+        $idade = $hoje->diff($nascimento)->y;
+        
+        if ($idade < 18 || $idade > 100) {
+            $erros[] = "Idade deve estar entre 18 e 100 anos";
+        }
+    }
+    
+    // Validar sexo
+    $sexosPermitidos = array('Masculino', 'Feminino');
+    if (empty($sexo) || !in_array($sexo, $sexosPermitidos)) {
+        $erros[] = "Sexo deve ser selecionado";
     }
     
     if (empty($formacao)) {
@@ -125,8 +146,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Se não houver erros, inserir no banco de dados
     if (empty($erros)) {
-        $insert = "INSERT INTO cad_especialista (nome, email, cpf, formacao, certificado, descricao, perfil, senha) 
-                   VALUES ('$nome', '$email', '$cpf', '$formacao', '$certificadobd', '$descricao', '$perfilbd', '$senha')";
+        $insert = "INSERT INTO cad_especialista (nome, email, cpf, data_nascimento, sexo, formacao, certificado, descricao, perfil, senha) 
+                   VALUES ('$nome', '$email', '$cpf', '$data_nascimento', '$sexo', '$formacao', '$certificadobd', '$descricao', '$perfilbd', '$senha')";
         
         if (mysqli_query($sql, $insert)) {
             // RETORNAR JSON DE SUCESSO
