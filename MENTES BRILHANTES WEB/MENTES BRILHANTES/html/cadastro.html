@@ -35,10 +35,18 @@
                         <div class="error-message" id="nomeError">Nome completo deve ser preenchido</div>
                     </div>
                     
-                    <div class="form-group">
-                        <label class="form-label" for="email">E-mail:</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="Digite seu e-mail" required>
-                        <div class="error-message" id="emailError">E-mail válido deve ser preenchido</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Digite seu e-mail" required>
+                            <div class="error-message" id="emailError">E-mail válido deve ser preenchido</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="dataNascimento">Data de Nascimento:</label>
+                            <input type="date" id="dataNascimento" name="dataNascimento" class="form-input" required>
+                            <div class="error-message" id="dataNascimentoError">Data de nascimento é obrigatória</div>
+                        </div>
                     </div>
                     
                     <div class="form-row">
@@ -54,46 +62,56 @@
                             <div class="error-message" id="celularError">Celular deve ter 11 dígitos (DDD + número)</div>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="sexo">Sexo:</label>
+                            <select id="sexo" name="sexo" class="form-input" required>
+                                <option value="">Selecione</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                            </select>
+                            <div class="error-message" id="sexoError">Sexo deve ser selecionado</div>
+                        </div>
+
                         <div class="form-group">
                             <label class="form-label" for="cep">CEP:</label>
                             <input type="text" id="cep" name="cep" class="form-input" placeholder="00000-000" maxlength="9" required>
                             <div class="error-message" id="cepError">CEP válido é obrigatório</div>
                         </div>
-                        
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="rua">Rua:</label>
                             <input type="text" id="rua" name="rua" class="form-input" placeholder="Nome da rua" required>
                             <div class="error-message" id="ruaError">Rua deve ser preenchida</div>
                         </div>
-                    </div>
-                    
-                    <div class="form-row">
+
                         <div class="form-group">
                             <label class="form-label" for="bairro">Bairro:</label>
                             <input type="text" id="bairro" name="bairro" class="form-input" placeholder="Bairro" required>
                             <div class="error-message" id="bairroError">Bairro deve ser preenchido</div>
                         </div>
-
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="cidade">Cidade:</label>
                             <input type="text" id="cidade" name="cidade" class="form-input" placeholder="Cidade" required>
                             <div class="error-message" id="cidadeError">Cidade deve ser preenchida</div>
                         </div>
-                    </div>
-                    
-                    <div class="form-row">
+                        
                         <div class="form-group">
                             <label class="form-label" for="numero">Número:</label>
                             <input type="text" id="numero" name="numero" class="form-input" placeholder="Nº" required>
                             <div class="error-message" id="numeroError">Número deve ser preenchido</div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label class="form-label" for="complemento">*Complemento:</label>
-                            <input type="text" id="complemento" name="complemento" class="form-input" placeholder="Apt, Bloco, Casa, etc.">
-                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="complemento">*Complemento:</label>
+                        <input type="text" id="complemento" name="complemento" class="form-input" placeholder="Apt, Bloco, Casa, etc.">
                     </div>
                     
                     <div class="form-row">
@@ -358,6 +376,20 @@
             return emailRegex.test(email);
         }
 
+        // Função para validar idade (mínimo 18 anos)
+        function isValidAge(dateString) {
+            const today = new Date();
+            const birthDate = new Date(dateString);
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            return age >= 18;
+        }
+
         // Função para mostrar erro
         function showError(fieldId, errorId, message) {
             const field = document.getElementById(fieldId);
@@ -441,6 +473,15 @@
             }
         });
 
+        document.getElementById('dataNascimento').addEventListener('blur', function(e) {
+            const date = e.target.value;
+            if (date && !isValidAge(date)) {
+                showError('dataNascimento', 'dataNascimentoError', 'Você deve ter pelo menos 18 anos para se cadastrar');
+            } else if (date && isValidAge(date)) {
+                clearError('dataNascimento', 'dataNascimentoError');
+            }
+        });
+
         document.getElementById('cpf').addEventListener('blur', function(e) {
             const cpf = e.target.value;
             const cpfNumbers = cpf.replace(/\D/g, '');
@@ -457,6 +498,12 @@
                 clearError('celular', 'celularError');
             } else if (celular && celular.length !== 11) {
                 showError('celular', 'celularError', 'Celular deve ter 11 dígitos (DDD + número)');
+            }
+        });
+
+        document.getElementById('sexo').addEventListener('change', function(e) {
+            if (e.target.value) {
+                clearError('sexo', 'sexoError');
             }
         });
 
@@ -496,7 +543,7 @@
             });
         });
 
-        // VALIDAÇÃO E ENVIO DO FORMULÁRIO - CORRIGIDO
+        // VALIDAÇÃO E ENVIO DO FORMULÁRIO
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -519,6 +566,15 @@
                 showError('email', 'emailError', 'E-mail válido deve ser preenchido');
                 isValid = false;
             }
+
+            const dataNascimento = document.getElementById('dataNascimento').value;
+            if (!dataNascimento) {
+                showError('dataNascimento', 'dataNascimentoError', 'Data de nascimento é obrigatória');
+                isValid = false;
+            } else if (!isValidAge(dataNascimento)) {
+                showError('dataNascimento', 'dataNascimentoError', 'Você deve ter pelo menos 18 anos');
+                isValid = false;
+            }
             
             const cpf = document.getElementById('cpf').value;
             const cpfNumbers = cpf.replace(/\D/g, '');
@@ -530,6 +586,12 @@
             const celular = document.getElementById('celular').value.replace(/\D/g, '');
             if (!celular || celular.length !== 11) {
                 showError('celular', 'celularError', 'Celular deve ter 11 dígitos (DDD + número)');
+                isValid = false;
+            }
+
+            const sexo = document.getElementById('sexo').value;
+            if (!sexo) {
+                showError('sexo', 'sexoError', 'Sexo deve ser selecionado');
                 isValid = false;
             }
             
