@@ -42,8 +42,10 @@ function sanitize($data) {
 // Receber e sanitizar dados do formulário
 $nome = sanitize($_POST["nome"]);
 $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+$dataNascimento = isset($_POST["dataNascimento"]) ? $_POST["dataNascimento"] : "";
 $cpf = preg_replace('/[^0-9]/', '', $_POST["cpf"]); // Remove formatação
 $celular = preg_replace('/[^0-9]/', '', $_POST["celular"]);
+$sexo = isset($_POST["sexo"]) ? sanitize($_POST["sexo"]) : "";
 $cep = preg_replace('/[^0-9]/', '', $_POST["cep"]);
 $rua = sanitize($_POST["rua"]);
 $bairro = sanitize($_POST["bairro"]);
@@ -67,6 +69,24 @@ if (empty($nome) || strlen($nome) < 2) {
 // Validar email
 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors[] = "Email inválido";
+}
+
+// Validar data de nascimento
+if (empty($dataNascimento)) {
+    $errors[] = "Data de nascimento é obrigatória";
+} else {
+    // Validar formato da data
+    $date = DateTime::createFromFormat('Y-m-d', $dataNascimento);
+    if (!$date || $date->format('Y-m-d') !== $dataNascimento) {
+        $errors[] = "Data de nascimento inválida";
+    } else {
+        // Verificar se a pessoa tem pelo menos 18 anos
+        $today = new DateTime();
+        $age = $today->diff($date)->y;
+        if ($age < 18) {
+            $errors[] = "Você deve ter pelo menos 18 anos para se cadastrar como responsável";
+        }
+    }
 }
 
 // Validar CPF
@@ -107,6 +127,12 @@ if (!validarCPF($cpf)) {
 // Validar celular
 if (empty($celular) || strlen($celular) != 11) {
     $errors[] = "Celular deve ter 11 dígitos (DDD + número)";
+}
+
+// Validar sexo (opcional)
+$sexosValidos = ['Masculino', 'Feminino', ''];
+if (!in_array($sexo, $sexosValidos)) {
+    $errors[] = "Sexo inválido";
 }
 
 // Validar CEP
@@ -250,7 +276,6 @@ if (isset($_FILES["perfil"]) && $_FILES["perfil"]["error"] == UPLOAD_ERR_OK) {
         $upload_success = false;
         $upload_message = "Aviso: Não foi possível fazer upload da imagem";
         $perfilbd = ""; // Limpar caminho se falhou
-        // Não abortar o cadastro, apenas continuar sem a foto
     }
 } elseif (isset($_FILES["perfil"]) && $_FILES["perfil"]["error"] != UPLOAD_ERR_NO_FILE) {
     // Se houve erro no upload (exceto "nenhum arquivo")
@@ -277,7 +302,11 @@ $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 // INSERIR DADOS NO BANCO
 // ============================================
 
-$stmt = $sql->prepare("INSERT INTO cad_responsavel (nome, email, cpf, celular, cep, rua, bairro, cidade, numero, complemento, senha, perfil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+// Preparar valores NULL para campos opcionais vazios
+$sexo_value = !empty($sexo) ? $sexo : NULL;
+$dataNascimento_value = !empty($dataNascimento) ? $dataNascimento : NULL;
+
+$stmt = $sql->prepare("INSERT INTO cad_responsavel (nome, email, data_nascimento, cpf, sexo, celular, cep, rua, bairro, cidade, numero, complemento, senha, perfil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 if (!$stmt) {
     echo json_encode([
@@ -287,7 +316,7 @@ if (!$stmt) {
     exit;
 }
 
-$stmt->bind_param("ssssssssssss", $nome, $email, $cpf, $celular, $cep, $rua, $bairro, $cidade, $numero, $complemento, $senha_hash, $perfilbd);
+$stmt->bind_param("ssssssssssssss", $nome, $email, $dataNascimento_value, $cpf, $sexo_value, $celular, $cep, $rua, $bairro, $cidade, $numero, $complemento, $senha_hash, $perfilbd);
 
 if ($stmt->execute()) {
     // Pegar ID do usuário inserido
