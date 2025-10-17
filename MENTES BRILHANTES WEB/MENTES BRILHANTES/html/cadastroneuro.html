@@ -37,10 +37,18 @@
                         <div class="error-message" id="nomeError">Nome completo deve ser preenchido</div>
                     </div>
                     
-                    <div class="form-group">
-                        <label class="form-label" for="email">E-mail:</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="Digite o e-mail" required>
-                        <div class="error-message" id="emailError">E-mail válido deve ser preenchido</div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Digite seu e-mail" required>
+                            <div class="error-message" id="emailError">E-mail válido deve ser preenchido</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="dataNascimento">Data de Nascimento:</label>
+                            <input type="date" id="dataNascimento" name="data_nascimento" class="form-input" required>
+                            <div class="error-message" id="dataNascimentoError">Data de nascimento deve ser preenchida</div>
+                        </div>
                     </div>
                     
                     <div class="form-row">
@@ -164,7 +172,7 @@
     <div class="success-modal" id="successModal">
         <div class="success-modal-content">
             <h2>✅ Cadastro concluído com sucesso!</h2>
-            <p>O cadastro do neurodivergente foi realizado com sucesso. Vocês já podem acessar a plataforma e aproveitar todos os recursos disponíveis!</p>
+            <p>O cadastro do neurodivergente foi realizado com sucesso. Vocês já podem acessar o nosso aplicativo e aproveitar todos os recursos disponíveis!</p>
             <button onclick="closeSuccessModal()">Ir para o início</button>
         </div>
     </div>
@@ -345,6 +353,20 @@
             return emailRegex.test(email);
         }
 
+        // Função para validar data de nascimento
+        function isValidBirthdate(date) {
+            const today = new Date();
+            const birthDate = new Date(date);
+            const age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            return birthDate < today && age >= 0 && age <= 120;
+        }
+
         // Função para mostrar erro
         function showError(fieldId, errorId, message) {
             const field = document.getElementById(fieldId);
@@ -429,6 +451,15 @@
                 showError('email', 'emailError', 'Formato de e-mail inválido');
             } else if (email && isValidEmail(email)) {
                 clearError('email', 'emailError');
+            }
+        });
+
+        document.getElementById('dataNascimento').addEventListener('blur', function(e) {
+            const date = e.target.value;
+            if (date && !isValidBirthdate(date)) {
+                showError('dataNascimento', 'dataNascimentoError', 'Data de nascimento inválida');
+            } else if (date && isValidBirthdate(date)) {
+                clearError('dataNascimento', 'dataNascimentoError');
             }
         });
 
@@ -525,6 +556,12 @@
             const email = document.getElementById('email').value.trim();
             if (!email || !isValidEmail(email)) {
                 showError('email', 'emailError', 'E-mail válido deve ser preenchido');
+                isValid = false;
+            }
+
+            const dataNascimento = document.getElementById('dataNascimento').value;
+            if (!dataNascimento || !isValidBirthdate(dataNascimento)) {
+                showError('dataNascimento', 'dataNascimentoError', 'Data de nascimento válida deve ser preenchida');
                 isValid = false;
             }
 
