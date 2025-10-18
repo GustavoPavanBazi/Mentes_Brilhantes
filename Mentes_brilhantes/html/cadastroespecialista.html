@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentes Brilhantes</title>
+    <title>Cadastro de Especialista - Mentes Brilhantes</title>
     <link rel="stylesheet" href="../css/cadastroespecialista.css">
     <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
     <style>
@@ -189,7 +189,91 @@
     </div>
 
     <script>
-        // Máscara para CPF
+        // Validação em tempo real para CPF
+        document.getElementById('cpf').addEventListener('input', function(e) {
+            const cpf = e.target.value;
+            const cpfNumbers = cpf.replace(/\D/g, '');
+            if (cpfNumbers.length === 11 && isValidCPF(cpf)) {
+                clearError('cpf', 'cpfError');
+            }
+        });
+        
+        document.getElementById('cpf').addEventListener('blur', function(e) {
+            const cpf = e.target.value;
+            const cpfNumbers = cpf.replace(/\D/g, '');
+            if (cpf && cpfNumbers.length === 11 && isValidCPF(cpf)) {
+                clearError('cpf', 'cpfError');
+            } else if (cpf && (cpfNumbers.length !== 11 || !isValidCPF(cpf))) {
+                showError('cpf', 'cpfError', 'CPF deve ter 11 dígitos e ser válido');
+            }
+        });
+
+        // Validação em tempo real para data de nascimento
+        document.getElementById('data_nascimento').addEventListener('blur', function(e) {
+            const dataNascimento = e.target.value;
+            if (dataNascimento) {
+                const hoje = new Date();
+                const nascimento = new Date(dataNascimento);
+                const idade = Math.floor((hoje - nascimento) / (365.25 * 24 * 60 * 60 * 1000));
+                
+                if (idade >= 18 && idade <= 100) {
+                    clearError('data_nascimento', 'data_nascimentoError');
+                } else if (idade < 18) {
+                    showError('data_nascimento', 'data_nascimentoError', 'Você deve ter pelo menos 18 anos');
+                } else {
+                    showError('data_nascimento', 'data_nascimentoError', 'Data de nascimento inválida');
+                }
+            }
+        });
+
+        // Validação em tempo real para sexo
+        document.getElementById('sexo').addEventListener('change', function(e) {
+            if (e.target.value) {
+                clearError('sexo', 'sexoError');
+            }
+        });
+
+        // Validação em tempo real para senhas
+        document.getElementById('senha').addEventListener('input', function(e) {
+            const senha = e.target.value;
+            if (senha.length >= 6) {
+                clearError('senha', 'senhaError');
+            } else if (senha.length > 0) {
+                showError('senha', 'senhaError', 'Senha deve ter pelo menos 6 caracteres');
+            }
+            
+            const confirmsenha = document.getElementById('confirmsenha').value;
+            if (confirmsenha) {
+                if (senha === confirmsenha) {
+                    clearError('confirmsenha', 'confirmsenhaError');
+                } else {
+                    showError('confirmsenha', 'confirmsenhaError', 'Senhas devem coincidir');
+                }
+            }
+        });
+
+        document.getElementById('confirmsenha').addEventListener('input', function(e) {
+            const senha = document.getElementById('senha').value;
+            const confirmsenha = e.target.value;
+            
+            if (confirmsenha && senha === confirmsenha) {
+                clearError('confirmsenha', 'confirmsenhaError');
+            } else if (confirmsenha && senha !== confirmsenha) {
+                showError('confirmsenha', 'confirmsenhaError', 'Senhas devem coincidir');
+            }
+        });
+
+        // Validação em tempo real para descrição
+        document.getElementById('descricao').addEventListener('blur', function(e) {
+            const descricao = e.target.value.trim();
+            if (descricao.length >= 50) {
+                clearError('descricao', 'descricaoError');
+            } else if (descricao.length > 0 && descricao.length < 50) {
+                showError('descricao', 'descricaoError', `Descrição deve ter pelo menos 50 caracteres (${descricao.length}/50)`);
+            }
+        }); 
+        
+        //Máscara para CPF
         function applyCPFMask(value) {
             return value
                 .replace(/\D/g, '')
@@ -565,90 +649,6 @@
                 clearError('formacao', 'formacaoError');
             }
         });
-
-        // Validação em tempo real para CPF
-        document.getElementById('cpf').addEventListener('input', function(e) {
-            const cpf = e.target.value;
-            const cpfNumbers = cpf.replace(/\D/g, '');
-            if (cpfNumbers.length === 11 && isValidCPF(cpf)) {
-                clearError('cpf', 'cpfError');
-            }
-        });
-        
-        document.getElementById('cpf').addEventListener('blur', function(e) {
-            const cpf = e.target.value;
-            const cpfNumbers = cpf.replace(/\D/g, '');
-            if (cpf && cpfNumbers.length === 11 && isValidCPF(cpf)) {
-                clearError('cpf', 'cpfError');
-            } else if (cpf && (cpfNumbers.length !== 11 || !isValidCPF(cpf))) {
-                showError('cpf', 'cpfError', 'CPF deve ter 11 dígitos e ser válido');
-            }
-        });
-
-        // Validação em tempo real para data de nascimento
-        document.getElementById('data_nascimento').addEventListener('blur', function(e) {
-            const dataNascimento = e.target.value;
-            if (dataNascimento) {
-                const hoje = new Date();
-                const nascimento = new Date(dataNascimento);
-                const idade = Math.floor((hoje - nascimento) / (365.25 * 24 * 60 * 60 * 1000));
-                
-                if (idade >= 18 && idade <= 100) {
-                    clearError('data_nascimento', 'data_nascimentoError');
-                } else if (idade < 18) {
-                    showError('data_nascimento', 'data_nascimentoError', 'Você deve ter pelo menos 18 anos');
-                } else {
-                    showError('data_nascimento', 'data_nascimentoError', 'Data de nascimento inválida');
-                }
-            }
-        });
-
-        // Validação em tempo real para sexo
-        document.getElementById('sexo').addEventListener('change', function(e) {
-            if (e.target.value) {
-                clearError('sexo', 'sexoError');
-            }
-        });
-
-        // Validação em tempo real para senhas
-        document.getElementById('senha').addEventListener('input', function(e) {
-            const senha = e.target.value;
-            if (senha.length >= 6) {
-                clearError('senha', 'senhaError');
-            } else if (senha.length > 0) {
-                showError('senha', 'senhaError', 'Senha deve ter pelo menos 6 caracteres');
-            }
-            
-            const confirmsenha = document.getElementById('confirmsenha').value;
-            if (confirmsenha) {
-                if (senha === confirmsenha) {
-                    clearError('confirmsenha', 'confirmsenhaError');
-                } else {
-                    showError('confirmsenha', 'confirmsenhaError', 'Senhas devem coincidir');
-                }
-            }
-        });
-
-        document.getElementById('confirmsenha').addEventListener('input', function(e) {
-            const senha = document.getElementById('senha').value;
-            const confirmsenha = e.target.value;
-            
-            if (confirmsenha && senha === confirmsenha) {
-                clearError('confirmsenha', 'confirmsenhaError');
-            } else if (confirmsenha && senha !== confirmsenha) {
-                showError('confirmsenha', 'confirmsenhaError', 'Senhas devem coincidir');
-            }
-        });
-
-        // Validação em tempo real para descrição
-        document.getElementById('descricao').addEventListener('blur', function(e) {
-            const descricao = e.target.value.trim();
-            if (descricao.length >= 50) {
-                clearError('descricao', 'descricaoError');
-            } else if (descricao.length > 0 && descricao.length < 50) {
-                showError('descricao', 'descricaoError', `Descrição deve ter pelo menos 50 caracteres (${descricao.length}/50)`);
-            }
-        });
-    </script>
+        </script>
 </body>
 </html>
