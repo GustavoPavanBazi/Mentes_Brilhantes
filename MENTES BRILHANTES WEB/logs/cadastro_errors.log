@@ -1,0 +1,291 @@
+[2025-10-15 02:13:01] === INÍCIO DO CADASTRO ===
+[2025-10-15 02:13:01] SESSION completa: Array
+(
+)
+
+[2025-10-15 02:13:01] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erick@gmail.com
+    [data_nascimento] => 2000-05-28
+    [rg] => 57.831.608-0
+    [cpf] => 473.362.538-30
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 02:13:01] Verificando sessão...
+[2025-10-15 02:13:01] id_responsa encontrado: NULL
+[2025-10-15 02:13:01] ERRO: ID do responsável não encontrado na sessão
+[2025-10-15 02:13:01] Sessão atual: Array
+(
+)
+
+[2025-10-15 02:13:05] === INÍCIO DO CADASTRO ===
+[2025-10-15 02:13:05] SESSION completa: Array
+(
+)
+
+[2025-10-15 02:13:05] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erick@gmail.com
+    [data_nascimento] => 2000-05-28
+    [rg] => 57.831.608-0
+    [cpf] => 473.362.538-30
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 02:13:05] Verificando sessão...
+[2025-10-15 02:13:05] id_responsa encontrado: NULL
+[2025-10-15 02:13:05] ERRO: ID do responsável não encontrado na sessão
+[2025-10-15 02:13:05] Sessão atual: Array
+(
+)
+
+[2025-10-15 02:33:52] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-15 02:33:52] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erick@gmail.com
+    [data_nascimento] => 2000-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 473.362.538-30
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 02:33:52] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-15 02:33:52] Dados recebidos - Nome: Erick Oliveira, Email: erick@gmail.com, CPF: 47336253830, RG: 578316080
+[2025-10-15 02:34:11] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-15 02:34:11] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erick@gmail.com
+    [data_nascimento] => 2000-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 152.035.928-45
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 02:34:11] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-15 02:34:11] Dados recebidos - Nome: Erick Oliveira, Email: erick@gmail.com, CPF: 15203592845, RG: 578316080
+[2025-10-15 02:34:27] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-15 02:34:27] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erickoliv@gmail.com
+    [data_nascimento] => 2000-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 152.035.928-45
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 02:34:27] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-15 02:34:27] Dados recebidos - Nome: Erick Oliveira, Email: erickoliv@gmail.com, CPF: 15203592845, RG: 578316080
+[2025-10-15 02:34:36] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-15 02:34:36] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erickoliv@gmail.com
+    [data_nascimento] => 2000-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 152.035.928-45
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 02:34:36] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-15 02:34:36] Dados recebidos - Nome: Erick Oliveira, Email: erickoliv@gmail.com, CPF: 15203592845, RG: 578316080
+[2025-10-15 02:34:43] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-15 02:34:43] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erickoliv@gmail.com
+    [data_nascimento] => 2000-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 152.035.928-45
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 02:34:43] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-15 02:34:43] Dados recebidos - Nome: Erick Oliveira, Email: erickoliv@gmail.com, CPF: 15203592845, RG: 578316080
+[2025-10-15 23:45:35] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-15 23:45:35] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erick@gmail.com
+    [data_nascimento] => 2009-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 473.362.538-30
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 23:45:35] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-15 23:45:35] Dados recebidos - Nome: Erick Oliveira, Email: erick@gmail.com, CPF: 47336253830, RG: 578316080
+[2025-10-15 23:47:10] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-15 23:47:10] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erick77@gmail.com
+    [data_nascimento] => 2009-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 473.362.538-30
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 23:47:10] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-15 23:47:10] Dados recebidos - Nome: Erick Oliveira, Email: erick77@gmail.com, CPF: 47336253830, RG: 578316080
+[2025-10-15 23:47:21] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-15 23:47:21] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erick77@gmail.com
+    [data_nascimento] => 2009-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 152.035.928-45
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 23:47:21] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-15 23:47:21] Dados recebidos - Nome: Erick Oliveira, Email: erick77@gmail.com, CPF: 15203592845, RG: 578316080
+[2025-10-15 23:48:51] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-15 23:48:51] POST recebido: Array
+(
+    [nome] => Erick Oliveira
+    [email] => erickoliv@gmail.com
+    [data_nascimento] => 2009-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 152.035.928-45
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-15 23:48:51] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-15 23:48:51] Dados recebidos - Nome: Erick Oliveira, Email: erickoliv@gmail.com, CPF: 15203592845, RG: 578316080
+[2025-10-16 00:04:58] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-16 00:04:58] POST recebido: Array
+(
+    [nome] => Erick de Oliveira Souza
+    [email] => erickoliv7@gmail.com
+    [data_nascimento] => 2011-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 152.035.928-45
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-16 00:04:58] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-16 00:04:58] Dados recebidos - Nome: Erick de Oliveira Souza, Email: erickoliv7@gmail.com, CPF: 15203592845, RG: 578316080
+[2025-10-16 00:19:50] === INÍCIO DO CADASTRO NEURODIVERGENTE ===
+[2025-10-16 00:19:50] POST recebido: Array
+(
+    [nome] => Erick de Oliveira Souza
+    [email] => erickoliv7@gmail.com
+    [data_nascimento] => 2022-05-20
+    [rg] => 57.831.608-0
+    [cpf] => 152.035.928-45
+    [sexo] => Masculino
+    [celular] => (11) 95947-3785
+    [cep] => 04932-410
+    [rua] => Rua Guilherme de Faria
+    [bairro] => Jardim São Carlos (Zona Sul)
+    [cidade] => São Paulo
+    [numero] => 44
+    [complemento] => Casa
+    [senha] => 123456
+)
+
+[2025-10-16 00:19:50] ID do responsável na sessão: NULL (cadastro independente)
+[2025-10-16 00:19:50] Dados recebidos - Nome: Erick de Oliveira Souza, Email: erickoliv7@gmail.com, CPF: 15203592845, RG: 578316080
