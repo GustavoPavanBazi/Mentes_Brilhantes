@@ -219,7 +219,7 @@ body {
 .user-avatar {
   width: 32px;
   height: 32px;
-  background: linear-gradient(135deg, var(--primary-orange) 0%, #E55A2B 100%);
+  background: transparent;
   color: white;
   border-radius: var(--radius-md);
   display: flex;
