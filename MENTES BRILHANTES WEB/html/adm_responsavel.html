@@ -1,2196 +1,2338 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentes Brilhantes</title>
-    <link rel="stylesheet" href="../css/adm_responsavel.css">
-    <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <!-- Tutorial de 5 Etapas -->
-    <div id="tutorial-overlay" class="tutorial-overlay active">
-        <div class="tutorial-backdrop"></div>
-        
-        <div class="tutorial-content">
-            <div class="tutorial-progress">
-                <div class="tutorial-progress-bar">
-                    <div class="tutorial-progress-fill" id="tutorial-progress"></div>
-                </div>
-                <span class="tutorial-step-counter" id="step-counter">1 / 5</span>
-            </div>
-    
-    
-            <!-- Etapa 1 -->
-            <div class="tutorial-step active" data-step="1">
-                <div class="tutorial-icon">
-                    <i class="fas fa-lightbulb"></i>
-                </div>
-                <h2 class="tutorial-title">Bem-vindo!</h2>
-                <p class="tutorial-description">
-                    Vamos fazer um tour rápido pelas principais funcionalidades para você aproveitar ao máximo a plataforma. 
-                    Este guia vai mostrar como utilizar cada recurso disponível de forma simples e direta.
-                </p>
-                <div class="tutorial-info-box">
-                    <i class="fas fa-info-circle"></i>
-                    <p>Este tutorial pode ser acessado novamente a qualquer momento através do menu de ajuda.</p>
-                </div>
-                <div class="tutorial-actions">
-                    <button class="btn btn-primary" onclick="nextStep()">
-                        Começar
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-    
-    
-            <!-- Etapa 2 -->
-            <div class="tutorial-step" data-step="2">
-                <div class="tutorial-icon">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <h2 class="tutorial-title">Menu de Navegação</h2>
-                <p class="tutorial-description">
-                    Use o menu lateral para navegar entre as diferentes seções do sistema. Cada seção está claramente 
-                    identificada com ícones e nomes descritivos para facilitar sua localização.
-                </p>
-                <div class="tutorial-features-list">
-                    <div class="tutorial-feature-item">
-                        <i class="fas fa-home"></i>
-                        <span><strong>Dashboard:</strong> Visão geral das informações</span>
-                    </div>
-                    <div class="tutorial-feature-item">
-                        <i class="fas fa-user-doctor"></i>
-                        <span><strong>Especialistas:</strong> Equipe de profissionais</span>
-                    </div>
-                    <div class="tutorial-feature-item">
-                        <i class="fas fa-file-lines"></i>
-                        <span><strong>Relatórios:</strong> Acompanhamento detalhado</span>
-                    </div>
-                </div>
-                <div class="tutorial-actions">
-                    <button class="btn btn-secondary" onclick="prevStep()">
-                        <i class="fas fa-arrow-left"></i>
-                        Voltar
-                    </button>
-                    <button class="btn btn-primary" onclick="nextStep()">
-                        Próximo
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-    
-    
-            <!-- Etapa 3 -->
-            <div class="tutorial-step" data-step="3">
-                <div class="tutorial-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h2 class="tutorial-title">Assistente Luna</h2>
-                <p class="tutorial-description">
-                    A Luna é sua assistente virtual especializada em TEA. Ela foi desenvolvida para oferecer suporte 
-                    personalizado, responder dúvidas e auxiliar no acompanhamento diário.
-                </p>
-                <div class="tutorial-features-list">
-                    <div class="tutorial-feature-item">
-                        <i class="fas fa-comments"></i>
-                        <span><strong>Conversação Natural:</strong> Faça perguntas em linguagem simples</span>
-                    </div>
-                    <div class="tutorial-feature-item">
-                        <i class="fas fa-lightbulb"></i>
-                        <span><strong>Orientações:</strong> Receba dicas e sugestões personalizadas</span>
-                    </div>
-                    <div class="tutorial-feature-item">
-                        <i class="fas fa-calendar-check"></i>
-                        <span><strong>Lembretes:</strong> Organize sua rotina e compromissos</span>
-                    </div>
-                </div>
-                <div class="tutorial-actions">
-                    <button class="btn btn-secondary" onclick="prevStep()">
-                        <i class="fas fa-arrow-left"></i>
-                        Voltar
-                    </button>
-                    <button class="btn btn-primary" onclick="nextStep()">
-                        Próximo
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-    
-    
-            <!-- Etapa 4 -->
-            <div class="tutorial-step" data-step="4">
-                <div class="tutorial-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h2 class="tutorial-title">Acompanhamento de Progresso</h2>
-                <p class="tutorial-description">
-                    Visualize gráficos, estatísticas e relatórios detalhados sobre o desenvolvimento e atividades realizadas.
-                </p>
-                <div class="tutorial-features-list">
-                    <div class="tutorial-feature-item">
-                        <i class="fas fa-chart-bar"></i>
-                        <span><strong>Gráficos Visuais:</strong> Dados apresentados de forma intuitiva</span>
-                    </div>
-                    <div class="tutorial-feature-item">
-                        <i class="fas fa-calendar-days"></i>
-                        <span><strong>Histórico:</strong> Acompanhe a evolução ao longo do tempo</span>
-                    </div>
-                    <div class="tutorial-feature-item">
-                        <i class="fas fa-download"></i>
-                        <span><strong>Exportação:</strong> Baixe relatórios em PDF</span>
-                    </div>
-                </div>
-                <div class="tutorial-actions">
-                    <button class="btn btn-secondary" onclick="prevStep()">
-                        <i class="fas fa-arrow-left"></i>
-                        Voltar
-                    </button>
-                    <button class="btn btn-primary" onclick="nextStep()">
-                        Próximo
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-    
-    
-            <!-- Etapa 5 -->
-            <div class="tutorial-step" data-step="5">
-                <div class="tutorial-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
-                <h2 class="tutorial-title">Pronto para Começar!</h2>
-                <p class="tutorial-description">
-                    Agora você está pronta para explorar todas as funcionalidades da plataforma. Para continuar, 
-                    é necessário aceitar os Termos de Uso e a Política de Privacidade.
-                </p>
-                <div class="tutorial-info-box">
-                    <i class="fas fa-shield-halved"></i>
-                    <p>Seus dados são protegidos de acordo com a Lei Geral de Proteção de Dados (LGPD).</p>
-                </div>
-                
-                <!-- Checkbox de Termos de Uso -->
-                <div class="tutorial-terms">
-                    <label class="tutorial-checkbox-container">
-                        <input type="checkbox" id="terms-checkbox" onchange="toggleFinishButton()">
-                        <span class="tutorial-checkmark"></span>
-                        <span class="tutorial-checkbox-label">
-                            Li e aceito os 
-                            <a href="termos-de-uso.html" target="_blank" class="tutorial-link">Termos de Uso</a> 
-                            e a 
-                            <a href="politica-privacidade.html" target="_blank" class="tutorial-link">Política de Privacidade</a>
-                        </span>
-                    </label>
-                </div>
-                
-                <div class="tutorial-actions">
-                    <button class="btn btn-secondary" onclick="prevStep()">
-                        <i class="fas fa-arrow-left"></i>
-                        Voltar
-                    </button>
-                    <button class="btn btn-primary" id="finish-btn" onclick="closeTutorial()" disabled>
-                        Finalizar
-                        <i class="fas fa-check"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <header class="header">
-        <div class="header-container">
-            <div class="logo-section">
-                <img src="../img/LogoMB.png" alt="Logo" style="width: 32px; height: 32px;">
-                <span>Mentes Brilhantes</span>
-            </div>
-            <nav class="header-nav">
-                <div class="user-profile">
-                    <div class="user-avatar" id="header-avatar">M</div>
-                    <div class="user-info">
-                        <h4 id="header-nome">Carregando...</h4>
-                        <p>Responsável</p>
-                    </div>
-                </div>
-                <button onclick="fazerLogout()" class="btn btn-outline" style="margin-left: 1rem;">
-                    <i class="fas fa-sign-out-alt"></i>
-                </button>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Layout Principal -->
-    <div class="main-layout">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <nav>
-                <div class="nav-section">
-                    <h3 class="nav-title">Menu Principal</h3>
-                    <a href="#" class="nav-item active" data-section="dashboard">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="#" class="nav-item" data-section="perfil">
-                        <i class="fas fa-user"></i>
-                        <span>Meu Perfil</span>
-                    </a>
-                    <a href="#" class="nav-item" data-section="luna">
-                        <i class="fas fa-robot"></i>
-                        <span>Assistente Luna</span>
-                    </a>
-                    
-                </div>
-
-                <div class="nav-section">
-                    <h3 class="nav-title">Área do Neurodivergente</h3>
-                    <a href="#" class="nav-item" data-section="perfil-autista1">
-                        <i class="fas fa-child"></i>
-                        <span>Perfil do Autista</span>
-                    </a>
-                    <a href="#" class="nav-item" data-section="perfil-autista">
-                        <i class="fas fa-brain"></i>
-                        <span>Perfil Sensorial</span>
-                    </a>
-                    
-                </div>
-
-                <div class="nav-section">
-                    <h3 class="nav-title">Acompanhamento</h3>
-                    <a href="#" class="nav-item" data-section="progresso">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Progresso</span>
-                    </a>
-                    <a href="#" class="nav-item" data-section="especialistas">
-                        <i class="fas fa-user-md"></i>
-                        <span>Especialistas</span>
-                    </a>
-                    <a href="#" class="nav-item" data-section="relatorios">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Relatórios</span>
-                    </a>
-                </div>
-
-                <div class="nav-section">
-                    <h3 class="nav-title">Suporte</h3>
-                    <a href="#" class="nav-item" data-section="recursos">
-                        <i class="fas fa-book"></i>
-                        <span>Recursos & Suporte</span>
-                    </a>
-                    <a href="#" class="nav-item" data-section="configuracoes">
-                        <i class="fas fa-cog"></i>
-                        <span>Configurações</span>
-                    </a>
-                </div>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Dashboard Section -->
-            <section id="dashboard" class="section active">
-                <div class="page-header">
-                    <h1 class="page-title" id="dashboard-boas-vindas">Bem-vinda</h1>
-                    <p class="page-subtitle">Acompanhe o desenvolvimento e progresso do João</p>
-                </div>
-
-                <!-- Stats Grid -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <span class="stat-title">Sessões Realizadas</span>
-                            <div class="stat-icon primary">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
-                        </div>
-                        <div class="stat-number">42</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>8% este mês</span>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <span class="stat-title">Marcos Alcançados</span>
-                            <div class="stat-icon success">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                        </div>
-                        <div class="stat-number">15</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>3 novos</span>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <span class="stat-title">Próximas Consultas</span>
-                            <div class="stat-icon warning">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                        </div>
-                        <div class="stat-number">3</div>
-                        <div class="stat-change">
-                            <i class="fas fa-calendar"></i>
-                            <span>Próxima em 2 dias</span>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <span class="stat-title">Dias Ativos</span>
-                            <div class="stat-icon secondary">
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="stat-number">89</div>
-                        <div class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            <span>Sequência atual</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Content Grid -->
-                <div class="content-grid">
-                    <!-- Main Panel -->
-                    <div class="main-panel">
-                        <!-- Atividade Recente -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Atividade Recente</h2>
-                            </div>
-                            <div class="card-content">
-                                <div class="table-container">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Data</th>
-                                                <th>Atividade</th>
-                                                <th>Status</th>
-                                                <th>Especialista</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Hoje</td>
-                                                <td>Sessão de Fonoaudiologia</td>
-                                                <td><span class="badge success">Concluída</span></td>
-                                                <td>Dra. Ana Costa</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ontem</td>
-                                                <td>Atividade Cognitiva</td>
-                                                <td><span class="badge success">Concluída</span></td>
-                                                <td>Sistema</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15/11</td>
-                                                <td>Consulta Psicológica</td>
-                                                <td><span class="badge warning">Agendada</span></td>
-                                                <td>Dr. Carlos Lima</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Ações Rápidas -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Ações Rápidas</h2>
-                            </div>
-                            <div class="card-content">
-                                <div class="btn-group">
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-calendar-plus"></i>
-                                        Agendar Consulta
-                                    </button>
-                                    <button class="btn btn-outline">
-                                        <i class="fas fa-file-medical"></i>
-                                        Gerar Relatório
-                                    </button>
-                                    <button class="btn btn-secondary">
-                                        <i class="fas fa-comments"></i>
-                                        Conversar com Luna
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Side Panel -->
-                    <div class="side-panel">
-                        <!-- Próximas Consultas -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Próximas Consultas</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: flex; flex-direction: column; gap: 1rem;">
-                                    <div style="padding: 0.75rem; background: var(--bg-elevated); border-radius: var(--radius-md); border-left: 3px solid var(--primary-blue);">
-                                        <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark); margin-bottom: 0.25rem;">Fonoaudiologia</div>
-                                        <div style="font-size: var(--text-xs); color: var(--text-medium);">15/11 às 14:00</div>
-                                    </div>
-                                    <div style="padding: 0.75rem; background: var(--bg-elevated); border-radius: var(--radius-md); border-left: 3px solid var(--primary-green);">
-                                        <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark); margin-bottom: 0.25rem;">Psicologia</div>
-                                        <div style="font-size: var(--text-xs); color: var(--text-medium);">18/11 às 10:00</div>
-                                    </div>
-                                    <div style="padding: 0.75rem; background: var(--bg-elevated); border-radius: var(--radius-md); border-left: 3px solid var(--primary-orange);">
-                                        <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark); margin-bottom: 0.25rem;">Neuropediatria</div>
-                                        <div style="font-size: var(--text-xs); color: var(--text-medium);">20/11 às 16:00</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Status do Sistema -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Status do Sistema</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem; background: rgba(84, 199, 164, 0.1); border-radius: var(--radius-md);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-green); font-size: 1.25rem;"></i>
-                                    <div>
-                                        <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">Todos os sistemas operacionais</div>
-                                        <div style="font-size: var(--text-xs); color: var(--text-medium);">Última verificação: Agora</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-<!-- Perfil Autista Section -->
-<!-- Tutorial Overlay - Perfil Autista 1 (2 Etapas com App Download) -->
-<div class="tutorial-overlay" id="perfil1TutorialOverlay">
-    <div class="tutorial-backdrop" onclick="closePerfil1Tutorial()"></div>
-    
-    <div class="tutorial-content">
-        <!-- Barra de Progresso -->
-        <div class="tutorial-progress">
-            <div class="tutorial-progress-bar">
-                <div class="perfil1-progress-fill"></div>
-            </div>
-            <span class="perfil1-progress-text">1 de 2</span>
-        </div>
-        
-        <!-- Etapa 1: Informações do Perfil -->
-        <div class="tutorial-step perfil1-tutorial-step active" id="perfil1Step1">
-            <div class="tutorial-icon">
-                <i class="fas fa-user-circle"></i>
-            </div>
-            <h3 class="tutorial-title">Perfil Individual do Neurodivergente</h3>
-            <p class="tutorial-description">
-                Este perfil contém todas as informações detalhadas, histórico de atividades, 
-                marcos de desenvolvimento e dados importantes para o acompanhamento personalizado.
-            </p>
-            
-            <div class="tutorial-features-list">
-                <div class="tutorial-feature-item">
-                    <i class="fas fa-chart-line"></i>
-                    <span><strong>Progresso em Tempo Real:</strong> Acompanhe o desenvolvimento diário</span>
-                </div>
-                <div class="tutorial-feature-item">
-                    <i class="fas fa-calendar-check"></i>
-                    <span><strong>Atividades Concluídas:</strong> Histórico completo de todas as sessões</span>
-                </div>
-                <div class="tutorial-feature-item">
-                    <i class="fas fa-user-md"></i>
-                    <span><strong>Equipe Médica:</strong> Acesso rápido aos especialistas envolvidos</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Etapa 2: Download do Aplicativo -->
-        <div class="tutorial-step perfil1-tutorial-step" id="perfil1Step2">
-            <div class="tutorial-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                <i class="fas fa-mobile-alt"></i>
-            </div>
-            <h3 class="tutorial-title">Baixe Nosso Aplicativo!</h3>
-            <p class="tutorial-description">
-                Tenha acesso completo ao perfil do neurodivergente direto do seu celular. 
-                Acompanhe o progresso, receba notificações e gerencie tudo em qualquer lugar!
-            </p>
-            
-            <div class="app-download-section">
-                <div class="app-features">
-                    <div class="app-feature">
-                        <span></span>
-                    </div>
-                    <div class="app-feature">
-                        <span></span>
-                    </div>
-                    <div class="app-feature">
-                        <span></span>
-                    </div>
-                    <div class="app-feature">
-                        <span></span>
-                    </div>
-                </div>
-                
-                <div class="app-download-buttons">
-                    <a href="#" class="app-download-btn apple-store">
-                        <i class="fab fa-apple"></i>
-                        <div class="app-btn-text">
-                            <span class="app-btn-small">Baixar na</span>
-                            <span class="app-btn-large">App Store</span>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="app-download-btn google-play">
-                        <div class="app-btn-text">
-                            <span class="app-btn-large"></span>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="app-qr-section">
-                    <div class="app-qr-code">
-                    </div>
-                    <p class="app-qr-text"></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Botões de Ação -->
-        <div class="tutorial-actions">
-            <button class="btn btn-secondary" onclick="prevPerfil1Step()" id="perfil1PrevBtn" disabled>
-                <i class="fas fa-arrow-left"></i>
-                Anterior
-            </button>
-            
-            <button class="btn btn-primary" onclick="nextPerfil1Step()" id="perfil1NextBtn">
-                Próximo
-                <i class="fas fa-arrow-right"></i>
-            </button>
-            
-            <button class="btn btn-primary" onclick="closePerfil1Tutorial()" id="perfil1FinishBtn" style="display: none;">
-                Ok
-                <i class="fas fa-check"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- Perfil Autista Section -->
-            <section id="perfil-autista1" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Perfil do Autista</h1>
-                    <p class="page-subtitle">Informações e configurações do perfil do João</p>
-                    <a href="../html/cadastroneuro.html" class="btn-adicionar-neuro">
-                        <i class="fas fa-user-plus"></i>
-                        Adicionar Neurodivergente
-                    </a>
-                </div>
-
-                <div class="content-grid">
-                    <div class="main-panel">
-                        <!-- Informações Pessoais -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Informações Pessoais</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem;">
-                                    <div class="form-group">
-                                        <label class="form-label">Nome Completo</label>
-                                        <input type="text" class="form-input" value="João Silva Santos" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Data de Nascimento</label>
-                                        <input type="date" class="form-input" value="2015-03-15" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Idade</label>
-                                        <input type="text" class="form-input" value="8 anos" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Escola</label>
-                                        <input type="text" class="form-input" value="Escola Municipal João XXIII" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Série/Ano</label>
-                                        <input type="text" class="form-input" value="3º Ano do Ensino Fundamental" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Data de Diagnóstico</label>
-                                        <input type="date" class="form-input" value="2020-01-10" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="side-panel">
-                        <!-- Equipe Médica -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Equipe Médica</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                                    <div style="padding: 0.75rem; background: var(--bg-elevated); border-radius: var(--radius-md); display: flex; align-items: center; gap: 0.75rem;">
-                                        <div style="width: 40px; height: 40px; background: rgba(74, 144, 226, 0.1); color: var(--primary-blue); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                            <i class="fas fa-user-md"></i>
-                                        </div>
-                                        <div style="flex: 1;">
-                                            <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">Dr. Pedro Oliveira</div>
-                                            <div style="font-size: var(--text-xs); color: var(--text-medium);">Neuropediatra</div>
-                                        </div>
-                                    </div>
-                                    <div style="padding: 0.75rem; background: var(--bg-elevated); border-radius: var(--radius-md); display: flex; align-items: center; gap: 0.75rem;">
-                                        <div style="width: 40px; height: 40px; background: rgba(84, 199, 164, 0.1); color: var(--primary-green); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                            <i class="fas fa-user-md"></i>
-                                        </div>
-                                        <div style="flex: 1;">
-                                            <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">Dra. Ana Costa</div>
-                                            <div style="font-size: var(--text-xs); color: var(--text-medium);">Fonoaudióloga</div>
-                                        </div>
-                                    </div>
-                                    <div style="padding: 0.75rem; background: var(--bg-elevated); border-radius: var(--radius-md); display: flex; align-items: center; gap: 0.75rem;">
-                                        <div style="width: 40px; height: 40px; background: rgba(255, 107, 53, 0.1); color: var(--primary-orange); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                            <i class="fas fa-user-md"></i>
-                                        </div>
-                                        <div style="flex: 1;">
-                                            <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">Dr. Carlos Lima</div>
-                                            <div style="font-size: var(--text-xs); color: var(--text-medium);">Psicólogo</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contatos de Emergência -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Contatos de Emergência</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: flex; flex-direction: column; gap: 1rem;">
-                                    <div>
-                                        <div style="font-size: var(--text-xs); font-weight: var(--weight-semibold); text-transform: uppercase; color: var(--text-medium); margin-bottom: 0.25rem;">Responsável Principal</div>
-                                        <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">Maria Silva Santos</div>
-                                        <div style="font-size: var(--text-sm); color: var(--text-medium);">(11) 99999-9999</div>
-                                    </div>
-                                    <div style="border-top: 1px solid var(--border-light); padding-top: 1rem;">
-                                        <div style="font-size: var(--text-xs); font-weight: var(--weight-semibold); text-transform: uppercase; color: var(--text-medium); margin-bottom: 0.25rem;">Contato Secundário</div>
-                                        <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">José Silva Santos</div>
-                                        <div style="font-size: var(--text-sm); color: var(--text-medium);">(11) 98888-8888</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Perfil Section -->
-            <section id="perfil" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Meu Perfil</h1>
-                    <p class="page-subtitle">Gerencie suas informações pessoais e preferências</p>
-                </div>
-
-                <div class="content-grid">
-                    <div class="main-panel">
-                        <!-- Informações Pessoais -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Informações Pessoais</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem;">
-                                    <div class="form-group">
-                                        <label class="form-label">Nome Completo</label>
-                                        <input type="text" class="form-input" id="perfil-nome" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Email</label>
-                                        <input type="email" class="form-input" id="perfil-email" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Celular</label>
-                                        <input type="tel" class="form-input" id="perfil-celular" placeholder="(11) 99999-9999" maxlength="15">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">CPF</label>
-                                        <input type="text" class="form-input" id="perfil-cpf" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Data de Nascimento</label>
-                                        <input type="text" class="form-input" id="perfil-data-nascimento" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-secondary" onclick="cancelarEdicao()">Cancelar</button>
-                                <button class="btn btn-primary" onclick="salvarAlteracoes()">Salvar Alterações</button>
-                            </div>
-                        </div>
-
-                        <!-- Endereço -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Endereço</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem;">
-                                    <div class="form-group" style="grid-column: 1 / -1;">
-                                        <label class="form-label">Rua</label>
-                                        <input type="text" class="form-input" id="perfil-rua" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Número</label>
-                                        <input type="text" class="form-input" id="perfil-numero" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Complemento</label>
-                                        <input type="text" class="form-input" id="perfil-complemento" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Bairro</label>
-                                        <input type="text" class="form-input" id="perfil-bairro" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Cidade</label>
-                                        <input type="text" class="form-input" id="perfil-cidade" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">CEP</label>
-                                        <input type="text" class="form-input" id="perfil-cep" disabled title="Este campo não pode ser alterado">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Segurança -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Segurança</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: flex; flex-direction: column; gap: 1rem; padding: 1rem; background: var(--bg-elevated); border-radius: var(--radius-md);">
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                                        <div>
-                                            <div style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">Autenticação de Dois Fatores</div>
-                                            <div style="font-size: var(--text-xs); color: var(--text-medium); margin-top: 0.25rem;">Adicione uma camada extra de segurança</div>
-                                        </div>
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                    <button class="btn btn-outline" style="width: fit-content;">
-                                        <i class="fas fa-key"></i>
-                                        Alterar Senha
-                                    </button>
-                                </div>
-
-                                <h3 style="margin-top: 1.5rem; margin-bottom: 0.75rem; font-size: var(--text-base); font-weight: var(--weight-semibold);">Sessões Ativas</h3>
-                                <div class="table-container">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Dispositivo</th>
-                                                <th>Local</th>
-                                                <th>Data</th>
-                                                <th>Ações</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><i class="fas fa-laptop"></i> Chrome - Windows</td>
-                                                <td>São Paulo, BR</td>
-                                                <td>Agora</td>
-                                                <td><span class="badge primary">Atual</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fas fa-mobile-alt"></i> Safari - iOS</td>
-                                                <td>São Paulo, BR</td>
-                                                <td>2 horas atrás</td>
-                                                <td><button class="btn btn-sm btn-outline">Encerrar</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="side-panel">
-                        <!-- Foto do Perfil -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Foto do Perfil</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="text-align: center;">
-                                    <div id="perfil-avatar-display" style="width: 120px; height: 120px; margin: 0 auto 1rem; background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%); color: white; border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: var(--weight-semibold); position: relative; overflow: hidden;">
-                                        <span id="perfil-iniciais">M</span>
-                                        <img id="perfil-foto-img" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; display: none;">
-                                    </div>
-                                    <input type="file" id="input-foto-perfil" accept="image/*" style="display: none;">
-                                    <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-foto-perfil').click()">
-                                        <i class="fas fa-camera"></i>
-                                        Alterar Foto
-                                    </button>
-                                    <p style="margin-top: 0.5rem; font-size: var(--text-xs); color: var(--text-light);">Tamanho máximo: 5MB</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Estatísticas da Conta -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Estatísticas da Conta</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--border-light);">
-                                        <span style="font-size: var(--text-sm); color: var(--text-medium);">Membro desde</span>
-                                        <span style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">Janeiro 2024</span>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--border-light);">
-                                        <span style="font-size: var(--text-sm); color: var(--text-medium);">Sessões totais</span>
-                                        <span style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">42</span>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0;">
-                                        <span style="font-size: var(--text-sm); color: var(--text-medium);">Último acesso</span>
-                                        <span style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark);">Hoje</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Preferências -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="card-title">Preferências</h2>
-                            </div>
-                            <div class="card-content">
-                                <div style="display: flex; flex-direction: column; gap: 1rem;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                                        <div>
-                                            <div style="font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--text-dark);">Notificações por Email</div>
-                                            <div style="font-size: var(--text-xs); color: var(--text-medium); margin-top: 0.25rem;">Receba atualizações por email</div>
-                                        </div>
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                                        <div>
-                                            <div style="font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--text-dark);">Notificações Push</div>
-                                            <div style="font-size: var(--text-xs); color: var(--text-medium); margin-top: 0.25rem;">Receba alertas no navegador</div>
-                                        </div>
-                                        <label class="switch">
-                                            <input type="checkbox" checked>
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                                        <div>
-                                            <div style="font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--text-dark);">Lembrete de Consultas</div>
-                                            <div style="font-size: var(--text-xs); color: var(--text-medium); margin-top: 0.25rem;">Alertas antes das consultas</div>
-                                        </div>
-                                        <label class="switch">
-                                            <input type="checkbox" checked>
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-<!-- Perfil Autista Section -->
-
-<!-- COLE ESTE CÓDIGO APÓS A SEÇÃO perfil-autista1 -->
-
-            <!-- Luna Section -->
-            <section id="luna" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Assistente Luna</h1>
-                    <p class="page-subtitle">IA especializada em Transtorno do Espectro Autista</p>
-                </div>
-
-                <div class="card" style="max-width: 900px; margin: 0 auto;">
-                    <div class="card-content" style="min-height: 500px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem;">
-                        <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%); color: white; border-radius: var(--radius-2xl); display: flex; align-items: center; justify-content: center; font-size: 4rem; margin-bottom: 2rem; box-shadow: var(--shadow-xl);">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 style="font-size: var(--text-2xl); font-weight: var(--weight-semibold); color: var(--text-dark); margin-bottom: 1rem;">Olá! Sou a Luna</h3>
-                        <p style="font-size: var(--text-base); color: var(--text-medium); max-width: 500px; margin-bottom: 2rem;">Estou aqui para ajudar você com informações sobre o desenvolvimento do João, tirar dúvidas sobre TEA e oferecer orientações personalizadas.</p>
-                        <button class="btn btn-primary btn-lg" onclick="window.location.href='../html/luna.html'">
-                            <i class="fas fa-comments"></i>
-                            Iniciar Conversa
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-<!-- Tutorial Overlay - Perfil do Autista (3 Etapas) -->
-<div class="tutorial-overlay" id="perfilTutorialOverlay">
-    <div class="tutorial-backdrop" onclick="closePerfilTutorial()"></div>
-    
-    <div class="tutorial-content">
-        <!-- Barra de Progresso -->
-        <div class="tutorial-progress">
-            <div class="tutorial-progress-bar">
-                <div class="perfil-progress-fill"></div>
-            </div>
-            <span class="perfil-progress-text">1 de 3</span>
-        </div>
-        
-        <!-- Etapa 1: Informações Gerais -->
-        <div class="tutorial-step perfil-tutorial-step active" id="perfilStep1">
-            <div class="tutorial-icon">
-                <i class="fas fa-user-circle"></i>
-            </div>
-            <h3 class="tutorial-title">Perfil do Neurodivergente</h3>
-            <p class="tutorial-description">
-                Aqui você pode visualizar e gerenciar todas as informações importantes sobre o neurodivergente, 
-                incluindo dados pessoais, equipe médica e contatos de emergência.
-            </p>
-            
-            <div class="tutorial-info-box">
-                <i class="fas fa-lightbulb"></i>
-                <p>
-                    <strong>Dica:</strong> Mantenha sempre as informações atualizadas para garantir 
-                    o melhor acompanhamento e cuidado.
-                </p>
-            </div>
-        </div>
-        
-        <!-- Etapa 2: Perfil Sensorial -->
-        <div class="tutorial-step perfil-tutorial-step" id="perfilStep2">
-            <div class="tutorial-icon">
-                <i class="fas fa-brain"></i>
-            </div>
-            <h3 class="tutorial-title">Perfil Sensorial</h3>
-            <p class="tutorial-description">
-                O perfil sensorial ajuda a entender melhor as sensibilidades, interesses especiais 
-                e estratégias de regulação do neurodivergente.
-            </p>
-            
-            <div class="tutorial-features-list">
-                <div class="tutorial-feature-item">
-                    <i class="fas fa-heart"></i>
-                    <span><strong>Interesses Especiais:</strong> Registre os temas e atividades que mais interessam</span>
-                </div>
-                <div class="tutorial-feature-item">
-                    <i class="fas fa-utensils"></i>
-                    <span><strong>Alimentos Preferidos:</strong> Mantenha uma lista de preferências alimentares</span>
-                </div>
-                <div class="tutorial-feature-item">
-                    <i class="fas fa-volume-up"></i>
-                    <span><strong>Sensibilidades:</strong> Documente sensibilidades sensoriais importantes</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Etapa 3: Acompanhamento -->
-        <div class="tutorial-step perfil-tutorial-step" id="perfilStep3">
-            <div class="tutorial-icon">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <h3 class="tutorial-title">Acompanhamento e Desenvolvimento</h3>
-            <p class="tutorial-description">
-                Utilize os marcos de desenvolvimento para acompanhar o progresso em áreas como 
-                comunicação, habilidades sociais, autocuidado e desenvolvimento motor.
-            </p>
-            
-            <div class="tutorial-info-box">
-                <i class="fas fa-star"></i>
-                <p>
-                    <strong>Importante:</strong> O acompanhamento contínuo permite identificar conquistas 
-                    e ajustar estratégias de suporte quando necessário.
-                </p>
-            </div>
-        </div>
-        
-        <!-- Botões de Ação -->
-        <div class="tutorial-actions">
-            <button class="btn btn-secondary" onclick="prevPerfilStep()" id="perfilPrevBtn" disabled>
-                <i class="fas fa-arrow-left"></i>
-                Anterior
-            </button>
-            
-            <button class="btn btn-primary" onclick="nextPerfilStep()" id="perfilNextBtn">
-                Próximo
-                <i class="fas fa-arrow-right"></i>
-            </button>
-            
-            <button class="btn btn-primary" onclick="closePerfilTutorial()" id="perfilFinishBtn" style="display: none;">
-                Ok
-                <i class="fas fa-check"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- SEÇÃO: PERFIL SENSORIAL -->
-<section class="section" id="perfil-autista">
-    <div class="page-header-simple">
-        <h1 class="page-title-simple">Perfil Sensorial</h1>
-        <button class="btn btn-outline-primary" onclick="shareProfile()">
-            <i class="fas fa-share-alt"></i> Compartilhar Perfil
-        </button>
-    </div>
-
-    <!-- INTERESSES E PREFERÊNCIAS -->
-    <div class="card-modern">
-        <h2 class="section-title">Interesses e Preferências</h2>
-        
-        <div class="two-column-grid">
-            <!-- Coluna 1: Interesses Especiais -->
-            <div class="column-content">
-                <h3 class="subsection-title">Interesses Especiais</h3>
-                <div class="tags-container" id="interesses-container">
-                    <span class="tag tag-blue">Dinossauros</span>
-                    <span class="tag tag-blue">Trens</span>
-                    <span class="tag tag-blue">Blocos de Montar</span>
-                    <span class="tag tag-blue">Música</span>
-                </div>
-                <button class="btn-add" onclick="addItem('interesses')">
-                    <i class="fas fa-plus"></i> Adicionar
-                </button>
-            </div>
-
-            <!-- Coluna 2: Alimentos Preferidos -->
-            <div class="column-content">
-                <h3 class="subsection-title">Alimentos Preferidos</h3>
-                <div class="checklist-container" id="alimentos-container">
-                    <div class="checklist-item">
-                        <i class="fas fa-check check-icon"></i>
-                        <span>Macarrão com molho de tomate</span>
-                        <div class="item-actions-inline">
-                            <button class="btn-icon-inline edit" onclick="editItemInline('alimentos', 1)">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-icon-inline delete" onclick="deleteItemInline('alimentos', 1)">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="checklist-item">
-                        <i class="fas fa-check check-icon"></i>
-                        <span>Frango grelhado</span>
-                        <div class="item-actions-inline">
-                            <button class="btn-icon-inline edit" onclick="editItemInline('alimentos', 2)">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-icon-inline delete" onclick="deleteItemInline('alimentos', 2)">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="checklist-item">
-                        <i class="fas fa-check check-icon"></i>
-                        <span>Banana</span>
-                        <div class="item-actions-inline">
-                            <button class="btn-icon-inline edit" onclick="editItemInline('alimentos', 3)">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-icon-inline delete" onclick="deleteItemInline('alimentos', 3)">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="checklist-item">
-                        <i class="fas fa-check check-icon"></i>
-                        <span>Iogurte natural</span>
-                        <div class="item-actions-inline">
-                            <button class="btn-icon-inline edit" onclick="editItemInline('alimentos', 4)">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-icon-inline delete" onclick="deleteItemInline('alimentos', 4)">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-add" onclick="addItem('alimentos')">
-                    <i class="fas fa-plus"></i> Adicionar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- PERFIL SENSORIAL -->
-    <div class="card-modern">
-        <h2 class="section-title">Perfil Sensorial</h2>
-        
-        <div class="two-column-grid">
-            <!-- Coluna 1: Sensibilidades -->
-            <div class="column-content">
-                <h3 class="subsection-title">Sensibilidades</h3>
-                <div class="tags-container" id="sensibilidades-container">
-                    <span class="tag tag-orange">Sons Altos</span>
-                    <span class="tag tag-orange">Luzes Fortes</span>
-                    <span class="tag tag-orange">Multidões</span>
-                </div>
-                <button class="btn-add" onclick="addItem('sensibilidades')">
-                    <i class="fas fa-plus"></i> Adicionar
-                </button>
-            </div>
-
-            <!-- Coluna 2: Estratégias de Regulação -->
-            <div class="column-content">
-                <h3 class="subsection-title">Estratégias de Regulação</h3>
-                <div class="checklist-container" id="estrategias-container">
-                    <div class="checklist-item">
-                        <i class="fas fa-check check-icon"></i>
-                        <span>Uso de fones com cancelamento de ruído</span>
-                        <div class="item-actions-inline">
-                            <button class="btn-icon-inline edit" onclick="editItemInline('estrategias', 1)">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-icon-inline delete" onclick="deleteItemInline('estrategias', 1)">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="checklist-item">
-                        <i class="fas fa-check check-icon"></i>
-                        <span>Pausas em ambiente calmo</span>
-                        <div class="item-actions-inline">
-                            <button class="btn-icon-inline edit" onclick="editItemInline('estrategias', 2)">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-icon-inline delete" onclick="deleteItemInline('estrategias', 2)">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="checklist-item">
-                        <i class="fas fa-check check-icon"></i>
-                        <span>Objeto de conforto (dinossauro de pelúcia)</span>
-                        <div class="item-actions-inline">
-                            <button class="btn-icon-inline edit" onclick="editItemInline('estrategias', 3)">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-icon-inline delete" onclick="deleteItemInline('estrategias', 3)">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="checklist-item">
-                        <i class="fas fa-check check-icon"></i>
-                        <span>Respiração profunda</span>
-                        <div class="item-actions-inline">
-                            <button class="btn-icon-inline edit" onclick="editItemInline('estrategias', 4)">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-icon-inline delete" onclick="deleteItemInline('estrategias', 4)">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-add" onclick="addItem('estrategias')">
-                    <i class="fas fa-plus"></i> Adicionar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MARCOS DE DESENVOLVIMENTO -->
-    <div class="card-modern">
-        <h2 class="section-title">Marcos de Desenvolvimento</h2>
-        
-        <div class="development-grid">
-            <div class="development-card">
-                <div class="development-header">
-                    <div class="development-icon communication-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3 class="development-title">COMUNICAÇÃO</h3>
-                </div>
-                <p class="development-text">Usa frases de 3-4 palavras</p>
-                <div class="development-actions">
-                    <button class="btn-icon-inline edit" onclick="editDevelopment('comunicacao')">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="development-card">
-                <div class="development-header">
-                    <div class="development-icon social-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="development-title">SOCIAL</h3>
-                </div>
-                <p class="development-text">Iniciando contato visual</p>
-                <div class="development-actions">
-                    <button class="btn-icon-inline edit" onclick="editDevelopment('social')">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="development-card">
-                <div class="development-header">
-                    <div class="development-icon selfcare-icon">
-                        <i class="fas fa-hand-sparkles"></i>
-                    </div>
-                    <h3 class="development-title">AUTOCUIDADO</h3>
-                </div>
-                <p class="development-text">Rotina de higiene básica</p>
-                <div class="development-actions">
-                    <button class="btn-icon-inline edit" onclick="editDevelopment('autocuidado')">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="development-card">
-                <div class="development-header">
-                    <div class="development-icon motor-icon">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <h3 class="development-title">MOTOR</h3>
-                </div>
-                <p class="development-text">Coordenação motora fina</p>
-                <div class="development-actions">
-                    <button class="btn-icon-inline edit" onclick="editDevelopment('motor')">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-            <!-- Progresso Section -->
-            <section id="progresso" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Progresso</h1>
-                    <p class="page-subtitle">Acompanhamento detalhado do desenvolvimento</p>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Relatórios de Progresso</h2>
-                    </div>
-                    <div class="card-content" style="min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                        <div style="width: 80px; height: 80px; background: rgba(74, 144, 226, 0.1); color: var(--primary-blue); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin-bottom: 1.5rem;">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 style="font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--text-dark); margin-bottom: 0.75rem;">Esta seção estará disponível em breve.</h3>
-                        <p style="font-size: var(--text-base); color: var(--text-medium); max-width: 500px;">Aqui você poderá acompanhar gráficos detalhados, estatísticas e análises do desenvolvimento do João.</p>
-                    </div>
-                </div>
-            </section>
-
-<!-- Tutorial Overlay - Especialistas (1 Etapa) -->
-<div class="tutorial-overlay" id="especialistasTutorialOverlay">
-    <div class="tutorial-backdrop" onclick="closeEspecialistasTutorial()"></div>
-    <div class="tutorial-content">
-        <!-- Etapa Única -->
-        <div class="tutorial-step active" id="especialistasStep1">
-            <div class="tutorial-icon">
-                <i class="fas fa-user-md"></i>
-            </div>
-            <h3 class="tutorial-title">Equipe de Especialistas</h3>
-            <p class="tutorial-description">
-                Aqui você pode gerenciar toda a equipe multidisciplinar responsável pelo acompanhamento. Adicione novos profissionais, visualize informações de contato e acompanhe o calendário de consultas.
-            </p>
-            <div class="tutorial-features-list">
-                <div class="tutorial-feature-item">
-                    <i class="fas fa-user-plus"></i>
-                    <span><strong>Adicionar Especialistas:</strong> Cadastre novos profissionais na equipe</span>
-                </div>
-                <div class="tutorial-feature-item">
-                    <i class="fas fa-calendar-check"></i>
-                    <span><strong>Consultas Agendadas:</strong> Visualize e gerencie próximas consultas</span>
-                </div>
-                <div class="tutorial-feature-item">
-                    <i class="fas fa-phone"></i>
-                    <span><strong>Contatos Diretos:</strong> Acesso rápido aos telefones dos especialistas</span>
-                </div>
-            </div>
-            <div class="tutorial-info-box">
-                <i class="fas fa-lightbulb"></i>
-                <p><strong>Dica:</strong> Mantenha os contatos atualizados para facilitar a comunicação com a equipe médica.</p>
-            </div>
-        </div>
-
-        <!-- Botões de Ação -->
-        <div class="tutorial-actions">
-            <button class="btn btn-secondary" onclick="postponeEspecialistasTutorial()">
-                Talvez mais tarde
-            </button>
-            <button class="btn btn-primary" onclick="closeEspecialistasTutorial()">
-                Ver <i class="fas fa-check"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
-            <!-- Especialistas Section -->
-            <section id="especialistas" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Especialistas</h1>
-                    <p class="page-subtitle">Gerencie sua equipe multidisciplinar</p>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Equipe Médica</h2>
-                        <button class="btn btn-primary btn-sm" onclick="window.location.href='../html/especialista.html'">
-                            <i class="fas fa-plus"></i>
-                            Adicionar Especialista
-                        </button>
-                        
-                    </div>
-                    <div class="card-content">
-                        <div class="table-container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Especialista</th>
-                                        <th>Especialidade</th>
-                                        <th>Contato</th>
-                                        <th>Próxima Consulta</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Dr. Pedro Oliveira</td>
-                                        <td>Neuropediatra</td>
-                                        <td>(11) 91234-5678</td>
-                                        <td>20/11/2024</td>
-                                        <td><span class="badge success">Ativo</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline">Editar</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dra. Ana Costa</td>
-                                        <td>Fonoaudióloga</td>
-                                        <td>(11) 92345-6789</td>
-                                        <td>15/11/2024</td>
-                                        <td><span class="badge success">Ativo</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline">Editar</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dr. Carlos Lima</td>
-                                        <td>Psicólogo</td>
-                                        <td>(11) 93456-7890</td>
-                                        <td>18/11/2024</td>
-                                        <td><span class="badge success">Ativo</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline">Editar</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-top: 1.5rem;">
-                    <div class="card-header">
-                        <h2 class="card-title">Calendário de Consultas</h2>
-                    </div>
-                    <div class="card-content">
-                        <div class="table-container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Data</th>
-                                        <th>Horário</th>
-                                        <th>Especialista</th>
-                                        <th>Tipo</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>15/11/2024</td>
-                                        <td>14:00</td>
-                                        <td>Dra. Ana Costa</td>
-                                        <td>Fonoaudiologia</td>
-                                        <td><span class="badge warning">Agendada</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline">Detalhes</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>18/11/2024</td>
-                                        <td>10:00</td>
-                                        <td>Dr. Carlos Lima</td>
-                                        <td>Psicologia</td>
-                                        <td><span class="badge warning">Agendada</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline">Detalhes</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>20/11/2024</td>
-                                        <td>16:00</td>
-                                        <td>Dra. Fernanda Santos</td>
-                                        <td>Terapia Ocupacional</td>
-                                        <td><span class="badge warning">Agendada</span></td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline">Detalhes</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Relatórios Section -->
-            <section id="relatorios" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Relatórios</h1>
-                    <p class="page-subtitle">Relatórios detalhados de acompanhamento</p>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Sistema de Relatórios</h2>
-                    </div>
-                    <div class="card-content" style="min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                        <div style="width: 80px; height: 80px; background: rgba(74, 144, 226, 0.1); color: var(--primary-blue); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin-bottom: 1.5rem;">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                        <h3 style="font-size: var(--text-xl); font-weight: var(--weight-semibold); color: var(--text-dark); margin-bottom: 0.75rem;">Esta funcionalidade estará disponível em breve.</h3>
-                        <p style="font-size: var(--text-base); color: var(--text-medium); max-width: 500px;">Aqui você poderá gerar relatórios personalizados sobre o desenvolvimento, atividades e marcos alcançados.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Recursos Section -->
-            <section id="recursos" class="section">
-                <div class="page-header">
-                    <h1 class="page-title">Recursos & Suporte</h1>
-                    <p class="page-subtitle">Materiais educativos, vídeos informativos e canais de comunicação</p>
-                </div>
-
-                <!-- Materiais PDF -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Materiais em PDF</h2>
-                    </div>
-                    <div class="card-content">
-                        <p style="margin-bottom: 1.5rem; color: var(--text-medium);">Acesse cartilhas, guias e materiais educativos sobre o Transtorno do Espectro Autista.</p>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
-                            <a href="https://www.defensoria.rs.def.br/upload/arquivos/202504/25112005-cartilha-crianca-e-adolescente-com-autismo-2025.pdf" target="_blank" style="text-decoration: none; padding: 1rem; background: var(--bg-elevated); border-radius: var(--radius-md); border: 1px solid var(--border-light); transition: all var(--transition-base); display: block;">
-                                <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
-                                    <div style="width: 40px; height: 40px; background: rgba(255, 107, 53, 0.1); color: var(--primary-orange); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                        <i class="fas fa-file-pdf"></i>
-                                    </div>
-                                    <div style="flex: 1;">
-                                        <h3 style="font-size: var(--text-sm); font-weight: var(--weight-semibold); color: var(--text-dark); margin-bottom: 0.25rem;">Direitos da Criança e Adolescente com Autismo</h3>
-                                        <p style="font-size: var(--text-xs); color: var(--text-medium); margin-bottom: 0.5rem;">Cartilha completa sobre direitos, características do TEA e orientações para famílias (2025)</p>
-                                        <span style="font-size: var(--text-xs); color: var(--primary-blue); font-weight: var(--weight-medium);">Defensoria Pública RS</span>
-                                    </div>
-                                </div>
-                            </a>
-                            <!-- Mais PDFs aqui... -->
- <script>
-// ============================================
-// VERIFICAR SESSÃO E CARREGAR DADOS DO HEADER
-// ============================================
-function verificarSessao() {
-    fetch('../php/verificar_sessao_responsavel.php')
-        .then(response => response.json())
-        .then(data => {
-            if (!data.logado) {
-                window.location.href = '../html/login.html';
-                return;
-            }
-            
-            if (data.success) {
-                const dados = data.dados;
-                
-                // Atualizar nome no header
-                const nomeHeader = document.getElementById('header-nome');
-                if (nomeHeader) {
-                    nomeHeader.textContent = dados.primeiro_nome;
-                }
-                
-                // Atualizar iniciais/foto do avatar no header
-                const avatarHeader = document.getElementById('header-avatar');
-                if (avatarHeader) {
-                    if (dados.perfil && dados.perfil.trim() !== '') {
-                        // CORRIGIDO: Caminho correto da imagem
-                        avatarHeader.style.backgroundImage = `url('../${dados.perfil}')`;
-                        avatarHeader.style.backgroundSize = 'cover';
-                        avatarHeader.style.backgroundPosition = 'center';
-                        avatarHeader.textContent = '';
-                    } else {
-                        avatarHeader.textContent = dados.iniciais;
-                        avatarHeader.style.backgroundImage = 'none';
-                    }
-                }
-                
-                // Atualizar mensagem de boas-vindas no dashboard
-                const boasVindas = document.getElementById('dashboard-boas-vindas');
-                if (boasVindas) {
-                    boasVindas.textContent = `Bem-vinda, ${dados.primeiro_nome}`;
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao verificar sessão:', error);
-            // Redirecionar para login em caso de erro
-            setTimeout(() => {
-                window.location.href = '../html/login.html';
-            }, 2000);
-        });
+/* ========== RESET E FUNDAÇÃO ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-// ============================================
-// FUNÇÃO DE LOGOUT
-// ============================================
-function fazerLogout() {
-    if (confirm('Deseja realmente sair do sistema?')) {
-        window.location.href = '../php/logout_responsavel.php';
+:root {
+    /* Cores Primárias - Paleta Original */
+    --primary-blue: #4A90E2;
+    --primary-blue-light: #7BB3F0;
+    --primary-blue-dark: #2E5C8A;
+    --primary-orange: #FF6B35;
+    --primary-orange-light: #FF8E53;
+    --primary-green: #54C7A4;
+    --primary-green-dark: #45A085;
+    
+    /* Cores de Texto */
+    --text-dark: #2C3E50;
+    --text-medium: #5A6C7D;
+    --text-light: #94a3b8;
+    
+    /* Backgrounds */
+    --bg-main: #f8fbff;
+    --bg-light: #ffffff;
+    --bg-elevated: #fafcfe;
+    --bg-gradient-light: #f1f7fd;
+    --bg-overlay: rgba(44, 62, 80, 0.5);
+    
+    /* Bordas - Ultra Sutis */
+    --border-light: rgba(74, 144, 226, 0.1);
+    --border-medium: rgba(74, 144, 226, 0.2);
+    --border-dark: rgba(74, 144, 226, 0.3);
+    
+    /* Sombras - Profissionais */
+    --shadow-xs: 0 1px 2px 0 rgba(74, 144, 226, 0.04);
+    --shadow-sm: 0 1px 3px 0 rgba(74, 144, 226, 0.08), 0 1px 2px -1px rgba(74, 144, 226, 0.08);
+    --shadow-small: 0 5px 20px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-large: 0 15px 50px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(74, 144, 226, 0.08), 0 8px 10px -6px rgba(74, 144, 226, 0.08);
+    --shadow-2xl: 0 25px 50px -12px rgba(74, 144, 226, 0.2);
+    
+    /* Transições - Precisas */
+    --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Espaçamento - Sistema 4px */
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    
+    /* Raios de Borda - Consistentes */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-full: 9999px;
+    --border-radius-small: 12px;
+    --border-radius-medium: 20px;
+    --border-radius-large: 25px;
+    --border-radius-pill: 50px;
+    
+    /* Tipografia - Escala Refinada */
+    --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Inter', system-ui, sans-serif;
+    --font-mono: 'SF Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+    
+    --text-xs: 0.6875rem;
+    --text-sm: 0.8125rem;
+    --text-base: 0.9375rem;
+    --text-lg: 1.0625rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    
+    --line-tight: 1.25;
+    --line-normal: 1.5;
+    --line-relaxed: 1.625;
+    
+    --weight-normal: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    
+    /* Z-index */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-tooltip: 1070;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--bg-main);
+    color: var(--text-dark);
+    line-height: var(--line-normal);
+    font-size: var(--text-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    scroll-behavior: smooth;
+}
+
+/* ========== HEADER - Enterprise Grade ========== */
+.header {
+    background: var(--bg-light);
+    border-bottom: none;
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    backdrop-filter: saturate(180%) blur(20px);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+}
+
+.header-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-6);
+    height: 60px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-base);
+    color: white;
+    letter-spacing: -0.01em;
+}
+
+.logo-section i {
+    font-size: 1.375rem;
+    color: white;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.notifications {
+    position: relative;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.9);
+    transition: color var(--transition-fast);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: transparent;
+}
+
+.notifications:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.notification-badge {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: var(--primary-orange);
+    color: white;
+    font-size: 0.625rem;
+    min-width: 16px;
+    height: 16px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--weight-semibold);
+    box-shadow: 0 0 0 2px var(--bg-light);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    cursor: pointer;
+    padding: var(--space-1) var(--space-2);
+    padding-right: var(--space-3);
+    border-radius: var(--radius-lg);
+    transition: background var(--transition-fast);
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.user-profile:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    color: white;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-sm);
+    flex-shrink: 0;
+}
+
+.user-info h4 {
+    font-weight: var(--weight-medium);
+    font-size: var(--text-sm);
+    color: white;
+    margin-bottom: 1px;
+    letter-spacing: -0.01em;
+}
+
+.user-info p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-normal);
+}
+
+/* ========== LAYOUT PRINCIPAL ========== */
+.main-layout {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    min-height: calc(100vh - 60px);
+}
+
+/* ========== SIDEBAR - Minimalista Premium ========== */
+.sidebar {
+    width: 240px;
+    background: var(--bg-light);
+    border-right: 1px solid var(--border-light);
+    padding: var(--space-6) 0;
+    height: calc(100vh - 60px);
+    position: sticky;
+    top: 60px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: var(--radius-full);
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--border-dark);
+}
+
+.nav-section {
+    margin-bottom: var(--space-8);
+}
+
+.nav-section:last-child {
+    margin-bottom: 0;
+}
+
+.nav-title {
+    padding: 0 var(--space-4);
+    margin-bottom: var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    color: var(--text-light);
+    letter-spacing: 0.06em;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    text-decoration: none;
+    color: var(--text-medium);
+    transition: all var(--transition-fast);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-sm);
+    position: relative;
+    margin: 0 var(--space-2);
+    border-radius: var(--radius-md);
+}
+
+.nav-item:hover {
+    background: var(--bg-elevated);
+    color: var(--text-dark);
+}
+
+.nav-item.active {
+    background: rgba(74, 144, 226, 0.08);
+    color: var(--primary-blue);
+    font-weight: var(--weight-semibold);
+}
+
+.nav-item i {
+    width: 18px;
+    text-align: center;
+    font-size: 0.9375rem;
+}
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+    flex: 1;
+    padding: var(--space-8) var(--space-6);
+    overflow-x: hidden;
+}
+
+/* ========== SECTIONS ========== */
+.section {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-// ============================================
-// CARREGAR DADOS DO PERFIL
-// ============================================
-function carregarDadosPerfil() {
-    fetch('../php/buscar_dados_responsavel.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const dados = data.dados;
-                
-                // Preencher campos pessoais
-                document.getElementById('perfil-nome').value = dados.nome || '';
-                document.getElementById('perfil-email').value = dados.email || '';
-                document.getElementById('perfil-celular').value = dados.celular_formatado || '';
-                document.getElementById('perfil-cpf').value = dados.cpf_formatado || '';
-                
-                // CORRIGIDO: Data de nascimento formatada para exibição
-                document.getElementById('perfil-data-nascimento').value = dados.data_nascimento_formatada || '';
-                
-                // Preencher endereço
-                document.getElementById('perfil-rua').value = dados.rua || '';
-                document.getElementById('perfil-numero').value = dados.numero || '';
-                document.getElementById('perfil-complemento').value = dados.complemento || '';
-                document.getElementById('perfil-bairro').value = dados.bairro || '';
-                document.getElementById('perfil-cidade').value = dados.cidade || '';
-                document.getElementById('perfil-cep').value = dados.cep_formatado || '';
-                
-                // Atualizar foto/avatar
-                const iniciais = dados.iniciais || 'M';
-                const perfilIniciais = document.getElementById('perfil-iniciais');
-                const perfilFotoImg = document.getElementById('perfil-foto-img');
-                
-                if (perfilIniciais) {
-                    perfilIniciais.textContent = iniciais;
-                }
-                
-                // CORRIGIDO: Exibir foto se existir
-                if (dados.perfil && dados.perfil.trim() !== '' && perfilFotoImg) {
-                    perfilFotoImg.src = '../' + dados.perfil + '?t=' + new Date().getTime();
-                    perfilFotoImg.style.display = 'block';
-                    if (perfilIniciais) {
-                        perfilIniciais.style.display = 'none';
-                    }
-                } else if (perfilFotoImg) {
-                    perfilFotoImg.style.display = 'none';
-                    if (perfilIniciais) {
-                        perfilIniciais.style.display = 'flex';
-                    }
-                }
-            } else {
-                console.error('Erro ao carregar dados:', data.message);
-                alert('Erro ao carregar dados do perfil: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert('Erro ao carregar dados do perfil. Verifique sua conexão.');
-        });
+/* ========== PAGE HEADER ========== */
+.page-header {
+    margin-bottom: var(--space-8);
 }
 
-// ============================================
-// SALVAR ALTERAÇÕES (CELULAR)
-// ============================================
-function salvarAlteracoes() {
-    const celular = document.getElementById('perfil-celular').value;
-    
-    if (!celular) {
-        alert('Por favor, preencha o celular');
-        return;
-    }
-    
-    // Validar formato do celular
-    const celularLimpo = celular.replace(/\D/g, '');
-    if (celularLimpo.length !== 11) {
-        alert('Celular inválido! Digite no formato (11) 99999-9999');
-        return;
-    }
-    
-    const formData = new FormData();
-    formData.append('celular', celular);
-    
-    // Desabilitar botão durante salvamento
-    const btnSalvar = event.target;
-    const textoOriginal = btnSalvar.innerHTML;
-    btnSalvar.disabled = true;
-    btnSalvar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
-    
-    fetch('../php/atualizar_perfil_responsavel.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert(data.message);
-            carregarDadosPerfil();
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert('Erro ao salvar alterações. Tente novamente.');
-    })
-    .finally(() => {
-        btnSalvar.disabled = false;
-        btnSalvar.innerHTML = textoOriginal;
-    });
+.page-title {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-semibold);
+    color: var(--text-dark);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.02em;
+    line-height: var(--line-tight);
 }
 
-// ============================================
-// CANCELAR EDIÇÃO
-// ============================================
-function cancelarEdicao() {
-    if (confirm('Deseja descartar as alterações?')) {
-        carregarDadosPerfil();
-    }
+.page-subtitle {
+    color: var(--text-medium);
+    font-size: var(--text-base);
+    font-weight: var(--weight-normal);
 }
 
-// ============================================
-// UPLOAD DE FOTO
-// ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    const inputFoto = document.getElementById('input-foto-perfil');
-    if (inputFoto) {
-        inputFoto.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            
-            if (!file) return;
-            
-            // Validar tamanho (5MB)
-            if (file.size > 5242880) {
-                alert('Arquivo muito grande! Tamanho máximo: 5MB');
-                inputFoto.value = '';
-                return;
-            }
-            
-            // Validar tipo
-            const tiposPermitidos = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-            if (!tiposPermitidos.includes(file.type)) {
-                alert('Tipo de arquivo inválido! Use apenas JPG, PNG ou GIF');
-                inputFoto.value = '';
-                return;
-            }
-            
-            const formData = new FormData();
-            formData.append('perfil', file);
-            
-            // Mostrar loading
-            const avatarDisplay = document.getElementById('perfil-avatar-display');
-            const originalContent = avatarDisplay.innerHTML;
-            avatarDisplay.innerHTML = '<i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: white;"></i>';
-            
-            fetch('../php/atualizar_perfil_responsavel.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // CORRIGIDO: Atualizar preview da foto com timestamp para evitar cache
-                    const timestamp = new Date().getTime();
-                    const perfilFotoImg = document.getElementById('perfil-foto-img');
-                    const perfilIniciais = document.getElementById('perfil-iniciais');
-                    
-                    if (perfilFotoImg) {
-                        perfilFotoImg.src = data.foto_url + '?t=' + timestamp;
-                        perfilFotoImg.style.display = 'block';
-                        perfilFotoImg.onload = function() {
-                            if (perfilIniciais) {
-                                perfilIniciais.style.display = 'none';
-                            }
-                        };
-                    }
-                    
-                    // Atualizar também no header
-                    verificarSessao();
-                    
-                    alert(data.message);
-                } else {
-                    alert(data.message);
-                    avatarDisplay.innerHTML = originalContent;
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao fazer upload da foto. Tente novamente.');
-                avatarDisplay.innerHTML = originalContent;
-            })
-            .finally(() => {
-                inputFoto.value = '';
-            });
-        });
-    }
-    
-    // CORRIGIDO: Máscara para celular
-    const celularInput = document.getElementById('perfil-celular');
-    if (celularInput) {
-        celularInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            
-            // Limitar a 11 dígitos
-            if (value.length > 11) {
-                value = value.substring(0, 11);
-            }
-            
-            // Aplicar máscara
-            if (value.length <= 11) {
-                value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
-                value = value.replace(/(\d)(\d{4})$/, '$1-$2');
-            }
-            
-            e.target.value = value;
-        });
-    }
-});
-
-// ============================================
-// TUTORIAL PRINCIPAL (5 ETAPAS)
-// ============================================
-let currentStep = 1;
-const totalSteps = 5;
-
-function nextStep() { 
-    if (currentStep < totalSteps) {
-        document.querySelector(`.tutorial-step[data-step="${currentStep}"]`).classList.remove('active');
-        currentStep++;
-        document.querySelector(`.tutorial-step[data-step="${currentStep}"]`).classList.add('active');
-        updateProgress();
-    }
+/* ========== STATS GRID ========== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
 }
 
-function prevStep() {
-    if (currentStep > 1) {
-        document.querySelector(`.tutorial-step[data-step="${currentStep}"]`).classList.remove('active');
-        currentStep--;
-        document.querySelector(`.tutorial-step[data-step="${currentStep}"]`).classList.add('active');
-        updateProgress();
-    }
+.stat-card {
+    background: var(--bg-light);
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
 }
 
-function updateProgress() {
-    const progressPercentage = (currentStep / totalSteps) * 100;
-    const progressBar = document.getElementById('tutorial-progress');
-    const stepCounter = document.getElementById('step-counter');
-    
-    if (progressBar) {
-        progressBar.style.width = progressPercentage + '%';
-    }
-    if (stepCounter) {
-        stepCounter.textContent = `${currentStep} / ${totalSteps}`;
-    }
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--border-medium);
 }
 
-function toggleFinishButton() {
-    const checkbox = document.getElementById('terms-checkbox');
-    const finishBtn = document.getElementById('finish-btn');
-    if (finishBtn) {
-        finishBtn.disabled = !checkbox.checked;
-    }
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
 }
 
-function closeTutorial() {
-    const checkbox = document.getElementById('terms-checkbox');
-    
-    if (currentStep === totalSteps && checkbox && !checkbox.checked) {
-        alert('Por favor, aceite os Termos de Uso e a Política de Privacidade para continuar.');
-        return;
-    }
-    
-    const tutorialOverlay = document.getElementById('tutorial-overlay');
-    if (tutorialOverlay) {
-        tutorialOverlay.classList.remove('active');
-    }
-    localStorage.setItem('tutorialCompleted', 'true');
+.stat-title {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-medium);
+    letter-spacing: -0.01em;
 }
 
-// ============================================
-// TUTORIAL PERFIL AUTISTA 1 (2 ETAPAS)
-// ============================================
-let perfil1TutorialStep = 1;
-const perfil1TotalSteps = 2;
-
-function openPerfil1Tutorial() {
-    const perfil1TutorialCompleted = localStorage.getItem('perfil1TutorialCompleted');
-    const overlay = document.getElementById('perfil1TutorialOverlay');
-    
-    if (!perfil1TutorialCompleted && overlay) {
-        perfil1TutorialStep = 1;
-        updatePerfil1TutorialStep();
-        overlay.classList.add('active');
-    }
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
 }
 
-function closePerfil1Tutorial() {
-    const overlay = document.getElementById('perfil1TutorialOverlay');
-    if (overlay) {
-        overlay.classList.remove('active');
-    }
-    localStorage.setItem('perfil1TutorialCompleted', 'true');
+.stat-icon.primary {
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--primary-blue);
 }
 
-function nextPerfil1Step() {
-    if (perfil1TutorialStep < perfil1TotalSteps) {
-        perfil1TutorialStep++;
-        updatePerfil1TutorialStep();
-    }
+.stat-icon.success {
+    background: rgba(84, 199, 164, 0.1);
+    color: var(--primary-green);
 }
 
-function prevPerfil1Step() {
-    if (perfil1TutorialStep > 1) {
-        perfil1TutorialStep--;
-        updatePerfil1TutorialStep();
-    }
+.stat-icon.warning {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--primary-orange);
 }
 
-function updatePerfil1TutorialStep() {
-    document.querySelectorAll('.perfil1-tutorial-step').forEach(step => {
-        step.classList.remove('active');
-    });
-    
-    const currentStepEl = document.getElementById(`perfil1Step${perfil1TutorialStep}`);
-    if (currentStepEl) {
-        currentStepEl.classList.add('active');
-    }
-    
-    const progressFill = document.querySelector('.perfil1-progress-fill');
-    const progressText = document.querySelector('.perfil1-progress-text');
-    
-    if (progressFill) {
-        const progressPercentage = (perfil1TutorialStep / perfil1TotalSteps) * 100;
-        progressFill.style.width = progressPercentage + '%';
-    }
-    
-    if (progressText) {
-        progressText.textContent = `${perfil1TutorialStep} de ${perfil1TotalSteps}`;
-    }
-    
-    const prevBtn = document.getElementById('perfil1PrevBtn');
-    const nextBtn = document.getElementById('perfil1NextBtn');
-    const finishBtn = document.getElementById('perfil1FinishBtn');
-    
-    if (prevBtn) prevBtn.disabled = perfil1TutorialStep === 1;
-    
-    if (perfil1TutorialStep === perfil1TotalSteps) {
-        if (nextBtn) nextBtn.style.display = 'none';
-        if (finishBtn) finishBtn.style.display = 'inline-flex';
-    } else {
-        if (nextBtn) nextBtn.style.display = 'inline-flex';
-        if (finishBtn) finishBtn.style.display = 'none';
-    }
+.stat-icon.secondary {
+    background: rgba(123, 179, 240, 0.1);
+    color: var(--primary-blue-light);
 }
 
-// ============================================
-// TUTORIAL PERFIL SENSORIAL (3 ETAPAS)
-// ============================================
-let perfilTutorialStep = 1;
-const perfilTotalSteps = 3;
-
-function openPerfilTutorial() {
-    const perfilTutorialCompleted = localStorage.getItem('perfilTutorialCompleted');
-    const overlay = document.getElementById('perfilTutorialOverlay');
-    
-    if (!perfilTutorialCompleted && overlay) {
-        perfilTutorialStep = 1;
-        updatePerfilTutorialStep();
-        overlay.classList.add('active');
-    }
+.stat-number {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-semibold);
+    color: var(--text-dark);
+    margin-bottom: var(--space-2);
+    letter-spacing: -0.02em;
 }
 
-function closePerfilTutorial() {
-    const overlay = document.getElementById('perfilTutorialOverlay');
-    if (overlay) {
-        overlay.classList.remove('active');
-    }
-    localStorage.setItem('perfilTutorialCompleted', 'true');
+.stat-change {
+    font-size: var(--text-sm);
+    color: var(--text-medium);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
 }
 
-function nextPerfilStep() {
-    if (perfilTutorialStep < perfilTotalSteps) {
-        perfilTutorialStep++;
-        updatePerfilTutorialStep();
-    }
+.stat-change.positive {
+    color: var(--primary-green);
 }
 
-function prevPerfilStep() {
-    if (perfilTutorialStep > 1) {
-        perfilTutorialStep--;
-        updatePerfilTutorialStep();
-    }
+.stat-change.negative {
+    color: var(--primary-orange);
 }
 
-function updatePerfilTutorialStep() {
-    document.querySelectorAll('.perfil-tutorial-step').forEach(step => {
-        step.classList.remove('active');
-    });
-    
-    const currentStepEl = document.getElementById(`perfilStep${perfilTutorialStep}`);
-    if (currentStepEl) {
-        currentStepEl.classList.add('active');
-    }
-    
-    const progressFill = document.querySelector('.perfil-progress-fill');
-    const progressText = document.querySelector('.perfil-progress-text');
-    
-    if (progressFill) {
-        const progressPercentage = (perfilTutorialStep / perfilTotalSteps) * 100;
-        progressFill.style.width = progressPercentage + '%';
-    }
-    
-    if (progressText) {
-        progressText.textContent = `${perfilTutorialStep} de ${perfilTotalSteps}`;
-    }
-    
-    const prevBtn = document.getElementById('perfilPrevBtn');
-    const nextBtn = document.getElementById('perfilNextBtn');
-    const finishBtn = document.getElementById('perfilFinishBtn');
-    
-    if (prevBtn) prevBtn.disabled = perfilTutorialStep === 1;
-    
-    if (perfilTutorialStep === perfilTotalSteps) {
-        if (nextBtn) nextBtn.style.display = 'none';
-        if (finishBtn) finishBtn.style.display = 'inline-flex';
-    } else {
-        if (nextBtn) nextBtn.style.display = 'inline-flex';
-        if (finishBtn) finishBtn.style.display = 'none';
-    }
+.stat-change i {
+    font-size: 0.75rem;
 }
 
-// ============================================
-// TUTORIAL ESPECIALISTAS (1 ETAPA)
-// ============================================
-function openEspecialistasTutorial() {
-    const especialistasTutorialCompleted = localStorage.getItem('especialistasTutorialCompleted');
-    const overlay = document.getElementById('especialistasTutorialOverlay');
+/* ========== CONTENT GRID ========== */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: var(--space-6);
+}
+
+.main-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+/* ========== CARDS - Design System Premium ========== */
+.card {
+    background: var(--bg-light);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-medium);
+    border-color: var(--border-medium);
+}
+
+.card-header {
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-elevated);
+}
+
+.card-title {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+}
+
+.card-content {
+    padding: var(--space-6);
+}
+
+.card-footer {
+    padding: var(--space-5) var(--space-6);
+    border-top: 1px solid var(--border-light);
+    background: var(--bg-elevated);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+}
+
+/* ========== TABLES ========== */
+.table-container {
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background: var(--bg-elevated);
+}
+
+.table th {
+    text-align: left;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--text-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.table td {
+    padding: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.table tbody tr {
+    transition: background var(--transition-fast);
+}
+
+.table tbody tr:hover {
+    background: var(--bg-elevated);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ========== BADGES ========== */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    line-height: 1;
+}
+
+.badge.primary {
+    background: rgba(74, 144, 226, 0.1);
+    color: var(--primary-blue);
+}
+
+.badge.success {
+    background: rgba(84, 199, 164, 0.1);
+    color: var(--primary-green);
+}
+
+.badge.warning {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--primary-orange);
+}
+
+.badge.secondary {
+    background: rgba(90, 108, 125, 0.1);
+    color: var(--text-medium);
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 1px solid transparent;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--primary-blue-dark);
+    border-color: var(--primary-blue-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary {
+    background: var(--bg-elevated);
+    color: var(--text-dark);
+    border-color: var(--border-medium);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--border-light);
+    border-color: var(--border-dark);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.btn-outline:hover:not(:disabled) {
+    background: rgba(74, 144, 226, 0.05);
+    border-color: var(--primary-blue-dark);
+}
+
+.btn-sm {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--text-xs);
+}
+
+.btn-lg {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-base);
+}
+
+.btn-group {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* ========== FORMS ========== */
+.form-group {
+    margin-bottom: var(--space-5);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-dark);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    color: var(--text-dark);
+    background: var(--bg-light);
+    transition: all var(--transition-fast);
+    font-family: var(--font-sans);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.form-input:disabled,
+.form-select:disabled,
+.form-textarea:disabled {
+    background: var(--bg-elevated);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ========== SWITCH TOGGLE ========== */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border-dark);
+    transition: var(--transition-base);
+    border-radius: var(--radius-full);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: var(--transition-base);
+    border-radius: var(--radius-full);
+}
+
+input:checked + .slider {
+    background-color: var(--primary-blue);
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* ========== RESPONSIVO ========== */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
     
-    if (!especialistasTutorialCompleted && overlay) {
-        overlay.classList.add('active');
+    .side-panel {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 }
 
-function closeEspecialistasTutorial() {
-    localStorage.setItem('especialistasTutorialCompleted', 'true');
-    const overlay = document.getElementById('especialistasTutorialOverlay');
-    if (overlay) {
-        overlay.classList.remove('active');
+@media (max-width: 768px) {
+    .header-container {
+        padding: 0 var(--space-4);
+    }
+    
+    .main-layout {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+        padding: var(--space-4) 0;
+    }
+    
+    .nav-section {
+        margin-bottom: var(--space-4);
+    }
+    
+    .main-content {
+        padding: var(--space-6) var(--space-4);
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .page-title {
+        font-size: var(--text-2xl);
+    }
+    
+    .user-info {
+        display: none;
+    }
+    
+    .table-container {
+        overflow-x: scroll;
     }
 }
 
-function postponeEspecialistasTutorial() {
-    const overlay = document.getElementById('especialistasTutorialOverlay');
-    if (overlay) {
-        overlay.classList.remove('active');
+@media (max-width: 480px) {
+    .header-container {
+        padding: 0 var(--space-3);
+    }
+    
+    .logo-section span {
+        display: none;
+    }
+    
+    .main-content {
+        padding: var(--space-4) var(--space-3);
+    }
+    
+    .card-header,
+    .card-content,
+    .card-footer {
+        padding: var(--space-4);
+    }
+    
+    .page-title {
+        font-size: var(--text-xl);
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
     }
 }
 
-// ============================================
-// FUNÇÕES DO PERFIL SENSORIAL
-// ============================================
-let itemIdCounter = 100;
-
-function addItem(category) {
-    const categoryNames = {
-        'interesses': 'Interesses Especiais',
-        'alimentos': 'Alimentos Preferidos',
-        'sensibilidades': 'Sensibilidades',
-        'estrategias': 'Estratégias de Regulação'
-    };
-    
-    const newText = prompt('Digite o novo item para ' + categoryNames[category] + ':');
-    if (!newText || newText.trim() === '') return;
-    
-    itemIdCounter++;
-    const container = document.getElementById(category + '-container');
-    
-    if (!container) {
-        console.error('Container não encontrado:', category + '-container');
-        return;
+/* ========== ANIMAÇÕES ADICIONAIS ========== */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
     }
-    
-    if (category === 'interesses' || category === 'sensibilidades') {
-        const tagColor = category === 'interesses' ? 'tag-blue' : 'tag-orange';
-        const newTag = document.createElement('span');
-        newTag.className = 'tag ' + tagColor;
-        newTag.dataset.id = itemIdCounter;
-        newTag.textContent = newText;
-        newTag.style.animation = 'fadeIn 0.3s ease';
-        
-        newTag.addEventListener('click', function() {
-            if (confirm('Deseja remover este item?')) {
-                newTag.style.animation = 'fadeOut 0.3s ease';
-                setTimeout(function() { newTag.remove(); }, 300);
-            }
-        });
-        
-        container.appendChild(newTag);
-    } else {
-        const newItem = document.createElement('div');
-        newItem.className = 'checklist-item';
-        newItem.dataset.id = itemIdCounter;
-        newItem.style.animation = 'slideIn 0.3s ease';
-        newItem.innerHTML = 
-            '<i class="fas fa-check check-icon"></i>' +
-            '<span>' + newText + '</span>' +
-            '<div class="item-actions-inline">' +
-                '<button class="btn-icon-inline edit" onclick="editItemInline(\'' + category + '\', ' + itemIdCounter + ')">' +
-                    '<i class="fas fa-edit"></i>' +
-                '</button>' +
-                '<button class="btn-icon-inline delete" onclick="deleteItemInline(\'' + category + '\', ' + itemIdCounter + ')">' +
-                    '<i class="fas fa-trash-alt"></i>' +
-                '</button>' +
-            '</div>';
-        container.appendChild(newItem);
+    50% {
+        opacity: 0.5;
     }
 }
 
-function editItemInline(category, id) {
-    const item = document.querySelector('#' + category + '-container .checklist-item[data-id="' + id + '"]');
-    if (!item) return;
+/* ========== UTILITIES ========== */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.mt-4 {
+    margin-top: var(--space-4);
+}
+
+.mb-4 {
+    margin-bottom: var(--space-4);
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-2 {
+    gap: var(--space-2);
+}
+
+.gap-4 {
+    gap: var(--space-4);
+}
+
+/* ========== SCROLLBAR CUSTOMIZADA ========== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-elevated);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-dark);
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+    .sidebar,
+    .header,
+    .btn,
+    .notifications {
+        display: none !important;
+    }
     
-    const textElement = item.querySelector('span');
-    const newText = prompt('Editar item:', textElement.textContent);
-    if (newText && newText.trim() !== '') {
-        textElement.textContent = newText;
-        item.style.animation = 'pulse 0.3s ease';
-        setTimeout(function() {
-            item.style.animation = '';
-        }, 300);
+    .main-content {
+        padding: 0;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+    }
+}
+/* ADICIONE ESTE CÓDIGO AO FINAL DO SEU ARQUIVO adm_responsavel.css */
+
+/* ========== TUTORIAL OVERLAY ========== */
+.tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+    padding: var(--space-4);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.tutorial-modal {
+    background: var(--bg-light);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-2xl);
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
-function deleteItemInline(category, id) {
-    if (confirm('Tem certeza que deseja excluir este item?')) {
-        const item = document.querySelector('#' + category + '-container .checklist-item[data-id="' + id + '"]');
-        if (item) {
-            item.style.animation = 'fadeOut 0.3s ease';
-            setTimeout(function() {
-                item.remove();
-            }, 300);
-        }
+.tutorial-header {
+    padding: var(--space-6);
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    color: white;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+.tutorial-header h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.tutorial-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: white;
+    font-size: 1.125rem;
+}
+
+.tutorial-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.tutorial-content {
+    padding: var(--space-8) var(--space-6);
+    min-height: 300px;
+    position: relative;
+    overflow-y: auto;
+}
+
+.tutorial-step {
+    display: none;
+    text-align: center;
+    animation: fadeInStep 0.4s ease-in-out;
+}
+
+.tutorial-step.active {
+    display: block;
+}
+
+@keyframes fadeInStep {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
-function editDevelopment(category) {
-    const categoryNames = {
-        'comunicacao': 'Comunicação',
-        'social': 'Social',
-        'autocuidado': 'Autocuidado',
-        'motor': 'Motor'
-    };
-    
-    const newText = prompt(`Editar marco de ${categoryNames[category]}:`, '');
-    if (newText && newText.trim() !== '') {
-        alert('Marco atualizado com sucesso!');
+.tutorial-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-6);
+    font-size: 3rem;
+    color: white;
+    box-shadow: var(--shadow-large);
+}
+
+.tutorial-step h3 {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    color: var(--text-dark);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+}
+
+.tutorial-step p {
+    font-size: var(--text-lg);
+    color: var(--text-medium);
+    line-height: var(--line-relaxed);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.tutorial-footer {
+    padding: var(--space-6);
+    border-top: 1px solid var(--border-light);
+    background: var(--bg-elevated);
+    border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+}
+
+.tutorial-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--border-light);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-full);
+}
+
+.progress-text {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--text-medium);
+    white-space: nowrap;
+}
+
+.tutorial-buttons {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+}
+
+.btn-tutorial {
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.btn-prev {
+    background: var(--bg-light);
+    color: var(--text-dark);
+    border-color: var(--border-medium);
+}
+
+.btn-prev:hover:not(:disabled) {
+    background: var(--border-light);
+    transform: translateX(-2px);
+}
+
+.btn-prev:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-next {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.btn-next:hover {
+    transform: translateX(2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-finish {
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+    color: white;
+    border-color: var(--primary-green);
+}
+
+.btn-finish:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* Responsivo para Tutorial */
+@media (max-width: 768px) {
+    .tutorial-modal {
+        max-width: 95%;
+    }
+
+    .tutorial-header h2 {
+        font-size: var(--text-xl);
+    }
+
+    .tutorial-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+
+    .tutorial-step h3 {
+        font-size: var(--text-xl);
+    }
+
+    .tutorial-step p {
+        font-size: var(--text-base);
+    }
+
+    .tutorial-buttons {
+        flex-direction: column;
+    }
+
+    .btn-tutorial {
+        width: 100%;
+        justify-content: center;
+    }
+}
+/* ========== TUTORIAL DE 5 ETAPAS ========== */
+
+.tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-modal);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-3);
+}
+
+.tutorial-overlay.active {
+    display: flex;
+}
+
+.tutorial-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-overlay);
+    backdrop-filter: blur(10px);
+}
+
+.tutorial-content {
+    position: relative;
+    background: var(--bg-light);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-2xl);
+    max-width: 850px;
+    width: 100%;
+    padding: var(--space-8) var(--space-10);
+    animation: tutorialFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-light);
+    max-height: 96vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes tutorialFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.92) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
-function shareProfile() {
-    alert('Função de compartilhamento em desenvolvimento!\n\nEm breve você poderá compartilhar o perfil via:\n• E-mail\n• WhatsApp\n• PDF\n• Link direto');
+/* Barra de Progresso */
+.tutorial-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--border-light);
+    flex-shrink: 0;
 }
 
-// ============================================
-// NAVEGAÇÃO ENTRE SEÇÕES
-// ============================================
-const navItems = document.querySelectorAll('.nav-item');
-const sections = document.querySelectorAll('.section');
+.tutorial-progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-elevated);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
 
-navItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        navItems.forEach(nav => nav.classList.remove('active'));
-        item.classList.add('active');
-        
-        sections.forEach(section => section.classList.remove('active'));
-        
-        const targetSection = item.getAttribute('data-section');
-        const sectionElement = document.getElementById(targetSection);
-        
-        if (sectionElement) {
-            sectionElement.classList.add('active');
-        }
-        
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        
-        // Carregar dados do perfil ao abrir seção
-        if (targetSection === 'perfil') {
-            setTimeout(carregarDadosPerfil, 100);
-        }
-        
-        // Abrir tutoriais específicos
-        if (targetSection === 'perfil-autista1') {
-            setTimeout(openPerfil1Tutorial, 300);
-        }
-        
-        if (targetSection === 'perfil-autista') {
-            setTimeout(openPerfilTutorial, 300);
-        }
-        
-        if (targetSection === 'especialistas') {
-            setTimeout(openEspecialistasTutorial, 300);
-        }
-    });
-});
+.tutorial-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
+    border-radius: var(--radius-full);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 20%;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
 
-// ============================================
-// INICIALIZAÇÃO
-// ============================================
-document.addEventListener('DOMContentLoaded', function() {
-    // Verificar sessão
-    verificarSessao();
-    
-    // Verificar se deve mostrar tutorial principal
-    const tutorialCompleted = localStorage.getItem('tutorialCompleted');
-    const tutorialOverlay = document.getElementById('tutorial-overlay');
-    
-    if (!tutorialCompleted && tutorialOverlay) {
-        tutorialOverlay.classList.add('active');
-    } else if (tutorialOverlay) {
-        tutorialOverlay.classList.remove('active');
+.tutorial-step-counter {
+    font-size: var(--text-base);
+    font-weight: var(--weight-bold);
+    color: var(--text-dark);
+    white-space: nowrap;
+    min-width: 60px;
+    text-align: right;
+}
+
+/* Etapas do Tutorial */
+.tutorial-step {
+    display: none;
+    text-align: center;
+    animation: stepFadeIn 0.4s ease;
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-2) 0;
+}
+
+.tutorial-step.active {
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes stepFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
     }
-});
-</script>
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
-</body>
-</html>
+/* Ícone */
+.tutorial-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto var(--space-5);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.75rem;
+    color: white;
+    box-shadow: 0 15px 45px rgba(74, 144, 226, 0.25);
+    flex-shrink: 0;
+}
+
+/* Título */
+.tutorial-title {
+    font-size: var(--text-3xl);
+    font-weight: var(--weight-bold);
+    color: var(--text-dark);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.03em;
+    line-height: var(--line-tight);
+}
+
+/* Descrição */
+.tutorial-description {
+    font-size: var(--text-lg);
+    color: var(--text-medium);
+    line-height: var(--line-relaxed);
+    margin-bottom: var(--space-6);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Caixa de Informação */
+.tutorial-info-box {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f0f7ff 100%);
+    border-left: 4px solid var(--primary-blue);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin-bottom: var(--space-6);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    text-align: left;
+}
+
+.tutorial-info-box i {
+    color: var(--primary-blue);
+    font-size: var(--text-xl);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.tutorial-info-box p {
+    margin: 0;
+    color: var(--text-dark);
+    font-size: var(--text-sm);
+    line-height: var(--line-relaxed);
+}
+
+/* Lista de Funcionalidades */
+.tutorial-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    text-align: left;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tutorial-feature-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.tutorial-feature-item:hover {
+    background: white;
+    border-color: var(--primary-blue-light);
+    transform: translateX(5px);
+}
+
+.tutorial-feature-item i {
+    color: var(--primary-blue);
+    font-size: var(--text-xl);
+    width: 28px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.tutorial-feature-item span {
+    font-size: var(--text-sm);
+    color: var(--text-dark);
+    line-height: var(--line-relaxed);
+}
+
+.tutorial-feature-item strong {
+    color: var(--primary-blue-dark);
+}
+
+/* Checkbox de Termos */
+.tutorial-terms {
+    margin-bottom: var(--space-6);
+    padding: var(--space-5);
+    background: var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--border-medium);
+}
+
+.tutorial-checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+    text-align: left;
+    position: relative;
+    padding-left: 40px;
+    user-select: none;
+}
+
+.tutorial-checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.tutorial-checkmark {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 28px;
+    width: 28px;
+    background-color: white;
+    border: 3px solid var(--border-dark);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.tutorial-checkbox-container:hover .tutorial-checkmark {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+}
+
+.tutorial-checkbox-container input:checked ~ .tutorial-checkmark {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.tutorial-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 8px;
+    top: 4px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+.tutorial-checkbox-container input:checked ~ .tutorial-checkmark:after {
+    display: block;
+}
+
+.tutorial-checkbox-label {
+    font-size: var(--text-base);
+    color: var(--text-dark);
+    line-height: var(--line-relaxed);
+}
+
+.tutorial-link {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: var(--weight-semibold);
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.tutorial-link:hover {
+    border-bottom-color: var(--primary-blue);
+}
+
+/* Botões de Ação */
+.tutorial-actions {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+    padding-top: var(--space-5);
+    border-top: 2px solid var(--border-light);
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.tutorial-actions .btn {
+    flex: 1;
+    max-width: 220px;
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-base);
+    font-weight: var(--weight-semibold);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.tutorial-actions .btn-primary {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+}
+
+.tutorial-actions .btn-primary:not(:disabled):hover {
+    background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
+    transform: translateY(-2px);
+}
+
+.tutorial-actions .btn-primary:not(:disabled):active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+}
+
+.tutorial-actions .btn-primary:disabled {
+    background: var(--bg-elevated);
+    color: var(--text-light);
+    cursor: not-allowed;
+    box-shadow: none;
+    border: 2px solid var(--border-light);
+}
+
+.tutorial-actions .btn-secondary {
+    background: var(--bg-elevated);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
+}
+
+.tutorial-actions .btn-secondary:hover {
+    background: white;
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.tutorial-actions .btn-secondary:active {
+    background: var(--bg-elevated);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Ícones dentro dos botões */
+.tutorial-actions .btn i {
+    transition: transform 0.2s ease;
+    font-size: var(--text-lg);
+}
+
+.tutorial-actions .btn-primary:not(:disabled):hover i.fa-arrow-right,
+.tutorial-actions .btn-primary:not(:disabled):hover i.fa-check {
+    transform: translateX(4px);
+}
+
+.tutorial-actions .btn-secondary:hover i.fa-arrow-left {
+    transform: translateX(-4px);
+}
+
+/* Responsividade - Tablet */
+@media (max-width: 768px) {
+    .tutorial-overlay {
+        padding: var(--space-2);
+    }
+
+    .tutorial-content {
+        padding: var(--space-6) var(--space-7);
+        max-height: 95vh;
+    }
+
+    .tutorial-icon {
+        width: 75px;
+        height: 75px;
+        font-size: 2.25rem;
+        margin-bottom: var(--space-4);
+    }
+
+    .tutorial-title {
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-3);
+    }
+
+    .tutorial-description {
+        font-size: var(--text-base);
+        margin-bottom: var(--space-5);
+    }
+
+    .tutorial-feature-item span {
+        font-size: var(--text-xs);
+    }
+
+    .tutorial-actions .btn {
+        padding: var(--space-3) var(--space-4);
+        font-size: var(--text-sm);
+    }
+}
+
+/* Responsividade - Mobile */
+@media (max-width: 480px) {
+    .tutorial-content {
+        padding: var(--space-5) var(--space-6);
+        max-height: 98vh;
+    }
+
+    .tutorial-icon {
+        width: 65px;
+        height: 65px;
+        font-size: 2rem;
+        margin-bottom: var(--space-3);
+    }
+
+    .tutorial-title {
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-3);
+    }
+
+    .tutorial-description {
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-4);
+    }
+
+    .tutorial-info-box {
+        padding: var(--space-3);
+        margin-bottom: var(--space-4);
+    }
+
+    .tutorial-info-box p {
+        font-size: var(--text-xs);
+    }
+
+    .tutorial-features-list {
+        gap: var(--space-2);
+        margin-bottom: var(--space-4);
+    }
+
+    .tutorial-feature-item {
+        padding: var(--space-2);
+    }
+
+    .tutorial-feature-item i {
+        font-size: var(--text-lg);
+        width: 24px;
+    }
+
+    .tutorial-checkmark {
+        height: 24px;
+        width: 24px;
+    }
+
+    .tutorial-checkbox-container {
+        padding-left: 35px;
+    }
+
+    .tutorial-checkbox-label {
+        font-size: var(--text-sm);
+    }
+
+    .tutorial-actions {
+        flex-direction: column;
+        gap: var(--space-2);
+        padding-top: var(--space-4);
+    }
+
+    .tutorial-actions .btn {
+        max-width: 100%;
+        width: 100%;
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .tutorial-terms {
+        padding: var(--space-4);
+        margin-bottom: var(--space-4);
+    }
+}
+.btn-adicionar-neuro {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary-blue), #5A8FD6);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+    margin-top: 1rem;
+}
+
+.btn-adicionar-neuro:hover {
+    background: linear-gradient(135deg, #3A6FBF, var(--primary-blue));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.35);
+}
+
+.btn-adicionar-neuro:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.25);
+}
+
+.btn-adicionar-neuro i {
+    font-size: 1rem;
+}
+/* ========================================
+   PERFIL DO AUTISTA - ESTILO MINIMALISTA
+   ======================================== */
+
+   .page-header-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.page-title-simple {
+    font-size: 24px;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+}
+
+.btn-outline-primary {
+    background: white;
+    color: #6366f1;
+    border: 1px solid #6366f1;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-outline-primary:hover {
+    background: #6366f1;
+    color: white;
+}
+
+/* ========================================
+   CARDS MODERNOS
+   ======================================== */
+
+.card-modern {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 25px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.subsection-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0 0 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ========================================
+   LAYOUT DE DUAS COLUNAS
+   ======================================== */
+
+.two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.column-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   TAGS (INTERESSES E SENSIBILIDADES)
+   ======================================== */
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    min-height: 40px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.tag:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+.tag-blue {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.tag-orange {
+    background: #fed7aa;
+    color: #c2410c;
+}
+
+/* ========================================
+   CHECKLIST (ALIMENTOS E ESTRATÉGIAS)
+   ======================================== */
+
+.checklist-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.checklist-item:hover {
+    padding-left: 5px;
+}
+
+.checklist-item:hover .item-actions-inline {
+    opacity: 1;
+    visibility: visible;
+}
+
+.check-icon {
+    color: #10b981;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.checklist-item > span {
+    flex: 1;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.item-actions-inline {
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.btn-icon-inline {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+}
+
+.btn-icon-inline.edit {
+    color: #6b7280;
+}
+
+.btn-icon-inline.edit:hover {
+    background: #f3f4f6;
+    color: #3b82f6;
+}
+
+.btn-icon-inline.delete {
+    color: #6b7280;
+}
+
+.btn-icon-inline.delete:hover {
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+/* ========================================
+   BOTÃO ADICIONAR
+   ======================================== */
+
+.btn-add {
+    align-self: flex-start;
+    background: transparent;
+    color: #6b7280;
+    border: 1px dashed #d1d5db;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-add:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    color: #374151;
+}
+
+.btn-add i {
+    font-size: 12px;
+}
+
+/* ========================================
+   MARCOS DE DESENVOLVIMENTO
+   ======================================== */
+
+.development-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.development-card {
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid;
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.development-card:nth-child(1) {
+    border-left-color: #10b981;
+}
+
+.development-card:nth-child(2) {
+    border-left-color: #3b82f6;
+}
+
+.development-card:nth-child(3) {
+    border-left-color: #f59e0b;
+}
+
+.development-card:nth-child(4) {
+    border-left-color: #8b5cf6;
+}
+
+.development-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.development-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.development-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: white;
+}
+
+.communication-icon {
+    background: #10b981;
+}
+
+.social-icon {
+    background: #3b82f6;
+}
+
+.selfcare-icon {
+    background: #f59e0b;
+}
+
+.motor-icon {
+    background: #8b5cf6;
+}
+
+.development-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6b7280;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.development-text {
+    font-size: 14px;
+    color: #374151;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.development-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.development-card:hover .development-actions {
+    opacity: 1;
+}
+
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .two-column-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .development-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header-simple {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .btn-outline-primary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .card-modern {
+        padding: 20px;
+    }
+    
+    .section-title {
+        font-size: 16px;
+    }
+    
+    .development-grid {
+        gap: 15px;
+    }
+    
+    .development-card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title-simple {
+        font-size: 20px;
+    }
+    
+    .tags-container {
+        gap: 8px;
+    }
+    
+    .tag {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    .checklist-item > span {
+        font-size: 13px;
+    }
+    
+    .item-actions-inline {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .development-actions {
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   MELHORIAS DE ACESSIBILIDADE
+   ======================================== */
+
+.btn-add:focus,
+.btn-outline-primary:focus,
+.btn-icon-inline:focus {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+.tag:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Garantir que elementos focáveis sejam visíveis */
+*:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+/* ============================================
+   ESTILOS PARA PERFIL DO NEURODIVERGENTE
+   ============================================ */
+
+#seletor-neurodivergentes {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+}
+
+#seletor-neurodivergentes h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+#select-neurodivergente {
+    background: white;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#select-neurodivergente:hover {
+    border-color: #00bfa5;
+    box-shadow: 0 0 10px rgba(0, 191, 165, 0.3);
+}
+
+#select-neurodivergente:focus {
+    outline: none;
+    border-color: #00bfa5;
+    box-shadow: 0 0 15px rgba(0, 191, 165, 0.5);
+}
+
+/* Mensagens de status */
+.mensagem-sem-dados {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.mensagem-sem-dados i {
+    font-size: 64px;
+    color: #00bfa5;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.mensagem-erro {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #fee 0%, #fdd 100%);
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.mensagem-erro i {
+    font-size: 64px;
+    color: #f44336;
+    margin-bottom: 20px;
+}
+
+/* Animação de pulse */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #seletor-neurodivergentes {
+        padding: 15px;
+    }
+    
+    #select-neurodivergente {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
