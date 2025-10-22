@@ -2241,3 +2241,98 @@ input:checked + .slider:before {
     outline: 2px solid #6366f1;
     outline-offset: 2px;
 }
+
+/* ============================================
+   ESTILOS PARA PERFIL DO NEURODIVERGENTE
+   ============================================ */
+
+#seletor-neurodivergentes {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+}
+
+#seletor-neurodivergentes h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+#select-neurodivergente {
+    background: white;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#select-neurodivergente:hover {
+    border-color: #00bfa5;
+    box-shadow: 0 0 10px rgba(0, 191, 165, 0.3);
+}
+
+#select-neurodivergente:focus {
+    outline: none;
+    border-color: #00bfa5;
+    box-shadow: 0 0 15px rgba(0, 191, 165, 0.5);
+}
+
+/* Mensagens de status */
+.mensagem-sem-dados {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.mensagem-sem-dados i {
+    font-size: 64px;
+    color: #00bfa5;
+    margin-bottom: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.mensagem-erro {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #fee 0%, #fdd 100%);
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.mensagem-erro i {
+    font-size: 64px;
+    color: #f44336;
+    margin-bottom: 20px;
+}
+
+/* Animação de pulse */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #seletor-neurodivergentes {
+        padding: 15px;
+    }
+    
+    #select-neurodivergente {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
