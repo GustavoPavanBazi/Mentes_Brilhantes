@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentes Brilhantes</title>
+    <link rel="stylesheet" href="../css/cadastroneuro.css">
+    <link rel="icon" type="image/x-icon" href="../img/LogoMB.png">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="logo">
+                <img src="../img/LogoMB.png" alt="Logo" />
+            </div>
+        </div>
+        
+        <div class="right-side">
+            <div class="register-form">
+                <h1 class="form-title">Cadastro do Neurodivergente</h1>
+                <p class="form-subtitle">Agora vamos registrar os dados da pessoa autista sob sua responsabilidade</p>
+        
+                <form id="registerForm" action="../php/cad_neurodivergente.php" method="post" enctype="multipart/form-data">
+
+                    <div class="profile-photo-section">
+    <div class="profile-photo-container" onclick="document.getElementById('perfil').click()">
+        <img id="profilePhotoPreview" class="profile-photo" alt="Foto de perfil">
+        <div class="profile-photo-placeholder">📷</div>
+    </div>
+    <label class="profile-photo-label" for="perfil">Adicionar foto</label>
+    <input type="file" id="perfil" name="perfil" class="profile-photo-input" accept="image/*">
+
+     <div class="error-message" id="perfilError">Foto de perfil é obrigatória</div>
+</div>
+    
+    <!-- Nome Completo - Largura Total -->
+    <div class="form-group">
+        <label class="form-label" for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" class="form-input" placeholder="Digite o nome completo" required>
+        <div class="error-message" id="nomeError">Nome completo deve ser preenchido</div>
+    </div>
+
+    <!-- E-mail e Data de Nascimento -->
+    <div class="form-row">
+        <div class="form-group">
+            <label class="form-label" for="email">E-mail:</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="Digite seu e-mail" required>
+            <div class="error-message" id="emailError">E-mail válido deve ser preenchido</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="dataNascimento">Data de Nascimento:</label>
+            <input type="date" id="dataNascimento" name="dataNascimento" class="form-input" required>
+            <div class="error-message" id="dataNascimentoError">Data de nascimento obrigatória</div>
+        </div>
+    </div>
+
+    <!-- RG - Largura Total -->
+    <div class="form-group">
+        <label class="form-label" for="rg">RG: (Opcional)</label>
+        <input type="text" id="rg" name="rg" class="form-input" placeholder="00.000.000-0" maxlength="12">
+        <div class="error-message" id="rgError">RG deve ter no mínimo 7 dígitos</div>
+    </div>
+
+    <!-- CPF - Largura Total -->
+    <div class="form-group">
+        <label class="form-label" for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" class="form-input" placeholder="000.000.000-00" maxlength="14" required>
+        <div class="error-message" id="cpfError">CPF deve ter 11 dígitos e ser válido</div>
+    </div>
+
+    <!-- Sexo e Celular -->
+    <div class="form-row">
+        <div class="form-group">
+            <label class="form-label" for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" class="form-input" required>
+                <option value="">Selecione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+            </select>
+            <div class="error-message" id="sexoError">Sexo deve ser selecionado</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label optional" for="celular">Celular (Opcional):</label>
+            <input type="tel" id="celular" name="celular" class="form-input" placeholder="(00) 00000-0000" maxlength="15">
+            <div class="error-message" id="celularError">Celular deve ter 11 dígitos (DDD + número)</div>
+        </div>
+    </div>
+
+    <!-- CEP e Rua -->
+    <div class="form-row">
+        <div class="form-group">
+            <label class="form-label" for="cep">CEP:</label>
+            <input type="text" id="cep" name="cep" class="form-input" placeholder="00000-000" maxlength="9" required>
+            <div class="error-message" id="cepError">CEP válido obrigatório</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="rua">Rua:</label>
+            <input type="text" id="rua" name="rua" class="form-input" placeholder="Nome da rua" required>
+            <div class="error-message" id="ruaError">Rua deve ser preenchida</div>
+        </div>
+    </div>
+
+    <!-- Bairro e Cidade -->
+    <div class="form-row">
+        <div class="form-group">
+            <label class="form-label" for="bairro">Bairro:</label>
+            <input type="text" id="bairro" name="bairro" class="form-input" placeholder="Bairro" required>
+            <div class="error-message" id="bairroError">Bairro deve ser preenchido</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" class="form-input" placeholder="Cidade" required>
+            <div class="error-message" id="cidadeError">Cidade deve ser preenchida</div>
+        </div>
+    </div>
+
+    <!-- Número e Complemento -->
+    <div class="form-row">
+        <div class="form-group">
+            <label class="form-label" for="numero">Número:</label>
+            <input type="text" id="numero" name="numero" class="form-input" placeholder="Nº" required>
+            <div class="error-message" id="numeroError">Número deve ser preenchido</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label optional" for="complemento">Complemento (Opcional):</label>
+            <input type="text" id="complemento" name="complemento" class="form-input" placeholder="Apt, Bloco, Casa, etc">
+        </div>
+    </div>
+
+    <!-- Senha e Confirmar Senha -->
+    <div class="form-row">
+        <div class="form-group">
+            <label class="form-label" for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" class="form-input" placeholder="Digite a senha" required>
+            <div class="error-message" id="senhaError">Senha deve ter pelo menos 6 caracteres</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="confirmPassword">Confirmar Senha:</label>
+            <input type="password" id="confirmPassword" class="form-input" placeholder="Confirme a senha" required>
+            <div class="error-message" id="confirmPasswordError">Senhas devem coincidir</div>
+        </div>
+    </div>
+
+    <button type="submit" class="register-btn">Finalizar Cadastro</button>
+
+
+<!-- Termos de Uso -->
+<div class="terms">
+    Ao finalizar o cadastro, você concorda com nossos 
+    <a href="#" onclick="showModal('termsModal'); return false;">Termos de Uso</a> e 
+    <a href="#" onclick="showModal('privacyModal'); return false;">Política de Privacidade</a>
+</div>
+
+<!-- Link de login -->
+<div class="login-link">
+    <a href="login_neurodivergente.php">Já tem uma conta? Faça login</a>
+</div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div class="success-modal" id="successModal">
+        <div class="success-modal-content">
+            <h2>Cadastro concluído com sucesso!</h2>
+            <p>O cadastro do neurodivergente foi realizado com sucesso. Vocês já podem acessar o nosso aplicativo e aproveitar todos os recursos disponíveis!</p>
+            <button onclick="closeSuccessModal()">Ir para o início</button>
+        </div>
+    </div>
+
+    <!-- Modais de Termos e Privacidade -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Termos de Uso</h2>
+                <button class="modal-close" onclick="closeModal('termsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Termos de Uso - Mentes Brilhantes</h3>
+                <p><strong>Última atualização:</strong> Agosto de 2025</p>
+                
+                <h4>1. Aceitação dos Termos</h4>
+                <p>Ao acessar e utilizar o site Mentes Brilhantes, você concorda em cumprir estes Termos de Uso. Se não concordar com qualquer parte destes termos, não utilize nossos serviços.</p>
+
+                <h4>2. Descrição do Serviço</h4>
+                <p>O Mentes Brilhantes é uma campanha de conscientização e valorização do autismo que oferece:</p>
+                <ul>
+                    <li>Informações educacionais sobre TEA (Transtorno do Espectro Autista)</li>
+                    <li>Recursos de apoio para famílias e cuidadores</li>
+                    <li>Ferramentas de comunicação e suporte</li>
+                    <li>Acesso à IA Luna para orientação especializada</li>
+                </ul>
+
+                <h4>3. Uso Apropriado</h4>
+                <p>Você se compromete a:</p>
+                <ul>
+                    <li>Usar o site apenas para fins legais e apropriados</li>
+                    <li>Não interferir no funcionamento do site</li>
+                    <li>Não tentar acessar áreas restritas</li>
+                    <li>Respeitar os direitos autorais e de propriedade intelectual</li>
+                    <li>Não transmitir conteúdo ofensivo ou prejudicial</li>
+                </ul>
+
+                <h4>4. Cadastro e Conta de Usuário</h4>
+                <ul>
+                    <li>Você é responsável por manter a confidencialidade de sua senha</li>
+                    <li>Deve fornecer informações precisas e atualizadas</li>
+                    <li>Notificar imediatamente sobre uso não autorizado de sua conta</li>
+                </ul>
+
+                <h4>5. Contato</h4>
+                <p>Para dúvidas sobre estes termos:</p>
+                <ul>
+                    <li>Email: mentesbrilhantestcc@gmail.com</li>
+                    <li>Telefone: (11) 97349-2001</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-close" onclick="closeModal('termsModal')">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Política de Privacidade</h2>
+                <button class="modal-close" onclick="closeModal('privacyModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>Política de Privacidade - Mentes Brilhantes</h3>
+                <p><strong>Última atualização:</strong> Agosto de 2025</p>
+                
+                <h4>1. Informações que Coletamos</h4>
+                <p>Coletamos apenas as informações necessárias para fornecer nossos serviços de forma eficaz:</p>
+                <ul>
+                    <li><strong>Informações de Cadastro:</strong> Nome, email, telefone</li>
+                    <li><strong>Informações de Uso:</strong> Como você navega e utiliza nosso site</li>
+                    <li><strong>Informações Técnicas:</strong> Endereço IP, navegador, dispositivo</li>
+                </ul>
+
+                <h4>2. Como Utilizamos suas Informações</h4>
+                <ul>
+                    <li>Fornecer e melhorar nossos serviços</li>
+                    <li>Comunicar sobre atualizações e novidades</li>
+                    <li>Personalizar sua experiência</li>
+                    <li>Garantir a segurança da plataforma</li>
+                </ul>
+
+                <h4>3. Segurança dos Dados</h4>
+                <p>Implementamos medidas técnicas e organizacionais apropriadas para proteger suas informações contra acesso não autorizado.</p>
+
+                <h4>4. Contato</h4>
+                <p>Para exercer seus direitos ou esclarecer dúvidas:</p>
+                <ul>
+                    <li>Email: mentesbrilhantestcc@gmail.com</li>
+                    <li>Telefone: (11) 97349-2001</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-close" onclick="closeModal('privacyModal')">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <body>
+
+        <script>
+    // VARIÁVEL GLOBAL PARA CONTROLAR SE A FOTO FOI CARREGADA
+    let fotoCarregada = false;
+
+    // PREVIEW DE FOTO DE PERFIL
+    document.getElementById('perfil').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            fotoCarregada = true;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.querySelector('.photo-circle');
+                if (preview) {
+                    preview.style.backgroundImage = `url(${e.target.result})`;
+                    preview.style.backgroundSize = 'cover';
+                    preview.style.backgroundPosition = 'center';
+                    preview.innerHTML = '';
+                }
+                const profilePreview = document.getElementById('profilePhotoPreview');
+                if (profilePreview) {
+                    profilePreview.src = e.target.result;
+                    profilePreview.style.display = 'block';
+                }
+                const placeholder = document.querySelector('.profile-photo-placeholder');
+                if (placeholder) {
+                    placeholder.style.display = 'none';
+                }
+                clearError('perfil', 'perfilError');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // MÁSCARAS DE ENTRADA
+    function applyRGMask(value) {
+        return value
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    }
+
+    function applyCPFMask(value) {
+        return value
+            .replace(/\D/g, '')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    }
+
+    function applyCelularMask(value) {
+        return value
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d)/, '($1) $2')
+            .replace(/(\d{5})(\d)/, '$1-$2')
+            .replace(/(-\d{4})\d+?$/, '$1');
+    }
+
+    function applyCEPMask(value) {
+        return value
+            .replace(/\D/g, '')
+            .replace(/(\d{5})(\d)/, '$1-$2')
+            .replace(/(-\d{3})\d+?$/, '$1');
+    }
+
+    // Event listeners para aplicar máscaras
+    const rgField = document.getElementById('rg');
+    if (rgField) {
+        rgField.addEventListener('input', function(e) {
+            e.target.value = applyRGMask(e.target.value);
+        });
+    }
+
+    document.getElementById('cpf').addEventListener('input', function(e) {
+        e.target.value = applyCPFMask(e.target.value);
+    });
+
+    document.getElementById('celular').addEventListener('input', function(e) {
+        e.target.value = applyCelularMask(e.target.value);
+    });
+
+    document.getElementById('cep').addEventListener('input', function(e) {
+        e.target.value = applyCEPMask(e.target.value);
+    });
+
+    // FUNÇÕES AUXILIARES DE VALIDAÇÃO
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function isValidCPF(cpf) {
+        cpf = cpf.replace(/\D/g, '');
+        if (cpf.length !== 11) return false;
+        if (/^(\d)\1{10}$/.test(cpf)) return false;
+
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+            soma += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        let resto = 11 - (soma % 11);
+        let digito1 = resto >= 10 ? 0 : resto;
+
+        if (digito1 !== parseInt(cpf.charAt(9))) return false;
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+            soma += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        resto = 11 - (soma % 11);
+        let digito2 = resto >= 10 ? 0 : resto;
+
+        return digito2 === parseInt(cpf.charAt(10));
+    }
+
+    // FUNÇÕES DE ERRO
+    function showError(fieldId, errorId, message) {
+        const field = document.getElementById(fieldId);
+        const error = document.getElementById(errorId);
+
+        if (field) {
+            field.classList.add('error');
+        }
+        if (error) {
+            error.textContent = message;
+            error.style.display = 'block';
+        }
+
+        if (fieldId === 'perfil') {
+            const photoContainer = document.querySelector('.profile-photo-container');
+            if (photoContainer) {
+                photoContainer.style.border = '2px solid #ff4444';
+            }
+        }
+    }
+
+    function clearError(fieldId, errorId) {
+        const field = document.getElementById(fieldId);
+        const error = document.getElementById(errorId);
+
+        if (field) {
+            field.classList.remove('error');
+        }
+        if (error) {
+            error.style.display = 'none';
+        }
+
+        if (fieldId === 'perfil') {
+            const photoContainer = document.querySelector('.profile-photo-container');
+            if (photoContainer) {
+                photoContainer.style.border = '';
+            }
+        }
+    }
+
+    // FUNÇÕES PARA MODAIS DE TERMOS E PRIVACIDADE
+    function showModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'flex';
+            modal.style.visibility = 'visible';
+            modal.style.opacity = '1';
+        }
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.opacity = '0';
+            modal.style.visibility = 'hidden';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+    }
+
+    // BUSCAR CEP
+    document.getElementById('cep').addEventListener('blur', function(e) {
+        const cep = e.target.value.replace(/\D/g, '');
+
+        if (cep.length === 8) {
+            document.getElementById('rua').value = '';
+            document.getElementById('bairro').value = '';
+            document.getElementById('cidade').value = '';
+
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.erro) {
+                        document.getElementById('rua').value = data.logradouro || '';
+                        document.getElementById('bairro').value = data.bairro || '';
+                        document.getElementById('cidade').value = data.localidade || '';
+                        clearError('cep', 'cepError');
+                    } else {
+                        showError('cep', 'cepError', 'CEP não encontrado');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar CEP:', error);
+                    showError('cep', 'cepError', 'Erro ao buscar CEP. Verifique sua conexão');
+                });
+        }
+    });
+
+    // VALIDAÇÕES EM TEMPO REAL (BLUR)
+    document.getElementById('nome').addEventListener('blur', function(e) {
+        const name = e.target.value.trim();
+        if (name.length >= 2) {
+            clearError('nome', 'nomeError');
+        } else if (name.length > 0) {
+            showError('nome', 'nomeError', 'Nome completo deve ser preenchido');
+        }
+    });
+
+    document.getElementById('email').addEventListener('blur', function(e) {
+        const email = e.target.value.trim();
+        if (email && !isValidEmail(email)) {
+            showError('email', 'emailError', 'Formato de e-mail inválido');
+        } else if (email && isValidEmail(email)) {
+            clearError('email', 'emailError');
+        }
+    });
+
+    document.getElementById('dataNascimento').addEventListener('blur', function(e) {
+        const date = e.target.value;
+        if (date) {
+            clearError('dataNascimento', 'dataNascimentoError');
+        }
+    });
+
+    if (rgField) {
+        rgField.addEventListener('blur', function(e) {
+            const rg = e.target.value.replace(/\D/g, '');
+            if (rg && rg.length >= 7) {
+                clearError('rg', 'rgError');
+            } else if (rg && rg.length < 7) {
+                showError('rg', 'rgError', 'RG deve ter no mínimo 7 dígitos');
+            }
+        });
+    }
+
+    document.getElementById('cpf').addEventListener('blur', function(e) {
+        const cpf = e.target.value;
+        const cpfNumbers = cpf.replace(/\D/g, '');
+        if (cpf && cpfNumbers.length === 11 && isValidCPF(cpf)) {
+            clearError('cpf', 'cpfError');
+        } else if (cpf && (cpfNumbers.length !== 11 || !isValidCPF(cpf))) {
+            showError('cpf', 'cpfError', 'CPF deve ter 11 dígitos e ser válido');
+        }
+    });
+
+    document.getElementById('celular').addEventListener('blur', function(e) {
+    const celular = e.target.value.replace(/\D/g, '');
+    
+    // CAMPO OPCIONAL - Aceita vazio
+    if (!celular || celular === '') {
+        clearError('celular', 'celularError');
+        return;
+    }
+    
+    if (celular.length === 11) {
+        clearError('celular', 'celularError');
+    } else if (celular.length !== 11) {
+        showError('celular', 'celularError', 'Celular deve ter 11 dígitos (DDD + número)');
+    }
+});
+
+    // VALIDAÇÃO DO RG (OPCIONAL - MAS SE PREENCHIDO DEVE TER MÍNIMO 7 DÍGITOS)
+document.getElementById('rg').addEventListener('blur', function(e) {
+    const rg = e.target.value.replace(/\D/g, '');
+    
+    // CAMPO OPCIONAL - Aceita vazio
+    if (!rg || rg === '') {
+        clearError('rg', 'rgError');
+        return;
+    }
+    
+    // Se preenchido, deve ter pelo menos 7 dígitos
+    if (rg.length >= 7) {
+        clearError('rg', 'rgError');
+    } else if (rg.length < 7) {
+        showError('rg', 'rgError', 'RG deve ter no mínimo 7 dígitos');
+    }
+});
+
+    const sexoField = document.getElementById('sexo');
+    if (sexoField) {
+        sexoField.addEventListener('change', function(e) {
+            if (e.target.value) {
+                clearError('sexo', 'sexoError');
+            }
+        });
+    }
+
+    document.getElementById('senha').addEventListener('blur', function(e) {
+        const senha = e.target.value;
+        if (senha && senha.length >= 6) {
+            clearError('senha', 'senhaError');
+        } else if (senha && senha.length < 6) {
+            showError('senha', 'senhaError', 'Senha deve ter pelo menos 6 caracteres');
+        }
+    });
+
+    document.getElementById('confirmPassword').addEventListener('blur', function(e) {
+        const senha = document.getElementById('senha').value;
+        const confirmPassword = e.target.value;
+        if (confirmPassword && senha === confirmPassword) {
+            clearError('confirmPassword', 'confirmPasswordError');
+        } else if (confirmPassword && senha !== confirmPassword) {
+            showError('confirmPassword', 'confirmPasswordError', 'Senhas devem coincidir');
+        }
+    });
+
+    // ✅ VALIDAÇÃO E ENVIO DO FORMULÁRIO (CORRIGIDO)
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        let isValid = true;
+
+        // Limpar erros anteriores
+        const errorElements = document.querySelectorAll('.error-message');
+        errorElements.forEach(error => error.style.display = 'none');
+
+        const inputElements = document.querySelectorAll('input, select');
+        inputElements.forEach(input => input.classList.remove('error'));
+
+        // Validar foto (opcional - remova se não for obrigatório)
+        if (!fotoCarregada) {
+            showError('perfil', 'perfilError', 'Foto de perfil é obrigatória');
+            isValid = false;
+        }
+
+        // Validar nome
+        const nome = document.getElementById('nome').value.trim();
+        if (!nome) {
+            showError('nome', 'nomeError', 'Nome completo deve ser preenchido');
+            isValid = false;
+        }
+
+        // Validar email
+        const email = document.getElementById('email').value.trim();
+        if (!email || !isValidEmail(email)) {
+            showError('email', 'emailError', 'Formato de e-mail inválido');
+            isValid = false;
+        }
+
+        // Validar data de nascimento
+        const dataNascimento = document.getElementById('dataNascimento').value;
+        if (!dataNascimento) {
+            showError('dataNascimento', 'dataNascimentoError', 'Data de nascimento obrigatória');
+            isValid = false;
+        }
+
+        
+       // Validar RG (opcional - mas se preenchido deve ter mínimo 7 dígitos)
+const rg = document.getElementById('rg').value.replace(/\D/g, '');
+if (rg && rg.length > 0 && rg.length < 7) {
+    showError('rg', 'rgError', 'RG deve ter no mínimo 7 dígitos');
+    isValid = false;
+} else {
+    clearError('rg', 'rgError');
+}
+
+// Validação do RG no blur (quando o usuário sai do campo)
+const rgField = document.getElementById('rg');
+if (rgField) {
+    rgField.addEventListener('blur', function(e) {
+        const rg = e.target.value.replace(/\D/g, '');
+        
+        // Campo vazio é aceito (opcional)
+        if (!rg || rg === '') {
+            clearError('rg', 'rgError');
+            return;
+        }
+        
+        // Se preenchido, deve ter pelo menos 7 dígitos
+        if (rg.length < 7) {
+            showError('rg', 'rgError', 'RG deve ter no mínimo 7 dígitos');
+        } else {
+            clearError('rg', 'rgError');
+        }
+    });
+}
+
+        // Validar CPF
+        const cpf = document.getElementById('cpf').value;
+        if (!isValidCPF(cpf)) {
+            showError('cpf', 'cpfError', 'CPF deve ter 11 dígitos e ser válido');
+            isValid = false;
+        }
+
+        // Validar sexo
+        if (sexoField) {
+            const sexo = sexoField.value;
+            if (!sexo) {
+                showError('sexo', 'sexoError', 'Sexo deve ser selecionado');
+                isValid = false;
+            }
+        }
+
+        const celular = document.getElementById('celular').value.replace(/\D/g, '');
+// CAMPO OPCIONAL - Só valida se preenchido
+if (celular && celular.length !== 11) {
+    showError('celular', 'celularError', 'Celular deve ter 11 dígitos (DDD + número)');
+    isValid = false;
+} else {
+    clearError('celular', 'celularError');
+}
+
+
+        // Validar CEP
+        const cep = document.getElementById('cep').value.replace(/\D/g, '');
+        if (!cep || cep.length !== 8) {
+            showError('cep', 'cepError', 'CEP válido obrigatório');
+            isValid = false;
+        }
+
+        // Validar endereço
+        const rua = document.getElementById('rua').value.trim();
+        if (!rua) {
+            showError('rua', 'ruaError', 'Rua deve ser preenchida');
+            isValid = false;
+        }
+
+        const bairro = document.getElementById('bairro').value.trim();
+        if (!bairro) {
+            showError('bairro', 'bairroError', 'Bairro deve ser preenchido');
+            isValid = false;
+        }
+
+        const cidade = document.getElementById('cidade').value.trim();
+        if (!cidade) {
+            showError('cidade', 'cidadeError', 'Cidade deve ser preenchida');
+            isValid = false;
+        }
+
+        const numero = document.getElementById('numero').value.trim();
+        if (!numero) {
+            showError('numero', 'numeroError', 'Número deve ser preenchido');
+            isValid = false;
+        }
+
+        // Validar senha
+        const senha = document.getElementById('senha').value;
+        if (!senha || senha.length < 6) {
+            showError('senha', 'senhaError', 'Senha deve ter pelo menos 6 caracteres');
+            isValid = false;
+        }
+
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        if (senha !== confirmPassword) {
+            showError('confirmPassword', 'confirmPasswordError', 'Senhas devem coincidir');
+            isValid = false;
+        }
+
+        // Se houver erros, parar aqui
+        if (!isValid) {
+            return;
+        }
+
+        // Desabilitar botão durante envio
+        const submitBtn = this.querySelector('.register-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        // Criar FormData
+        const formData = new FormData();
+        formData.append('nome', nome);
+        formData.append('email', email);
+        formData.append('data_nascimento', dataNascimento);
+        formData.append('rg', rgField ? rgField.value.replace(/\D/g, '') : '');
+        formData.append('cpf', cpf.replace(/\D/g, ''));
+        formData.append('sexo', sexoField ? sexoField.value : '');
+        formData.append('celular', celular);
+        formData.append('cep', cep);
+        formData.append('rua', rua);
+        formData.append('bairro', bairro);
+        formData.append('cidade', cidade);
+        formData.append('numero', numero);
+        formData.append('complemento', document.getElementById('complemento').value.trim());
+        formData.append('senha', senha);
+
+        // Adicionar foto
+        const perfilInput = document.getElementById('perfil');
+        if (perfilInput.files[0]) {
+            formData.append('perfil', perfilInput.files[0]);
+        }
+
+        // ✅ ENVIAR PARA O PHP (ESTA É A PARTE QUE ESTAVA FALTANDO!)
+        // ✅ ENVIAR PARA O PHP E REDIRECIONAR
+fetch('../php/cad_neurodivergente.php', {
+    method: 'POST',
+    body: formData
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Resposta do servidor:', data);
+    
+    if (data.success) {
+        // Sucesso - mostrar modal
+        const successModal = document.getElementById('successModal');
+        if (successModal) {
+            successModal.style.display = 'flex';
+        }
+
+        // ✅ REDIRECIONAR PARA O PERFIL DO AUTISTA APÓS 2 SEGUNDOS
+        setTimeout(() => {
+            // Redirecionar para a tela do responsável, seção perfil do autista
+            window.location.href = '../html/adm_responsavel.php?section=perfil-autista1';
+        }, 2000);
+    } else {
+        // Erro - mostrar mensagem
+        alert('Erro no cadastro: ' + (data.message || 'Erro desconhecido'));
+    }
+})
+.catch(error => {
+    console.error('Erro na requisição:', error);
+    alert('Erro ao enviar dados. Verifique sua conexão e tente novamente.');
+})
+.finally(() => {
+    // Reabilitar botão
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+});
+
+    });
+
+    // FUNÇÃO PARA MODAL DE SUCESSO
+    function closeSuccessModal() {
+        const successModal = document.getElementById('successModal');
+        if (successModal) {
+            successModal.style.display = 'none';
+        }
+    }
+
+    // FECHAR MODAIS CLICANDO FORA
+    window.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal-overlay')) {
+            closeModal(e.target.id);
+        }
+    });
+
+    // Event listeners para botões de fechar dos modais
+    const closeButtons = document.querySelectorAll('.close-modal, .modal-close, .btn-close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = this.closest('.modal-overlay');
+            if (modal) {
+                closeModal(modal.id);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
