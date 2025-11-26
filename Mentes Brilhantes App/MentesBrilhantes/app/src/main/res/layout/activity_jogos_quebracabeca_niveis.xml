@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JogosQuebracabecaNiveisActivity">
+
+    <!-- Imagem de fundo -->
+    <ImageView
+        android:id="@+id/fundo_jogos_nivel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:contentDescription="Fundo"
+        android:src="@drawable/fundo_jogos_quebracabeca_niveis" />
+
+    <!-- Botoes de nivel de dificuldade -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <ImageButton
+            android:id="@+id/btn_jogos_nivel_facil"
+            android:layout_width="330dp"
+            android:layout_height="110dp"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/btn_jogos_nivel_facil"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Fácil" />
+
+        <ImageButton
+            android:id="@+id/btn_jogos_nivel_medio"
+            android:layout_width="330dp"
+            android:layout_height="110dp"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/btn_jogos_nivel_medio"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Médio" />
+
+        <ImageButton
+            android:id="@+id/btn_jogos_nivel_dificil"
+            android:layout_width="330dp"
+            android:layout_height="110dp"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/btn_jogos_nivel_dificil"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Difícil" />
+
+    </LinearLayout>
+
+    <!-- Botao de saida -->
+    <ImageButton
+        android:id="@+id/btn_sair"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:src="@drawable/btn_jogos_sair_esticado"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:padding="0dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="Sair"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
