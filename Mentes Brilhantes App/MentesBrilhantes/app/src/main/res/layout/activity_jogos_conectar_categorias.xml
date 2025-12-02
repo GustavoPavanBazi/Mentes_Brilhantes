@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_jogos_conectar_categorias">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_categoria_animais"
+            android:layout_width="330dp"
+            android:layout_height="110dp"
+            android:layout_marginBottom="25dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_jogos_animais"
+            android:contentDescription="Animais" />
+
+        <ImageButton
+            android:id="@+id/btn_categoria_lugares"
+            android:layout_width="330dp"
+            android:layout_height="110dp"
+            android:layout_marginBottom="25dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_jogos_lugares"
+            android:contentDescription="Lugares" />
+
+        <ImageButton
+            android:id="@+id/btn_categoria_comidas"
+            android:layout_width="330dp"
+            android:layout_height="110dp"
+            android:layout_marginBottom="25dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_jogos_comidas"
+            android:contentDescription="Comidas" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btn_voltar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@null"
+        android:src="@drawable/btn_jogos_sair_esticado"
+        android:scaleType="fitXY"
+        android:contentDescription="Voltar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

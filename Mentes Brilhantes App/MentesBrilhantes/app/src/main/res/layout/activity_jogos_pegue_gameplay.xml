@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_principal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Área do Timer e Vida (topo) -->
+    <LinearLayout
+        android:id="@+id/layout_info_top"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Timer -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_info_box"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TEMPO"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed" />
+
+            <TextView
+                android:id="@+id/tv_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed" />
+        </LinearLayout>
+
+        <!-- Vida -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_info_box"
+            android:padding="12dp"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VIDA"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed" />
+
+            <TextView
+                android:id="@+id/tv_vida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textColor="#FF5252"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Área de jogo (eggman se move aqui) -->
+    <FrameLayout
+        android:id="@+id/area_jogo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_info_top"
+        app:layout_constraintBottom_toTopOf="@id/layout_botoes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:id="@+id/img_barata"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/pegue_eggman"
+            android:scaleType="fitCenter"
+            android:layout_gravity="start|top" />
+
+    </FrameLayout>
+
+    <!-- Botões (embaixo) -->
+    <LinearLayout
+        android:id="@+id/layout_botoes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_voltar"
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_jogos_sair_verde" />
+
+        <ImageButton
+            android:id="@+id/btn_reiniciar"
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_jogar_novamente_verde" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2C3E50"
+    tools:context=".JogosJogodavelhaGameplayActivity">
+
+    <!-- Informacoes do jogo -->
+    <LinearLayout
+        android:id="@+id/info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:background="#34495E"
+        android:padding="20dp"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/txt_current_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vez do Jogador X"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#ECF0F1" />
+        <TextView
+            android:id="@+id/txt_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X: 0 | O: 0 | Empates: 0"
+            android:textSize="18sp"
+            android:textColor="#BDC3C7"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+    <!-- Tabuleiro -->
+    <GridLayout
+        android:id="@+id/board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:columnCount="3"
+        android:rowCount="3"
+        android:padding="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp">
+    </GridLayout>
+
+    <!-- Linha vencedora animada -->
+    <com.example.mentesbrilhantes.JogosJogodavelhaLinha
+        android:id="@+id/winning_line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- Botoes de controle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp">
+        <ImageButton
+            android:id="@+id/btn_exit"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/btn_jogos_sair_azul"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Sair" />
+        <ImageButton
+            android:id="@+id/btn_reset"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/btn_jogar_novamente_azul"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Jogar Novamente" />
+    </LinearLayout>
+
+</RelativeLayout>

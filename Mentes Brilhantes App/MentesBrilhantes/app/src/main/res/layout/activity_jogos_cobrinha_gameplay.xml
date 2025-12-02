@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_principal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_jogos_gameplay_facil">
+
+    <!-- Container Topo com Timer e Pontos -->
+    <LinearLayout
+        android:id="@+id/container_topo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Timer -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_info_box"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⏱ "
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginEnd="4dp" />
+
+            <TextView
+                android:id="@+id/tv_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-black" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <!-- Pontos -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_info_box"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PONTOS: "
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-black" />
+
+            <TextView
+                android:id="@+id/tv_pontos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-black" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Área do Jogo -->
+    <FrameLayout
+        android:id="@+id/cobrinha_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#263238"
+        app:layout_constraintTop_toBottomOf="@id/container_topo"
+        app:layout_constraintBottom_toTopOf="@id/container_controles"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Controles Direcionais -->
+    <LinearLayout
+        android:id="@+id/container_controles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="6dp"
+        app:layout_constraintBottom_toTopOf="@id/container_botoes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Botão Cima -->
+        <ImageButton
+            android:id="@+id/btn_cima"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:background="@drawable/btn_direcao_verde"
+            android:contentDescription="Cima"
+            android:scaleType="centerInside" />
+
+        <!-- Botões Esquerda, Baixo, Direita -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <ImageButton
+                android:id="@+id/btn_esquerda"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/btn_direcao_verde"
+                android:contentDescription="Esquerda"
+                android:scaleType="centerInside" />
+
+            <ImageButton
+                android:id="@+id/btn_baixo"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:background="@drawable/btn_direcao_verde"
+                android:contentDescription="Baixo"
+                android:scaleType="centerInside" />
+
+            <ImageButton
+                android:id="@+id/btn_direita"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/btn_direcao_verde"
+                android:contentDescription="Direita"
+                android:scaleType="centerInside" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Botões Sair e Reiniciar -->
+    <LinearLayout
+        android:id="@+id/container_botoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_voltar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="40dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Sair"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_jogos_sair_verde" />
+
+        <ImageButton
+            android:id="@+id/btn_reiniciar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Jogar Novamente"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_jogar_novamente_verde" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

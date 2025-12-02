@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_principal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_jogos_contar">
+
+    <!-- Timer e Tentativas no Topo -->
+    <LinearLayout
+        android:id="@+id/container_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Timer -->
+        <com.example.mentesbrilhantes.ContornoPalavras
+            android:id="@+id/tv_timer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            android:text="00:00"
+            android:textSize="28sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/bg_contador_contorno"
+            android:padding="12dp"
+            android:layout_marginEnd="8dp"
+            app:outlineColor="@android:color/black"
+            app:outlineWidth="6dp" />
+
+        <!-- Tentativas -->
+        <com.example.mentesbrilhantes.ContornoPalavras
+            android:id="@+id/tv_tentativas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:text="Tentativas: 0"
+            android:textSize="24sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/bg_contador_contorno"
+            android:padding="12dp"
+            android:layout_marginStart="8dp"
+            app:outlineColor="@android:color/black"
+            app:outlineWidth="6dp" />
+
+    </LinearLayout>
+
+    <!-- Área de Jogo onde as imagens serão espalhadas -->
+    <RelativeLayout
+        android:id="@+id/area_imagens"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/container_info"
+        app:layout_constraintBottom_toTopOf="@+id/container_controles"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent" />
+
+    <!-- Container de Controles na parte inferior -->
+    <LinearLayout
+        android:id="@+id/container_controles"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@android:color/transparent">
+
+        <!-- Campo de Contagem -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_contador_contorno"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <!-- Seta Esquerda (Diminuir) -->
+            <ImageButton
+                android:id="@+id/btn_diminuir"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_seta_esquerda"
+                android:background="@drawable/btn_seta_bg"
+                android:scaleType="fitCenter"
+                android:contentDescription="Diminuir" />
+
+            <!-- Número Central -->
+            <com.example.mentesbrilhantes.ContornoPalavras
+                android:id="@+id/tv_numero"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="48sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:outlineColor="@android:color/black"
+                app:outlineWidth="8dp" />
+
+            <!-- Seta Direita (Aumentar) -->
+            <ImageButton
+                android:id="@+id/btn_aumentar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_seta_direita"
+                android:background="@drawable/btn_seta_bg"
+                android:scaleType="fitCenter"
+                android:contentDescription="Aumentar" />
+
+        </LinearLayout>
+
+        <!-- Botão Confirmar -->
+        <ImageButton
+            android:id="@+id/btn_confirmar"
+            android:layout_width="180dp"
+            android:layout_height="100dp"
+            android:src="@drawable/btn_confirmar"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="Confirmar" />
+
+        <!-- Botões de Ação -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- Botão Sair -->
+            <ImageButton
+                android:id="@+id/btn_sair"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:src="@drawable/btn_jogos_sair_vermelho"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="24dp"
+                android:contentDescription="Sair" />
+
+            <!-- Botão Jogar Novamente -->
+            <ImageButton
+                android:id="@+id/btn_jogar_novamente"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:src="@drawable/btn_jogar_novamente_vermelho"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:contentDescription="Jogar Novamente" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

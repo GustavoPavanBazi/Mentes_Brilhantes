@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_principal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_jogos_gameplay_facil">
+
+    <!-- Informações do jogo (Timer e Tentativas) -->
+    <LinearLayout
+        android:id="@+id/layout_infos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="#80000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tv_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="32dp"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"/>
+
+        <TextView
+            android:id="@+id/tv_tentativas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tentativas: 0"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"/>
+    </LinearLayout>
+
+    <!-- Área das imagens (topo) -->
+    <GridLayout
+        android:id="@+id/grid_imagens"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        android:padding="6dp"
+        app:layout_constraintTop_toBottomOf="@id/layout_infos"
+        app:layout_constraintBottom_toTopOf="@id/grid_palavras"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.55" />
+
+    <!-- Área das palavras (meio) -->
+    <GridLayout
+        android:id="@+id/grid_palavras"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:padding="6dp"
+        app:layout_constraintBottom_toTopOf="@id/layout_botoes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Botões de navegação - AUMENTADOS PARA 120dp E MAIS SEPARADOS -->
+    <LinearLayout
+        android:id="@+id/layout_botoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_voltar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/btn_jogos_sair_verde"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Sair" />
+
+        <ImageButton
+            android:id="@+id/btn_reiniciar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/btn_jogar_novamente_verde"
+            android:scaleType="fitXY"
+            android:background="@null"
+            android:padding="0dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="Jogar Novamente" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
